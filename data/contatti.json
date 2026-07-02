@@ -1,0 +1,64 @@
+{
+  "intro": {
+    "id": "contatti",
+    "title": "Contatti",
+    "subtitle": "Parliamo del tuo progetto",
+    "description": "Il contatto deve risultare semplice e immediato. Raccontaci la tua sfida."
+  },
+  "legalAddress": {
+    "label": "Sede legale",
+    "lines": [
+      "LeanMe Srls",
+      "Via Placeholder 1",
+      "40100 Bologna, Italia"
+    ]
+  },
+  "operationalAddress": {
+    "label": "Sede operativa",
+    "lines": [
+      "LeanMe Innovation Hub",
+      "Via Placeholder 2",
+      "40100 Bologna, Italia"
+    ]
+  },
+  "phone": {
+    "label": "Telefono",
+    "value": "+39 000 000 0000",
+    "href": "tel:+390000000000"
+  },
+  "email": {
+    "label": "Email",
+    "value": "info@leanme.it",
+    "href": "mailto:info@leanme.it"
+  },
+  "social": [
+    {
+      "label": "LinkedIn",
+      "href": "https://linkedin.com/company/leanme",
+      "platform": "linkedin"
+    },
+    {
+      "label": "Instagram",
+      "href": "https://instagram.com/leanme",
+      "platform": "instagram"
+    },
+    {
+      "label": "Facebook",
+      "href": "https://facebook.com/leanme",
+      "platform": "facebook"
+    }
+  ],
+  "map": {
+    "embedUrl": "https://maps.google.com/maps?q=Bologna%2C%20Italia&output=embed",
+    "label": "Mappa — Sede operativa LeanMe"
+  },
+  "foundation": {
+    "title": "Fondazione Policlinico Sant'Orsola",
+    "description": "LeanMe sostiene la Fondazione Policlinico Sant'Orsola, credendo che innovazione e responsabilità debbano crescere insieme."
+  },
+  "form": {
+    "title": "Modulo contatti",
+    "description": "Compila il modulo e ti risponderemo al più presto.",
+    "submitLabel": "Invia messaggio"
+  }
+}

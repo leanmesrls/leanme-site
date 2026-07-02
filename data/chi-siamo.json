@@ -1,0 +1,55 @@
+{
+  "intro": {
+    "id": "chi-siamo",
+    "title": "Chi siamo",
+    "subtitle": "LeanMe Srls",
+    "description": "LeanMe non è una software house. Non è una web agency. Progetta Aziende Ibride."
+  },
+  "sections": [
+    {
+      "id": "manifesto",
+      "title": "Powered by Human Intelligence. Amplified by AI.",
+      "content": [
+        "Il futuro non appartiene alla tecnologia. Appartiene alle persone che sapranno usarla per creare valore.",
+        "Noi crediamo che l'innovazione non debba sostituire il talento umano. Debba amplificarlo.",
+        "Per questo LeanMe non nasce per vendere software. Non nasce per vendere Intelligenza Artificiale. LeanMe nasce per aiutare persone, aziende e organizzazioni a lavorare meglio."
+      ]
+    },
+    {
+      "id": "perche-leanme",
+      "title": "Perché ci chiamiamo LeanMe",
+      "content": [
+        "Il nostro nome nasce dal Lean Thinking: eliminare ciò che non serve, semplificare, migliorare continuamente.",
+        "Abbiamo aggiunto Me. Perché nessuna innovazione ha valore se non migliora la vita delle persone.",
+        "Per noi il centro non è la tecnologia. È la persona."
+      ]
+    },
+    {
+      "id": "azienda-ibrida",
+      "title": "L'Azienda Ibrida",
+      "content": [
+        "Immaginiamo un'organizzazione in cui persone e Intelligenza Artificiale collaborano in modo naturale.",
+        "Le persone guidano. Gli agenti supportano. Chiamiamo questo modello Azienda Ibrida.",
+        "Non è un prodotto. Non è una tecnologia. È un nuovo modo di lavorare."
+      ]
+    },
+    {
+      "id": "metodo",
+      "title": "Il nostro metodo",
+      "content": [
+        "Ogni progetto nasce dall'ascolto. Comprendiamo il contesto. Studiamo i processi. Analizziamo i bisogni.",
+        "Progettiamo. Sperimentiamo. Misuriamo. Miglioriamo.",
+        "Non inseguiamo la perfezione. Inseguiamo il miglioramento continuo."
+      ]
+    },
+    {
+      "id": "impegno",
+      "title": "Il nostro impegno",
+      "content": [
+        "Ogni progetto rappresenta una responsabilità verso i nostri clienti, le persone che utilizzeranno ciò che realizziamo e la società.",
+        "Sosteniamo iniziative come la Fondazione Policlinico Sant'Orsola, credendo che innovazione e responsabilità debbano crescere insieme.",
+        "L'innovazione ha valore solo quando migliora davvero la vita delle persone."
+      ]
+    }
+  ]
+}

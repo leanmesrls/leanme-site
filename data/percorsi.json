@@ -1,0 +1,100 @@
+{
+  "intro": {
+    "id": "come-possiamo-aiutarti",
+    "title": "Come possiamo aiutarti",
+    "subtitle": "Percorsi su misura",
+    "description": "Organizziamo i contenuti partendo dai bisogni del cliente. Ogni percorso presenta i servizi dedicati."
+  },
+  "percorsi": [
+    {
+      "slug": "innovare-la-mia-azienda",
+      "title": "Voglio innovare la mia azienda",
+      "shortDescription": "Trasformazione digitale, automazione e design per aziende che vogliono evolversi.",
+      "description": "LeanMe accompagna le aziende nel percorso verso l'innovazione. Dalla digitalizzazione dei processi alla progettazione di un'Azienda Ibrida, costruiamo soluzioni su misura che eliminano complessità e generano valore.",
+      "image": {
+        "src": "/images/placeholders/percorso-innovazione.svg",
+        "alt": "Innovare la mia azienda",
+        "replaceHint": "REPLACE: Fotografia percorso innovazione azienda"
+      },
+      "services": [
+        "Analisi dei processi aziendali",
+        "Automazione intelligente",
+        "Progettazione Azienda Ibrida",
+        "Formazione Lean Academy",
+        "Monitoraggio e miglioramento continuo"
+      ]
+    },
+    {
+      "slug": "partner-struttura-sanitaria",
+      "title": "Voglio un partner per la mia struttura sanitaria",
+      "shortDescription": "Competenza healthcare, processi digitali e comunicazione per il settore sanitario.",
+      "description": "LeanMe unisce competenza sanitaria, design e tecnologia. Supportiamo strutture sanitarie nella digitalizzazione, nell'automazione dei flussi e nella comunicazione con pazienti e professionisti.",
+      "image": {
+        "src": "/images/placeholders/percorso-sanita.svg",
+        "alt": "Partner struttura sanitaria",
+        "replaceHint": "REPLACE: Fotografia percorso healthcare"
+      },
+      "services": [
+        "Digitalizzazione processi sanitari",
+        "Automazione amministrativa",
+        "Comunicazione istituzionale",
+        "Piattaforme per pazienti",
+        "Formazione team sanitario"
+      ]
+    },
+    {
+      "slug": "partner-societa-scientifica",
+      "title": "Voglio un partner per la mia società scientifica",
+      "shortDescription": "Eventi, piattaforme e comunicazione per il mondo scientifico.",
+      "description": "LeanMe supporta società scientifiche con piattaforme eventi, gestione iscrizioni, comunicazione multicanale e strumenti digitali che valorizzano la conoscenza.",
+      "image": {
+        "src": "/images/placeholders/percorso-scientifico.svg",
+        "alt": "Partner società scientifica",
+        "replaceHint": "REPLACE: Fotografia percorso società scientifica"
+      },
+      "services": [
+        "Piattaforme congressi e eventi",
+        "Gestione iscrizioni e accrediti",
+        "Comunicazione scientifica",
+        "Newsletter e social media",
+        "Archivio contenuti formativi"
+      ]
+    },
+    {
+      "slug": "partner-eventi",
+      "title": "Voglio un partner per i miei eventi",
+      "shortDescription": "Progettazione e gestione di eventi con tecnologia e design premium.",
+      "description": "Dalla concept alla produzione, LeanMe progetta eventi memorabili integrando tecnologia, automazione e comunicazione per un'esperienza impeccabile.",
+      "image": {
+        "src": "/images/placeholders/percorso-eventi.svg",
+        "alt": "Partner eventi",
+        "replaceHint": "REPLACE: Fotografia percorso eventi"
+      },
+      "services": [
+        "Progettazione eventi",
+        "Registrazione e streaming",
+        "App e piattaforme evento",
+        "Automazione follow-up",
+        "Report e analytics"
+      ]
+    },
+    {
+      "slug": "comunicare-meglio",
+      "title": "Voglio comunicare meglio",
+      "shortDescription": "Brand, contenuti e canali digitali che generano fiducia e autorevolezza.",
+      "description": "LeanMe aiuta organizzazioni a comunicare con eleganza e chiarezza. Siti web premium, contenuti editoriali, social media e strategie che rafforzano l'identità del brand.",
+      "image": {
+        "src": "/images/placeholders/percorso-comunicazione.svg",
+        "alt": "Comunicare meglio",
+        "replaceHint": "REPLACE: Fotografia percorso comunicazione"
+      },
+      "services": [
+        "Siti web e landing page",
+        "Strategia contenuti",
+        "Social media management",
+        "Newsletter e email marketing",
+        "Identità visiva e brand"
+      ]
+    }
+  ]
+}

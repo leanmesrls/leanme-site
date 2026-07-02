@@ -1,0 +1,38 @@
+[
+  {
+    "id": "testimonial-1",
+    "name": "Dr. Marco Rossi",
+    "role": "Direttore Sanitario",
+    "company": "Struttura Sanitaria",
+    "quote": "LeanMe ha trasformato il nostro modo di lavorare. Non ci hanno venduto software, ci hanno aiutato a progettare un'organizzazione più efficiente e umana.",
+    "image": {
+      "src": "/images/placeholders/testimonial-1.svg",
+      "alt": "Dr. Marco Rossi",
+      "replaceHint": "REPLACE: Fotografia originale testimonial Dr. Marco Rossi"
+    }
+  },
+  {
+    "id": "testimonial-2",
+    "name": "Prof.ssa Elena Bianchi",
+    "role": "Presidente",
+    "company": "Società Scientifica",
+    "quote": "La piattaforma eventi progettata da LeanMe ha elevato la qualità dei nostri congressi. Professionalità, design e tecnologia in perfetta armonia.",
+    "image": {
+      "src": "/images/placeholders/testimonial-2.svg",
+      "alt": "Prof.ssa Elena Bianchi",
+      "replaceHint": "REPLACE: Fotografia originale testimonial Prof.ssa Elena Bianchi"
+    }
+  },
+  {
+    "id": "testimonial-3",
+    "name": "Luca Ferretti",
+    "role": "CEO",
+    "company": "Azienda Innovativa",
+    "quote": "Con LeanMe abbiamo capito cosa significa davvero Azienda Ibrida. Persone e AI che lavorano insieme, non l'una contro l'altra.",
+    "image": {
+      "src": "/images/placeholders/testimonial-3.svg",
+      "alt": "Luca Ferretti",
+      "replaceHint": "REPLACE: Fotografia originale testimonial Luca Ferretti"
+    }
+  }
+]

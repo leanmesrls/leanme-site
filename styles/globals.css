@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+@theme {
+  --color-leanme-purple: #8016d2;
+  --color-leanme-black: #0a0a0a;
+  --color-leanme-white: #ffffff;
+  --color-leanme-gray-50: #fafafa;
+  --color-leanme-gray-100: #f4f4f5;
+  --color-leanme-gray-200: #e4e4e7;
+  --color-leanme-gray-300: #d4d4d8;
+  --color-leanme-gray-400: #a1a1aa;
+  --color-leanme-gray-500: #71717a;
+  --color-leanme-gray-600: #52525b;
+  --color-leanme-gray-700: #3f3f46;
+  --color-leanme-gray-800: #27272a;
+  --color-leanme-gray-900: #18181b;
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  --spacing-section: 6rem;
+  --spacing-section-sm: 4rem;
+
+  --shadow-card: 0 24px 48px -12px rgb(0 0 0 / 0.12);
+  --shadow-card-hover: 0 32px 64px -16px rgb(128 22 210 / 0.18);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-leanme-white text-leanme-black antialiased;
+  }
+
+  ::selection {
+    @apply bg-leanme-purple/20 text-leanme-black;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .section-padding {
+    @apply px-6 py-16 md:px-10 md:py-24 lg:px-16;
+  }
+
+  .gradient-purple {
+    background: linear-gradient(135deg, #8016d2 0%, #5a0f96 100%);
+  }
+}

@@ -1,0 +1,226 @@
+{
+  "hero": {
+    "title": "Progettiamo Aziende Ibride",
+    "subtitle": "Digital Innovation Company",
+    "claim": "Powered by Human Intelligence. Amplified by AI.",
+    "description": "LeanMe non vende software. Non vende Intelligenza Artificiale. Progetta organizzazioni in cui persone e agenti AI collaborano per creare valore concreto.",
+    "image": {
+      "src": "/images/placeholders/hero-home.svg",
+      "alt": "Sede LeanMe — ambiente premium con tecnologia elegante",
+      "replaceHint": "REPLACE: Fotografia widescreen cinematografica della sede LeanMe (hero homepage)"
+    },
+    "primaryCta": {
+      "label": "Scopri il metodo LeanMe",
+      "href": "/chi-siamo",
+      "variant": "primary"
+    },
+    "secondaryCta": {
+      "label": "Come possiamo aiutarti",
+      "href": "/come-possiamo-aiutarti",
+      "variant": "secondary"
+    }
+  },
+  "humanAi": {
+    "id": "human-ai",
+    "title": "Human + AI",
+    "subtitle": "Il cuore dell'Azienda Ibrida",
+    "description": "Ogni pagina del nostro ecosistema aiuta a comprendere il valore della collaborazione tra persone e Lean.Agent.",
+    "content": [
+      "Le persone guidano. Gli agenti supportano.",
+      "Le persone decidono. Gli agenti elaborano.",
+      "Le persone immaginano. Gli agenti accelerano."
+    ],
+    "image": {
+      "src": "/images/placeholders/human-ai.svg",
+      "alt": "Collaborazione tra persone e intelligenza artificiale",
+      "replaceHint": "REPLACE: Fotografia reale del team LeanMe al lavoro con tecnologia"
+    },
+    "cta": {
+      "label": "Scopri lo Staff Ibrido",
+      "href": "/staff-ibrido",
+      "variant": "primary"
+    }
+  },
+  "percorsiTrasformazione": {
+    "id": "percorsi-trasformazione",
+    "title": "Percorsi di Trasformazione",
+    "subtitle": "Innovazione accessibile, sempre",
+    "description": "Non esistono clienti piccoli o grandi. Esistono persone con esigenze diverse. Costruiamo percorsi su misura.",
+    "items": [
+      {
+        "title": "Digitalizzare un processo",
+        "description": "Rendere più semplice un flusso operativo attraverso automazione e design.",
+        "icon": "workflow"
+      },
+      {
+        "title": "Migliorare la comunicazione",
+        "description": "Raccontare meglio chi sei con esperienze digitali premium e coerenti.",
+        "icon": "communication"
+      },
+      {
+        "title": "Sperimentare l'AI",
+        "description": "Introduurre agenti specializzati che amplificano il lavoro del team.",
+        "icon": "ai"
+      },
+      {
+        "title": "Progettare un'Azienda Ibrida",
+        "description": "Trasformare l'organizzazione con un modello in cui persone e AI collaborano.",
+        "icon": "hybrid"
+      }
+    ]
+  },
+  "soluzioniSuMisura": {
+    "id": "soluzioni-su-misura",
+    "title": "Soluzioni su Misura",
+    "subtitle": "Come possiamo aiutarti",
+    "description": "Organizziamo i contenuti partendo dai bisogni del cliente, non da un catalogo di servizi.",
+    "items": [
+      {
+        "title": "Voglio innovare la mia azienda",
+        "description": "Percorsi di trasformazione digitale e automazione su misura.",
+        "image": {
+          "src": "/images/placeholders/percorso-innovazione.svg",
+          "alt": "Innovazione aziendale",
+          "replaceHint": "REPLACE: Card fotografica percorso innovazione azienda"
+        }
+      },
+      {
+        "title": "Voglio un partner per la mia struttura sanitaria",
+        "description": "Competenza healthcare, processi e comunicazione per il settore sanitario.",
+        "image": {
+          "src": "/images/placeholders/percorso-sanita.svg",
+          "alt": "Partner strutture sanitarie",
+          "replaceHint": "REPLACE: Card fotografica percorso healthcare"
+        }
+      },
+      {
+        "title": "Voglio un partner per la mia società scientifica",
+        "description": "Eventi, comunicazione e piattaforme per il mondo scientifico.",
+        "image": {
+          "src": "/images/placeholders/percorso-scientifico.svg",
+          "alt": "Partner società scientifiche",
+          "replaceHint": "REPLACE: Card fotografica percorso società scientifica"
+        }
+      },
+      {
+        "title": "Voglio un partner per i miei eventi",
+        "description": "Progettazione e gestione di eventi con tecnologia e design.",
+        "image": {
+          "src": "/images/placeholders/percorso-eventi.svg",
+          "alt": "Partner eventi",
+          "replaceHint": "REPLACE: Card fotografica percorso eventi"
+        }
+      },
+      {
+        "title": "Voglio comunicare meglio",
+        "description": "Brand, contenuti e canali digitali che generano fiducia.",
+        "image": {
+          "src": "/images/placeholders/percorso-comunicazione.svg",
+          "alt": "Comunicazione",
+          "replaceHint": "REPLACE: Card fotografica percorso comunicazione"
+        }
+      }
+    ]
+  },
+  "metodoLeanMe": {
+    "id": "metodo-leanme",
+    "title": "Metodo LeanMe",
+    "subtitle": "Il nostro modo di lavorare",
+    "description": "Ogni progetto nasce dall'ascolto. Non inseguiamo la perfezione. Inseguiamo il miglioramento continuo.",
+    "steps": [
+      {
+        "number": "01",
+        "title": "Ascolto",
+        "description": "Comprendiamo il contesto, i processi e i bisogni reali."
+      },
+      {
+        "number": "02",
+        "title": "Progettazione",
+        "description": "Progettiamo soluzioni modulari, eleganti e scalabili."
+      },
+      {
+        "number": "03",
+        "title": "Sperimentazione",
+        "description": "Testiamo nel LeanLab prima di portare in produzione."
+      },
+      {
+        "number": "04",
+        "title": "Misurazione",
+        "description": "Misuriamo risultati e impatto concreto sul business."
+      },
+      {
+        "number": "05",
+        "title": "Miglioramento",
+        "description": "Miglioriamo continuamente, come ci ha insegnato il Lean Thinking."
+      }
+    ]
+  },
+  "leanAgentTeam": {
+    "id": "lean-agent-team",
+    "title": "Lean.Agent Team",
+    "subtitle": "Lo Staff Ibrido",
+    "description": "Persone, Lean.Agent e un network di specialisti. Le persone restano sempre al centro del progetto."
+  },
+  "leanLab": {
+    "id": "leanlab",
+    "title": "Dal LeanLab",
+    "subtitle": "Il laboratorio permanente di innovazione",
+    "description": "L'innovazione non nasce nelle presentazioni. Nasce nei laboratori. Ogni progetto che realizziamo nasce qui.",
+    "cta": {
+      "label": "Esplora il LeanLab",
+      "href": "/leanlab",
+      "variant": "primary"
+    }
+  },
+  "caseStudies": {
+    "id": "case-studies",
+    "title": "Case Studies",
+    "subtitle": "Progetti che generano valore",
+    "description": "Soluzioni concrete nate dall'incontro tra design, tecnologia e processi.",
+    "items": [
+      {
+        "title": "Trasformazione digitale healthcare",
+        "client": "Struttura sanitaria",
+        "description": "Automazione dei processi amministrativi e miglioramento dell'esperienza paziente.",
+        "image": {
+          "src": "/images/placeholders/case-study-1.svg",
+          "alt": "Case study healthcare",
+          "replaceHint": "REPLACE: Fotografia case study healthcare"
+        },
+        "href": "/leanlab/progetti-conclusi/trasformazione-healthcare"
+      },
+      {
+        "title": "Piattaforma eventi scientifici",
+        "client": "Società scientifica",
+        "description": "Gestione integrata di eventi, iscrizioni e comunicazione multicanale.",
+        "image": {
+          "src": "/images/placeholders/case-study-2.svg",
+          "alt": "Case study eventi",
+          "replaceHint": "REPLACE: Fotografia case study eventi"
+        },
+        "href": "/leanlab/progetti-conclusi/piattaforma-eventi"
+      }
+    ],
+    "cta": {
+      "label": "Tutti i progetti",
+      "href": "/leanlab/progetti-conclusi",
+      "variant": "secondary"
+    }
+  },
+  "cta": {
+    "id": "cta",
+    "title": "Pronti a innovare insieme?",
+    "subtitle": "Contattaci",
+    "description": "Raccontaci la tua sfida. Costruiremo un percorso su misura per la tua organizzazione.",
+    "primaryCta": {
+      "label": "Contattaci",
+      "href": "/contatti",
+      "variant": "primary"
+    },
+    "secondaryCta": {
+      "label": "Scopri i percorsi",
+      "href": "/come-possiamo-aiutarti",
+      "variant": "ghost"
+    }
+  }
+}

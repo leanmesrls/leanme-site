@@ -1,0 +1,139 @@
+{
+  "intro": {
+    "id": "staff-ibrido",
+    "title": "Lo Staff Ibrido",
+    "subtitle": "Persone, Lean.Agent, Network",
+    "description": "LeanMe lavora attraverso uno Staff Ibrido. Persone al centro, agenti AI specializzati e un network di professionisti selezionati."
+  },
+  "people": [
+    {
+      "slug": "team-leadership",
+      "name": "Leadership LeanMe",
+      "role": "Direzione e Visione",
+      "description": "Guidano la visione dell'Azienda Ibrida e la strategia di innovazione di LeanMe.",
+      "image": {
+        "src": "/images/placeholders/team-leadership.svg",
+        "alt": "Leadership LeanMe",
+        "replaceHint": "REPLACE: Fotografia originale leadership LeanMe"
+      }
+    },
+    {
+      "slug": "team-design",
+      "name": "Design Team",
+      "role": "Design e UX",
+      "description": "Progettano esperienze premium che riflettono l'identità LeanMe.",
+      "image": {
+        "src": "/images/placeholders/team-design.svg",
+        "alt": "Design Team LeanMe",
+        "replaceHint": "REPLACE: Fotografia originale design team"
+      }
+    },
+    {
+      "slug": "team-tech",
+      "name": "Technology Team",
+      "role": "Sviluppo e Automazione",
+      "description": "Costruiscono soluzioni scalabili, modulari e production-ready.",
+      "image": {
+        "src": "/images/placeholders/team-tech.svg",
+        "alt": "Technology Team LeanMe",
+        "replaceHint": "REPLACE: Fotografia originale technology team"
+      }
+    }
+  ],
+  "leanAgents": [
+    {
+      "slug": "lean-agent-strategy",
+      "name": "Lean.Agent Strategy",
+      "role": "Agente Strategico",
+      "specialty": "Analisi e Pianificazione",
+      "description": "Supporta l'analisi dei processi aziendali e la definizione di percorsi di trasformazione.",
+      "image": {
+        "src": "/images/placeholders/agent-strategy.svg",
+        "alt": "Lean.Agent Strategy",
+        "replaceHint": "REPLACE: Card ufficiale Lean.Agent Strategy"
+      },
+      "cardImage": {
+        "src": "/images/placeholders/agent-card-strategy.svg",
+        "alt": "Card Lean.Agent Strategy",
+        "replaceHint": "REPLACE: Card ufficiale approvata Lean.Agent Strategy"
+      }
+    },
+    {
+      "slug": "lean-agent-content",
+      "name": "Lean.Agent Content",
+      "role": "Agente Contenuti",
+      "specialty": "Comunicazione e Copywriting",
+      "description": "Accelera la produzione di contenuti editoriali mantenendo coerenza con il brand LeanMe.",
+      "image": {
+        "src": "/images/placeholders/agent-content.svg",
+        "alt": "Lean.Agent Content",
+        "replaceHint": "REPLACE: Card ufficiale Lean.Agent Content"
+      },
+      "cardImage": {
+        "src": "/images/placeholders/agent-card-content.svg",
+        "alt": "Card Lean.Agent Content",
+        "replaceHint": "REPLACE: Card ufficiale approvata Lean.Agent Content"
+      }
+    },
+    {
+      "slug": "lean-agent-automation",
+      "name": "Lean.Agent Automation",
+      "role": "Agente Automazione",
+      "specialty": "Workflow e Integrazioni",
+      "description": "Progetta e monitora flussi automatizzati che eliminano attività ripetitive.",
+      "image": {
+        "src": "/images/placeholders/agent-automation.svg",
+        "alt": "Lean.Agent Automation",
+        "replaceHint": "REPLACE: Card ufficiale Lean.Agent Automation"
+      },
+      "cardImage": {
+        "src": "/images/placeholders/agent-card-automation.svg",
+        "alt": "Card Lean.Agent Automation",
+        "replaceHint": "REPLACE: Card ufficiale approvata Lean.Agent Automation"
+      }
+    },
+    {
+      "slug": "lean-agent-healthcare",
+      "name": "Lean.Agent Healthcare",
+      "role": "Agente Healthcare",
+      "specialty": "Settore Sanitario",
+      "description": "Supporta la digitalizzazione e l'automazione nei processi delle strutture sanitarie.",
+      "image": {
+        "src": "/images/placeholders/agent-healthcare.svg",
+        "alt": "Lean.Agent Healthcare",
+        "replaceHint": "REPLACE: Card ufficiale Lean.Agent Healthcare"
+      },
+      "cardImage": {
+        "src": "/images/placeholders/agent-card-healthcare.svg",
+        "alt": "Card Lean.Agent Healthcare",
+        "replaceHint": "REPLACE: Card ufficiale approvata Lean.Agent Healthcare"
+      }
+    }
+  ],
+  "network": {
+    "title": "Network di Specialisti",
+    "description": "Un network di professionisti selezionati nei diversi ambiti: healthcare, eventi, comunicazione, tecnologia e formazione.",
+    "specialists": [
+      {
+        "name": "Healthcare Specialist",
+        "area": "Sanità",
+        "description": "Competenza clinica e gestionale per progetti nel settore sanitario."
+      },
+      {
+        "name": "Events Specialist",
+        "area": "Eventi",
+        "description": "Produzione e gestione di eventi scientifici e corporate."
+      },
+      {
+        "name": "Communication Specialist",
+        "area": "Comunicazione",
+        "description": "Strategia editoriale, social media e brand identity."
+      },
+      {
+        "name": "Technology Specialist",
+        "area": "Tecnologia",
+        "description": "Architetture scalabili, integrazioni e automazione avanzata."
+      }
+    ]
+  }
+}
