@@ -1,17 +1,17 @@
-import { notFound } from "next/navigation";
 import Link from "next/link";
-import { Container } from "@/components/ui/Container";
-import { PlaceholderImage } from "@/components/ui/PlaceholderImage";
-import { Badge } from "@/components/ui/Badge";
-import { Button } from "@/components/ui/Button";
+import { notFound } from "next/navigation";
+import { ArrowIcon } from "@/components/homepage/Icons";
+import { PageSection } from "@/components/layout/PageSection";
 import { FadeIn } from "@/components/motion/FadeIn";
 import {
   getAcademyData,
   getAllAcademyResourceSlugs,
 } from "@/lib/content";
+import { ASSETS } from "@/lib/assets";
 import { createPageMetadata } from "@/lib/metadata";
 import { breadcrumbSchema } from "@/lib/structured-data";
 import { JsonLd } from "@/components/seo/JsonLd";
+import Image from "next/image";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -40,7 +40,7 @@ export async function generateMetadata({ params }: PageProps) {
     title: resource.title,
     description: resource.description,
     path: `/lean-academy/${slug}`,
-    image: resource.image.src,
+    image: ASSETS.decorative.bannerAmbient,
   });
 }
 
@@ -65,35 +65,39 @@ export default async function AcademyResourcePage({ params }: PageProps) {
           { name: resource.title, path },
         ])}
       />
-      <section className="section-padding">
-        <Container>
-          <FadeIn>
-            <Link
-              href="/lean-academy"
-              className="mb-6 inline-block text-sm text-leanme-purple hover:text-leanme-black"
-            >
-              ← Lean Academy
-            </Link>
-            <Badge>{resource.type}</Badge>
-            <h1 className="mt-4 text-4xl font-semibold tracking-tight">
-              {resource.title}
-            </h1>
-            <p className="mt-6 max-w-3xl text-lg text-leanme-gray-600">
-              {resource.description}
-            </p>
-            <div className="mt-10">
-              <PlaceholderImage image={resource.image} aspectRatio="wide" />
-            </div>
-            <p className="mt-8 max-w-3xl text-leanme-gray-600">
-              Contenuto placeholder. Sostituire con il materiale formativo
-              completo ({resource.type}) quando disponibile.
-            </p>
-            <div className="mt-8">
-              <Button href="/contatti" label="Richiedi informazioni" variant="primary" />
-            </div>
-          </FadeIn>
-        </Container>
-      </section>
+      <PageSection>
+        <FadeIn>
+          <Link
+            href="/lean-academy"
+            className="mb-6 inline-block text-xs font-semibold uppercase tracking-[0.1em] text-leanme-purple transition hover:text-white"
+          >
+            ← Lean Academy
+          </Link>
+          <span className="inline-block rounded-full border border-leanme-purple/40 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-leanme-purple">
+            {resource.type}
+          </span>
+          <h1 className="mt-4 text-3xl font-bold text-white md:text-4xl">
+            {resource.title}
+          </h1>
+          <p className="mt-6 max-w-3xl text-lg text-white/65">{resource.description}</p>
+          <div className="relative mt-10 aspect-[21/9] overflow-hidden rounded-xl border border-white/10">
+            <Image
+              src={ASSETS.decorative.bannerAmbient}
+              alt={resource.title}
+              fill
+              className="object-cover"
+              sizes="100vw"
+            />
+          </div>
+          <Link
+            href="/contatti"
+            className="mt-8 inline-flex items-center gap-2 rounded-full bg-leanme-purple px-6 py-3 text-xs font-semibold uppercase tracking-[0.08em] text-white transition hover:bg-leanme-purple/90"
+          >
+            Richiedi informazioni
+            <ArrowIcon />
+          </Link>
+        </FadeIn>
+      </PageSection>
     </>
   );
 }

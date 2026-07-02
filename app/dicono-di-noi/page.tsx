@@ -1,5 +1,5 @@
-import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
-import { getTestimonials } from "@/lib/content";
+import { TestimonialsPartnersSection } from "@/components/homepage/TestimonialsPartnersSection";
+import { getHomepageData, getTestimonials } from "@/lib/content";
 import { createPageMetadata } from "@/lib/metadata";
 import { breadcrumbSchema } from "@/lib/structured-data";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -13,6 +13,7 @@ export const metadata = createPageMetadata({
 
 export default function DiconoDiNoiPage() {
   const testimonials = getTestimonials();
+  const homepage = getHomepageData();
 
   return (
     <>
@@ -22,9 +23,10 @@ export default function DiconoDiNoiPage() {
           { name: "Dicono di noi", path: "/dicono-di-noi" },
         ])}
       />
-      <TestimonialsSection
+      <TestimonialsPartnersSection
         testimonials={testimonials}
-        showAllLink={false}
+        testimonialsData={homepage.testimonials}
+        partnersData={homepage.partners}
       />
     </>
   );

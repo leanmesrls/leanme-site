@@ -1,5 +1,5 @@
-import { Container } from "@/components/ui/Container";
-import { Button } from "@/components/ui/Button";
+import Link from "next/link";
+import { PageSection } from "@/components/layout/PageSection";
 import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata = createPageMetadata({
@@ -11,19 +11,22 @@ export const metadata = createPageMetadata({
 
 export default function NotFound() {
   return (
-    <section className="section-padding">
-      <Container className="text-center">
-        <p className="text-sm font-medium uppercase tracking-[0.2em] text-leanme-purple">
+    <PageSection>
+      <div className="text-center">
+        <p className="text-sm font-semibold uppercase tracking-[0.14em] text-leanme-purple">
           404
         </p>
-        <h1 className="mt-4 text-4xl font-semibold">Pagina non trovata</h1>
-        <p className="mt-4 text-leanme-gray-600">
+        <h1 className="mt-4 text-4xl font-bold text-white">Pagina non trovata</h1>
+        <p className="mt-4 text-white/65">
           La pagina che stai cercando non esiste o è stata spostata.
         </p>
-        <div className="mt-8">
-          <Button href="/" label="Torna alla Home" variant="primary" />
-        </div>
-      </Container>
-    </section>
+        <Link
+          href="/"
+          className="mt-8 inline-flex items-center justify-center rounded-full bg-leanme-purple px-6 py-3 text-xs font-semibold uppercase tracking-[0.08em] text-white transition hover:bg-leanme-purple/90"
+        >
+          Torna alla Home
+        </Link>
+      </div>
+    </PageSection>
   );
 }

@@ -1,9 +1,7 @@
-import { notFound } from "next/navigation";
 import Link from "next/link";
-import { Container } from "@/components/ui/Container";
-import { SectionHeading } from "@/components/ui/SectionHeading";
+import { notFound } from "next/navigation";
+import { PageIntro, PageSection } from "@/components/layout/PageSection";
 import { ArticleCard } from "@/components/leanlab/ArticleCard";
-import { FadeIn } from "@/components/motion/FadeIn";
 import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
 import {
   getAllLeanLabCategorySlugs,
@@ -62,29 +60,25 @@ export default async function LeanLabCategoryPage({ params }: PageProps) {
           { name: category.title, path },
         ])}
       />
-      <section className="section-padding">
-        <Container>
-          <FadeIn>
-            <Link
-              href="/leanlab"
-              className="mb-6 inline-block text-sm text-leanme-purple hover:text-leanme-black"
-            >
-              ← Torna al LeanLab
-            </Link>
-            <SectionHeading
-              title={category.title}
-              description={category.description}
-            />
-          </FadeIn>
-          <div className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {articles.map((article, index) => (
-              <RevealOnScroll key={article.slug} delay={index * 0.06}>
-                <ArticleCard article={article} />
-              </RevealOnScroll>
-            ))}
-          </div>
-        </Container>
-      </section>
+      <PageSection>
+        <Link
+          href="/leanlab"
+          className="mb-6 inline-block text-xs font-semibold uppercase tracking-[0.1em] text-leanme-purple transition hover:text-white"
+        >
+          ← Torna al LeanLab
+        </Link>
+        <PageIntro
+          title={category.title}
+          description={category.description}
+        />
+        <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {articles.map((article, index) => (
+            <RevealOnScroll key={article.slug} delay={index * 0.05}>
+              <ArticleCard article={article} />
+            </RevealOnScroll>
+          ))}
+        </div>
+      </PageSection>
     </>
   );
 }

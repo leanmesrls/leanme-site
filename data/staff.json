@@ -7,106 +7,160 @@
   },
   "people": [
     {
-      "slug": "team-leadership",
-      "name": "Leadership LeanMe",
-      "role": "Direzione e Visione",
-      "description": "Guidano la visione dell'Azienda Ibrida e la strategia di innovazione di LeanMe.",
+      "slug": "luana",
+      "name": "Luana",
+      "role": "Founder & Vision",
+      "description": "Guida la visione dell'Azienda Ibrida e la strategia di innovazione di LeanMe.",
       "image": {
-        "src": "/images/placeholders/team-leadership.svg",
-        "alt": "Leadership LeanMe",
-        "replaceHint": "REPLACE: Fotografia originale leadership LeanMe"
+        "src": "/assets/official/luana.webp",
+        "alt": "Luana — Founder LeanMe",
+        "replaceHint": ""
       }
     },
     {
-      "slug": "team-design",
-      "name": "Design Team",
-      "role": "Design e UX",
-      "description": "Progettano esperienze premium che riflettono l'identità LeanMe.",
+      "slug": "alessandro",
+      "name": "Alessandro",
+      "role": "Technology & Development",
+      "description": "Progetta e sviluppa soluzioni scalabili, modulari e production-ready.",
       "image": {
-        "src": "/images/placeholders/team-design.svg",
-        "alt": "Design Team LeanMe",
-        "replaceHint": "REPLACE: Fotografia originale design team"
-      }
-    },
-    {
-      "slug": "team-tech",
-      "name": "Technology Team",
-      "role": "Sviluppo e Automazione",
-      "description": "Costruiscono soluzioni scalabili, modulari e production-ready.",
-      "image": {
-        "src": "/images/placeholders/team-tech.svg",
-        "alt": "Technology Team LeanMe",
-        "replaceHint": "REPLACE: Fotografia originale technology team"
+        "src": "/assets/official/alessandro.png",
+        "alt": "Alessandro — Developer LeanMe",
+        "replaceHint": ""
       }
     }
   ],
   "leanAgents": [
     {
-      "slug": "lean-agent-strategy",
-      "name": "Lean.Agent Strategy",
-      "role": "Agente Strategico",
-      "specialty": "Analisi e Pianificazione",
-      "description": "Supporta l'analisi dei processi aziendali e la definizione di percorsi di trasformazione.",
+      "slug": "leonardo",
+      "name": "LEONARDO",
+      "role": "Segreteria e organizzazione",
+      "specialty": "Segreteria e organizzazione",
+      "action": "PIANIFICA",
+      "actionColor": "#4DA3FF",
+      "description": "Supporta la pianificazione, l'organizzazione e la gestione operativa con precisione e continuità.",
       "image": {
-        "src": "/images/placeholders/agent-strategy.svg",
-        "alt": "Lean.Agent Strategy",
-        "replaceHint": "REPLACE: Card ufficiale Lean.Agent Strategy"
+        "src": "/assets/official/leonardo.png",
+        "alt": "Lean.Agent Leonardo",
+        "replaceHint": ""
       },
       "cardImage": {
-        "src": "/images/placeholders/agent-card-strategy.svg",
-        "alt": "Card Lean.Agent Strategy",
-        "replaceHint": "REPLACE: Card ufficiale approvata Lean.Agent Strategy"
+        "src": "/assets/official/leonardo.png",
+        "alt": "Lean.Agent Leonardo",
+        "replaceHint": ""
       }
     },
     {
-      "slug": "lean-agent-content",
-      "name": "Lean.Agent Content",
-      "role": "Agente Contenuti",
-      "specialty": "Comunicazione e Copywriting",
-      "description": "Accelera la produzione di contenuti editoriali mantenendo coerenza con il brand LeanMe.",
+      "slug": "vespucci",
+      "name": "VESPUCCI",
+      "role": "Esploratore di mercati",
+      "specialty": "Esploratore di mercati",
+      "action": "ESPLORA",
+      "actionColor": "#FF8A3D",
+      "description": "Analizza mercati, trend e opportunità per orientare le decisioni strategiche.",
       "image": {
-        "src": "/images/placeholders/agent-content.svg",
-        "alt": "Lean.Agent Content",
-        "replaceHint": "REPLACE: Card ufficiale Lean.Agent Content"
+        "src": "/assets/official/vespucci.png",
+        "alt": "Lean.Agent Vespucci",
+        "replaceHint": ""
       },
       "cardImage": {
-        "src": "/images/placeholders/agent-card-content.svg",
-        "alt": "Card Lean.Agent Content",
-        "replaceHint": "REPLACE: Card ufficiale approvata Lean.Agent Content"
+        "src": "/assets/official/vespucci.png",
+        "alt": "Lean.Agent Vespucci",
+        "replaceHint": ""
       }
     },
     {
-      "slug": "lean-agent-automation",
-      "name": "Lean.Agent Automation",
-      "role": "Agente Automazione",
-      "specialty": "Workflow e Integrazioni",
-      "description": "Progetta e monitora flussi automatizzati che eliminano attività ripetitive.",
+      "slug": "marconi",
+      "name": "MARCONI",
+      "role": "Comunicazione e marketing",
+      "specialty": "Comunicazione e marketing",
+      "action": "COMUNICA",
+      "actionColor": "#3DDBD9",
+      "description": "Progetta strategie di comunicazione e contenuti coerenti con l'identità del brand.",
       "image": {
-        "src": "/images/placeholders/agent-automation.svg",
-        "alt": "Lean.Agent Automation",
-        "replaceHint": "REPLACE: Card ufficiale Lean.Agent Automation"
+        "src": "/assets/official/marconi.png",
+        "alt": "Lean.Agent Marconi",
+        "replaceHint": ""
       },
       "cardImage": {
-        "src": "/images/placeholders/agent-card-automation.svg",
-        "alt": "Card Lean.Agent Automation",
-        "replaceHint": "REPLACE: Card ufficiale approvata Lean.Agent Automation"
+        "src": "/assets/official/marconi.png",
+        "alt": "Lean.Agent Marconi",
+        "replaceHint": ""
       }
     },
     {
-      "slug": "lean-agent-healthcare",
-      "name": "Lean.Agent Healthcare",
-      "role": "Agente Healthcare",
-      "specialty": "Settore Sanitario",
-      "description": "Supporta la digitalizzazione e l'automazione nei processi delle strutture sanitarie.",
+      "slug": "angela",
+      "name": "ANGELA",
+      "role": "HR e formazione",
+      "specialty": "HR e formazione",
+      "action": "FORMA",
+      "actionColor": "#B06CFF",
+      "description": "Supporta percorsi formativi, onboarding e sviluppo delle competenze del team.",
       "image": {
-        "src": "/images/placeholders/agent-healthcare.svg",
-        "alt": "Lean.Agent Healthcare",
-        "replaceHint": "REPLACE: Card ufficiale Lean.Agent Healthcare"
+        "src": "/assets/official/angela.png",
+        "alt": "Lean.Agent Angela",
+        "replaceHint": ""
       },
       "cardImage": {
-        "src": "/images/placeholders/agent-card-healthcare.svg",
-        "alt": "Card Lean.Agent Healthcare",
-        "replaceHint": "REPLACE: Card ufficiale approvata Lean.Agent Healthcare"
+        "src": "/assets/official/angela.png",
+        "alt": "Lean.Agent Angela",
+        "replaceHint": ""
+      }
+    },
+    {
+      "slug": "galileo",
+      "name": "GALILEO",
+      "role": "Ricerca e analisi dati",
+      "specialty": "Ricerca e analisi dati",
+      "action": "ANALIZZA",
+      "actionColor": "#6BD66B",
+      "description": "Elabora dati e insight per decisioni più rapide e consapevoli.",
+      "image": {
+        "src": "/assets/official/galileo.png",
+        "alt": "Lean.Agent Galileo",
+        "replaceHint": ""
+      },
+      "cardImage": {
+        "src": "/assets/official/galileo.png",
+        "alt": "Lean.Agent Galileo",
+        "replaceHint": ""
+      }
+    },
+    {
+      "slug": "olivetti",
+      "name": "OLIVETTI",
+      "role": "Automazione processi",
+      "specialty": "Automazione processi",
+      "action": "AUTOMATIZZA",
+      "actionColor": "#FFD34D",
+      "description": "Progetta workflow automatizzati che eliminano attività ripetitive e sprechi.",
+      "image": {
+        "src": "/assets/official/olivetti.png",
+        "alt": "Lean.Agent Olivetti",
+        "replaceHint": ""
+      },
+      "cardImage": {
+        "src": "/assets/official/olivetti.png",
+        "alt": "Lean.Agent Olivetti",
+        "replaceHint": ""
+      }
+    },
+    {
+      "slug": "teresa",
+      "name": "TERESA",
+      "role": "Salute e prevenzione",
+      "specialty": "Salute e prevenzione",
+      "action": "PROTEGGI",
+      "actionColor": "#FF5FA2",
+      "description": "Supporta strutture sanitarie nella digitalizzazione e nella prevenzione.",
+      "image": {
+        "src": "/assets/official/teresa.png",
+        "alt": "Lean.Agent Teresa",
+        "replaceHint": ""
+      },
+      "cardImage": {
+        "src": "/assets/official/teresa.png",
+        "alt": "Lean.Agent Teresa",
+        "replaceHint": ""
       }
     }
   ],

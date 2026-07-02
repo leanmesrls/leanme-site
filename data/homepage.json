@@ -44,7 +44,7 @@
         "action": "PIANIFICA",
         "actionColor": "#4DA3FF",
         "image": "/assets/official/leonardo.png",
-        "href": "/staff-ibrido/lean-agent/lean-agent-strategy"
+        "href": "/staff-ibrido/lean-agent/leonardo"
       },
       {
         "slug": "vespucci",
@@ -53,7 +53,7 @@
         "action": "ESPLORA",
         "actionColor": "#FF8A3D",
         "image": "/assets/official/vespucci.png",
-        "href": "/staff-ibrido/lean-agent/lean-agent-strategy"
+        "href": "/staff-ibrido/lean-agent/vespucci"
       },
       {
         "slug": "marconi",
@@ -62,7 +62,7 @@
         "action": "COMUNICA",
         "actionColor": "#3DDBD9",
         "image": "/assets/official/marconi.png",
-        "href": "/staff-ibrido/lean-agent/lean-agent-content"
+        "href": "/staff-ibrido/lean-agent/marconi"
       },
       {
         "slug": "angela",
@@ -71,7 +71,7 @@
         "action": "FORMA",
         "actionColor": "#B06CFF",
         "image": "/assets/official/angela.png",
-        "href": "/staff-ibrido/lean-agent/lean-agent-content"
+        "href": "/staff-ibrido/lean-agent/angela"
       },
       {
         "slug": "galileo",
@@ -80,7 +80,7 @@
         "action": "ANALIZZA",
         "actionColor": "#6BD66B",
         "image": "/assets/official/galileo.png",
-        "href": "/staff-ibrido/lean-agent/lean-agent-automation"
+        "href": "/staff-ibrido/lean-agent/galileo"
       },
       {
         "slug": "olivetti",
@@ -89,7 +89,7 @@
         "action": "AUTOMATIZZA",
         "actionColor": "#FFD34D",
         "image": "/assets/official/olivetti.png",
-        "href": "/staff-ibrido/lean-agent/lean-agent-automation"
+        "href": "/staff-ibrido/lean-agent/olivetti"
       },
       {
         "slug": "teresa",
@@ -98,7 +98,7 @@
         "action": "PROTEGGI",
         "actionColor": "#FF5FA2",
         "image": "/assets/official/teresa.png",
-        "href": "/staff-ibrido/lean-agent/lean-agent-healthcare"
+        "href": "/staff-ibrido/lean-agent/teresa"
       }
     ]
   },

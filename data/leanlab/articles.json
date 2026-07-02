@@ -7,9 +7,9 @@
     "date": "2025-11-15",
     "readTime": "8 min",
     "image": {
-      "src": "/images/placeholders/article-healthcare.svg",
+      "src": "/assets/official/banner_ambient.png",
       "alt": "Trasformazione healthcare",
-      "replaceHint": "REPLACE: Fotografia articolo healthcare"
+      "replaceHint": ""
     },
     "author": "LeanMe"
   },
@@ -21,9 +21,9 @@
     "date": "2025-10-20",
     "readTime": "6 min",
     "image": {
-      "src": "/images/placeholders/article-eventi.svg",
+      "src": "/assets/official/banner_ambient.png",
       "alt": "Piattaforma eventi",
-      "replaceHint": "REPLACE: Fotografia articolo eventi"
+      "replaceHint": ""
     },
     "author": "LeanMe"
   },
@@ -35,9 +35,9 @@
     "date": "2026-01-10",
     "readTime": "5 min",
     "image": {
-      "src": "/images/placeholders/article-research.svg",
+      "src": "/assets/official/banner_ambient.png",
       "alt": "Ricerca Lean.Agent",
-      "replaceHint": "REPLACE: Fotografia articolo ricerca"
+      "replaceHint": ""
     },
     "author": "LeanMe"
   },
@@ -49,9 +49,9 @@
     "date": "2025-09-01",
     "readTime": "4 min",
     "image": {
-      "src": "/images/placeholders/article-sede.svg",
+      "src": "/assets/official/reception-render.jpg",
       "alt": "Nuova sede LeanMe",
-      "replaceHint": "REPLACE: Fotografia originale sede LeanMe"
+      "replaceHint": ""
     },
     "author": "LeanMe"
   },
@@ -63,9 +63,9 @@
     "date": "2026-02-01",
     "readTime": "10 min",
     "image": {
-      "src": "/images/placeholders/article-tutorial.svg",
+      "src": "/assets/official/banner_ambient.png",
       "alt": "Tutorial automazione",
-      "replaceHint": "REPLACE: Fotografia tutorial automazione"
+      "replaceHint": ""
     },
     "author": "LeanMe"
   }

@@ -1,7 +1,8 @@
+import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Container } from "@/components/ui/Container";
-import { PlaceholderImage } from "@/components/ui/PlaceholderImage";
-import { Button } from "@/components/ui/Button";
+import { ArrowIcon } from "@/components/homepage/Icons";
+import { PageSection } from "@/components/layout/PageSection";
 import { FadeIn } from "@/components/motion/FadeIn";
 import {
   getAllLeanAgentSlugs,
@@ -59,36 +60,57 @@ export default async function LeanAgentPage({ params }: PageProps) {
           { name: agent.name, path },
         ])}
       />
-      <section className="section-padding">
-        <Container>
-          <div className="grid gap-12 lg:grid-cols-2">
-            <FadeIn>
-              <PlaceholderImage
-                image={agent.cardImage}
-                aspectRatio="portrait"
+      <PageSection>
+        <div className="grid gap-12 lg:grid-cols-2">
+          <FadeIn>
+            <div className="relative mx-auto aspect-[3/4] max-w-sm overflow-hidden rounded-xl border border-white/10">
+              <Image
+                src={agent.cardImage.src}
+                alt={agent.cardImage.alt}
+                fill
+                className="object-cover object-top"
+                sizes="(max-width: 1024px) 100vw, 400px"
+                priority
               />
-            </FadeIn>
-            <FadeIn delay={0.1}>
-              <p className="mb-4 text-sm font-medium uppercase tracking-[0.2em] text-leanme-purple">
-                {agent.role}
+            </div>
+          </FadeIn>
+          <FadeIn delay={0.1}>
+            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.14em] text-leanme-purple">
+              Lean.Agent
+            </p>
+            <h1 className="text-4xl font-bold tracking-[0.06em] text-white">
+              {agent.name}
+            </h1>
+            <p className="mt-2 text-lg text-white/80">{agent.role}</p>
+            {agent.action && (
+              <p
+                className="mt-2 text-sm font-semibold uppercase tracking-[0.12em]"
+                style={{ color: agent.actionColor ?? "#8016D2" }}
+              >
+                {agent.action}
               </p>
-              <h1 className="text-4xl font-semibold tracking-tight">
-                {agent.name}
-              </h1>
-              <p className="mt-2 text-lg font-medium text-leanme-gray-700">
-                {agent.specialty}
-              </p>
-              <p className="mt-6 text-lg leading-relaxed text-leanme-gray-600">
-                {agent.description}
-              </p>
-              <div className="mt-10 flex gap-4">
-                <Button href="/staff-ibrido" label="Staff Ibrido" variant="secondary" />
-                <Button href="/contatti" label="Contattaci" variant="primary" />
-              </div>
-            </FadeIn>
-          </div>
-        </Container>
-      </section>
+            )}
+            <p className="mt-6 text-lg leading-relaxed text-white/65">
+              {agent.description}
+            </p>
+            <div className="mt-10 flex flex-wrap gap-3">
+              <Link
+                href="/staff-ibrido"
+                className="inline-flex items-center justify-center rounded-full border border-white/30 px-6 py-3 text-xs font-semibold uppercase tracking-[0.08em] text-white transition hover:border-white"
+              >
+                Staff Ibrido
+              </Link>
+              <Link
+                href="/contatti"
+                className="inline-flex items-center gap-2 rounded-full bg-leanme-purple px-6 py-3 text-xs font-semibold uppercase tracking-[0.08em] text-white transition hover:bg-leanme-purple/90"
+              >
+                Contattaci
+                <ArrowIcon />
+              </Link>
+            </div>
+          </FadeIn>
+        </div>
+      </PageSection>
     </>
   );
 }

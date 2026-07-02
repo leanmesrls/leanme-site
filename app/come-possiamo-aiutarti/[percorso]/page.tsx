@@ -1,7 +1,8 @@
+import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Container } from "@/components/ui/Container";
-import { PlaceholderImage } from "@/components/ui/PlaceholderImage";
-import { Button } from "@/components/ui/Button";
+import { ArrowIcon, ServiceIcon } from "@/components/homepage/Icons";
+import { PageSection } from "@/components/layout/PageSection";
 import { FadeIn } from "@/components/motion/FadeIn";
 import {
   getAllPercorsoSlugs,
@@ -66,40 +67,53 @@ export default async function PercorsoPage({ params }: PageProps) {
           }),
         ]}
       />
-      <section className="section-padding">
-        <Container>
-          <div className="grid gap-12 lg:grid-cols-2">
-            <FadeIn>
-              <p className="mb-4 text-sm font-medium uppercase tracking-[0.2em] text-leanme-purple">
-                Percorso
-              </p>
-              <h1 className="text-4xl font-semibold tracking-tight md:text-5xl">
-                {percorso.title}
-              </h1>
-              <p className="mt-6 text-lg leading-relaxed text-leanme-gray-700">
-                {percorso.description}
-              </p>
-              <ul className="mt-8 space-y-3">
-                {percorso.services.map((service) => (
-                  <li
-                    key={service}
-                    className="flex items-start gap-3 text-leanme-gray-700"
-                  >
-                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-leanme-purple" />
-                    {service}
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-10">
-                <Button href="/contatti" label="Contattaci" variant="primary" />
-              </div>
-            </FadeIn>
-            <FadeIn delay={0.1}>
-              <PlaceholderImage image={percorso.image} aspectRatio="square" />
-            </FadeIn>
-          </div>
-        </Container>
-      </section>
+      <PageSection>
+        <div className="grid gap-12 lg:grid-cols-2">
+          <FadeIn>
+            <div className="mb-4 inline-flex rounded-full border border-leanme-purple/40 p-3">
+              <ServiceIcon name={percorso.icon} />
+            </div>
+            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.14em] text-leanme-purple">
+              Percorso
+            </p>
+            <h1 className="text-3xl font-bold tracking-[0.04em] text-white md:text-4xl">
+              {percorso.title.toUpperCase()}
+            </h1>
+            <p className="mt-6 text-lg leading-relaxed text-white/70">
+              {percorso.description}
+            </p>
+            <ul className="mt-8 space-y-3">
+              {percorso.services.map((service) => (
+                <li
+                  key={service}
+                  className="flex items-start gap-3 text-white/75"
+                >
+                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-leanme-purple" />
+                  {service}
+                </li>
+              ))}
+            </ul>
+            <Link
+              href="/contatti"
+              className="mt-10 inline-flex items-center gap-2 rounded-full bg-leanme-purple px-6 py-3 text-xs font-semibold uppercase tracking-[0.08em] text-white transition hover:bg-leanme-purple/90"
+            >
+              Contattaci
+              <ArrowIcon />
+            </Link>
+          </FadeIn>
+          <FadeIn delay={0.1}>
+            <div className="relative aspect-square overflow-hidden rounded-xl border border-white/10">
+              <Image
+                src={percorso.image.src}
+                alt={percorso.image.alt}
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+            </div>
+          </FadeIn>
+        </div>
+      </PageSection>
     </>
   );
 }

@@ -1,8 +1,7 @@
-import { notFound } from "next/navigation";
+import Image from "next/image";
 import Link from "next/link";
-import { Container } from "@/components/ui/Container";
-import { PlaceholderImage } from "@/components/ui/PlaceholderImage";
-import { Badge } from "@/components/ui/Badge";
+import { notFound } from "next/navigation";
+import { PageSection } from "@/components/layout/PageSection";
 import { FadeIn } from "@/components/motion/FadeIn";
 import {
   getAllLeanLabArticleSlugs,
@@ -77,39 +76,43 @@ export default async function LeanLabArticlePage({ params }: PageProps) {
           }),
         ]}
       />
-      <article className="section-padding">
-        <Container>
-          <FadeIn>
-            <Link
-              href={`/leanlab/${article.category}`}
-              className="mb-6 inline-block text-sm text-leanme-purple hover:text-leanme-black"
-            >
-              ← {category?.title ?? article.category}
-            </Link>
-            <Badge>{category?.title ?? article.category}</Badge>
-            <h1 className="mt-6 text-4xl font-semibold tracking-tight md:text-5xl">
-              {article.title}
-            </h1>
-            <p className="mt-4 text-sm text-leanme-gray-500">
-              {formatDate(article.date)} · {article.readTime} · {article.author}
+      <PageSection>
+        <FadeIn>
+          <Link
+            href={`/leanlab/${article.category}`}
+            className="mb-6 inline-block text-xs font-semibold uppercase tracking-[0.1em] text-leanme-purple transition hover:text-white"
+          >
+            ← {category?.title ?? article.category}
+          </Link>
+          <span className="inline-block rounded-full border border-leanme-purple/40 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-leanme-purple">
+            {category?.title ?? article.category}
+          </span>
+          <h1 className="mt-6 max-w-4xl text-3xl font-bold tracking-[0.03em] text-white md:text-4xl">
+            {article.title}
+          </h1>
+          <p className="mt-4 text-sm text-white/50">
+            {formatDate(article.date)} · {article.readTime} di lettura · {article.author}
+          </p>
+          <div className="relative mt-10 aspect-[21/9] overflow-hidden rounded-xl border border-white/10">
+            <Image
+              src={article.image.src}
+              alt={article.image.alt}
+              fill
+              className="object-cover"
+              sizes="100vw"
+              priority
+            />
+          </div>
+          <div className="mt-10 max-w-3xl">
+            <p className="text-xl leading-relaxed text-white/80">{article.excerpt}</p>
+            <p className="mt-6 leading-relaxed text-white/65">
+              Contenuto completo dell&apos;articolo LeanLab in arrivo. Ogni
+              articolo genererà condivisione su Newsletter, LinkedIn, Facebook e
+              Instagram.
             </p>
-            <div className="mt-10">
-              <PlaceholderImage image={article.image} aspectRatio="wide" />
-            </div>
-            <div className="prose prose-lg mt-10 max-w-3xl">
-              <p className="text-xl leading-relaxed text-leanme-gray-700">
-                {article.excerpt}
-              </p>
-              <p className="mt-6 leading-relaxed text-leanme-gray-600">
-                Questo articolo è un contenuto placeholder. Sostituire con il
-                testo completo dell&apos;articolo LeanLab quando disponibile.
-                Ogni articolo genererà condivisione su Newsletter, LinkedIn,
-                Facebook e Instagram.
-              </p>
-            </div>
-          </FadeIn>
-        </Container>
-      </article>
+          </div>
+        </FadeIn>
+      </PageSection>
     </>
   );
 }

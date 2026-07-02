@@ -58,6 +58,7 @@ export interface Percorso {
   title: string;
   shortDescription: string;
   description: string;
+  icon: string;
   image: ImageAsset;
   services: string[];
 }
@@ -67,6 +68,8 @@ export interface LeanAgent {
   name: string;
   role: string;
   specialty: string;
+  action?: string;
+  actionColor?: string;
   description: string;
   image: ImageAsset;
   cardImage: ImageAsset;

@@ -8,13 +8,14 @@
   "percorsi": [
     {
       "slug": "innovare-la-mia-azienda",
+      "icon": "rocket",
       "title": "Voglio innovare la mia azienda",
       "shortDescription": "Trasformazione digitale, automazione e design per aziende che vogliono evolversi.",
       "description": "LeanMe accompagna le aziende nel percorso verso l'innovazione. Dalla digitalizzazione dei processi alla progettazione di un'Azienda Ibrida, costruiamo soluzioni su misura che eliminano complessità e generano valore.",
       "image": {
-        "src": "/images/placeholders/percorso-innovazione.svg",
+        "src": "/assets/official/banner_ambient.png",
         "alt": "Innovare la mia azienda",
-        "replaceHint": "REPLACE: Fotografia percorso innovazione azienda"
+        "replaceHint": ""
       },
       "services": [
         "Analisi dei processi aziendali",
@@ -26,13 +27,14 @@
     },
     {
       "slug": "partner-struttura-sanitaria",
+      "icon": "medical",
       "title": "Voglio un partner per la mia struttura sanitaria",
       "shortDescription": "Competenza healthcare, processi digitali e comunicazione per il settore sanitario.",
       "description": "LeanMe unisce competenza sanitaria, design e tecnologia. Supportiamo strutture sanitarie nella digitalizzazione, nell'automazione dei flussi e nella comunicazione con pazienti e professionisti.",
       "image": {
-        "src": "/images/placeholders/percorso-sanita.svg",
+        "src": "/assets/official/banner_ambient.png",
         "alt": "Partner struttura sanitaria",
-        "replaceHint": "REPLACE: Fotografia percorso healthcare"
+        "replaceHint": ""
       },
       "services": [
         "Digitalizzazione processi sanitari",
@@ -44,13 +46,14 @@
     },
     {
       "slug": "partner-societa-scientifica",
+      "icon": "science",
       "title": "Voglio un partner per la mia società scientifica",
       "shortDescription": "Eventi, piattaforme e comunicazione per il mondo scientifico.",
       "description": "LeanMe supporta società scientifiche con piattaforme eventi, gestione iscrizioni, comunicazione multicanale e strumenti digitali che valorizzano la conoscenza.",
       "image": {
-        "src": "/images/placeholders/percorso-scientifico.svg",
+        "src": "/assets/official/banner_ambient.png",
         "alt": "Partner società scientifica",
-        "replaceHint": "REPLACE: Fotografia percorso società scientifica"
+        "replaceHint": ""
       },
       "services": [
         "Piattaforme congressi e eventi",
@@ -62,13 +65,14 @@
     },
     {
       "slug": "partner-eventi",
+      "icon": "events",
       "title": "Voglio un partner per i miei eventi",
       "shortDescription": "Progettazione e gestione di eventi con tecnologia e design premium.",
       "description": "Dalla concept alla produzione, LeanMe progetta eventi memorabili integrando tecnologia, automazione e comunicazione per un'esperienza impeccabile.",
       "image": {
-        "src": "/images/placeholders/percorso-eventi.svg",
+        "src": "/assets/official/banner_ambient.png",
         "alt": "Partner eventi",
-        "replaceHint": "REPLACE: Fotografia percorso eventi"
+        "replaceHint": ""
       },
       "services": [
         "Progettazione eventi",
@@ -80,13 +84,14 @@
     },
     {
       "slug": "comunicare-meglio",
+      "icon": "communication",
       "title": "Voglio comunicare meglio",
       "shortDescription": "Brand, contenuti e canali digitali che generano fiducia e autorevolezza.",
       "description": "LeanMe aiuta organizzazioni a comunicare con eleganza e chiarezza. Siti web premium, contenuti editoriali, social media e strategie che rafforzano l'identità del brand.",
       "image": {
-        "src": "/images/placeholders/percorso-comunicazione.svg",
+        "src": "/assets/official/banner_ambient.png",
         "alt": "Comunicare meglio",
-        "replaceHint": "REPLACE: Fotografia percorso comunicazione"
+        "replaceHint": ""
       },
       "services": [
         "Siti web e landing page",

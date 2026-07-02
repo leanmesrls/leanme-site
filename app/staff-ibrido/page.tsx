@@ -1,8 +1,9 @@
-import { Container } from "@/components/ui/Container";
-import { SectionHeading } from "@/components/ui/SectionHeading";
-import { PlaceholderImage } from "@/components/ui/PlaceholderImage";
-import { AgentCard } from "@/components/lean-agent/AgentCard";
-import { FadeIn } from "@/components/motion/FadeIn";
+import Image from "next/image";
+import { PageIntro, PageSection } from "@/components/layout/PageSection";
+import {
+  AgentCard,
+  AgentCardCompact,
+} from "@/components/lean-agent/AgentCard";
 import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
 import { getStaffData } from "@/lib/content";
 import { createPageMetadata } from "@/lib/metadata";
@@ -27,82 +28,87 @@ export default function StaffIbridoPage() {
           { name: "Lo Staff Ibrido", path: "/staff-ibrido" },
         ])}
       />
-      <section className="section-padding">
-        <Container>
-          <FadeIn>
-            <SectionHeading
-              title={staff.intro.title}
-              subtitle={staff.intro.subtitle}
-              description={staff.intro.description}
-            />
-          </FadeIn>
+      <PageSection>
+        <PageIntro
+          title={staff.intro.title}
+          subtitle={staff.intro.subtitle}
+          description={staff.intro.description}
+        />
 
-          <div className="mt-20">
-            <h2 className="text-2xl font-semibold">Persone</h2>
-            <div className="mt-10 grid gap-8 md:grid-cols-3">
-              {staff.people.map((person, index) => (
-                <RevealOnScroll key={person.slug} delay={index * 0.08}>
-                  <div className="overflow-hidden rounded-2xl border border-leanme-black/5 bg-white shadow-sm">
-                    <PlaceholderImage
-                      image={person.image}
-                      aspectRatio="square"
-                      className="rounded-none border-none"
+        <div className="mt-16">
+          <h2 className="text-lg font-bold uppercase tracking-[0.1em] text-white">
+            Persone
+          </h2>
+          <div className="mt-8 grid gap-6 md:grid-cols-2">
+            {staff.people.map((person, index) => (
+              <RevealOnScroll key={person.slug} delay={index * 0.06}>
+                <div className="overflow-hidden rounded-xl border border-white/10 bg-[#111111]">
+                  <div className="relative aspect-[4/3]">
+                    <Image
+                      src={person.image.src}
+                      alt={person.image.alt}
+                      fill
+                      className="object-cover object-top"
+                      sizes="(max-width: 768px) 100vw, 50vw"
                     />
-                    <div className="p-6">
-                      <h3 className="text-xl font-semibold">{person.name}</h3>
-                      <p className="mt-1 text-sm font-medium text-leanme-purple">
-                        {person.role}
-                      </p>
-                      <p className="mt-3 text-sm text-leanme-gray-600">
-                        {person.description}
-                      </p>
-                    </div>
                   </div>
-                </RevealOnScroll>
-              ))}
-            </div>
-          </div>
-
-          <div className="mt-20">
-            <h2 className="text-2xl font-semibold">Lean.Agent</h2>
-            <p className="mt-4 max-w-3xl text-leanme-gray-600">
-              Ogni Lean.Agent possiede una pagina dedicata. Non sostituiscono il
-              lavoro umano: lo completano, lo accelerano, lo rendono più efficace.
-            </p>
-            <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-              {staff.leanAgents.map((agent, index) => (
-                <RevealOnScroll key={agent.slug} delay={index * 0.08}>
-                  <AgentCard agent={agent} />
-                </RevealOnScroll>
-              ))}
-            </div>
-          </div>
-
-          <div className="mt-20">
-            <h2 className="text-2xl font-semibold">{staff.network.title}</h2>
-            <p className="mt-4 max-w-3xl text-leanme-gray-600">
-              {staff.network.description}
-            </p>
-            <div className="mt-10 grid gap-6 md:grid-cols-2">
-              {staff.network.specialists.map((specialist, index) => (
-                <RevealOnScroll key={specialist.name} delay={index * 0.06}>
-                  <div className="rounded-2xl border border-leanme-black/5 p-8">
-                    <p className="text-sm font-medium text-leanme-purple">
-                      {specialist.area}
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold text-white">{person.name}</h3>
+                    <p className="mt-1 text-sm font-semibold text-leanme-purple">
+                      {person.role}
                     </p>
-                    <h3 className="mt-2 text-lg font-semibold">
-                      {specialist.name}
-                    </h3>
-                    <p className="mt-2 text-sm text-leanme-gray-600">
-                      {specialist.description}
-                    </p>
+                    <p className="mt-3 text-sm text-white/65">{person.description}</p>
                   </div>
-                </RevealOnScroll>
-              ))}
-            </div>
+                </div>
+              </RevealOnScroll>
+            ))}
           </div>
-        </Container>
-      </section>
+        </div>
+
+        <div className="mt-16">
+          <h2 className="text-lg font-bold uppercase tracking-[0.1em] text-white">
+            LEAN.AGENT.AI
+          </h2>
+          <p className="mt-4 max-w-3xl text-white/65">
+            Ogni Lean.Agent possiede una pagina dedicata. Non sostituiscono il
+            lavoro umano: lo completano, lo accelerano, lo rendono più efficace.
+          </p>
+          <div className="mt-10 hidden gap-3 lg:grid lg:grid-cols-7">
+            {staff.leanAgents.map((agent, index) => (
+              <RevealOnScroll key={agent.slug} delay={index * 0.05}>
+                <AgentCard agent={agent} />
+              </RevealOnScroll>
+            ))}
+          </div>
+          <div className="mt-8 space-y-3 lg:hidden">
+            {staff.leanAgents.map((agent) => (
+              <AgentCardCompact key={agent.slug} agent={agent} />
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-16">
+          <h2 className="text-lg font-bold uppercase tracking-[0.1em] text-white">
+            {staff.network.title}
+          </h2>
+          <p className="mt-4 max-w-3xl text-white/65">{staff.network.description}</p>
+          <div className="mt-8 grid gap-4 md:grid-cols-2">
+            {staff.network.specialists.map((specialist, index) => (
+              <RevealOnScroll key={specialist.name} delay={index * 0.05}>
+                <div className="rounded-xl border border-white/10 bg-[#111111] p-6">
+                  <p className="text-xs font-semibold uppercase tracking-[0.12em] text-leanme-purple">
+                    {specialist.area}
+                  </p>
+                  <h3 className="mt-2 text-lg font-bold text-white">
+                    {specialist.name}
+                  </h3>
+                  <p className="mt-2 text-sm text-white/65">{specialist.description}</p>
+                </div>
+              </RevealOnScroll>
+            ))}
+          </div>
+        </div>
+      </PageSection>
     </>
   );
 }
