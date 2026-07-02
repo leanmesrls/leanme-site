@@ -31,11 +31,11 @@
   }
 
   body {
-    @apply bg-leanme-white text-leanme-black antialiased;
+    @apply bg-black text-white antialiased;
   }
 
   ::selection {
-    @apply bg-leanme-purple/20 text-leanme-black;
+    @apply bg-leanme-purple/30 text-white;
   }
 
   @media (prefers-reduced-motion: reduce) {

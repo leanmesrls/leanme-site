@@ -9,14 +9,21 @@ interface NavigationProps {
   items: NavItem[];
   className?: string;
   onNavigate?: () => void;
+  variant?: "light" | "dark";
 }
 
-export function Navigation({ items, className, onNavigate }: NavigationProps) {
+export function Navigation({
+  items,
+  className,
+  onNavigate,
+  variant = "light",
+}: NavigationProps) {
   const pathname = usePathname();
+  const isDark = variant === "dark";
 
   return (
     <nav aria-label="Navigazione principale" className={className}>
-      <ul className="flex flex-col gap-1 lg:flex-row lg:items-center lg:gap-1">
+      <ul className="flex flex-col gap-1 xl:flex-row xl:items-center xl:gap-5">
         {items.map((item) => {
           const isActive =
             item.href === "/"
@@ -29,10 +36,14 @@ export function Navigation({ items, className, onNavigate }: NavigationProps) {
                 href={item.href}
                 onClick={onNavigate}
                 className={cn(
-                  "block rounded-full px-4 py-2 text-sm transition-colors duration-300",
-                  isActive
-                    ? "bg-leanme-purple/10 font-medium text-leanme-purple"
-                    : "text-leanme-gray-700 hover:text-leanme-purple"
+                  "block px-2 py-2 text-[11px] font-semibold uppercase tracking-[0.08em] transition-colors duration-300",
+                  isDark
+                    ? isActive
+                      ? "text-leanme-purple"
+                      : "text-white/85 hover:text-leanme-purple"
+                    : isActive
+                      ? "bg-leanme-purple/10 font-medium text-leanme-purple"
+                      : "text-leanme-gray-700 hover:text-leanme-purple"
                 )}
               >
                 {item.label}

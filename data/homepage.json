@@ -1,226 +1,189 @@
 {
+  "headerCta": {
+    "label": "PARLIAMO DEL TUO PROGETTO",
+    "href": "/contatti"
+  },
+  "headerNavigation": [
+    { "label": "CHI SIAMO", "href": "/chi-siamo" },
+    { "label": "COME POSSIAMO AIUTARTI", "href": "/come-possiamo-aiutarti" },
+    { "label": "DAL LEAN LAB", "href": "/leanlab" },
+    { "label": "LEAN ACADEMY", "href": "/lean-academy" },
+    { "label": "DICONO DI NOI", "href": "/dicono-di-noi" }
+  ],
   "hero": {
-    "title": "Progettiamo Aziende Ibride",
-    "subtitle": "Digital Innovation Company",
-    "claim": "Powered by Human Intelligence. Amplified by AI.",
-    "description": "LeanMe non vende software. Non vende Intelligenza Artificiale. Progetta organizzazioni in cui persone e agenti AI collaborano per creare valore concreto.",
-    "image": {
-      "src": "/images/placeholders/hero-home.svg",
-      "alt": "Sede LeanMe — ambiente premium con tecnologia elegante",
-      "replaceHint": "REPLACE: Fotografia widescreen cinematografica della sede LeanMe (hero homepage)"
-    },
+    "claimPrimary": "POWERED BY HUMAN INTELLIGENCE.",
+    "claimAccent": "AMPLIFIED BY AI.",
+    "headlinePrefix": "Uno staff ibrido",
+    "headlineAccent": "HUMAN + AI AGENTS",
+    "subheadline": "L'intelligenza giusta per far crescere la tua azienda.",
+    "paragraphs": [
+      "LeanMe accompagna persone e organizzazioni verso un nuovo modo di lavorare, in cui l'intelligenza umana e quella artificiale collaborano ogni giorno.",
+      "L'innovazione non è aggiungere tecnologia. È togliere complessità."
+    ],
     "primaryCta": {
-      "label": "Scopri il metodo LeanMe",
-      "href": "/chi-siamo",
-      "variant": "primary"
+      "label": "COSA VUOL DIRE AZIENDA IBRIDA",
+      "href": "/chi-siamo"
     },
     "secondaryCta": {
-      "label": "Come possiamo aiutarti",
-      "href": "/come-possiamo-aiutarti",
-      "variant": "secondary"
-    }
-  },
-  "humanAi": {
-    "id": "human-ai",
-    "title": "Human + AI",
-    "subtitle": "Il cuore dell'Azienda Ibrida",
-    "description": "Ogni pagina del nostro ecosistema aiuta a comprendere il valore della collaborazione tra persone e Lean.Agent.",
-    "content": [
-      "Le persone guidano. Gli agenti supportano.",
-      "Le persone decidono. Gli agenti elaborano.",
-      "Le persone immaginano. Gli agenti accelerano."
-    ],
-    "image": {
-      "src": "/images/placeholders/human-ai.svg",
-      "alt": "Collaborazione tra persone e intelligenza artificiale",
-      "replaceHint": "REPLACE: Fotografia reale del team LeanMe al lavoro con tecnologia"
+      "label": "COME POSSIAMO AIUTARTI",
+      "href": "/come-possiamo-aiutarti"
     },
-    "cta": {
-      "label": "Scopri lo Staff Ibrido",
-      "href": "/staff-ibrido",
-      "variant": "primary"
-    }
+    "background": "/assets/official/reception-render.jpg"
   },
-  "percorsiTrasformazione": {
-    "id": "percorsi-trasformazione",
-    "title": "Percorsi di Trasformazione",
-    "subtitle": "Innovazione accessibile, sempre",
-    "description": "Non esistono clienti piccoli o grandi. Esistono persone con esigenze diverse. Costruiamo percorsi su misura.",
+  "leanAgentAi": {
+    "title": "LEAN.AGENT.AI",
+    "footerLink": {
+      "label": "SCOPRI TUTTI I LEAN.AGENT",
+      "href": "/staff-ibrido"
+    },
+    "agents": [
+      {
+        "slug": "leonardo",
+        "name": "LEONARDO",
+        "role": "Segreteria e organizzazione",
+        "action": "PIANIFICA",
+        "actionColor": "#4DA3FF",
+        "image": "/assets/official/leonardo.png",
+        "href": "/staff-ibrido/lean-agent/lean-agent-strategy"
+      },
+      {
+        "slug": "vespucci",
+        "name": "VESPUCCI",
+        "role": "Esploratore di mercati",
+        "action": "ESPLORA",
+        "actionColor": "#FF8A3D",
+        "image": "/assets/official/vespucci.png",
+        "href": "/staff-ibrido/lean-agent/lean-agent-strategy"
+      },
+      {
+        "slug": "marconi",
+        "name": "MARCONI",
+        "role": "Comunicazione e marketing",
+        "action": "COMUNICA",
+        "actionColor": "#3DDBD9",
+        "image": "/assets/official/marconi.png",
+        "href": "/staff-ibrido/lean-agent/lean-agent-content"
+      },
+      {
+        "slug": "angela",
+        "name": "ANGELA",
+        "role": "HR e formazione",
+        "action": "FORMA",
+        "actionColor": "#B06CFF",
+        "image": "/assets/official/angela.png",
+        "href": "/staff-ibrido/lean-agent/lean-agent-content"
+      },
+      {
+        "slug": "galileo",
+        "name": "GALILEO",
+        "role": "Ricerca e analisi dati",
+        "action": "ANALIZZA",
+        "actionColor": "#6BD66B",
+        "image": "/assets/official/galileo.png",
+        "href": "/staff-ibrido/lean-agent/lean-agent-automation"
+      },
+      {
+        "slug": "olivetti",
+        "name": "OLIVETTI",
+        "role": "Automazione processi",
+        "action": "AUTOMATIZZA",
+        "actionColor": "#FFD34D",
+        "image": "/assets/official/olivetti.png",
+        "href": "/staff-ibrido/lean-agent/lean-agent-automation"
+      },
+      {
+        "slug": "teresa",
+        "name": "TERESA",
+        "role": "Salute e prevenzione",
+        "action": "PROTEGGI",
+        "actionColor": "#FF5FA2",
+        "image": "/assets/official/teresa.png",
+        "href": "/staff-ibrido/lean-agent/lean-agent-healthcare"
+      }
+    ]
+  },
+  "services": {
+    "title": "COME POSSIAMO AIUTARTI?",
     "items": [
       {
-        "title": "Digitalizzare un processo",
-        "description": "Rendere più semplice un flusso operativo attraverso automazione e design.",
-        "icon": "workflow"
+        "slug": "innovare-la-mia-azienda",
+        "icon": "rocket",
+        "title": "VOGLIO INNOVARE LA MIA AZIENDA",
+        "description": "Trasformazione digitale, automazione e design per aziende che vogliono evolversi.",
+        "href": "/come-possiamo-aiutarti/innovare-la-mia-azienda"
       },
       {
-        "title": "Migliorare la comunicazione",
-        "description": "Raccontare meglio chi sei con esperienze digitali premium e coerenti.",
-        "icon": "communication"
+        "slug": "partner-struttura-sanitaria",
+        "icon": "medical",
+        "title": "VOGLIO UN PARTNER PER LA MIA STRUTTURA SANITARIA",
+        "description": "Competenza healthcare, processi digitali e comunicazione per il settore sanitario.",
+        "href": "/come-possiamo-aiutarti/partner-struttura-sanitaria"
       },
       {
-        "title": "Sperimentare l'AI",
-        "description": "Introduurre agenti specializzati che amplificano il lavoro del team.",
-        "icon": "ai"
+        "slug": "partner-societa-scientifica",
+        "icon": "science",
+        "title": "VOGLIO UN PARTNER PER LA MIA SOCIETÀ SCIENTIFICA",
+        "description": "Eventi, piattaforme e comunicazione per il mondo scientifico.",
+        "href": "/come-possiamo-aiutarti/partner-societa-scientifica"
       },
       {
-        "title": "Progettare un'Azienda Ibrida",
-        "description": "Trasformare l'organizzazione con un modello in cui persone e AI collaborano.",
-        "icon": "hybrid"
+        "slug": "partner-eventi",
+        "icon": "events",
+        "title": "VOGLIO UN PARTNER PER I MIEI EVENTI",
+        "description": "Progettazione e gestione di eventi con tecnologia e design premium.",
+        "href": "/come-possiamo-aiutarti/partner-eventi"
+      },
+      {
+        "slug": "comunicare-meglio",
+        "icon": "communication",
+        "title": "VOGLIO COMUNICARE MEGLIO",
+        "description": "Brand, contenuti e canali digitali che generano fiducia e autorevolezza.",
+        "href": "/come-possiamo-aiutarti/comunicare-meglio"
       }
-    ]
-  },
-  "soluzioniSuMisura": {
-    "id": "soluzioni-su-misura",
-    "title": "Soluzioni su Misura",
-    "subtitle": "Come possiamo aiutarti",
-    "description": "Organizziamo i contenuti partendo dai bisogni del cliente, non da un catalogo di servizi.",
-    "items": [
-      {
-        "title": "Voglio innovare la mia azienda",
-        "description": "Percorsi di trasformazione digitale e automazione su misura.",
-        "image": {
-          "src": "/images/placeholders/percorso-innovazione.svg",
-          "alt": "Innovazione aziendale",
-          "replaceHint": "REPLACE: Card fotografica percorso innovazione azienda"
-        }
-      },
-      {
-        "title": "Voglio un partner per la mia struttura sanitaria",
-        "description": "Competenza healthcare, processi e comunicazione per il settore sanitario.",
-        "image": {
-          "src": "/images/placeholders/percorso-sanita.svg",
-          "alt": "Partner strutture sanitarie",
-          "replaceHint": "REPLACE: Card fotografica percorso healthcare"
-        }
-      },
-      {
-        "title": "Voglio un partner per la mia società scientifica",
-        "description": "Eventi, comunicazione e piattaforme per il mondo scientifico.",
-        "image": {
-          "src": "/images/placeholders/percorso-scientifico.svg",
-          "alt": "Partner società scientifiche",
-          "replaceHint": "REPLACE: Card fotografica percorso società scientifica"
-        }
-      },
-      {
-        "title": "Voglio un partner per i miei eventi",
-        "description": "Progettazione e gestione di eventi con tecnologia e design.",
-        "image": {
-          "src": "/images/placeholders/percorso-eventi.svg",
-          "alt": "Partner eventi",
-          "replaceHint": "REPLACE: Card fotografica percorso eventi"
-        }
-      },
-      {
-        "title": "Voglio comunicare meglio",
-        "description": "Brand, contenuti e canali digitali che generano fiducia.",
-        "image": {
-          "src": "/images/placeholders/percorso-comunicazione.svg",
-          "alt": "Comunicazione",
-          "replaceHint": "REPLACE: Card fotografica percorso comunicazione"
-        }
-      }
-    ]
-  },
-  "metodoLeanMe": {
-    "id": "metodo-leanme",
-    "title": "Metodo LeanMe",
-    "subtitle": "Il nostro modo di lavorare",
-    "description": "Ogni progetto nasce dall'ascolto. Non inseguiamo la perfezione. Inseguiamo il miglioramento continuo.",
-    "steps": [
-      {
-        "number": "01",
-        "title": "Ascolto",
-        "description": "Comprendiamo il contesto, i processi e i bisogni reali."
-      },
-      {
-        "number": "02",
-        "title": "Progettazione",
-        "description": "Progettiamo soluzioni modulari, eleganti e scalabili."
-      },
-      {
-        "number": "03",
-        "title": "Sperimentazione",
-        "description": "Testiamo nel LeanLab prima di portare in produzione."
-      },
-      {
-        "number": "04",
-        "title": "Misurazione",
-        "description": "Misuriamo risultati e impatto concreto sul business."
-      },
-      {
-        "number": "05",
-        "title": "Miglioramento",
-        "description": "Miglioriamo continuamente, come ci ha insegnato il Lean Thinking."
-      }
-    ]
-  },
-  "leanAgentTeam": {
-    "id": "lean-agent-team",
-    "title": "Lean.Agent Team",
-    "subtitle": "Lo Staff Ibrido",
-    "description": "Persone, Lean.Agent e un network di specialisti. Le persone restano sempre al centro del progetto."
+    ],
+    "linkLabel": "SCOPRI I SERVIZI"
   },
   "leanLab": {
-    "id": "leanlab",
-    "title": "Dal LeanLab",
-    "subtitle": "Il laboratorio permanente di innovazione",
-    "description": "L'innovazione non nasce nelle presentazioni. Nasce nei laboratori. Ogni progetto che realizziamo nasce qui.",
-    "cta": {
-      "label": "Esplora il LeanLab",
-      "href": "/leanlab",
-      "variant": "primary"
-    }
-  },
-  "caseStudies": {
-    "id": "case-studies",
-    "title": "Case Studies",
-    "subtitle": "Progetti che generano valore",
-    "description": "Soluzioni concrete nate dall'incontro tra design, tecnologia e processi.",
-    "items": [
-      {
-        "title": "Trasformazione digitale healthcare",
-        "client": "Struttura sanitaria",
-        "description": "Automazione dei processi amministrativi e miglioramento dell'esperienza paziente.",
-        "image": {
-          "src": "/images/placeholders/case-study-1.svg",
-          "alt": "Case study healthcare",
-          "replaceHint": "REPLACE: Fotografia case study healthcare"
-        },
-        "href": "/leanlab/progetti-conclusi/trasformazione-healthcare"
-      },
-      {
-        "title": "Piattaforma eventi scientifici",
-        "client": "Società scientifica",
-        "description": "Gestione integrata di eventi, iscrizioni e comunicazione multicanale.",
-        "image": {
-          "src": "/images/placeholders/case-study-2.svg",
-          "alt": "Case study eventi",
-          "replaceHint": "REPLACE: Fotografia case study eventi"
-        },
-        "href": "/leanlab/progetti-conclusi/piattaforma-eventi"
-      }
-    ],
-    "cta": {
-      "label": "Tutti i progetti",
-      "href": "/leanlab/progetti-conclusi",
-      "variant": "secondary"
-    }
-  },
-  "cta": {
-    "id": "cta",
-    "title": "Pronti a innovare insieme?",
-    "subtitle": "Contattaci",
-    "description": "Raccontaci la tua sfida. Costruiremo un percorso su misura per la tua organizzazione.",
-    "primaryCta": {
-      "label": "Contattaci",
-      "href": "/contatti",
-      "variant": "primary"
+    "title": "DAL LEAN LAB",
+    "viewAll": {
+      "label": "TUTTI GLI ARTICOLI",
+      "href": "/leanlab"
     },
-    "secondaryCta": {
-      "label": "Scopri i percorsi",
-      "href": "/come-possiamo-aiutarti",
-      "variant": "ghost"
+    "tabs": [
+      { "id": "progetti", "label": "PROGETTI", "category": "progetti-conclusi" },
+      { "id": "ricerca", "label": "RICERCA & INNOVAZIONE", "category": "ricerca-e-innovazione" },
+      { "id": "vita", "label": "VITA IN LEANME", "category": "vita-in-leanme" },
+      { "id": "academy", "label": "ACADEMY", "category": "tutorial" }
+    ]
+  },
+  "leanAcademy": {
+    "title": "LEAN ACADEMY",
+    "tagline": "Esplora, impara, innova.",
+    "description": "Video tutorial, guide pratiche e percorsi formativi per scoprire il metodo LeanMe e il concetto di Azienda Ibrida.",
+    "cta": {
+      "label": "VAI ALLA LEAN ACADEMY",
+      "href": "/lean-academy"
     }
+  },
+  "testimonials": {
+    "title": "DICONO DI NOI"
+  },
+  "partners": {
+    "title": "LE AZIENDE CHE CI HANNO SCELTO",
+    "items": ["SYNLAB", "ANISC", "S.I.D.", "WSPH", "AOP Health"]
+  },
+  "contactBanner": {
+    "title": "PARLIAMO DEL TUO PROGETTO?",
+    "description": "Raccontaci le tue sfide e costruiremo un percorso su misura.",
+    "cta": {
+      "label": "CONTATTACI",
+      "href": "/contatti"
+    }
+  },
+  "footer": {
+    "description": "Digital Innovation Company. Progettiamo Aziende Ibride attraverso Intelligenza Artificiale, automazione e design.",
+    "servicesTitle": "SERVIZI PRINCIPALI",
+    "contactsTitle": "CONTATTI",
+    "credits": "Credits"
   }
 }

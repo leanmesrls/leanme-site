@@ -13,7 +13,6 @@ import type {
   AcademyData,
   ChiSiamoData,
   ContactData,
-  HomepageData,
   LeanLabArticle,
   LeanLabCategory,
   Percorso,
@@ -21,6 +20,7 @@ import type {
   StaffData,
   Testimonial,
 } from "@/types/content";
+import type { HomepageData } from "@/types/homepage";
 
 export function getSiteConfig(): SiteConfig {
   return siteData as SiteConfig;

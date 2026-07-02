@@ -1,7 +1,7 @@
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import { Header } from "@/components/layout/Header";
-import { Footer } from "@/components/layout/Footer";
+import { SiteFooter } from "@/components/layout/SiteFooter";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { organizationSchema, websiteSchema } from "@/lib/structured-data";
 import { getDefaultMetadata } from "@/lib/metadata";
@@ -19,11 +19,11 @@ export default function RootLayout({
       lang="it"
       className={`${GeistSans.variable} ${GeistMono.variable}`}
     >
-      <body className="min-h-screen bg-leanme-white font-sans text-leanme-black antialiased">
+      <body className="min-h-screen bg-black font-sans text-white antialiased">
         <JsonLd data={[organizationSchema(), websiteSchema()]} />
         <Header />
         <main>{children}</main>
-        <Footer />
+        <SiteFooter />
       </body>
     </html>
   );
