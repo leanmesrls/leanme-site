@@ -1,15 +1,17 @@
 export const ASSETS = {
   logo: {
-    default: "/assets/official/logo-official.svg",
-    white: "/assets/official/logo-official_white.svg",
-    black: "/assets/official/logo-official_black.svg",
-    pinkWhite: "/assets/official/logo-official_pink-white.svg",
+    default: "/assets/official/logo-official.png",
+    white: "/assets/official/logo-official_white.png",
+    black: "/assets/official/logo-official_black.png",
+    pinkWhite: "/assets/official/logo-official_pink-white.png",
   },
+  pittogramma: "/assets/official/pittogramma.png",
   hero: {
-    reception: "/assets/official/reception-render.jpg",
+    reception: "/assets/official/reception-render.png",
   },
   decorative: {
     bannerAmbient: "/assets/official/banner_ambient.png",
+    leanAcademy: "/assets/official/lean-academy-sfondo.png",
   },
   agents: {
     leonardo: "/assets/official/leonardo.png",
@@ -21,7 +23,14 @@ export const ASSETS = {
     teresa: "/assets/official/teresa.png",
   },
   team: {
-    luana: "/assets/official/luana.webp",
+    luana: "/assets/official/luana.png",
     alessandro: "/assets/official/alessandro.png",
+  },
+  companies: {
+    synlab: "/assets/companies/synlab-centro-la-salute.png",
+    anisc: "/assets/companies/anisc.png",
+    sid: "/assets/companies/singem.png",
+    wsph: "/assets/companies/wsph.png",
+    aop: "/assets/companies/aop-italia.png",
   },
 } as const;

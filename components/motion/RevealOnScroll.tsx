@@ -18,15 +18,19 @@ export function RevealOnScroll({
   const reducedMotion = useReducedMotion();
 
   if (reducedMotion) {
-    return <div className={className}>{children}</div>;
+    return <div className={cn("reveal-instant", className)}>{children}</div>;
   }
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 32 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] }}
+      initial={{ opacity: 0, y: 64, scale: 0.96 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true, amount: 0.25, margin: "0px 0px -80px 0px" }}
+      transition={{
+        duration: 0.65,
+        delay,
+        ease: [0.22, 1, 0.36, 1] as const,
+      }}
       className={cn(className)}
     >
       {children}

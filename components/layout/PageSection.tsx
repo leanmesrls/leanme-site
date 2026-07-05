@@ -24,6 +24,7 @@ interface PageIntroProps {
   title: string;
   subtitle?: string;
   description?: string;
+  descriptions?: string[];
   align?: "left" | "center";
 }
 
@@ -31,8 +32,15 @@ export function PageIntro({
   title,
   subtitle,
   description,
+  descriptions,
   align = "left",
 }: PageIntroProps) {
+  const body = descriptions?.length
+    ? descriptions
+    : description
+      ? [description]
+      : [];
+
   return (
     <div className={cn("max-w-3xl", align === "center" && "mx-auto text-center")}>
       {subtitle && (
@@ -43,10 +51,17 @@ export function PageIntro({
       <h1 className="text-3xl font-bold tracking-[0.06em] text-white md:text-4xl">
         {title}
       </h1>
-      {description && (
-        <p className="mt-4 text-base leading-relaxed text-white/65 md:text-lg">
-          {description}
-        </p>
+      {body.length > 0 && (
+        <div className="mt-4 space-y-4">
+          {body.map((paragraph) => (
+            <p
+              key={paragraph.slice(0, 48)}
+              className="text-base leading-relaxed text-white/65 md:text-lg"
+            >
+              {paragraph}
+            </p>
+          ))}
+        </div>
       )}
       <div className={cn("mt-4 h-[2px] w-12 bg-leanme-purple", align === "center" && "mx-auto")} />
     </div>

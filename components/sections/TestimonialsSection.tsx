@@ -30,15 +30,17 @@ export function TestimonialsSection({
                   &ldquo;{item.quote}&rdquo;
                 </blockquote>
                 <figcaption className="mt-8 flex items-center gap-4 border-t border-leanme-black/5 pt-6">
-                  <PlaceholderImage
-                    image={item.image}
-                    aspectRatio="square"
-                    className="h-14 w-14 shrink-0 rounded-full"
-                  />
+                  {item.image && (
+                    <PlaceholderImage
+                      image={item.image}
+                      aspectRatio="square"
+                      className="h-14 w-14 shrink-0 rounded-full"
+                    />
+                  )}
                   <div>
                     <p className="font-semibold">{item.name}</p>
                     <p className="text-sm text-leanme-gray-500">
-                      {item.role}, {item.company}
+                      {[item.role, item.company].filter(Boolean).join(", ")}
                     </p>
                   </div>
                 </figcaption>

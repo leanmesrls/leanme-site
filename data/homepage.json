@@ -4,11 +4,13 @@
     "href": "/contatti"
   },
   "headerNavigation": [
+    { "label": "HOME", "href": "/" },
     { "label": "CHI SIAMO", "href": "/chi-siamo" },
     { "label": "COME POSSIAMO AIUTARTI", "href": "/come-possiamo-aiutarti" },
     { "label": "DAL LEAN LAB", "href": "/leanlab" },
     { "label": "LEAN ACADEMY", "href": "/lean-academy" },
-    { "label": "DICONO DI NOI", "href": "/dicono-di-noi" }
+    { "label": "DICONO DI NOI", "href": "/dicono-di-noi" },
+    { "label": "CONNECT", "href": "/contatti" }
   ],
   "hero": {
     "claimPrimary": "POWERED BY HUMAN INTELLIGENCE.",
@@ -28,12 +30,12 @@
       "label": "COME POSSIAMO AIUTARTI",
       "href": "/come-possiamo-aiutarti"
     },
-    "background": "/assets/official/reception-render.jpg"
+    "background": "/assets/official/reception-render.png"
   },
   "leanAgentAi": {
     "title": "LEAN.AGENT.AI",
     "footerLink": {
-      "label": "SCOPRI TUTTI I LEAN.AGENT",
+      "label": "SCOPRI IL NOSTRO STAFF IBRIDO",
       "href": "/staff-ibrido"
     },
     "agents": [
@@ -43,61 +45,61 @@
         "role": "Segreteria e organizzazione",
         "action": "PIANIFICA",
         "actionColor": "#4DA3FF",
-        "image": "/assets/official/leonardo.png",
+        "image": "/assets/official/homepage/leonardo-hp.png",
         "href": "/staff-ibrido/lean-agent/leonardo"
       },
       {
         "slug": "vespucci",
         "name": "VESPUCCI",
-        "role": "Esploratore di mercati",
+        "role": "Creatività e ricerca",
         "action": "ESPLORA",
         "actionColor": "#FF8A3D",
-        "image": "/assets/official/vespucci.png",
+        "image": "/assets/official/homepage/vespucci-hp.png",
         "href": "/staff-ibrido/lean-agent/vespucci"
       },
       {
         "slug": "marconi",
         "name": "MARCONI",
-        "role": "Comunicazione e marketing",
-        "action": "COMUNICA",
+        "role": "Marketing e comunicazione",
+        "action": "CONNETTE",
         "actionColor": "#3DDBD9",
-        "image": "/assets/official/marconi.png",
+        "image": "/assets/official/homepage/marconi-hp.png",
         "href": "/staff-ibrido/lean-agent/marconi"
       },
       {
         "slug": "angela",
         "name": "ANGELA",
-        "role": "HR e formazione",
-        "action": "FORMA",
+        "role": "Formazione",
+        "action": "INSEGNA",
         "actionColor": "#B06CFF",
-        "image": "/assets/official/angela.png",
+        "image": "/assets/official/homepage/angela-hp.png",
         "href": "/staff-ibrido/lean-agent/angela"
       },
       {
         "slug": "galileo",
         "name": "GALILEO",
-        "role": "Ricerca e analisi dati",
-        "action": "ANALIZZA",
+        "role": "Workflow e automazioni",
+        "action": "DIMOSTRA",
         "actionColor": "#6BD66B",
-        "image": "/assets/official/galileo.png",
+        "image": "/assets/official/homepage/galileo-hp.png",
         "href": "/staff-ibrido/lean-agent/galileo"
       },
       {
         "slug": "olivetti",
         "name": "OLIVETTI",
-        "role": "Automazione processi",
-        "action": "AUTOMATIZZA",
+        "role": "Programmazione, tecnologia e sviluppo",
+        "action": "COSTRUISCE",
         "actionColor": "#FFD34D",
-        "image": "/assets/official/olivetti.png",
+        "image": "/assets/official/homepage/olivetti-hp.png",
         "href": "/staff-ibrido/lean-agent/olivetti"
       },
       {
         "slug": "teresa",
         "name": "TERESA",
-        "role": "Salute e prevenzione",
-        "action": "PROTEGGI",
+        "role": "Assistenza e supporto agli utenti",
+        "action": "SI PRENDE CURA",
         "actionColor": "#FF5FA2",
-        "image": "/assets/official/teresa.png",
+        "image": "/assets/official/homepage/teresa-hp.png",
         "href": "/staff-ibrido/lean-agent/teresa"
       }
     ]
@@ -108,36 +110,36 @@
       {
         "slug": "innovare-la-mia-azienda",
         "icon": "rocket",
-        "title": "VOGLIO INNOVARE LA MIA AZIENDA",
-        "description": "Trasformazione digitale, automazione e design per aziende che vogliono evolversi.",
+        "title": "VOGLIO NUOVE IDEE PER LA MIA AZIENDA O PER UN MIO PROGETTO",
+        "description": "AI, automazioni, formazione, e tecnologie per semplificare i processi interni ed esterni, migliorare l'efficienza, la comunicazione, e creare nuove opportunità.",
         "href": "/come-possiamo-aiutarti/innovare-la-mia-azienda"
       },
       {
         "slug": "partner-struttura-sanitaria",
         "icon": "medical",
         "title": "VOGLIO UN PARTNER PER LA MIA STRUTTURA SANITARIA",
-        "description": "Competenza healthcare, processi digitali e comunicazione per il settore sanitario.",
+        "description": "Soluzioni digitali per poliambulatori, laboratori e centri medici: dal Fascicolo Sanitario Elettronico 2.0, al sistema di referenziazione, alle automazioni operative.",
         "href": "/come-possiamo-aiutarti/partner-struttura-sanitaria"
       },
       {
         "slug": "partner-societa-scientifica",
         "icon": "science",
         "title": "VOGLIO UN PARTNER PER LA MIA SOCIETÀ SCIENTIFICA",
-        "description": "Eventi, piattaforme e comunicazione per il mondo scientifico.",
+        "description": "Servizi per la gestione associativa: soci, quote, abstract, elezioni societarie, congressi e strumenti digitali progettati per le esigenze delle società scientifiche.",
         "href": "/come-possiamo-aiutarti/partner-societa-scientifica"
       },
       {
         "slug": "partner-eventi",
         "icon": "events",
         "title": "VOGLIO UN PARTNER PER I MIEI EVENTI",
-        "description": "Progettazione e gestione di eventi con tecnologia e design premium.",
+        "description": "Progettazione e gestione premium degli eventi: dalla registrazione, all'accreditamento, dalla regia allo streaming, dalla comunicazione alla gamification, fino all'effetto ... wow!",
         "href": "/come-possiamo-aiutarti/partner-eventi"
       },
       {
         "slug": "comunicare-meglio",
         "icon": "communication",
         "title": "VOGLIO COMUNICARE MEGLIO",
-        "description": "Brand, contenuti e canali digitali che generano fiducia e autorevolezza.",
+        "description": "Branding, podcast, graphics, social, video, storytelling e newsletter per una comunicazione chiara, coerente e orientata ai risultati.",
         "href": "/come-possiamo-aiutarti/comunicare-meglio"
       }
     ],
@@ -148,6 +150,10 @@
     "viewAll": {
       "label": "TUTTI GLI ARTICOLI",
       "href": "/leanlab"
+    },
+    "newsletter": {
+      "label": "ISCRIVITI ALLA NOSTRA NEWSLETTER",
+      "href": "/newsletter"
     },
     "tabs": [
       { "id": "progetti", "label": "PROGETTI", "category": "progetti-conclusi" },
@@ -170,13 +176,39 @@
   },
   "partners": {
     "title": "LE AZIENDE CHE CI HANNO SCELTO",
-    "items": ["SYNLAB", "ANISC", "S.I.D.", "WSPH", "AOP Health"]
+    "items": [
+      {
+        "name": "SYNLAB",
+        "logo": "/assets/companies/synlab-centro-la-salute.png",
+        "alt": "SYNLAB Centro La Salute"
+      },
+      {
+        "name": "ANISC",
+        "logo": "/assets/companies/anisc.png",
+        "alt": "ANISC"
+      },
+      {
+        "name": "S.I.D.",
+        "logo": "/assets/companies/singem.png",
+        "alt": "S.I.D."
+      },
+      {
+        "name": "WSPH",
+        "logo": "/assets/companies/wsph.png",
+        "alt": "World Symposium on Pulmonary Hypertension Association"
+      },
+      {
+        "name": "AOP Health",
+        "logo": "/assets/companies/aop-italia.png",
+        "alt": "AOP Health"
+      }
+    ]
   },
   "contactBanner": {
     "title": "PARLIAMO DEL TUO PROGETTO?",
-    "description": "Raccontaci le tue sfide e costruiremo un percorso su misura.",
+    "description": "Raccontaci le tue sfide, troviamo insieme la soluzione giusta.",
     "cta": {
-      "label": "CONTATTACI",
+      "label": "CONNECT",
       "href": "/contatti"
     }
   },

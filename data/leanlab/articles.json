@@ -11,7 +11,8 @@
       "alt": "Trasformazione healthcare",
       "replaceHint": ""
     },
-    "author": "LeanMe"
+    "author": "LeanMe",
+    "tags": ["Servizi per la sanità"]
   },
   {
     "slug": "piattaforma-eventi",
@@ -25,7 +26,8 @@
       "alt": "Piattaforma eventi",
       "replaceHint": ""
     },
-    "author": "LeanMe"
+    "author": "LeanMe",
+    "tags": ["Servizi per Società", "Servizi per gli eventi"]
   },
   {
     "slug": "esperimento-ai-agent",
@@ -53,7 +55,8 @@
       "alt": "Nuova sede LeanMe",
       "replaceHint": ""
     },
-    "author": "LeanMe"
+    "author": "LeanMe",
+    "tags": ["Servizi per la comunicazione"]
   },
   {
     "slug": "intro-automazione-n8n",
@@ -67,6 +70,7 @@
       "alt": "Tutorial automazione",
       "replaceHint": ""
     },
-    "author": "LeanMe"
+    "author": "LeanMe",
+    "tags": ["Servizi per aziende"]
   }
 ]

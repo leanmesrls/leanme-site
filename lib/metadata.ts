@@ -62,9 +62,12 @@ export function createPageMetadata({
 }
 
 export function getDefaultMetadata(): Metadata {
-  return createPageMetadata({
-    title: site.seo.defaultTitle,
-    description: site.seo.defaultDescription,
-    path: "",
-  });
+  return {
+    ...createPageMetadata({
+      title: site.seo.defaultTitle,
+      description: site.seo.defaultDescription,
+      path: "",
+    }),
+    manifest: "/manifest.webmanifest",
+  };
 }

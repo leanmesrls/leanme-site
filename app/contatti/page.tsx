@@ -1,36 +1,55 @@
+import Link from "next/link";
 import { Icon } from "@/components/ui/Icon";
-import { ContactForm } from "@/components/forms/ContactForm";
-import { PageIntro, PageSection } from "@/components/layout/PageSection";
+import { ContattiIntro } from "@/components/contatti/ContattiIntro";
+import { ContactFormEmbed } from "@/components/contatti/ContactFormEmbed";
+import { PageHero } from "@/components/layout/PageHero";
+import { PageSection } from "@/components/layout/PageSection";
 import { FadeIn } from "@/components/motion/FadeIn";
-import { getContattiData } from "@/lib/content";
+import { InPocheParoleBox } from "@/components/seo/InPocheParoleBox";
+import { getContattiData, getSeoInPocheParole } from "@/lib/content";
 import { createPageMetadata } from "@/lib/metadata";
-import { breadcrumbSchema } from "@/lib/structured-data";
+import { breadcrumbSchema, localBusinessSchema } from "@/lib/structured-data";
 import { JsonLd } from "@/components/seo/JsonLd";
 
 export const metadata = createPageMetadata({
   title: "Contatti",
   description:
-    "Contatta LeanMe Srls. Sede legale, sede operativa, telefono, email, modulo contatti e mappa.",
+    "Contatta LeanMe S.r.l.s. Sede legale, sede operativa, telefono, email, modulo contatti e mappa.",
   path: "/contatti",
 });
 
 export default function ContattiPage() {
   const data = getContattiData();
+  const summary = getSeoInPocheParole("/contatti");
 
   return (
     <>
       <JsonLd
-        data={breadcrumbSchema([
-          { name: "Home", path: "/" },
-          { name: "Contatti", path: "/contatti" },
-        ])}
+        data={[
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Contatti", path: "/contatti" },
+          ]),
+          localBusinessSchema({
+            name: "LeanMe S.r.l.s. — LeanMe Open Innovation Hub",
+            description:
+              "Digital Innovation Company che progetta Aziende Ibride. Sede operativa e legale a Bologna.",
+            telephone: data.phone.value,
+            email: data.email.value,
+            legalAddress: data.legalAddress,
+            operationalAddress: data.operationalAddress,
+            social: data.social,
+            mapUrl: `https://maps.google.com/maps?q=${encodeURIComponent("Via Porrettana 148/2, 40135 Bologna, Italia")}`,
+          }),
+        ]}
+      />
+      <PageHero
+        id="contatti-heading"
+        title={data.intro.title}
+        subtitle={data.intro.subtitle}
       />
       <PageSection>
-        <PageIntro
-          title={data.intro.title}
-          subtitle={data.intro.subtitle}
-          description={data.intro.description}
-        />
+        <ContattiIntro blocks={data.introBlocks} />
 
         <div className="mt-16 grid gap-12 lg:grid-cols-2">
           <FadeIn delay={0.1}>
@@ -68,7 +87,7 @@ export default function ContattiPage() {
                   </h3>
                   <a
                     href={data.phone.href}
-                    className="mt-1 block text-lg font-medium text-white transition hover:text-leanme-purple"
+                    className="mt-1 block text-lg font-medium text-white transition hover:text-leanme-fuchsia"
                   >
                     {data.phone.value}
                   </a>
@@ -79,7 +98,7 @@ export default function ContattiPage() {
                   </h3>
                   <a
                     href={data.email.href}
-                    className="mt-1 block text-lg font-medium text-white transition hover:text-leanme-purple"
+                    className="mt-1 block text-lg font-medium text-white transition hover:text-leanme-fuchsia"
                   >
                     {data.email.value}
                   </a>
@@ -97,7 +116,7 @@ export default function ContattiPage() {
                         href={social.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-white/75 transition hover:text-leanme-purple"
+                        className="inline-flex items-center gap-2 text-white/75 transition hover:text-leanme-fuchsia"
                       >
                         <Icon name={social.platform} className="h-4 w-4" />
                         {social.label}
@@ -107,36 +126,60 @@ export default function ContattiPage() {
                 </ul>
               </div>
 
-              <div className="rounded-xl border border-leanme-purple/30 bg-leanme-purple/10 p-6">
-                <h3 className="font-bold text-white">{data.foundation.title}</h3>
-                <p className="mt-2 text-sm text-white/65">{data.foundation.description}</p>
+              {data.foundation.sectionTitle && (
+                <section
+                  aria-labelledby="foundation-heading"
+                  className="rounded-xl border border-leanme-fuchsia/30 bg-gradient-to-br from-leanme-fuchsia/10 to-black p-6 md:p-8"
+                >
+                  <h2
+                    id="foundation-heading"
+                    className="text-base font-bold uppercase tracking-[0.08em] text-white md:text-lg"
+                  >
+                    {data.foundation.sectionTitle}
+                  </h2>
+                  <p className="mt-3 text-sm leading-relaxed text-white/70">
+                    {data.foundation.description}
+                  </p>
+                  {data.foundation.donateUrl && data.foundation.donateLabel && (
+                    <Link
+                      href={data.foundation.donateUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-5 inline-flex items-center justify-center rounded-full bg-leanme-fuchsia px-6 py-2.5 text-xs font-semibold uppercase tracking-[0.1em] text-white transition hover:bg-leanme-fuchsia-dark"
+                    >
+                      {data.foundation.donateLabel}
+                    </Link>
+                  )}
+                </section>
+              )}
+
+              <div>
+                <h2 className="mb-4 text-sm font-bold uppercase tracking-[0.1em] text-white">
+                  {data.map.label}
+                </h2>
+                <div className="overflow-hidden rounded-xl border border-white/10">
+                  <iframe
+                    title={data.map.label}
+                    src={data.map.embedUrl}
+                    className="h-[280px] w-full md:h-[320px]"
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  />
+                </div>
               </div>
             </div>
           </FadeIn>
 
           <FadeIn delay={0.15}>
-            <ContactForm
-              title={data.form.title}
-              description={data.form.description}
-              submitLabel={data.form.submitLabel}
-            />
+            <ContactFormEmbed form={data.form} />
           </FadeIn>
         </div>
 
-        <FadeIn delay={0.2} className="mt-16">
-          <h2 className="mb-4 text-sm font-bold uppercase tracking-[0.1em] text-white">
-            {data.map.label}
-          </h2>
-          <div className="overflow-hidden rounded-xl border border-white/10">
-            <iframe
-              title={data.map.label}
-              src={data.map.embedUrl}
-              className="h-[400px] w-full"
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
+        {summary.length > 0 ? (
+          <div className="mt-16">
+            <InPocheParoleBox paragraphs={summary} />
           </div>
-        </FadeIn>
+        ) : null}
       </PageSection>
     </>
   );

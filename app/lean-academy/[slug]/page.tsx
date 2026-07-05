@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowIcon } from "@/components/homepage/Icons";
 import { PageSection } from "@/components/layout/PageSection";
+import { VisibleBreadcrumb } from "@/components/layout/VisibleBreadcrumb";
 import { FadeIn } from "@/components/motion/FadeIn";
 import {
   getAcademyData,
@@ -55,16 +56,16 @@ export default async function AcademyResourcePage({ params }: PageProps) {
   }
 
   const path = `/lean-academy/${slug}`;
+  const breadcrumbItems = [
+    { name: "Home", path: "/" },
+    { name: "Lean Academy", path: "/lean-academy" },
+    { name: resource.title, path },
+  ];
 
   return (
     <>
-      <JsonLd
-        data={breadcrumbSchema([
-          { name: "Home", path: "/" },
-          { name: "Lean Academy", path: "/lean-academy" },
-          { name: resource.title, path },
-        ])}
-      />
+      <JsonLd data={breadcrumbSchema(breadcrumbItems)} />
+      <VisibleBreadcrumb items={breadcrumbItems} />
       <PageSection>
         <FadeIn>
           <Link

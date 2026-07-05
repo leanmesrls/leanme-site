@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/metadata";
 import {
   getAllAcademyResourceSlugs,
+  getAllChiSiamoPersonSlugs,
   getAllLeanAgentSlugs,
   getAllLeanLabArticleSlugs,
   getAllLeanLabCategorySlugs,
@@ -34,6 +35,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
+  const chiSiamoProfileRoutes = getAllChiSiamoPersonSlugs().map((slug) => ({
+    url: `${baseUrl}/chi-siamo/${slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.6,
+  }));
+
   const categoryRoutes = getAllLeanLabCategorySlugs().map((slug) => ({
     url: `${baseUrl}/leanlab/${slug}`,
     lastModified: new Date(),
@@ -55,9 +63,41 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
+  const newsletterRoute = {
+    url: `${baseUrl}/newsletter`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  };
+
+  const prenotaConsulenzaRoute = {
+    url: `${baseUrl}/prenota-consulenza`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  };
+
+  const legalRoutes = [
+    "/privacy",
+    "/privacy-newsletter",
+    "/cookie",
+    "/accessibilita",
+    "/credits",
+  ].map((path) => ({
+      url: `${baseUrl}${path}`,
+      lastModified: new Date(),
+      changeFrequency: "yearly" as const,
+      priority: 0.3,
+    })
+  );
+
   return [
     ...staticRoutes,
+    newsletterRoute,
+    prenotaConsulenzaRoute,
+    ...legalRoutes,
     ...percorsoRoutes,
+    ...chiSiamoProfileRoutes,
     ...agentRoutes,
     ...categoryRoutes,
     ...articleRoutes,

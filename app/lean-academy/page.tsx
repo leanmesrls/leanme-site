@@ -1,13 +1,17 @@
-import { GraduationCapIcon } from "@/components/homepage/Icons";
-import { PageIntro, PageSection } from "@/components/layout/PageSection";
+import Image from "next/image";
+import Link from "next/link";
+import { PAGE_CONTENT_AFTER_INTRO_CLASS, PAGE_INTRO_SECTION_CLASS } from "@/components/layout/HighlightCard";
+import { PageHero } from "@/components/layout/PageHero";
+import { PageHighlightBlock } from "@/components/layout/PageHighlightBlock";
+import { PageSection } from "@/components/layout/PageSection";
+import { FuchsiaGlowCard } from "@/components/motion/FuchsiaGlowCard";
 import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
-import { getAcademyData } from "@/lib/content";
+import { InPocheParoleBox } from "@/components/seo/InPocheParoleBox";
+import { getAcademyData, getSeoInPocheParole } from "@/lib/content";
 import { ASSETS } from "@/lib/assets";
 import { createPageMetadata } from "@/lib/metadata";
 import { breadcrumbSchema } from "@/lib/structured-data";
 import { JsonLd } from "@/components/seo/JsonLd";
-import Image from "next/image";
-import Link from "next/link";
 
 export const metadata = createPageMetadata({
   title: "Lean Academy",
@@ -18,6 +22,7 @@ export const metadata = createPageMetadata({
 
 export default function LeanAcademyPage() {
   const data = getAcademyData();
+  const summary = getSeoInPocheParole("/lean-academy");
 
   return (
     <>
@@ -27,19 +32,19 @@ export default function LeanAcademyPage() {
           { name: "Lean Academy", path: "/lean-academy" },
         ])}
       />
-      <PageSection>
-        <div className="grid items-center gap-12 lg:grid-cols-2">
-          <PageIntro
-            title={data.intro.title}
-            subtitle={data.intro.subtitle}
-            description={data.intro.description}
-          />
-          <div className="hidden justify-center lg:flex">
-            <GraduationCapIcon className="h-48 w-auto" />
-          </div>
-        </div>
-
-        <div className="mt-16">
+      <PageHero
+        id="lean-academy-heading"
+        title={data.intro.title}
+        subtitle={data.intro.subtitle}
+        background={ASSETS.decorative.leanAcademy}
+        imageAlt="Lean Academy — monitor didattico"
+        variant="lean-academy"
+      />
+      <PageSection className={PAGE_INTRO_SECTION_CLASS}>
+        <PageHighlightBlock paragraphs={data.intro.description} />
+      </PageSection>
+      <PageSection className={PAGE_CONTENT_AFTER_INTRO_CLASS}>
+        <div>
           <h2 className="text-lg font-bold uppercase tracking-[0.1em] text-white">
             {data.publicArea.title}
           </h2>
@@ -49,31 +54,40 @@ export default function LeanAcademyPage() {
               <RevealOnScroll key={resource.slug} delay={index * 0.05}>
                 <Link
                   href={`/lean-academy/${resource.slug}`}
-                  className="group block overflow-hidden rounded-xl border border-white/10 bg-[#111111] transition hover:border-leanme-purple/30"
+                  className="group block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leanme-fuchsia"
                 >
-                  <div className="relative aspect-video">
-                    <Image
-                      src={ASSETS.decorative.bannerAmbient}
-                      alt={resource.title}
-                      fill
-                      className="object-cover opacity-80 transition group-hover:opacity-100"
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                    />
-                  </div>
-                  <div className="p-6">
-                    <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-leanme-purple">
-                      {resource.type}
-                    </span>
-                    <h3 className="mt-3 text-lg font-bold text-white">{resource.title}</h3>
-                    <p className="mt-2 text-sm text-white/60">{resource.description}</p>
-                  </div>
+                  <FuchsiaGlowCard
+                    variant="card"
+                    className="rounded-xl border border-white/10 bg-[#111111]"
+                    contentClassName="flex flex-col"
+                  >
+                    <div className="relative aspect-video overflow-hidden rounded-t-xl">
+                      <Image
+                        src={ASSETS.decorative.bannerAmbient}
+                        alt={resource.title}
+                        fill
+                        className="object-cover opacity-80 transition group-hover:opacity-100"
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                      />
+                    </div>
+                    <div className="p-6">
+                      <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-leanme-purple">
+                        {resource.type}
+                      </span>
+                      <h3 className="mt-3 text-lg font-bold text-white">{resource.title}</h3>
+                      <p className="mt-2 text-sm text-white/60">{resource.description}</p>
+                    </div>
+                  </FuchsiaGlowCard>
                 </Link>
               </RevealOnScroll>
             ))}
           </div>
         </div>
 
-        <div className="mt-16 rounded-xl border border-white/10 bg-[#111111] p-8 md:p-12">
+        <FuchsiaGlowCard
+          variant="card"
+          className="mt-16 rounded-xl border border-white/10 bg-[#111111] p-8 md:p-12"
+        >
           <h2 className="text-lg font-bold uppercase tracking-[0.1em] text-white">
             {data.reservedArea.title}
           </h2>
@@ -86,7 +100,13 @@ export default function LeanAcademyPage() {
               </li>
             ))}
           </ul>
-        </div>
+        </FuchsiaGlowCard>
+
+        {summary.length > 0 ? (
+          <div className="mt-16">
+            <InPocheParoleBox paragraphs={summary} />
+          </div>
+        ) : null}
       </PageSection>
     </>
   );

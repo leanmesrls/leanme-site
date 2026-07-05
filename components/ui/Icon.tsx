@@ -39,21 +39,35 @@ const icons: Record<string, React.ReactNode> = {
     <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14m-6-6 6 6-6 6" />
   ),
   linkedin: (
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      d="M6 9v10M6 6v.01M10 19v-6a2 2 0 014 0v6M10 9v10"
-    />
+    <>
+      <rect x="4" y="4" width="16" height="16" rx="2" />
+      <path strokeLinecap="round" d="M8 10v8M8 8v.01M12 16v-5a2 2 0 014 0v5" />
+    </>
   ),
   instagram: (
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      d="M8 8h8v8H8zM16 4h.01M12 12a2 2 0 100-4 2 2 0 000 4z"
-    />
+    <>
+      <rect x="4" y="4" width="16" height="16" rx="4" />
+      <circle cx="12" cy="12" r="3.5" />
+      <circle cx="17" cy="7" r="0.5" fill="currentColor" stroke="none" />
+    </>
   ),
   facebook: (
-    <path strokeLinecap="round" strokeLinejoin="round" d="M14 8h3v3h-3v9h-4v-9H8v-3h2V7a3 3 0 013-3h3v4" />
+    <>
+      <rect x="4" y="4" width="16" height="16" rx="2" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M13 8h2V6h-2a2 2 0 00-2 2v2H9v2h2v6h2v-6h2l1-2h-3V8z" />
+    </>
+  ),
+  youtube: (
+    <>
+      <rect x="3" y="6" width="18" height="12" rx="3" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M11 10l5 2-5 2v-4z" fill="currentColor" stroke="none" />
+    </>
+  ),
+  email: (
+    <>
+      <rect x="3" y="5" width="18" height="14" rx="2" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M3 7l9 6 9-6" />
+    </>
   ),
 };
 
@@ -67,7 +81,6 @@ export function Icon({ name, className }: IconProps) {
 
   return (
     <svg
-      data-icon-placeholder={name}
       aria-hidden="true"
       viewBox="0 0 24 24"
       fill="none"

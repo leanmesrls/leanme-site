@@ -10,7 +10,7 @@ interface SoluzioniSuMisuraSectionProps {
 }
 
 const slugMap: Record<string, string> = {
-  "Voglio innovare la mia azienda": "innovare-la-mia-azienda",
+  "Voglio nuove idee per la mia azienda o per un mio progetto": "innovare-la-mia-azienda",
   "Voglio un partner per la mia struttura sanitaria": "partner-struttura-sanitaria",
   "Voglio un partner per la mia società scientifica": "partner-societa-scientifica",
   "Voglio un partner per i miei eventi": "partner-eventi",

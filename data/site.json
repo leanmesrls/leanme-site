@@ -18,7 +18,7 @@
   ],
   "footer": {
     "tagline": "Digital Innovation Company — Progettiamo Aziende Ibride.",
-    "copyright": "© LeanMe Srls. Tutti i diritti riservati.",
+    "copyright": "© 2026 LeanMe S.r.l.s.",
     "social": [
       {
         "label": "LinkedIn",
@@ -26,19 +26,26 @@
         "platform": "linkedin"
       },
       {
+        "label": "Facebook",
+        "href": "https://facebook.com/leanme",
+        "platform": "facebook"
+      },
+      {
         "label": "Instagram",
         "href": "https://instagram.com/leanme",
         "platform": "instagram"
       },
       {
-        "label": "Facebook",
-        "href": "https://facebook.com/leanme",
-        "platform": "facebook"
+        "label": "Email",
+        "href": "mailto:info@leanme.it",
+        "platform": "email"
       }
     ],
     "legalLinks": [
       { "label": "Privacy Policy", "href": "/privacy" },
-      { "label": "Cookie Policy", "href": "/cookie" }
+      { "label": "Informativa Newsletter", "href": "/privacy-newsletter" },
+      { "label": "Cookie Policy", "href": "/cookie" },
+      { "label": "Accessibilità (EAA)", "href": "/accessibilita" }
     ]
   },
   "seo": {

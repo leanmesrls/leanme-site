@@ -2,23 +2,27 @@
   "intro": {
     "id": "contatti",
     "title": "Contatti",
-    "subtitle": "Parliamo del tuo progetto",
+    "subtitle": "Raccontaci la tua sfida o il tuo talento",
     "description": "Il contatto deve risultare semplice e immediato. Raccontaci la tua sfida."
   },
+  "introBlocks": [
+    "Ogni collaborazione inizia da una conversazione. Che tu stia cercando un partner per sviluppare un progetto, digitalizzare la tua organizzazione, introdurre l'Intelligenza Artificiale nei tuoi processi o semplicemente confrontarti con noi su un'idea, saremo felici di ascoltarti.",
+    "Ma questa pagina è dedicata anche a chi desidera entrare nel mondo LeanMe. Se sei un professionista, uno sviluppatore, un creativo, un formatore o semplicemente una persona appassionata di innovazione e pensi di poter contribuire al nostro progetto, raccontaci chi sei."
+  ],
   "legalAddress": {
     "label": "Sede legale",
     "lines": [
-      "LeanMe Srls",
-      "Via Placeholder 1",
-      "40100 Bologna, Italia"
+      "LeanMe S.r.l.s.",
+      "Via Porrettana 150",
+      "40135 Bologna (BO)"
     ]
   },
   "operationalAddress": {
     "label": "Sede operativa",
     "lines": [
-      "LeanMe Innovation Hub",
-      "Via Placeholder 2",
-      "40100 Bologna, Italia"
+      "LeanMe Open Innovation Hub",
+      "Via Porrettana 148/2",
+      "40135 Bologna (BO)"
     ]
   },
   "phone": {
@@ -30,6 +34,19 @@
     "label": "Email",
     "value": "info@leanme.it",
     "href": "mailto:info@leanme.it"
+  },
+  "piva": {
+    "label": "P. IVA",
+    "value": "03887091209"
+  },
+  "pec": {
+    "label": "PEC",
+    "value": "LeanMe@pec.it",
+    "href": "mailto:LeanMe@pec.it"
+  },
+  "sdi": {
+    "label": "SDI",
+    "value": "66OZKW1"
   },
   "social": [
     {
@@ -49,16 +66,22 @@
     }
   ],
   "map": {
-    "embedUrl": "https://maps.google.com/maps?q=Bologna%2C%20Italia&output=embed",
+    "embedUrl": "https://maps.google.com/maps?q=Via+Porrettana+148%2F2,+40135+Bologna,+Italia&output=embed",
     "label": "Mappa — Sede operativa LeanMe"
   },
   "foundation": {
+    "sectionTitle": "Sostieni con noi la Fondazione Policlinico Sant'Orsola",
     "title": "Fondazione Policlinico Sant'Orsola",
-    "description": "LeanMe sostiene la Fondazione Policlinico Sant'Orsola, credendo che innovazione e responsabilità debbano crescere insieme."
+    "description": "LeanMe sostiene la Fondazione Policlinico Sant'Orsola. Se anche tu vuoi contribuire ai suoi progetti di cura, ricerca e assistenza, puoi effettuare una donazione attraverso il link ufficiale.",
+    "donateLabel": "DONA ORA",
+    "donateUrl": "https://dona.fondazionesantorsola.it/default/~mia-donazione?ns_ira_cr_arg=IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyOp-LABQ2SKRQa6_uaSPXk8XaUbu25trqBBP8V1IZKfpJqsnxFI_h1fywnAtQ5TvBn2T4CgDdpoWWyKbvtF0-yh&_cv=1"
   },
   "form": {
-    "title": "Modulo contatti",
+    "title": "Connect",
     "description": "Compila il modulo e ti risponderemo al più presto.",
-    "submitLabel": "Invia messaggio"
+    "submitLabel": "Invia messaggio",
+    "iframeId": "JotFormIFrame-261844614263357",
+    "iframeSrc": "https://form.jotform.com/261844614263357",
+    "embedHandlerOrigin": "https://form.jotform.com/"
   }
 }

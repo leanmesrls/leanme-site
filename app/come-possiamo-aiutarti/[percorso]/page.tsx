@@ -1,19 +1,40 @@
 import Image from "next/image";
-import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowIcon, ServiceIcon } from "@/components/homepage/Icons";
+
+import { ServiceIconBadge } from "@/components/homepage/Icons";
+import {
+  PAGE_CONTENT_AFTER_INTRO_CLASS,
+  PAGE_INTRO_SECTION_CLASS,
+} from "@/components/layout/HighlightCard";
+import { PageHero } from "@/components/layout/PageHero";
+import { PageHighlightBlock } from "@/components/layout/PageHighlightBlock";
 import { PageSection } from "@/components/layout/PageSection";
+import { VisibleBreadcrumb } from "@/components/layout/VisibleBreadcrumb";
 import { FadeIn } from "@/components/motion/FadeIn";
+import { PercorsoConsultationCta } from "@/components/percorsi/PercorsoConsultationCta";
+import { PercorsoLeanLabSection } from "@/components/percorsi/PercorsoLeanLabSection";
+import { PercorsoVignettes } from "@/components/percorsi/PercorsoVignettes";
+import { FaqSection } from "@/components/seo/FaqSection";
+import { InPocheParoleBox } from "@/components/seo/InPocheParoleBox";
 import {
   getAllPercorsoSlugs,
   getPercorsoBySlug,
+  getPercorsiData,
 } from "@/lib/content";
 import { createPageMetadata } from "@/lib/metadata";
-import { breadcrumbSchema, serviceSchema } from "@/lib/structured-data";
+import {
+  breadcrumbSchema,
+  faqPageSchema,
+  serviceSchema,
+} from "@/lib/structured-data";
 import { JsonLd } from "@/components/seo/JsonLd";
 
 interface PageProps {
   params: Promise<{ percorso: string }>;
+}
+
+function percorsoDescriptionText(description: string | string[]): string {
+  return Array.isArray(description) ? description.join(" ") : description;
 }
 
 export async function generateStaticParams() {
@@ -44,76 +65,108 @@ export async function generateMetadata({ params }: PageProps) {
 export default async function PercorsoPage({ params }: PageProps) {
   const { percorso: slug } = await params;
   const percorso = getPercorsoBySlug(slug);
+  const { consultationCta } = getPercorsiData();
 
   if (!percorso) {
     notFound();
   }
 
   const path = `/come-possiamo-aiutarti/${slug}`;
+  const vignettes = percorso.vignettes ?? [];
+  const showLegacyLayout = !percorso.leanLabTag && vignettes.length === 0;
+  const breadcrumbItems = [
+    { name: "Home", path: "/" },
+    { name: "Come possiamo aiutarti", path: "/come-possiamo-aiutarti" },
+    { name: percorso.title, path },
+  ];
+  const structuredData = [
+    breadcrumbSchema(breadcrumbItems),
+    serviceSchema({
+      name: percorso.title,
+      description: percorsoDescriptionText(percorso.description),
+      path,
+    }),
+    ...(percorso.faq?.length
+      ? [faqPageSchema(percorso.faq, path)]
+      : []),
+  ];
 
   return (
     <>
-      <JsonLd
-        data={[
-          breadcrumbSchema([
-            { name: "Home", path: "/" },
-            { name: "Come possiamo aiutarti", path: "/come-possiamo-aiutarti" },
-            { name: percorso.title, path },
-          ]),
-          serviceSchema({
-            name: percorso.title,
-            description: percorso.description,
-            path,
-          }),
-        ]}
+      <JsonLd data={structuredData} />
+      <VisibleBreadcrumb items={breadcrumbItems} />
+      <PageHero
+        id="percorso-heading"
+        title={percorso.title}
+        subtitle={percorso.shortDescription}
       />
-      <PageSection>
-        <div className="grid gap-12 lg:grid-cols-2">
-          <FadeIn>
-            <div className="mb-4 inline-flex rounded-full border border-leanme-purple/40 p-3">
-              <ServiceIcon name={percorso.icon} />
-            </div>
-            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.14em] text-leanme-purple">
-              Percorso
-            </p>
-            <h1 className="text-3xl font-bold tracking-[0.04em] text-white md:text-4xl">
-              {percorso.title.toUpperCase()}
-            </h1>
-            <p className="mt-6 text-lg leading-relaxed text-white/70">
-              {percorso.description}
-            </p>
-            <ul className="mt-8 space-y-3">
-              {percorso.services.map((service) => (
-                <li
-                  key={service}
-                  className="flex items-start gap-3 text-white/75"
-                >
-                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-leanme-purple" />
-                  {service}
-                </li>
-              ))}
-            </ul>
-            <Link
-              href="/contatti"
-              className="mt-10 inline-flex items-center gap-2 rounded-full bg-leanme-purple px-6 py-3 text-xs font-semibold uppercase tracking-[0.08em] text-white transition hover:bg-leanme-purple/90"
-            >
-              Contattaci
-              <ArrowIcon />
-            </Link>
-          </FadeIn>
-          <FadeIn delay={0.1}>
-            <div className="relative aspect-square overflow-hidden rounded-xl border border-white/10">
-              <Image
-                src={percorso.image.src}
-                alt={percorso.image.alt}
-                fill
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-              />
-            </div>
-          </FadeIn>
-        </div>
+      <PageSection className={PAGE_INTRO_SECTION_CLASS}>
+        <PageHighlightBlock paragraphs={percorso.description} />
       </PageSection>
+
+      <PageSection className={`${PAGE_CONTENT_AFTER_INTRO_CLASS} pb-0 md:pb-0`}>
+        <PercorsoConsultationCta
+          href={consultationCta.href}
+          label={consultationCta.label}
+        />
+      </PageSection>
+
+      {vignettes.length > 0 ? (
+        <PercorsoVignettes
+          vignettes={vignettes}
+          showArrowBetweenColumns={percorso.vignetteArrowBetween}
+        />
+      ) : null}
+
+      {showLegacyLayout ? (
+        <PageSection className="pt-10 md:pt-12">
+          <div className="grid gap-12 lg:grid-cols-2">
+            <FadeIn>
+              <ServiceIconBadge name={percorso.icon} size="lg" className="mb-4" />
+              <ul className="space-y-3">
+                {percorso.services?.map((service) => (
+                  <li
+                    key={service}
+                    className="flex items-start gap-3 text-white/75"
+                  >
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-leanme-purple" />
+                    {service}
+                  </li>
+                ))}
+              </ul>
+            </FadeIn>
+
+            <FadeIn delay={0.1}>
+              <div className="relative aspect-square overflow-hidden rounded-xl border border-white/10">
+                <Image
+                  src={percorso.image.src}
+                  alt={percorso.image.alt}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+              </div>
+            </FadeIn>
+          </div>
+        </PageSection>
+      ) : null}
+
+      {percorso.leanLabTag ? (
+        <PercorsoLeanLabSection tag={percorso.leanLabTag} />
+      ) : null}
+
+      {percorso.faq?.length || percorso.inPocheParole?.length ? (
+        <PageSection className="pt-10 md:pt-12">
+          {percorso.faq?.length ? (
+            <FaqSection items={percorso.faq} />
+          ) : null}
+          {percorso.inPocheParole?.length ? (
+            <div className={percorso.faq?.length ? "mt-12" : undefined}>
+              <InPocheParoleBox paragraphs={percorso.inPocheParole} />
+            </div>
+          ) : null}
+        </PageSection>
+      ) : null}
     </>
   );
 }

@@ -1,29 +1,34 @@
-import Link from "next/link";
+import { LegalDocument } from "@/components/legal/LegalDocument";
+import { PAGE_CONTENT_AFTER_INTRO_CLASS } from "@/components/layout/HighlightCard";
+import { PageHero } from "@/components/layout/PageHero";
 import { PageSection } from "@/components/layout/PageSection";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { getCookiePolicyData } from "@/lib/content";
 import { createPageMetadata } from "@/lib/metadata";
+import { breadcrumbSchema } from "@/lib/structured-data";
 
 export const metadata = createPageMetadata({
   title: "Cookie Policy",
-  description: "Informativa sui cookie di LeanMe Srls.",
+  description:
+    "Informativa sui cookie del sito LeanMe S.r.l.s. Categorie, servizi di terze parti e gestione del consenso.",
   path: "/cookie",
 });
 
 export default function CookiePage() {
+  const data = getCookiePolicyData();
+
   return (
-    <PageSection>
-      <div className="max-w-3xl">
-        <h1 className="text-3xl font-bold text-white">Cookie Policy</h1>
-        <p className="mt-6 text-white/65">
-          Pagina placeholder. Sostituire con la cookie policy completa di
-          LeanMe Srls.
-        </p>
-        <Link
-          href="/"
-          className="mt-8 inline-block text-sm font-semibold uppercase tracking-[0.1em] text-leanme-purple transition hover:text-white"
-        >
-          ← Torna alla Home
-        </Link>
-      </div>
-    </PageSection>
+    <>
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Cookie Policy", path: "/cookie" },
+        ])}
+      />
+      <PageHero id="cookie-heading" title={data.hero.title} />
+      <PageSection className={PAGE_CONTENT_AFTER_INTRO_CLASS}>
+        <LegalDocument data={data} />
+      </PageSection>
+    </>
   );
 }

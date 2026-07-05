@@ -1,6 +1,10 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { PageIntro, PageSection } from "@/components/layout/PageSection";
+import { PAGE_INTRO_SECTION_CLASS } from "@/components/layout/HighlightCard";
+import { PageHero } from "@/components/layout/PageHero";
+import { PageHighlightBlock } from "@/components/layout/PageHighlightBlock";
+import { PageSection } from "@/components/layout/PageSection";
+import { VisibleBreadcrumb } from "@/components/layout/VisibleBreadcrumb";
 import { ArticleCard } from "@/components/leanlab/ArticleCard";
 import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
 import {
@@ -50,28 +54,32 @@ export default async function LeanLabCategoryPage({ params }: PageProps) {
 
   const articles = getLeanLabArticlesByCategory(categoria);
   const path = `/leanlab/${categoria}`;
+  const breadcrumbItems = [
+    { name: "Home", path: "/" },
+    { name: "Dal LeanLab", path: "/leanlab" },
+    { name: category.title, path },
+  ];
 
   return (
     <>
-      <JsonLd
-        data={breadcrumbSchema([
-          { name: "Home", path: "/" },
-          { name: "Dal LeanLab", path: "/leanlab" },
-          { name: category.title, path },
-        ])}
+      <JsonLd data={breadcrumbSchema(breadcrumbItems)} />
+      <VisibleBreadcrumb items={breadcrumbItems} />
+      <PageHero
+        id="leanlab-category-heading"
+        title={category.title}
+        subtitle="Dal LeanLab"
       />
-      <PageSection>
+      <PageSection className={PAGE_INTRO_SECTION_CLASS}>
+        <PageHighlightBlock paragraphs={category.description} />
+      </PageSection>
+      <PageSection className="pt-0 md:pt-0">
         <Link
           href="/leanlab"
-          className="mb-6 inline-block text-xs font-semibold uppercase tracking-[0.1em] text-leanme-purple transition hover:text-white"
+          className="mb-8 inline-block text-xs font-semibold uppercase tracking-[0.1em] text-leanme-purple transition hover:text-white"
         >
           ← Torna al LeanLab
         </Link>
-        <PageIntro
-          title={category.title}
-          description={category.description}
-        />
-        <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {articles.map((article, index) => (
             <RevealOnScroll key={article.slug} delay={index * 0.05}>
               <ArticleCard article={article} />

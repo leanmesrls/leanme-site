@@ -1,6 +1,7 @@
 export interface HomeNavItem {
   label: string;
   href: string;
+  children?: HomeNavItem[];
 }
 
 export interface HomeCta {
@@ -59,6 +60,7 @@ export interface HomepageData {
   leanLab: {
     title: string;
     viewAll: HomeCta;
+    newsletter: HomeCta;
     tabs: HomeLabTab[];
   };
   leanAcademy: {
@@ -72,7 +74,7 @@ export interface HomepageData {
   };
   partners: {
     title: string;
-    items: string[];
+    items: Array<{ name: string; logo: string; alt: string }>;
   };
   contactBanner: {
     title: string;

@@ -3,8 +3,13 @@
 import { useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
 import { ArrowIcon } from "@/components/homepage/Icons";
 import { SectionTitle } from "@/components/homepage/SectionTitle";
+import { FuchsiaGlowCard } from "@/components/motion/FuchsiaGlowCard";
+import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
+import { cn } from "@/lib/utils";
 import type { LeanLabArticle } from "@/types/content";
 import type { HomepageData } from "@/types/homepage";
 import { ASSETS } from "@/lib/assets";
@@ -12,6 +17,9 @@ import { ASSETS } from "@/lib/assets";
 interface LeanLabCarouselProps {
   data: HomepageData["leanLab"];
   articles: LeanLabArticle[];
+  compactTop?: boolean;
+  showNewsletterCta?: boolean;
+  className?: string;
 }
 
 const categoryLabels: Record<string, string> = {
@@ -21,7 +29,53 @@ const categoryLabels: Record<string, string> = {
   tutorial: "ACADEMY",
 };
 
-export function LeanLabCarousel({ data, articles }: LeanLabCarouselProps) {
+function ArticleCard({ article }: { article: LeanLabArticle }) {
+  const imageSrc = article.image?.src ?? ASSETS.decorative.bannerAmbient;
+
+  return (
+    <Link
+      href={`/leanlab/articolo/${article.slug}`}
+      className="group block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leanme-fuchsia"
+    >
+      <FuchsiaGlowCard
+        variant="card"
+        className="leanlab-article-card flex flex-col rounded-lg border border-white/[0.08] bg-leanme-card"
+        contentClassName="flex flex-col"
+      >
+      <div className="relative aspect-[4/3] overflow-hidden">
+        <div className="leanlab-article-card-media absolute inset-0">
+          <Image
+            src={imageSrc}
+            alt={article.title}
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 25vw"
+          />
+        </div>
+        <div className="leanlab-article-card-overlay pointer-events-none absolute inset-0 z-[1]" />
+      </div>
+      <div className="flex flex-1 flex-col space-y-2 p-4">
+        <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-leanme-fuchsia">
+          {categoryLabels[article.category] ?? "ARTICOLO"}
+        </span>
+        <h3 className="min-h-[2.75rem] flex-1 text-sm font-semibold leading-snug text-white">
+          {article.title}
+        </h3>
+        <p className="text-xs text-white/45">{article.readTime} di lettura</p>
+      </div>
+      </FuchsiaGlowCard>
+    </Link>
+  );
+}
+
+export function LeanLabCarousel({
+  data,
+  articles,
+  compactTop = false,
+  showNewsletterCta = true,
+  className,
+}: LeanLabCarouselProps) {
+  const reducedMotion = useReducedMotion();
   const [activeTab, setActiveTab] = useState(data.tabs[0]?.id ?? "progetti");
   const [page, setPage] = useState(0);
 
@@ -41,93 +95,102 @@ export function LeanLabCarousel({ data, articles }: LeanLabCarouselProps) {
   }
 
   return (
-    <section className="bg-black px-5 py-16 md:px-10 md:py-24 lg:px-16">
-      <div className="mx-auto max-w-7xl">
-        <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-          <SectionTitle align="left" underline={false}>
-            {data.title}
-          </SectionTitle>
-          <Link
-            href={data.viewAll.href}
-            className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.12em] text-leanme-purple transition hover:text-white md:mb-2"
-          >
-            {data.viewAll.label}
-            <ArrowIcon />
-          </Link>
-        </div>
-
-        <div className="mt-8 flex gap-6 overflow-x-auto border-b border-white/10 pb-0 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          {data.tabs.map((tab) => (
-            <button
-              key={tab.id}
-              type="button"
-              onClick={() => selectTab(tab.id)}
-              className={`shrink-0 border-b-2 pb-3 text-[11px] font-semibold uppercase tracking-[0.1em] transition md:text-xs ${
-                activeTab === tab.id
-                  ? "border-leanme-purple text-white"
-                  : "border-transparent text-white/50 hover:text-white/80"
-              }`}
+    <section
+      aria-labelledby="leanlab-heading"
+      className={cn(
+        "bg-black px-5 md:px-10 lg:px-16",
+        compactTop
+          ? "pb-16 pt-6 md:pb-20 md:pt-8 lg:pb-24 lg:pt-10"
+          : "section-padding",
+        className
+      )}
+    >
+      <div className="mx-auto max-w-[1440px]">
+        <RevealOnScroll>
+          <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <SectionTitle id="leanlab-heading" align="left" underline={false}>
+              {data.title}
+            </SectionTitle>
+            <Link
+              href={data.viewAll.href}
+              className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-leanme-fuchsia transition hover:text-white md:mb-1"
             >
-              {tab.label}
-            </button>
-          ))}
-        </div>
-
-        <div className="relative mt-10">
-          <div className="hidden gap-4 lg:grid lg:grid-cols-4">
-            {visible.map((article) => (
-              <Link
-                key={article.slug}
-                href={`/leanlab/articolo/${article.slug}`}
-                className="group overflow-hidden rounded-xl border border-white/10 bg-[#111111] transition hover:border-leanme-purple/30"
-              >
-                <div className="relative aspect-[4/3]">
-                  <Image
-                    src={ASSETS.decorative.bannerAmbient}
-                    alt={article.title}
-                    fill
-                    className="object-cover opacity-80 transition group-hover:opacity-100"
-                    sizes="(max-width: 1280px) 25vw, 300px"
-                  />
-                </div>
-                <div className="space-y-3 p-4">
-                  <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-leanme-purple">
-                    {categoryLabels[article.category] ?? "ARTICOLO"}
-                  </span>
-                  <h3 className="min-h-[3rem] text-sm font-semibold leading-snug text-white">
-                    {article.title}
-                  </h3>
-                  <p className="text-xs text-white/50">{article.readTime} di lettura</p>
-                </div>
-              </Link>
-            ))}
+              {data.viewAll.label}
+              <ArrowIcon />
+            </Link>
           </div>
+        </RevealOnScroll>
 
-          <div className="lg:hidden">
-            {visible[0] && (
-              <Link
-                href={`/leanlab/articolo/${visible[0].slug}`}
-                className="block overflow-hidden rounded-xl border border-white/10 bg-[#111111]"
-              >
-                <div className="relative aspect-[16/10]">
-                  <Image
-                    src={ASSETS.decorative.bannerAmbient}
-                    alt={visible[0].title}
-                    fill
-                    className="object-cover"
-                    sizes="100vw"
-                  />
-                </div>
-                <div className="space-y-3 p-4">
-                  <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-leanme-purple">
-                    {categoryLabels[visible[0].category] ?? "ARTICOLO"}
-                  </span>
-                  <h3 className="text-base font-semibold text-white">{visible[0].title}</h3>
-                  <p className="text-xs text-white/50">{visible[0].readTime} di lettura</p>
-                </div>
-              </Link>
-            )}
+        <RevealOnScroll delay={0.1}>
+          <div
+            role="tablist"
+            aria-label="Categorie LeanLab"
+            className="mt-8 flex gap-5 overflow-x-auto border-b border-white/[0.08] pb-0 [-ms-overflow-style:none] [scrollbar-width:none] md:gap-8 [&::-webkit-scrollbar]:hidden"
+          >
+            {data.tabs.map((tab) => {
+              const isActive = activeTab === tab.id;
+              return (
+                <button
+                  key={tab.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={isActive}
+                  onClick={() => selectTab(tab.id)}
+                  className={cn(
+                    "relative shrink-0 pb-3 text-[10px] font-semibold uppercase tracking-[0.1em] transition-colors duration-300 md:text-[11px]",
+                    isActive ? "text-white" : "text-white/45 hover:text-white/75"
+                  )}
+                >
+                  {tab.label}
+                  {isActive &&
+                    (reducedMotion ? (
+                      <span
+                        className="absolute inset-x-0 bottom-0 h-1 rounded-full bg-leanme-fuchsia"
+                        aria-hidden="true"
+                      />
+                    ) : (
+                      <motion.span
+                        layoutId="leanlab-tab-underline"
+                        className="absolute inset-x-0 bottom-0 h-1 rounded-full bg-leanme-fuchsia"
+                        transition={{ type: "spring", stiffness: 420, damping: 30 }}
+                      />
+                    ))}
+                </button>
+              );
+            })}
           </div>
+        </RevealOnScroll>
+
+        <div className="relative mt-8 md:mt-10">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={`${activeTab}-${page}`}
+              initial={reducedMotion ? false : { opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={reducedMotion ? undefined : { opacity: 0, y: -12 }}
+              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] as const }}
+              className="hidden gap-4 md:grid md:grid-cols-2 lg:grid-cols-4 lg:gap-5"
+            >
+              {visible.map((article, index) => (
+                <RevealOnScroll key={article.slug} delay={index * 0.06}>
+                  <ArticleCard article={article} />
+                </RevealOnScroll>
+              ))}
+            </motion.div>
+          </AnimatePresence>
+
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={`${activeTab}-${page}-mobile`}
+              initial={reducedMotion ? false : { opacity: 0, x: 16 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={reducedMotion ? undefined : { opacity: 0, x: -16 }}
+              transition={{ duration: 0.3 }}
+              className="md:hidden"
+            >
+              {visible[0] && <ArticleCard article={visible[0]} />}
+            </motion.div>
+          </AnimatePresence>
 
           <div className="mt-6 flex items-center justify-center gap-2">
             {Array.from({ length: totalPages }).map((_, index) => (
@@ -135,10 +198,14 @@ export function LeanLabCarousel({ data, articles }: LeanLabCarouselProps) {
                 key={index}
                 type="button"
                 aria-label={`Pagina ${index + 1}`}
+                aria-current={page === index ? "true" : undefined}
                 onClick={() => setPage(index)}
-                className={`h-2 w-2 rounded-full transition ${
-                  page === index ? "bg-leanme-purple" : "bg-white/20"
-                }`}
+                className={cn(
+                  "h-2.5 w-2.5 rounded-full transition-all duration-300",
+                  page === index
+                    ? "scale-125 bg-leanme-fuchsia"
+                    : "bg-white/20 hover:bg-white/40"
+                )}
               />
             ))}
           </div>
@@ -149,21 +216,39 @@ export function LeanLabCarousel({ data, articles }: LeanLabCarouselProps) {
                 type="button"
                 aria-label="Articoli precedenti"
                 onClick={() => setPage((current) => Math.max(0, current - 1))}
-                className="pointer-events-auto rounded-full border border-white/20 bg-black/70 px-3 py-2 text-white transition hover:border-leanme-purple"
+                disabled={page === 0}
+                className="pointer-events-auto rounded-full border border-white/20 bg-black/80 px-3 py-2 text-lg text-white transition hover:border-leanme-fuchsia disabled:opacity-30"
               >
                 ‹
               </button>
               <button
                 type="button"
                 aria-label="Articoli successivi"
-                onClick={() => setPage((current) => Math.min(totalPages - 1, current + 1))}
-                className="pointer-events-auto rounded-full border border-white/20 bg-black/70 px-3 py-2 text-white transition hover:border-leanme-purple"
+                onClick={() =>
+                  setPage((current) => Math.min(totalPages - 1, current + 1))
+                }
+                disabled={page >= totalPages - 1}
+                className="pointer-events-auto rounded-full border border-white/20 bg-black/80 px-3 py-2 text-lg text-white transition hover:border-leanme-fuchsia disabled:opacity-30"
               >
                 ›
               </button>
             </div>
           )}
         </div>
+
+        {showNewsletterCta ? (
+          <RevealOnScroll delay={0.15}>
+            <div className="mt-10 flex justify-center md:mt-12 md:justify-start">
+              <Link
+                href={data.newsletter.href}
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-leanme-fuchsia px-7 py-3.5 text-[10px] font-semibold uppercase tracking-[0.1em] text-white transition hover:bg-leanme-fuchsia-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leanme-fuchsia md:text-[11px]"
+              >
+                {data.newsletter.label}
+                <ArrowIcon />
+              </Link>
+            </div>
+          </RevealOnScroll>
+        ) : null}
       </div>
     </section>
   );

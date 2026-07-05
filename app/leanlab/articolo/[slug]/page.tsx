@@ -1,7 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { PAGE_INTRO_SECTION_CLASS } from "@/components/layout/HighlightCard";
+import { PageHero } from "@/components/layout/PageHero";
+import { PageHighlightBlock } from "@/components/layout/PageHighlightBlock";
 import { PageSection } from "@/components/layout/PageSection";
+import { VisibleBreadcrumb } from "@/components/layout/VisibleBreadcrumb";
 import { FadeIn } from "@/components/motion/FadeIn";
 import {
   getAllLeanLabArticleSlugs,
@@ -52,20 +56,21 @@ export default async function LeanLabArticlePage({ params }: PageProps) {
 
   const category = getLeanLabCategory(article.category);
   const path = `/leanlab/articolo/${slug}`;
+  const breadcrumbItems = [
+    { name: "Home", path: "/" },
+    { name: "Dal LeanLab", path: "/leanlab" },
+    {
+      name: category?.title ?? article.category,
+      path: `/leanlab/${article.category}`,
+    },
+    { name: article.title, path },
+  ];
 
   return (
     <>
       <JsonLd
         data={[
-          breadcrumbSchema([
-            { name: "Home", path: "/" },
-            { name: "Dal LeanLab", path: "/leanlab" },
-            {
-              name: category?.title ?? article.category,
-              path: `/leanlab/${article.category}`,
-            },
-            { name: article.title, path },
-          ]),
+          breadcrumbSchema(breadcrumbItems),
           articleSchema({
             title: article.title,
             description: article.excerpt,
@@ -76,7 +81,16 @@ export default async function LeanLabArticlePage({ params }: PageProps) {
           }),
         ]}
       />
-      <PageSection>
+      <VisibleBreadcrumb items={breadcrumbItems} />
+      <PageHero
+        id="leanlab-article-heading"
+        title={article.title}
+        subtitle={category?.title ?? article.category}
+      />
+      <PageSection className={PAGE_INTRO_SECTION_CLASS}>
+        <PageHighlightBlock paragraphs={article.excerpt} />
+      </PageSection>
+      <PageSection className="pt-0 md:pt-0">
         <FadeIn>
           <Link
             href={`/leanlab/${article.category}`}
@@ -84,13 +98,7 @@ export default async function LeanLabArticlePage({ params }: PageProps) {
           >
             ← {category?.title ?? article.category}
           </Link>
-          <span className="inline-block rounded-full border border-leanme-purple/40 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-leanme-purple">
-            {category?.title ?? article.category}
-          </span>
-          <h1 className="mt-6 max-w-4xl text-3xl font-bold tracking-[0.03em] text-white md:text-4xl">
-            {article.title}
-          </h1>
-          <p className="mt-4 text-sm text-white/50">
+          <p className="text-sm text-white/50">
             {formatDate(article.date)} · {article.readTime} di lettura · {article.author}
           </p>
           <div className="relative mt-10 aspect-[21/9] overflow-hidden rounded-xl border border-white/10">
@@ -104,8 +112,7 @@ export default async function LeanLabArticlePage({ params }: PageProps) {
             />
           </div>
           <div className="mt-10 max-w-3xl">
-            <p className="text-xl leading-relaxed text-white/80">{article.excerpt}</p>
-            <p className="mt-6 leading-relaxed text-white/65">
+            <p className="leading-relaxed text-white/65">
               Contenuto completo dell&apos;articolo LeanLab in arrivo. Ogni
               articolo genererà condivisione su Newsletter, LinkedIn, Facebook e
               Instagram.
