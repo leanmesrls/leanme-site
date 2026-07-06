@@ -1,13 +1,8 @@
-import { readFileSync } from "node:fs";
-import { join } from "node:path";
+import { generateLlmsTxt, resolveLlmsTxtBaseUrl } from "@/lib/llms-txt";
 
-export const dynamic = "force-static";
-
-export function GET() {
-  const content = readFileSync(
-    join(process.cwd(), "data", "llms.txt"),
-    "utf-8"
-  );
+export function GET(request: Request) {
+  const baseUrl = resolveLlmsTxtBaseUrl(request);
+  const content = generateLlmsTxt(baseUrl);
 
   return new Response(content, {
     headers: {
