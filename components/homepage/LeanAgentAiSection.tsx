@@ -48,15 +48,11 @@ export function LeanAgentAiSection({ data }: LeanAgentAiSectionProps) {
       <div className="mx-auto max-w-[1440px]">
         <RevealOnScroll>
           <SectionTitle id="lean-agent-heading">{data.title}</SectionTitle>
-        </RevealOnScroll>
-
-        <div className="mt-6 grid grid-cols-2 gap-5 px-2 sm:grid-cols-3 md:grid-cols-4 md:gap-6 xl:grid-cols-7">
-          {data.agents.map((agent) => (
-            <AgentCompactCard key={agent.slug} agent={agent} />
-          ))}
-        </div>
-
-        <RevealOnScroll delay={0.2}>
+          <div className="mt-6 w-full space-y-3 px-2 text-center text-sm leading-relaxed text-white/65 md:text-base">
+            {data.intro.map((paragraph) => (
+              <p key={paragraph.slice(0, 48)}>{paragraph}</p>
+            ))}
+          </div>
           <div className="mt-8 text-center">
             <Link
               href={data.footerLink.href}
@@ -67,6 +63,12 @@ export function LeanAgentAiSection({ data }: LeanAgentAiSectionProps) {
             </Link>
           </div>
         </RevealOnScroll>
+
+        <div className="mt-6 grid grid-cols-2 gap-5 px-2 sm:grid-cols-3 md:grid-cols-4 md:gap-6 xl:grid-cols-7">
+          {data.agents.map((agent) => (
+            <AgentCompactCard key={agent.slug} agent={agent} />
+          ))}
+        </div>
       </div>
     </section>
   );

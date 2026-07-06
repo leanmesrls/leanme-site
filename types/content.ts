@@ -97,6 +97,7 @@ export interface LeanAgentProfile {
   competencies: string[];
   triggers: string[];
   collaborators: string[];
+  externalConnections?: Array<{ slug: string; name: string }>;
   superpower: string;
   teamValue: string;
   tools: string[];

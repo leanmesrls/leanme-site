@@ -44,7 +44,7 @@
         "replaceHint": ""
       },
       "cardImage": {
-        "src": "/assets/official/agenti-schede/leonardo.png",
+        "src": "/assets/official/homepage/leonardo-hp.png",
         "alt": "Lean.Agent Leonardo",
         "replaceHint": ""
       },
@@ -116,7 +116,7 @@
         "replaceHint": ""
       },
       "cardImage": {
-        "src": "/assets/official/agenti-schede/vespucci.png",
+        "src": "/assets/official/homepage/vespucci-hp.png",
         "alt": "Lean.Agent Vespucci",
         "replaceHint": ""
       },
@@ -153,12 +153,10 @@
           "Vogliamo anticipare scenari futuri"
         ],
         "collaborators": [
-          "leonardo",
-          "marconi",
-          "galileo",
-          "teresa",
-          "olivetti",
-          "angela"
+          "leonardo"
+        ],
+        "externalConnections": [
+          { "slug": "web", "name": "Web" }
         ],
         "superpower": "Scopre possibilità dove gli altri vedono confini.",
         "teamValue": "Allarga gli orizzonti, alimenta la creatività e trasforma l'esplorazione in opportunità concrete per l'innovazione e la crescita dell'organizzazione.",
@@ -186,7 +184,7 @@
         "replaceHint": ""
       },
       "cardImage": {
-        "src": "/assets/official/agenti-schede/marconi.png",
+        "src": "/assets/official/homepage/marconi-hp.png",
         "alt": "Lean.Agent Marconi",
         "replaceHint": ""
       },
@@ -224,12 +222,7 @@
           "È importante ascoltare e monitorare il nostro pubblico"
         ],
         "collaborators": [
-          "leonardo",
-          "galileo",
-          "teresa",
-          "olivetti",
-          "angela",
-          "vespucci"
+          "leonardo"
         ],
         "superpower": "Trasforma un messaggio in connessione e una connessione in opportunità.",
         "teamValue": "Rafforza l'identità, aumenta la visibilità e crea relazioni che generano nuove opportunità per la squadra e i nostri progetti.",
@@ -257,7 +250,7 @@
         "replaceHint": ""
       },
       "cardImage": {
-        "src": "/assets/official/agenti-schede/angela.png",
+        "src": "/assets/official/homepage/angela-hp.png",
         "alt": "Lean.Agent Angela",
         "replaceHint": ""
       },
@@ -295,12 +288,7 @@
           "È importante misurare e migliorare l'apprendimento"
         ],
         "collaborators": [
-          "leonardo",
-          "marconi",
-          "galileo",
-          "olivetti",
-          "teresa",
-          "vespucci"
+          "leonardo"
         ],
         "superpower": "Trasforma la conoscenza in crescita e competenza concreta.",
         "teamValue": "Accresce competenze, stimola la curiosità e favorisce una cultura della crescita continua, rendendo la squadra più preparata, consapevole e pronta alle sfide future.",
@@ -327,7 +315,7 @@
         "replaceHint": ""
       },
       "cardImage": {
-        "src": "/assets/official/agenti-schede/galileo.png",
+        "src": "/assets/official/homepage/galileo-hp.png",
         "alt": "Lean.Agent Galileo",
         "replaceHint": ""
       },
@@ -365,12 +353,7 @@
           "Vogliamo scalare le attività senza aumentare la complessità"
         ],
         "collaborators": [
-          "leonardo",
-          "marconi",
-          "teresa",
-          "olivetti",
-          "angela",
-          "vespucci"
+          "leonardo"
         ],
         "superpower": "Trasforma la complessità in efficienza automatizzata.",
         "teamValue": "Elimina attività ripetitive, riduce gli errori, aumenta la produttività e garantisce processi fluidi e scalabili nel tempo.",
@@ -398,7 +381,7 @@
         "replaceHint": ""
       },
       "cardImage": {
-        "src": "/assets/official/agenti-schede/olivetti.png",
+        "src": "/assets/official/homepage/olivetti-hp.png",
         "alt": "Lean.Agent Olivetti",
         "replaceHint": ""
       },
@@ -437,12 +420,7 @@
           "Il team ha bisogno di strumenti digitali personalizzati"
         ],
         "collaborators": [
-          "leonardo",
-          "marconi",
-          "galileo",
-          "teresa",
-          "angela",
-          "vespucci"
+          "leonardo"
         ],
         "superpower": "Trasforma idee complesse in codice che funziona, scala e crea valore.",
         "teamValue": "Porta soluzioni concrete e affidabili, riduce i colli di bottiglia tecnici e automatizza processi, permettendo alla squadra di lavorare meglio e più velocemente.",
@@ -470,7 +448,7 @@
         "replaceHint": ""
       },
       "cardImage": {
-        "src": "/assets/official/agenti-schede/teresa.png",
+        "src": "/assets/official/homepage/teresa-hp.png",
         "alt": "Lean.Agent Teresa",
         "replaceHint": ""
       },
@@ -509,12 +487,10 @@
           "Si vuole migliorare la soddisfazione utente"
         ],
         "collaborators": [
-          "leonardo",
-          "marconi",
-          "galileo",
-          "olivetti",
-          "angela",
-          "vespucci"
+          "leonardo"
+        ],
+        "externalConnections": [
+          { "slug": "clienti", "name": "Clienti" }
         ],
         "superpower": "Trasforma ogni richiesta in una soluzione e ogni problema in un'esperienza positiva.",
         "teamValue": "Migliora la soddisfazione degli utenti, riduce i tempi di risposta e alleggerisce il carico operativo della squadra, creando relazioni di fiducia e fedeltà.",

@@ -49,6 +49,7 @@ export interface HomepageData {
   };
   leanAgentAi: {
     title: string;
+    intro: string[];
     footerLink: HomeCta;
     agents: HomeAgent[];
   };

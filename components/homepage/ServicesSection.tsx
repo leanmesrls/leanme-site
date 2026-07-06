@@ -68,6 +68,13 @@ export function ServicesSection({ data, consultationCta }: ServicesSectionProps)
         <div className="mx-auto max-w-[1440px]">
           <SectionTitle id="services-heading">{data.title}</SectionTitle>
 
+          <div className="mt-8 flex justify-center">
+            <PercorsoConsultationCta
+              href={consultationCta.href}
+              label={consultationCta.label}
+            />
+          </div>
+
           <div className="mt-10 hidden gap-4 xl:grid xl:grid-cols-5 xl:gap-5">
             {data.items.map((item, index) => (
               <RevealOnScroll key={item.slug} delay={index * 0.06}>
@@ -100,12 +107,6 @@ export function ServicesSection({ data, consultationCta }: ServicesSectionProps)
             ))}
           </div>
 
-          <div className="mt-10 flex justify-center md:justify-start">
-            <PercorsoConsultationCta
-              href={consultationCta.href}
-              label={consultationCta.label}
-            />
-          </div>
         </div>
       </section>
     </RevealOnScroll>

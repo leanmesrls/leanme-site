@@ -68,6 +68,24 @@ function BulletList({ items }: { items: string[] }) {
   );
 }
 
+function ExternalConnectionCard({ name }: { name: string }) {
+  const initials = name.slice(0, 2).toUpperCase();
+
+  return (
+    <div className="flex items-center gap-3 rounded-lg border border-white/10 bg-white/[0.03] p-3">
+      <div
+        aria-hidden
+        className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.06] text-[10px] font-bold uppercase tracking-[0.08em] text-white/70"
+      >
+        {initials}
+      </div>
+      <div className="min-w-0">
+        <p className="text-xs font-bold tracking-[0.08em] text-white">{name}</p>
+      </div>
+    </div>
+  );
+}
+
 function EcosystemCard({
   name,
   role,
@@ -272,6 +290,12 @@ export function LeanAgentProfile({
                     href={`/staff-ibrido#specialist-${specialist.slug}`}
                     badge="Network di specialisti"
                     initials={specialist.area.slice(0, 2)}
+                  />
+                ))}
+                {profile.externalConnections?.map((connection) => (
+                  <ExternalConnectionCard
+                    key={connection.slug}
+                    name={connection.name}
                   />
                 ))}
               </div>

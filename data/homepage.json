@@ -34,6 +34,11 @@
   },
   "leanAgentAi": {
     "title": "LEAN.AGENT.AI",
+    "intro": [
+      "Ogni Lean.Agent è specializzato in una funzione precisa e opera in autonomia all'interno del proprio ambito.",
+      "Lean.Agent.Leonardo coordina l'intero team AI, organizza i flussi di lavoro e mantiene il collegamento con il team umano.",
+      "Alcuni agenti interagiscono inoltre con il Web, i clienti o altri sistemi esterni, creando un ecosistema intelligente in cui persone e Intelligenza Artificiale collaborano ogni giorno per raggiungere un obiettivo comune."
+    ],
     "footerLink": {
       "label": "SCOPRI IL NOSTRO STAFF IBRIDO",
       "href": "/staff-ibrido"

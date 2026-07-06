@@ -107,13 +107,26 @@ export function LeanLabCarousel({
     >
       <div className="mx-auto max-w-[1440px]">
         <RevealOnScroll>
-          <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-            <SectionTitle id="leanlab-heading" align="left" underline={false}>
-              {data.title}
-            </SectionTitle>
+          <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+            <div>
+              <SectionTitle id="leanlab-heading" align="left" underline={false}>
+                {data.title}
+              </SectionTitle>
+              {showNewsletterCta ? (
+                <div className="mt-4">
+                  <Link
+                    href={data.newsletter.href}
+                    className="inline-flex items-center justify-center gap-2 rounded-full bg-leanme-fuchsia px-7 py-3.5 text-[10px] font-semibold uppercase tracking-[0.1em] text-white transition hover:bg-leanme-fuchsia-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leanme-fuchsia md:text-[11px]"
+                  >
+                    {data.newsletter.label}
+                    <ArrowIcon />
+                  </Link>
+                </div>
+              ) : null}
+            </div>
             <Link
               href={data.viewAll.href}
-              className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-leanme-fuchsia transition hover:text-white md:mb-1"
+              className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-leanme-fuchsia transition hover:text-white md:mt-1 md:shrink-0"
             >
               {data.viewAll.label}
               <ArrowIcon />
@@ -235,20 +248,6 @@ export function LeanLabCarousel({
             </div>
           )}
         </div>
-
-        {showNewsletterCta ? (
-          <RevealOnScroll delay={0.15}>
-            <div className="mt-10 flex justify-center md:mt-12 md:justify-start">
-              <Link
-                href={data.newsletter.href}
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-leanme-fuchsia px-7 py-3.5 text-[10px] font-semibold uppercase tracking-[0.1em] text-white transition hover:bg-leanme-fuchsia-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leanme-fuchsia md:text-[11px]"
-              >
-                {data.newsletter.label}
-                <ArrowIcon />
-              </Link>
-            </div>
-          </RevealOnScroll>
-        ) : null}
       </div>
     </section>
   );
