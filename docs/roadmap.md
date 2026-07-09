@@ -14,7 +14,7 @@ Phase 2
 - Academy
 - Case Studies
 - Events
-- Customer Portal
+- Customer Portal (LeanYou — v1 Leonardo live; roadmap I&C in `docs/leanyou.md`)
 
 Phase 3
 

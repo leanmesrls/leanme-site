@@ -2,13 +2,30 @@ import { NextResponse, type NextRequest } from "next/server";
 
 import { DEFAULT_PUBLIC_TENANT_SLUG } from "@/lib/leanyou/constants";
 import {
-  isLegacyLeanYouPath,
+  isLegacyLeanYouLeonardoPath,
+  isTenantLoginPath,
   leanyouLeonardoPath,
   leanyouLoginPath,
-  mapLegacyLeanYouPath,
+  mapLegacyLeanYouLeonardoPath,
   parseTenantSlugFromPath,
 } from "@/lib/leanyou/paths";
 import { SESSION_COOKIE, readSessionToken } from "@/lib/leanyou/session-token";
+
+function redirectToUnifiedLogin(
+  request: NextRequest,
+  nextPath?: string
+): NextResponse {
+  const loginUrl = new URL(leanyouLoginPath(), request.url);
+  if (nextPath) {
+    loginUrl.searchParams.set("next", nextPath);
+  }
+  request.nextUrl.searchParams.forEach((value, key) => {
+    if (key !== "next") {
+      loginUrl.searchParams.set(key, value);
+    }
+  });
+  return NextResponse.redirect(loginUrl);
+}
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -33,19 +50,30 @@ export async function middleware(request: NextRequest) {
   const token = request.cookies.get(SESSION_COOKIE)?.value;
   const session = token ? await readSessionToken(token) : null;
 
+  if (pathname === leanyouLoginPath()) {
+    if (session) {
+      return NextResponse.redirect(
+        new URL(leanyouLeonardoPath(session.tenantSlug), request.url)
+      );
+    }
+    return NextResponse.next();
+  }
+
   if (pathname === "/leanyou") {
     if (session) {
       return NextResponse.redirect(
         new URL(leanyouLeonardoPath(session.tenantSlug), request.url)
       );
     }
-    return NextResponse.redirect(
-      new URL(leanyouLoginPath(DEFAULT_PUBLIC_TENANT_SLUG), request.url)
-    );
+    return NextResponse.redirect(new URL(leanyouLoginPath(), request.url));
   }
 
-  if (isLegacyLeanYouPath(pathname)) {
-    const target = mapLegacyLeanYouPath(
+  if (isTenantLoginPath(pathname)) {
+    return redirectToUnifiedLogin(request);
+  }
+
+  if (isLegacyLeanYouLeonardoPath(pathname)) {
+    const target = mapLegacyLeanYouLeonardoPath(
       pathname,
       session?.tenantSlug ?? DEFAULT_PUBLIC_TENANT_SLUG
     );
@@ -59,21 +87,8 @@ export async function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  const isLoginRoute = pathname === leanyouLoginPath(tenantSlug);
-
-  if (isLoginRoute) {
-    if (session?.tenantSlug === tenantSlug) {
-      return NextResponse.redirect(
-        new URL(leanyouLeonardoPath(tenantSlug), request.url)
-      );
-    }
-    return NextResponse.next();
-  }
-
   if (!session) {
-    const loginUrl = new URL(leanyouLoginPath(tenantSlug), request.url);
-    loginUrl.searchParams.set("next", pathname);
-    return NextResponse.redirect(loginUrl);
+    return redirectToUnifiedLogin(request, pathname);
   }
 
   if (session.tenantSlug !== tenantSlug) {

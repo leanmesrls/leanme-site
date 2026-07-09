@@ -32,7 +32,7 @@ export default async function LeonardoIndexPage({ params }: PageProps) {
 
   const session = await getSession();
   if (!session) {
-    redirect(leanyouLoginPath(tenantSlug));
+    redirect(leanyouLoginPath());
   }
   if (!tenantHasModule(session, "leonardo")) {
     redirect(leanyouLeonardoPath(tenantSlug));

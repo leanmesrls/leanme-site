@@ -4,12 +4,19 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 
 import { leanyouLeonardoPath } from "@/lib/leanyou/paths";
+import type { LeanYouSession } from "@/types/leanyou";
 
-interface LeanYouLoginFormProps {
-  tenantSlug: string;
+function resolvePostLoginPath(
+  session: LeanYouSession,
+  nextPath: string | null
+): string {
+  if (nextPath?.startsWith(`/leanyou/${session.tenantSlug}/`)) {
+    return nextPath;
+  }
+  return leanyouLeonardoPath(session.tenantSlug);
 }
 
-export function LeanYouLoginForm({ tenantSlug }: LeanYouLoginFormProps) {
+export function LeanYouLoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [email, setEmail] = useState("");
@@ -25,19 +32,22 @@ export function LeanYouLoginForm({ tenantSlug }: LeanYouLoginFormProps) {
     const response = await fetch("/api/leanyou/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password, tenantSlug }),
+      body: JSON.stringify({ email, password }),
     });
 
-    const payload = (await response.json()) as { error?: string };
+    const payload = (await response.json()) as {
+      error?: string;
+      session?: LeanYouSession;
+    };
     setLoading(false);
 
-    if (!response.ok) {
+    if (!response.ok || !payload.session) {
       setError(payload.error ?? "Accesso non riuscito.");
       return;
     }
 
     router.replace(
-      searchParams.get("next") ?? leanyouLeonardoPath(tenantSlug)
+      resolvePostLoginPath(payload.session, searchParams.get("next"))
     );
     router.refresh();
   }
@@ -87,10 +97,6 @@ export function LeanYouLoginForm({ tenantSlug }: LeanYouLoginFormProps) {
       >
         {loading ? "Accesso in corso..." : "Accedi a LeanYou"}
       </button>
-
-      <p className="text-center text-[11px] text-white/45">
-        Accesso riservato a {tenantSlug.toUpperCase()}
-      </p>
     </form>
   );
 }

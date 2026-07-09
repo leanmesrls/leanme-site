@@ -42,9 +42,9 @@ function NavIcon({ icon }: { icon: "dashboard" | "leonardo" | "settings" }) {
   );
 }
 
-async function logout(tenantSlug: string) {
+async function logout() {
   await fetch("/api/leanyou/auth/logout", { method: "POST" });
-  window.location.href = leanyouLoginPath(tenantSlug);
+  window.location.href = leanyouLoginPath();
 }
 
 export function LeanYouShell({ session, children }: LeanYouShellProps) {
@@ -100,7 +100,7 @@ export function LeanYouShell({ session, children }: LeanYouShellProps) {
 
           <button
             type="button"
-            onClick={() => logout(session.tenantSlug)}
+            onClick={() => logout()}
             className="mt-8 w-full rounded-lg border border-white/15 px-3 py-2.5 text-left text-sm text-white/70 transition hover:border-white/30 hover:text-white"
           >
             Esci

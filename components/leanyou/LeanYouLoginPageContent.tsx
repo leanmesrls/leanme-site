@@ -8,15 +8,7 @@ import type { LeanYouConfig } from "@/types/leanyou";
 
 const config = configData as LeanYouConfig;
 
-interface LeanYouLoginPageContentProps {
-  tenantSlug: string;
-  tenantName: string;
-}
-
-export function LeanYouLoginPageContent({
-  tenantSlug,
-  tenantName,
-}: LeanYouLoginPageContentProps) {
+export function LeanYouLoginPageContent() {
   return (
     <div className="min-h-screen bg-black px-5 py-10 text-white md:px-8">
       <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[minmax(0,1fr)_420px] lg:items-center">
@@ -25,11 +17,12 @@ export function LeanYouLoginPageContent({
             LeanYou
           </p>
           <h1 className="mt-4 text-4xl font-bold tracking-[0.04em] md:text-5xl">
-            {tenantName}
+            Area riservata clienti
           </h1>
           <p className="mt-4 max-w-xl text-base leading-relaxed text-white/70">
-            Area riservata clienti LeanMe. Accedi con le credenziali fornite
-            oppure tramite link diretto con token personale o aziendale.
+            Accedi con le credenziali fornite da LeanMe oppure tramite link
+            diretto con token personale o aziendale. Dopo l&apos;accesso verrai
+            indirizzato all&apos;area dedicata alla tua organizzazione.
           </p>
 
           <div className="mt-8 flex items-center gap-4 rounded-xl border border-white/10 bg-[#111111] p-5">
@@ -55,8 +48,8 @@ export function LeanYouLoginPageContent({
           </h2>
           <div className="mt-6 space-y-4">
             <Suspense fallback={null}>
-              <LeanYouTokenLogin tenantSlug={tenantSlug} />
-              <LeanYouLoginForm tenantSlug={tenantSlug} />
+              <LeanYouTokenLogin />
+              <LeanYouLoginForm />
             </Suspense>
           </div>
         </section>

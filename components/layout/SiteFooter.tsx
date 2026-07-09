@@ -7,12 +7,14 @@ import {
   getPercorsiData,
   getSiteConfig,
 } from "@/lib/content";
+import { buildHeaderNavigation } from "@/lib/navigation";
 import { ASSETS } from "@/lib/assets";
 
 export function SiteFooter() {
   const site = getSiteConfig();
   const homepage = getHomepageData();
-  const percorsi = getPercorsiData();
+  const { percorsi } = getPercorsiData();
+  const navigation = buildHeaderNavigation(homepage.headerNavigation, percorsi);
   const contatti = getContattiData();
 
   return (
@@ -54,7 +56,7 @@ export function SiteFooter() {
               Navigazione
             </p>
             <ul className="space-y-2">
-              {homepage.headerNavigation.map((item) => (
+              {navigation.map((item) => (
                 <li key={item.href}>
                   <Link
                     href={item.href}
@@ -62,6 +64,20 @@ export function SiteFooter() {
                   >
                     {item.label}
                   </Link>
+                  {item.children?.length ? (
+                    <ul className="mt-1 space-y-1 border-l border-white/10 pl-3">
+                      {item.children.map((child) => (
+                        <li key={child.href}>
+                          <Link
+                            href={child.href}
+                            className="text-sm text-white/55 transition hover:text-white"
+                          >
+                            {child.label}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : null}
                 </li>
               ))}
             </ul>
@@ -72,7 +88,7 @@ export function SiteFooter() {
               {homepage.footer.servicesTitle}
             </p>
             <ul className="space-y-2">
-              {percorsi.percorsi.map((percorso) => (
+              {percorsi.map((percorso) => (
                 <li key={percorso.slug}>
                   <Link
                     href={`/come-possiamo-aiutarti/${percorso.slug}`}

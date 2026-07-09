@@ -18,7 +18,8 @@ const tenantsInput = [
       {
         id: "iec-admin",
         email: "info@iec-srl.it",
-        name: "I&C srl",
+        firstName: "Iec",
+        lastName: "Srl",
         role: "admin",
         password: "iec-srl",
       },
@@ -33,7 +34,8 @@ const tenantsInput = [
       {
         id: "demo-admin",
         email: "admin@demo.leanme.it",
-        name: "Admin",
+        firstName: "Admin",
+        lastName: "Demo",
         role: "admin",
         password: "admin",
       },
@@ -43,6 +45,43 @@ const tenantsInput = [
 
 function token(prefix) {
   return `${prefix}_${randomBytes(24).toString("hex")}`;
+}
+
+function csvEscape(value) {
+  const text = String(value ?? "");
+  if (/[;"\n\r]/.test(text)) {
+    return `"${text.replace(/"/g, '""')}"`;
+  }
+  return text;
+}
+
+function buildExcelCsv(rows) {
+  const header = [
+    "Azienda",
+    "Nome",
+    "Cognome",
+    "Email",
+    "Password",
+    "Token",
+    "URL accesso diretto",
+  ];
+  const lines = [
+    header.join(";"),
+    ...rows.map((row) =>
+      [
+        row.company,
+        row.firstName,
+        row.lastName,
+        row.email,
+        row.password,
+        row.token,
+        row.loginUrl,
+      ]
+        .map(csvEscape)
+        .join(";")
+    ),
+  ];
+  return `\uFEFF${lines.join("\r\n")}`;
 }
 
 async function main() {
@@ -58,6 +97,7 @@ async function main() {
     `Generato il: ${new Date().toISOString()}`,
     "",
   ];
+  const excelRows = [];
 
   const tenants = [];
 
@@ -67,31 +107,55 @@ async function main() {
     registryLines.push(`- **Tenant ID:** \`${tenant.id}\``);
     registryLines.push(`- **Token aziendale:** \`${tenantToken}\``);
     registryLines.push(
-      `- **Accesso diretto azienda:** ${siteUrl}/leanyou/${tenant.slug}/login?token=${tenantToken}`,
+      `- **Accesso diretto azienda:** ${siteUrl}/leanyou/login?token=${tenantToken}`,
       ""
     );
+
+    excelRows.push({
+      company: tenant.name,
+      firstName: "(token aziendale)",
+      lastName: "",
+      email: "",
+      password: "",
+      token: tenantToken,
+      loginUrl: `${siteUrl}/leanyou/login?token=${tenantToken}`,
+    });
 
     const users = [];
     for (const user of tenant.users) {
       const userToken = token(`user_${tenant.slug}`);
       const passwordHash = await bcrypt.hash(user.password, 12);
+      const displayName = `${user.firstName} ${user.lastName}`.trim();
+
       users.push({
         id: user.id,
         email: user.email,
-        name: user.name,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        name: displayName,
         role: user.role,
         passwordHash,
         accessToken: userToken,
       });
 
-      registryLines.push(`### ${user.name}`);
+      registryLines.push(`### ${displayName}`);
       registryLines.push(`- **Email:** ${user.email}`);
       registryLines.push(`- **Password iniziale:** ${user.password}`);
       registryLines.push(`- **Token utente:** \`${userToken}\``);
       registryLines.push(
-        `- **Accesso diretto utente:** ${siteUrl}/leanyou/${tenant.slug}/login?token=${userToken}`,
+        `- **Accesso diretto utente:** ${siteUrl}/leanyou/login?token=${userToken}`,
         ""
       );
+
+      excelRows.push({
+        company: tenant.name,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        password: user.password,
+        token: userToken,
+        loginUrl: `${siteUrl}/leanyou/login?token=${userToken}`,
+      });
     }
 
     tenants.push({
@@ -107,12 +171,15 @@ async function main() {
   const tenantsFile = { tenants };
   const tenantsPath = path.join(dataDir, "tenants.json");
   const registryPath = path.join(dataDir, "access-registry.md");
+  const excelPath = path.join(dataDir, "utenze-attive.csv");
 
   await writeFile(tenantsPath, JSON.stringify(tenantsFile, null, 2), "utf8");
   await writeFile(registryPath, registryLines.join("\n"), "utf8");
+  await writeFile(excelPath, buildExcelCsv(excelRows), "utf8");
 
   console.log(`Tenants scritti in: ${tenantsPath}`);
   console.log(`Registro accessi scritto in: ${registryPath}`);
+  console.log(`Excel utenze scritto in: ${excelPath}`);
 }
 
 main().catch((error) => {

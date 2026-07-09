@@ -4,12 +4,19 @@ import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
 import { leanyouLeonardoPath } from "@/lib/leanyou/paths";
+import type { LeanYouSession } from "@/types/leanyou";
 
-interface LeanYouTokenLoginProps {
-  tenantSlug: string;
+function resolvePostLoginPath(
+  session: LeanYouSession,
+  nextPath: string | null
+): string {
+  if (nextPath?.startsWith(`/leanyou/${session.tenantSlug}/`)) {
+    return nextPath;
+  }
+  return leanyouLeonardoPath(session.tenantSlug);
 }
 
-export function LeanYouTokenLogin({ tenantSlug }: LeanYouTokenLoginProps) {
+export function LeanYouTokenLogin() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [message, setMessage] = useState("Verifica token in corso...");
@@ -24,22 +31,27 @@ export function LeanYouTokenLogin({ tenantSlug }: LeanYouTokenLoginProps) {
       const response = await fetch("/api/leanyou/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ token, tenantSlug }),
+        body: JSON.stringify({ token }),
       });
 
-      if (!response.ok) {
+      const payload = (await response.json()) as {
+        error?: string;
+        session?: LeanYouSession;
+      };
+
+      if (!response.ok || !payload.session) {
         setMessage("Token non valido o scaduto.");
         return;
       }
 
       router.replace(
-        searchParams.get("next") ?? leanyouLeonardoPath(tenantSlug)
+        resolvePostLoginPath(payload.session, searchParams.get("next"))
       );
       router.refresh();
     }
 
     void loginWithToken();
-  }, [router, searchParams, tenantSlug]);
+  }, [router, searchParams]);
 
   if (!searchParams.get("token")) {
     return null;

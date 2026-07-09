@@ -10,6 +10,8 @@
         {
           "id": "demo-admin",
           "email": "admin@demo-cliente.it",
+          "firstName": "Amministratore",
+          "lastName": "Demo",
           "name": "Amministratore Demo",
           "role": "admin",
           "passwordHash": "REPLACE_WITH_BCRYPT_HASH",

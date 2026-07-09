@@ -2,11 +2,15 @@ export function leanyouRoot(): string {
   return "/leanyou";
 }
 
+export function leanyouLoginPath(): string {
+  return "/leanyou/login";
+}
+
 export function leanyouTenantBase(tenantSlug: string): string {
   return `/leanyou/${tenantSlug}`;
 }
 
-export function leanyouLoginPath(tenantSlug: string): string {
+export function leanyouTenantLoginPath(tenantSlug: string): string {
   return `${leanyouTenantBase(tenantSlug)}/login`;
 }
 
@@ -33,21 +37,18 @@ export function parseTenantSlugFromPath(pathname: string): string | null {
   return match[1];
 }
 
-export function isLegacyLeanYouPath(pathname: string): boolean {
-  return (
-    pathname === "/leanyou/login" ||
-    pathname.startsWith("/leanyou/leonardo")
-  );
+export function isTenantLoginPath(pathname: string): boolean {
+  return /^\/leanyou\/[^/]+\/login$/.test(pathname);
 }
 
-export function mapLegacyLeanYouPath(
+export function isLegacyLeanYouLeonardoPath(pathname: string): boolean {
+  return pathname.startsWith("/leanyou/leonardo");
+}
+
+export function mapLegacyLeanYouLeonardoPath(
   pathname: string,
   tenantSlug: string
 ): string | null {
-  if (pathname === "/leanyou/login") {
-    return leanyouLoginPath(tenantSlug);
-  }
-
   if (pathname.startsWith("/leanyou/leonardo")) {
     return `/leanyou/${tenantSlug}${pathname.slice("/leanyou".length)}`;
   }

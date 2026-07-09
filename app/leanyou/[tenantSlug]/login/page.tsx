@@ -1,36 +1,26 @@
-import { notFound } from "next/navigation";
+import { redirect } from "next/navigation";
 
-import { LeanYouLoginPageContent } from "@/components/leanyou/LeanYouLoginPageContent";
-import { findTenantBySlug } from "@/lib/leanyou/auth";
-import { createPageMetadata } from "@/lib/metadata";
 import { leanyouLoginPath } from "@/lib/leanyou/paths";
 
 interface PageProps {
   params: Promise<{ tenantSlug: string }>;
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
 }
 
-export async function generateMetadata({ params }: PageProps) {
-  const { tenantSlug } = await params;
-  const tenant = await findTenantBySlug(tenantSlug);
+export default async function LeanYouTenantLoginRedirectPage({
+  searchParams,
+}: PageProps) {
+  const query = await searchParams;
+  const params = new URLSearchParams();
 
-  return createPageMetadata({
-    title: tenant
-      ? `LeanYou · ${tenant.name}`
-      : "LeanYou · Accesso riservato",
-    description: "Area riservata clienti LeanMe.",
-    path: leanyouLoginPath(tenantSlug),
-    noIndex: true,
-  });
-}
-
-export default async function LeanYouTenantLoginPage({ params }: PageProps) {
-  const { tenantSlug } = await params;
-  const tenant = await findTenantBySlug(tenantSlug);
-  if (!tenant) {
-    notFound();
+  for (const [key, value] of Object.entries(query)) {
+    if (typeof value === "string") {
+      params.set(key, value);
+    } else if (Array.isArray(value)) {
+      value.forEach((entry) => params.append(key, entry));
+    }
   }
 
-  return (
-    <LeanYouLoginPageContent tenantSlug={tenantSlug} tenantName={tenant.name} />
-  );
+  const suffix = params.toString();
+  redirect(suffix ? `${leanyouLoginPath()}?${suffix}` : leanyouLoginPath());
 }

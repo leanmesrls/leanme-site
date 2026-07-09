@@ -69,6 +69,11 @@ export async function verifyPassword(
   return bcrypt.compare(password, passwordHash);
 }
 
+export function formatLeanYouUserName(user: LeanYouUser): string {
+  const fullName = `${user.firstName} ${user.lastName}`.trim();
+  return fullName || user.name;
+}
+
 export function createSessionPayload(
   tenant: LeanYouTenant,
   user: LeanYouUser
@@ -78,7 +83,7 @@ export function createSessionPayload(
     tenantName: tenant.name,
     tenantSlug: tenant.slug,
     userId: user.id,
-    userName: user.name,
+    userName: formatLeanYouUserName(user),
     userEmail: user.email,
     userRole: user.role,
     modules: tenant.modules,

@@ -5,6 +5,8 @@ export type LeanYouModule = "leonardo" | "events";
 export interface LeanYouUser {
   id: string;
   email: string;
+  firstName: string;
+  lastName: string;
   name: string;
   role: LeanYouUserRole;
   passwordHash: string;

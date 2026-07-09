@@ -5,11 +5,16 @@
   },
   "headerNavigation": [
     { "label": "HOME", "href": "/" },
-    { "label": "CHI SIAMO", "href": "/chi-siamo" },
+    {
+      "label": "CHI SIAMO",
+      "href": "/chi-siamo",
+      "children": [{ "label": "LO STAFF IBRIDO", "href": "/staff-ibrido" }]
+    },
     { "label": "COME POSSIAMO AIUTARTI", "href": "/come-possiamo-aiutarti" },
-    { "label": "DAL LEAN LAB", "href": "/leanlab" },
+    { "label": "LEAN LAB", "href": "/leanlab" },
     { "label": "LEAN ACADEMY", "href": "/lean-academy" },
     { "label": "DICONO DI NOI", "href": "/dicono-di-noi" },
+    { "label": "🔒 LEANYOU", "href": "/leanyou/login" },
     { "label": "CONNECT", "href": "/contatti" }
   ],
   "hero": {

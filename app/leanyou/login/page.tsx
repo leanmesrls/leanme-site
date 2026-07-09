@@ -1,8 +1,14 @@
-import { redirect } from "next/navigation";
-
-import { DEFAULT_PUBLIC_TENANT_SLUG } from "@/lib/leanyou/constants";
+import { LeanYouLoginPageContent } from "@/components/leanyou/LeanYouLoginPageContent";
+import { createPageMetadata } from "@/lib/metadata";
 import { leanyouLoginPath } from "@/lib/leanyou/paths";
 
-export default function LeanYouLegacyLoginPage() {
-  redirect(leanyouLoginPath(DEFAULT_PUBLIC_TENANT_SLUG));
+export const metadata = createPageMetadata({
+  title: "LeanYou · Accesso riservato",
+  description: "Area riservata clienti LeanMe.",
+  path: leanyouLoginPath(),
+  noIndex: true,
+});
+
+export default function LeanYouLoginPage() {
+  return <LeanYouLoginPageContent />;
 }

@@ -19,12 +19,15 @@ export function buildHeaderNavigation(
     if (item.href === "/chi-siamo") {
       return {
         ...item,
-        children: [
-          {
-            label: "Lo Staff Ibrido",
-            href: "/staff-ibrido",
-          },
-        ],
+        children:
+          item.children?.length > 0
+            ? item.children
+            : [
+                {
+                  label: "Lo Staff Ibrido",
+                  href: "/staff-ibrido",
+                },
+              ],
       };
     }
 
