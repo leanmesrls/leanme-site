@@ -13,6 +13,7 @@
     { "label": "Lo Staff Ibrido", "href": "/staff-ibrido" },
     { "label": "Dal LeanLab", "href": "/leanlab" },
     { "label": "Lean Academy", "href": "/lean-academy" },
+    { "label": "LeanYou", "href": "/leanyou/iec/login" },
     { "label": "Dicono di noi", "href": "/dicono-di-noi" },
     { "label": "Contatti", "href": "/contatti" }
   ],

@@ -2,6 +2,9 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   devIndicators: false,
+  experimental: {
+    middlewareClientMaxBodySize: "35mb",
+  },
   images: {
     formats: ["image/avif", "image/webp"],
     deviceSizes: [640, 750, 828, 1080, 1200, 1440, 1920],
@@ -36,6 +39,19 @@ const nextConfig: NextConfig = {
           {
             key: "Cache-Control",
             value: "public, max-age=86400",
+          },
+        ],
+      },
+      {
+        source: "/leanyou/:path*",
+        headers: [
+          {
+            key: "Cross-Origin-Opener-Policy",
+            value: "same-origin",
+          },
+          {
+            key: "Cross-Origin-Embedder-Policy",
+            value: "require-corp",
           },
         ],
       },

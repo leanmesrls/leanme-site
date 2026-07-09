@@ -32,6 +32,9 @@ yarn-error.log*
 .env*
 !.env.example
 
+# LeanYou private runtime data (tenants, workspaces, access registry)
+.leanyou-data/
+
 # vercel
 .vercel
 
