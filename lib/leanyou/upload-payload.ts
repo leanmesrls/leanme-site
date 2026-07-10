@@ -1,8 +1,14 @@
 const TEXT_EXTENSIONS = /\.(txt|vtt|srt)$/i;
 const MEDIA_EXTENSIONS = /\.(mp3|m4a|wav|mp4|webm|mov|mkv|avi)$/i;
 
-/** Limite OpenAI per singola richiesta di trascrizione. */
-export const MAX_CHUNK_BYTES = 24 * 1024 * 1024;
+/**
+ * Vercel Functions: request body max 4.5 MB.
+ * Base64 + JSON wrapper → keep raw audio under ~3 MB per request.
+ */
+export const MAX_API_UPLOAD_BYTES = 3 * 1024 * 1024;
+
+/** @deprecated Use MAX_API_UPLOAD_BYTES — kept as alias for transcribe route. */
+export const MAX_CHUNK_BYTES = MAX_API_UPLOAD_BYTES;
 
 /** Limite file sorgente (video Zoom fino a ~2 ore). */
 export const MAX_INPUT_BYTES = 2 * 1024 * 1024 * 1024;

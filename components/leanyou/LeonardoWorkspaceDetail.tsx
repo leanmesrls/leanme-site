@@ -61,7 +61,20 @@ export function LeonardoWorkspaceDetail({
       }
     );
 
-    const result = (await response.json()) as { error?: string; text?: string };
+    let result: { error?: string; text?: string } = {};
+    try {
+      result = (await response.json()) as typeof result;
+    } catch {
+      if (response.status === 413) {
+        throw new Error(
+          "Parte audio troppo grande per il server (limite Vercel 4.5 MB). Riprova: il video verrà suddiviso automaticamente."
+        );
+      }
+      throw new Error(
+        `Trascrizione non riuscita (risposta non valida dal server, HTTP ${response.status}).`
+      );
+    }
+
     if (!response.ok) {
       throw new Error(result.error ?? "Trascrizione non riuscita.");
     }

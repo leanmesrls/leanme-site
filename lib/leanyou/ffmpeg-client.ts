@@ -3,10 +3,12 @@
 import { FFmpeg } from "@ffmpeg/ffmpeg";
 import { fetchFile } from "@ffmpeg/util";
 
+import { MAX_API_UPLOAD_BYTES } from "@/lib/leanyou/upload-payload";
+
 export const MAX_INPUT_BYTES = 2 * 1024 * 1024 * 1024;
-export const OPENAI_CHUNK_BYTES = 24 * 1024 * 1024;
-/** 10 minuti — WAV 16 kHz mono resta sotto 24 MB per chunk. */
-const SEGMENT_SECONDS = 600;
+export const OPENAI_CHUNK_BYTES = MAX_API_UPLOAD_BYTES;
+/** WAV 16 kHz mono ≈ 32 KB/s → ~90 s per chunk sotto 3 MB (limite Vercel 4.5 MB). */
+const SEGMENT_SECONDS = 90;
 const FFMPEG_CORE_VERSION = "0.12.6";
 const MIN_AUDIO_BYTES = 512;
 const FFMPEG_LOAD_TIMEOUT_MS = 120_000;
@@ -268,7 +270,7 @@ export async function prepareMediaForTranscription(
 
   onProgress({
     stage: "splitting",
-    message: "Suddivisione audio in parti da 10 minuti...",
+    message: "Suddivisione audio in parti da ~90 secondi...",
     percent: 55,
   });
 
@@ -288,7 +290,8 @@ export async function prepareMediaForTranscription(
   await ffmpeg.deleteFile("full.wav");
 
   const chunks: PreparedAudioChunk[] = [];
-  for (let index = 0; index < 30; index += 1) {
+  /** Fino a ~3 h a 90 s per chunk (120 × 90 s). */
+  for (let index = 0; index < 120; index += 1) {
     const chunkName = `chunk_${String(index).padStart(3, "0")}.wav`;
     const chunkData = await readFfmpegFile(ffmpeg, chunkName);
     if (!chunkData) {
