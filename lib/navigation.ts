@@ -17,17 +17,17 @@ export function buildHeaderNavigation(
     }
 
     if (item.href === "/chi-siamo") {
+      const chiSiamoChildren =
+        item.children && item.children.length > 0 ? item.children : undefined;
+
       return {
         ...item,
-        children:
-          item.children?.length > 0
-            ? item.children
-            : [
-                {
-                  label: "Lo Staff Ibrido",
-                  href: "/staff-ibrido",
-                },
-              ],
+        children: chiSiamoChildren ?? [
+          {
+            label: "Lo Staff Ibrido",
+            href: "/staff-ibrido",
+          },
+        ],
       };
     }
 
