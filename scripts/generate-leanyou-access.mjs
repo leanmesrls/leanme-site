@@ -148,6 +148,7 @@ async function main() {
         lastName: user.lastName,
         email: user.email,
         password: user.password,
+        loginUrl: `${siteUrl}/leanyou/login?token=${userToken}`,
       });
     }
 
@@ -189,6 +190,7 @@ async function main() {
     { key: "lastName", label: "Cognome" },
     { key: "email", label: "Email" },
     { key: "password", label: "Password" },
+    { key: "loginUrl", label: "URL accesso diretto" },
   ];
 
   await writeFile(tenantsPath, JSON.stringify(tenantsFile, null, 2), "utf8");
@@ -203,7 +205,7 @@ async function main() {
   console.log(`Tenants scritti in: ${tenantsPath}`);
   console.log(`Registro accessi scritto in: ${registryPath}`);
   console.log(`Excel completo (con token): ${excelPath}`);
-  console.log(`Excel credenziali (azienda/nome/cognome/email/pw): ${credentialsPath}`);
+  console.log(`Excel credenziali (azienda/nome/cognome/email/pw/url): ${credentialsPath}`);
   console.log("");
   console.log("Per Vercel: npm run leanyou:vercel-env");
 }

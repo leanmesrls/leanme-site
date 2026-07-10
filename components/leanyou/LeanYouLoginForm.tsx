@@ -29,27 +29,35 @@ export function LeanYouLoginForm() {
     setLoading(true);
     setError(null);
 
-    const response = await fetch("/api/leanyou/auth/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
-    });
+    try {
+      const response = await fetch("/api/leanyou/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
 
-    const payload = (await response.json()) as {
-      error?: string;
-      session?: LeanYouSession;
-    };
-    setLoading(false);
+      let payload: { error?: string; session?: LeanYouSession } = {};
+      try {
+        payload = (await response.json()) as typeof payload;
+      } catch {
+        setError("Risposta non valida dal server. Riprova tra qualche secondo.");
+        return;
+      }
 
-    if (!response.ok || !payload.session) {
-      setError(payload.error ?? "Accesso non riuscito.");
-      return;
+      if (!response.ok || !payload.session) {
+        setError(payload.error ?? "Accesso non riuscito.");
+        return;
+      }
+
+      router.replace(
+        resolvePostLoginPath(payload.session, searchParams.get("next"))
+      );
+      router.refresh();
+    } catch {
+      setError("Connessione al server non riuscita. Controlla la rete e riprova.");
+    } finally {
+      setLoading(false);
     }
-
-    router.replace(
-      resolvePostLoginPath(payload.session, searchParams.get("next"))
-    );
-    router.refresh();
   }
 
   return (

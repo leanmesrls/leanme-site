@@ -30,7 +30,7 @@ npm run leanyou:access
 
 3. Leggi il registro accessi in `.leanyou-data/access-registry.md`
 4. Excel credenziali (apribile con Excel):
-   - **`.leanyou-data/utenze-credenziali.csv`** — Azienda, Nome, Cognome, Email, Password
+   - **`.leanyou-data/utenze-credenziali.csv`** — Azienda, Nome, Cognome, Email, Password, URL accesso diretto
    - **`.leanyou-data/utenze-attive.csv`** — include anche Token e URL diretto
 5. Avvia il sito e accedi da `/leanyou/login`
 

@@ -69,6 +69,17 @@ export function clientIpFromRequest(request: Request): string | undefined {
   return request.headers.get("x-real-ip") ?? undefined;
 }
 
+function shouldPersistAuditToFile(): boolean {
+  if (process.env.LEANYOU_AUDIT_FILE === "false") {
+    return false;
+  }
+  // Vercel serverless has a read-only filesystem outside /tmp.
+  if (process.env.VERCEL === "1") {
+    return false;
+  }
+  return true;
+}
+
 export async function writeLeanYouAuditEvent(
   event: Omit<LeanYouAuditEvent, "ts"> & { ts?: string }
 ): Promise<void> {
@@ -79,12 +90,27 @@ export async function writeLeanYouAuditEvent(
 
   console.info(JSON.stringify({ leanyou_audit: record }));
 
+  if (!shouldPersistAuditToFile()) {
+    return;
+  }
+
   const tenantId = record.tenantId ?? "_global";
   const filePath =
     tenantId === "_global"
       ? globalAuditFilePath()
       : auditFilePath(tenantId);
 
-  await mkdir(path.dirname(filePath), { recursive: true });
-  await appendFile(filePath, `${JSON.stringify(record)}\n`, "utf8");
+  try {
+    await mkdir(path.dirname(filePath), { recursive: true });
+    await appendFile(filePath, `${JSON.stringify(record)}\n`, "utf8");
+  } catch (error) {
+    console.warn(
+      JSON.stringify({
+        leanyou_audit_write_failed: {
+          filePath,
+          message: error instanceof Error ? error.message : String(error),
+        },
+      })
+    );
+  }
 }

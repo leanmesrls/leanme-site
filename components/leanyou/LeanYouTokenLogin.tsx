@@ -28,26 +28,33 @@ export function LeanYouTokenLogin() {
     }
 
     async function loginWithToken() {
-      const response = await fetch("/api/leanyou/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ token }),
-      });
+      try {
+        const response = await fetch("/api/leanyou/auth/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ token }),
+        });
 
-      const payload = (await response.json()) as {
-        error?: string;
-        session?: LeanYouSession;
-      };
+        let payload: { error?: string; session?: LeanYouSession } = {};
+        try {
+          payload = (await response.json()) as typeof payload;
+        } catch {
+          setMessage("Risposta non valida dal server. Riprova tra qualche secondo.");
+          return;
+        }
 
-      if (!response.ok || !payload.session) {
-        setMessage("Token non valido o scaduto.");
-        return;
+        if (!response.ok || !payload.session) {
+          setMessage(payload.error ?? "Token non valido o scaduto.");
+          return;
+        }
+
+        router.replace(
+          resolvePostLoginPath(payload.session, searchParams.get("next"))
+        );
+        router.refresh();
+      } catch {
+        setMessage("Connessione al server non riuscita. Controlla la rete e riprova.");
       }
-
-      router.replace(
-        resolvePostLoginPath(payload.session, searchParams.get("next"))
-      );
-      router.refresh();
     }
 
     void loginWithToken();

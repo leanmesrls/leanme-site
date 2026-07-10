@@ -46,12 +46,48 @@ async function logLoginFailure(
 }
 
 export async function POST(request: Request) {
-  const body = (await request.json()) as {
+  let body: {
     email?: string;
     password?: string;
     token?: string;
     tenantSlug?: string;
   };
+
+  try {
+    body = (await request.json()) as typeof body;
+  } catch {
+    return NextResponse.json(
+      { error: "Richiesta non valida." },
+      { status: 400 }
+    );
+  }
+
+  try {
+    return await handleLogin(request, body);
+  } catch (error) {
+    console.error(
+      JSON.stringify({
+        leanyou_login_error: {
+          message: error instanceof Error ? error.message : String(error),
+        },
+      })
+    );
+    return NextResponse.json(
+      { error: "Errore interno del server." },
+      { status: 500 }
+    );
+  }
+}
+
+async function handleLogin(
+  request: Request,
+  body: {
+    email?: string;
+    password?: string;
+    token?: string;
+    tenantSlug?: string;
+  }
+) {
 
   if (body.token?.trim()) {
     const match = await findUserByToken(body.token.trim());
