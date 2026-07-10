@@ -12,6 +12,8 @@ import {
 import { getSession } from "@/lib/leanyou/session";
 import { getWorkspace } from "@/lib/leanyou/workspaces";
 
+export const dynamic = "force-dynamic";
+
 interface PageProps {
   params: Promise<{ tenantSlug: string; id: string }>;
 }
@@ -44,7 +46,7 @@ export default async function LeonardoWorkspacePage({ params }: PageProps) {
 
   const workspace = await getWorkspace(session.tenantId, id);
   if (!workspace) {
-    notFound();
+    redirect(`${leanyouLeonardoPath(tenantSlug)}?workspace=missing`);
   }
 
   return (

@@ -1,6 +1,5 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 import { leanyouLeonardoWorkspacePath } from "@/lib/leanyou/paths";
@@ -14,7 +13,6 @@ const meetingTypes: Array<{ value: LeonardoMeetingType; label: string }> = [
 ];
 
 export function LeonardoWorkspaceForm({ tenantSlug }: { tenantSlug: string }) {
-  const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -58,8 +56,9 @@ export function LeonardoWorkspaceForm({ tenantSlug }: { tenantSlug: string }) {
       return;
     }
 
-    router.push(leanyouLeonardoWorkspacePath(tenantSlug, payload.workspace.id));
-    router.refresh();
+    window.location.assign(
+      leanyouLeonardoWorkspacePath(tenantSlug, payload.workspace.id)
+    );
   }
 
   return (

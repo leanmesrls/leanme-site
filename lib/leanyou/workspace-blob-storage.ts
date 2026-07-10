@@ -20,8 +20,15 @@ function workspaceBlobPrefix(tenantId: string): string {
   return `${WORKSPACE_ROOT}/${tenantId}/`;
 }
 
+function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 async function readBlobJson<T>(pathname: string): Promise<T | null> {
-  const result = await get(pathname, { access: BLOB_ACCESS });
+  const result = await get(pathname, {
+    access: BLOB_ACCESS,
+    useCache: false,
+  });
   if (!result?.stream) {
     return null;
   }
@@ -65,9 +72,20 @@ export async function getWorkspaceFromBlob(
   tenantId: string,
   workspaceId: string
 ): Promise<LeonardoWorkspace | null> {
-  return readBlobJson<LeonardoWorkspace>(
-    workspaceBlobPathname(tenantId, workspaceId)
-  );
+  const pathname = workspaceBlobPathname(tenantId, workspaceId);
+
+  for (let attempt = 0; attempt < 4; attempt += 1) {
+    const workspace = await readBlobJson<LeonardoWorkspace>(pathname);
+    if (workspace) {
+      return workspace;
+    }
+
+    if (attempt < 3) {
+      await sleep(200);
+    }
+  }
+
+  return null;
 }
 
 export async function saveWorkspaceToBlob(
