@@ -1,5 +1,16 @@
 import type { NextConfig } from "next";
 
+const crossOriginIsolationHeaders = [
+  {
+    key: "Cross-Origin-Opener-Policy",
+    value: "same-origin",
+  },
+  {
+    key: "Cross-Origin-Embedder-Policy",
+    value: "require-corp",
+  },
+];
+
 const nextConfig: NextConfig = {
   devIndicators: false,
   experimental: {
@@ -51,22 +62,17 @@ const nextConfig: NextConfig = {
           },
           {
             key: "Cross-Origin-Resource-Policy",
-            value: "cross-origin",
+            value: "same-origin",
           },
         ],
       },
       {
+        source: "/_next/static/chunks/:path*",
+        headers: crossOriginIsolationHeaders,
+      },
+      {
         source: "/leanyou/:path*",
-        headers: [
-          {
-            key: "Cross-Origin-Opener-Policy",
-            value: "same-origin",
-          },
-          {
-            key: "Cross-Origin-Embedder-Policy",
-            value: "require-corp",
-          },
-        ],
+        headers: crossOriginIsolationHeaders,
       },
     ];
   },

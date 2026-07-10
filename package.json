@@ -18,8 +18,8 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@ffmpeg/core": "^0.12.6",
-    "@ffmpeg/ffmpeg": "^0.12.15",
+    "@ffmpeg/core": "0.12.6",
+    "@ffmpeg/ffmpeg": "0.12.10",
     "@ffmpeg/util": "^0.12.2",
     "@vercel/blob": "^2.6.1",
     "bcryptjs": "^3.0.3",

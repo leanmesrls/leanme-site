@@ -203,7 +203,9 @@ export function LeonardoWorkspaceDetail({
     URL.revokeObjectURL(url);
   }
 
-  const progressLabel = progress?.message ?? null;
+  const progressLabel = progress
+    ? `${progress.message}${progress.percent > 0 ? ` (${progress.percent}%)` : ""}`
+    : null;
   const activeDocument = workspace.documents[activeDoc];
 
   return (

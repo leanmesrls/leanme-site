@@ -1,7 +1,7 @@
 "use client";
 
 import { FFmpeg } from "@ffmpeg/ffmpeg";
-import { fetchFile, toBlobURL } from "@ffmpeg/util";
+import { fetchFile } from "@ffmpeg/util";
 
 export const MAX_INPUT_BYTES = 2 * 1024 * 1024 * 1024;
 export const OPENAI_CHUNK_BYTES = 24 * 1024 * 1024;
@@ -89,6 +89,16 @@ async function runFfmpeg(ffmpeg: FFmpeg, args: string[]): Promise<void> {
   }
 }
 
+async function fetchBlobUrl(url: string, mimeType: string): Promise<string> {
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error(`Download non riuscito: ${url}`);
+  }
+  const buffer = await response.arrayBuffer();
+  const blob = new Blob([buffer], { type: mimeType });
+  return URL.createObjectURL(blob);
+}
+
 async function loadFfmpeg(onProgress?: (percent: number) => void): Promise<FFmpeg> {
   if (ffmpegInstance?.loaded) {
     return ffmpegInstance;
@@ -101,20 +111,28 @@ async function loadFfmpeg(onProgress?: (percent: number) => void): Promise<FFmpe
   ffmpegLoading = (async () => {
     try {
       const ffmpeg = new FFmpeg();
+      ffmpeg.on("log", ({ message }) => {
+        if (message.toLowerCase().includes("error")) {
+          console.warn("[ffmpeg]", message);
+        }
+      });
       ffmpeg.on("progress", ({ progress }) => {
         onProgress?.(Math.min(100, Math.round(progress * 100)));
       });
 
-      onProgress?.(5);
+      onProgress?.(2);
 
       const baseUrl = ffmpegCoreBaseUrl();
-      const loadPromise = ffmpeg.load({
-        coreURL: await toBlobURL(`${baseUrl}/ffmpeg-core.js`, "text/javascript"),
-        wasmURL: await toBlobURL(
-          `${baseUrl}/ffmpeg-core.wasm`,
-          "application/wasm"
-        ),
-      });
+      onProgress?.(10);
+
+      const [coreURL, wasmURL] = await Promise.all([
+        fetchBlobUrl(`${baseUrl}/ffmpeg-core.js`, "text/javascript"),
+        fetchBlobUrl(`${baseUrl}/ffmpeg-core.wasm`, "application/wasm"),
+      ]);
+
+      onProgress?.(70);
+
+      const loadPromise = ffmpeg.load({ coreURL, wasmURL });
 
       await Promise.race([
         loadPromise,
@@ -182,14 +200,17 @@ export async function prepareMediaForTranscription(
 
   onProgress({
     stage: "loading",
-    message: "Caricamento motore audio (prima volta ~30 MB)...",
+    message: "Download motore audio (~30 MB)...",
     percent: 0,
   });
 
   const ffmpeg = await loadFfmpeg((percent) => {
     onProgress({
       stage: "loading",
-      message: "Caricamento motore audio (prima volta ~30 MB)...",
+      message:
+        percent < 70
+          ? "Download motore audio (~30 MB)..."
+          : "Avvio motore audio...",
       percent,
     });
   });
