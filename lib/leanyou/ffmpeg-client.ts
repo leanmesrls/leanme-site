@@ -9,6 +9,14 @@ export const OPENAI_CHUNK_BYTES = 24 * 1024 * 1024;
 const SEGMENT_SECONDS = 600;
 const FFMPEG_CORE_VERSION = "0.12.6";
 const MIN_AUDIO_BYTES = 512;
+const FFMPEG_LOAD_TIMEOUT_MS = 120_000;
+
+function ffmpegCoreBaseUrl(): string {
+  if (typeof window !== "undefined") {
+    return `${window.location.origin}/ffmpeg`;
+  }
+  return "/ffmpeg";
+}
 
 export type MediaPrepProgress = {
   stage: "loading" | "extracting" | "splitting" | "ready";
@@ -91,19 +99,45 @@ async function loadFfmpeg(onProgress?: (percent: number) => void): Promise<FFmpe
   }
 
   ffmpegLoading = (async () => {
-    const ffmpeg = new FFmpeg();
-    ffmpeg.on("progress", ({ progress }) => {
-      onProgress?.(Math.min(100, Math.round(progress * 100)));
-    });
+    try {
+      const ffmpeg = new FFmpeg();
+      ffmpeg.on("progress", ({ progress }) => {
+        onProgress?.(Math.min(100, Math.round(progress * 100)));
+      });
 
-    const baseUrl = `https://unpkg.com/@ffmpeg/core@${FFMPEG_CORE_VERSION}/dist/umd`;
-    await ffmpeg.load({
-      coreURL: await toBlobURL(`${baseUrl}/ffmpeg-core.js`, "text/javascript"),
-      wasmURL: await toBlobURL(`${baseUrl}/ffmpeg-core.wasm`, "application/wasm"),
-    });
+      onProgress?.(5);
 
-    ffmpegInstance = ffmpeg;
-    return ffmpeg;
+      const baseUrl = ffmpegCoreBaseUrl();
+      const loadPromise = ffmpeg.load({
+        coreURL: await toBlobURL(`${baseUrl}/ffmpeg-core.js`, "text/javascript"),
+        wasmURL: await toBlobURL(
+          `${baseUrl}/ffmpeg-core.wasm`,
+          "application/wasm"
+        ),
+      });
+
+      await Promise.race([
+        loadPromise,
+        new Promise<never>((_, reject) => {
+          setTimeout(() => {
+            reject(
+              new Error(
+                "Caricamento motore audio troppo lento. Controlla la connessione e riprova."
+              )
+            );
+          }, FFMPEG_LOAD_TIMEOUT_MS);
+        }),
+      ]);
+
+      onProgress?.(100);
+      ffmpegInstance = ffmpeg;
+      return ffmpeg;
+    } catch (error) {
+      ffmpegLoading = null;
+      throw error instanceof Error
+        ? error
+        : new Error("Caricamento motore audio non riuscito.");
+    }
   })();
 
   return ffmpegLoading;
