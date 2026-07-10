@@ -20,6 +20,8 @@ interface RouteContext {
 }
 
 export const runtime = "nodejs";
+/** Whisper può richiedere diversi secondi per chunk audio. */
+export const maxDuration = 120;
 
 export async function POST(request: Request, context: RouteContext) {
   try {

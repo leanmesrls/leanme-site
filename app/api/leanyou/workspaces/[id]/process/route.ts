@@ -31,6 +31,8 @@ interface RouteContext {
 }
 
 export const runtime = "nodejs";
+/** Generazione verbali: più segmenti OpenAI in sequenza (fino a 5 min su Vercel Pro). */
+export const maxDuration = 300;
 
 export async function POST(request: Request, context: RouteContext) {
   try {
@@ -57,10 +59,19 @@ export async function POST(request: Request, context: RouteContext) {
     });
 
     let transcript = workspace.transcript.trim();
-    const body = (await request.json()) as LeonardoProcessRequestBody;
+    let body: LeonardoProcessRequestBody = {};
+    try {
+      body = (await request.json()) as LeonardoProcessRequestBody;
+    } catch {
+      /* body vuoto: usa transcript già salvato nel workspace */
+    }
 
     if (body.transcript?.trim()) {
       transcript = body.transcript.trim();
+      await updateWorkspaceStatus(session.tenantId, id, "processing", {
+        transcript,
+        errorMessage: null,
+      });
     }
 
     if (body.file) {
@@ -143,7 +154,7 @@ export async function POST(request: Request, context: RouteContext) {
       detail: completed.title,
       ...auditContextFromSession(session),
     });
-    return NextResponse.json({ workspace: completed });
+    return NextResponse.json({ ok: true, workspaceId: completed.id });
   } catch (error) {
     const { id } = await context.params;
     const session = await getSessionSafe();

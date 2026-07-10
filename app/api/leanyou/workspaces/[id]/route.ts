@@ -75,6 +75,8 @@ export async function PATCH(request: Request, context: RouteContext) {
       moderator: body.moderator,
       secretary: body.secretary,
       notes: body.notes,
+      transcript: body.transcript,
+      status: body.status,
     };
 
     const next = {

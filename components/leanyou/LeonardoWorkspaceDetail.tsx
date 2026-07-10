@@ -82,6 +82,74 @@ export function LeonardoWorkspaceDetail({
     return result.text?.trim() ?? "";
   }
 
+  async function saveTranscriptToWorkspace(transcript: string): Promise<void> {
+    const response = await fetch(
+      `/api/leanyou/workspaces/${workspace.id}`,
+      {
+        method: "PATCH",
+        credentials: "same-origin",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          transcript,
+          status: "content_ready",
+        }),
+      }
+    );
+
+    let result: { error?: string; workspace?: LeonardoWorkspace } = {};
+    try {
+      result = (await response.json()) as typeof result;
+    } catch {
+      throw new Error(
+        serverResponseError(
+          response.status,
+          "Salvataggio trascrizione non riuscito"
+        )
+      );
+    }
+
+    if (!response.ok || !result.workspace) {
+      throw new Error(result.error ?? "Salvataggio trascrizione non riuscito.");
+    }
+
+    setWorkspace(result.workspace);
+  }
+
+  async function fetchWorkspace(): Promise<LeonardoWorkspace> {
+    const response = await fetch(
+      `/api/leanyou/workspaces/${workspace.id}`,
+      { credentials: "same-origin" }
+    );
+
+    let result: { error?: string; workspace?: LeonardoWorkspace } = {};
+    try {
+      result = (await response.json()) as typeof result;
+    } catch {
+      throw new Error(
+        serverResponseError(response.status, "Caricamento workspace non riuscito")
+      );
+    }
+
+    if (!response.ok || !result.workspace) {
+      throw new Error(result.error ?? "Caricamento workspace non riuscito.");
+    }
+
+    return result.workspace;
+  }
+
+  function serverResponseError(status: number, context: string): string {
+    if (status === 504 || status === 408) {
+      return `${context}: timeout del server (HTTP ${status}). La trascrizione è salvata — premi di nuovo «Genera verbali» per riprovare solo la generazione documenti.`;
+    }
+    if (status === 413) {
+      return `${context}: payload troppo grande (HTTP 413).`;
+    }
+    if (status === 502 || status === 503) {
+      return `${context}: server temporaneamente non disponibile (HTTP ${status}). Riprova tra qualche secondo.`;
+    }
+    return `${context} (risposta non valida dal server, HTTP ${status}).`;
+  }
+
   async function resolveTranscriptFromFile(selectedFile: File): Promise<string> {
     if (isTextFileName(selectedFile.name)) {
       return (await selectedFile.text()).trim();
@@ -132,6 +200,8 @@ export function LeonardoWorkspaceDetail({
 
       if (file) {
         videoTranscript = await resolveTranscriptFromFile(file);
+      } else if (workspace.transcript.trim()) {
+        videoTranscript = workspace.transcript.trim();
       }
 
       const finalTranscript = combineTranscriptSources(
@@ -147,7 +217,15 @@ export function LeonardoWorkspaceDetail({
 
       setProgress({
         stage: "ready",
-        message: "Generazione verbali e documenti...",
+        message: "Salvataggio trascrizione...",
+        percent: 95,
+      });
+
+      await saveTranscriptToWorkspace(finalTranscript);
+
+      setProgress({
+        stage: "ready",
+        message: "Generazione verbali e documenti (può richiedere alcuni minuti)...",
         percent: 100,
       });
 
@@ -157,45 +235,40 @@ export function LeonardoWorkspaceDetail({
           method: "POST",
           credentials: "same-origin",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ transcript: finalTranscript }),
+          body: JSON.stringify({}),
         }
       );
 
-      let result: { error?: string; workspace?: LeonardoWorkspace };
+      let result: { error?: string; ok?: boolean; workspaceId?: string };
       try {
-        result = (await response.json()) as {
-          error?: string;
-          workspace?: LeonardoWorkspace;
-        };
+        result = (await response.json()) as typeof result;
       } catch {
-        setLoading(false);
-        setProgress(null);
-        setError("Risposta non valida dal server.");
-        return;
+        throw new Error(
+          serverResponseError(response.status, "Generazione verbali non riuscita")
+        );
       }
 
+      if (!response.ok || !result.ok) {
+        throw new Error(result.error ?? "Elaborazione non riuscita.");
+      }
+
+      const updated = await fetchWorkspace();
+      setWorkspace(updated);
       setLoading(false);
       setProgress(null);
-
-      if (!response.ok || !result.workspace) {
-        setError(result.error ?? "Elaborazione non riuscita.");
-        setWorkspace((current) => ({
-          ...current,
-          status: "failed",
-          errorMessage: result.error ?? "Elaborazione non riuscita.",
-        }));
-        return;
-      }
-
-      setWorkspace(result.workspace);
     } catch (uploadError) {
       setLoading(false);
       setProgress(null);
-      setError(
+      const message =
         uploadError instanceof Error
           ? uploadError.message
-          : "Elaborazione non riuscita."
-      );
+          : "Elaborazione non riuscita.";
+      setError(message);
+      setWorkspace((current) => ({
+        ...current,
+        status: current.transcript.trim() ? "content_ready" : "failed",
+        errorMessage: message,
+      }));
     }
   }
 

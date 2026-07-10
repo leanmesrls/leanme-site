@@ -101,6 +101,27 @@ function segmentContent(content: string, maxChars = 9000): string[] {
   return segments;
 }
 
+async function mapWithConcurrency<T, R>(
+  items: T[],
+  concurrency: number,
+  fn: (item: T, index: number) => Promise<R>
+): Promise<R[]> {
+  const results = new Array<R>(items.length);
+  let nextIndex = 0;
+
+  async function worker(): Promise<void> {
+    while (nextIndex < items.length) {
+      const index = nextIndex;
+      nextIndex += 1;
+      results[index] = await fn(items[index]!, index);
+    }
+  }
+
+  const workers = Math.min(concurrency, items.length);
+  await Promise.all(Array.from({ length: workers }, () => worker()));
+  return results;
+}
+
 function mergeStructuredPartials(partials: Record<string, unknown>[]): Record<string, unknown> {
   const merged: Record<string, unknown> = {
     meeting: {},
@@ -213,19 +234,19 @@ export async function processLeonardoWorkspace(input: {
     throw new Error("Trascrizione vuota: carica un file o incolla il testo.");
   }
 
-  const partials: Record<string, unknown>[] = [];
-  for (let index = 0; index < segments.length; index += 1) {
-    partials.push(
-      await structureSegment(
+  const partials = await mapWithConcurrency(
+    segments,
+    3,
+    (segment, index) =>
+      structureSegment(
         template.systemPrompt,
         fullSchemaInstructions,
         input.workspaceContext,
-        segments[index]!,
+        segment,
         index + 1,
         segments.length
       )
-    );
-  }
+  );
 
   const structured = mergeStructuredPartials(partials);
   const compacted = compactStructuredKeywords(structured);
