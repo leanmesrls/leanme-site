@@ -48,6 +48,20 @@ Vercel → Project → Settings → Environment Variables (Production):
 | `LEANYOU_SESSION_SECRET` | da `.env.local` |
 | `OPENAI_API_KEY` | da `.env.local` |
 | `NEXT_PUBLIC_SITE_URL` | `https://demo.leanme.it` |
+| `BLOB_READ_WRITE_TOKEN` | creato automaticamente collegando Blob Store |
+
+**Storage workspace persistente:** Vercel Dashboard → **Storage** → **Create Database / Store** → **Blob** → collega al progetto `leanme-site`. Vercel imposta `BLOB_READ_WRITE_TOKEN` in Production. Redeploy.
+
+Senza Blob Store i workspace in produzione restano solo in `/tmp` (effimeri).
+
+### Costi Vercel Blob (2026)
+
+| Piano | Storage | Operazioni | Costo extra |
+|-------|---------|------------|-------------|
+| **Hobby (free)** | 1 GB | 10k read, 2k write/mese | **€0** — oltre il limite Blob si sospende fino al ciclo successivo |
+| **Pro (~$20/mese)** | 5 GB inclusi | 100k read, 10k write inclusi | ~$0.023/GB storage, pochi centesimi per uso LeanYou tipico |
+
+Per I&C con pochi verbali/mese: **costo praticamente zero** su Hobby o incluso nel Pro.
 
 Collega il progetto locale: `vercel link`
 
@@ -126,11 +140,11 @@ Dati runtime in `.leanyou-data/` (gitignored):
 - `tenants.json` — utenze e token
 - `utenze-credenziali.csv` — Excel credenziali per azienda
 - `utenze-attive.csv` — Excel completo con token
-- `workspaces/{tenantId}/*.json` — workspace verbali
+- `workspaces/{tenantId}/*.json` — workspace verbali (locale)
 - `audit/{tenantId}/events.jsonl` — log accessi e attività
 - `access-registry.md` — registro credenziali generate
 
-> Su Vercel: usare `LEANYOU_TENANTS_JSON` per i tenant. I workspace vengono salvati in `/tmp/.leanyou-data` (ephemeral fino a storage cloud). L'audit file non persiste senza storage cloud.
+> **Produzione:** tenant via `LEANYOU_TENANTS_JSON`. Workspace via **Vercel Blob** (`BLOB_READ_WRITE_TOKEN`, path `leanyou/workspaces/...`). Senza Blob: fallback `/tmp` (effimero). Audit solo su Vercel Logs.
 
 ## Prompt Leonardo
 
@@ -140,7 +154,7 @@ I prompt sono in `data/leanyou/prompts.json`.
 
 - Coda job asincrona (Inngest) per riunioni lunghe
 - Export DOCX nativo
-- Storage persistente cloud
+- ~~Storage persistente cloud~~ → Vercel Blob (v1.1)
 
 ## Roadmap moduli tenant I&C srl (`iec`)
 

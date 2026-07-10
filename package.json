@@ -19,6 +19,7 @@
   "dependencies": {
     "@ffmpeg/ffmpeg": "^0.12.15",
     "@ffmpeg/util": "^0.12.2",
+    "@vercel/blob": "^2.6.1",
     "bcryptjs": "^3.0.3",
     "framer-motion": "^12.23.12",
     "geist": "^1.5.1",

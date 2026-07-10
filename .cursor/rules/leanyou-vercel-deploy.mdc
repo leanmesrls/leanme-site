@@ -15,6 +15,7 @@ Su Vercel **non esiste** `.leanyou-data/tenants.json`. Senza env vars, login e t
 | `LEANYOU_SESSION_SECRET` | Stringa random lunga (da `.env.local`) |
 | `OPENAI_API_KEY` | Per Leonardo |
 | `NEXT_PUBLIC_SITE_URL` | `https://demo.leanme.it` |
+| `BLOB_READ_WRITE_TOKEN` | Auto da Vercel Blob Store (workspace persistenti) |
 
 ## Dopo modifica tenant / credenziali
 
@@ -31,4 +32,4 @@ Impostare cookie sessione su `NextResponse` (`withSessionCookie`), non solo `coo
 
 Quando tocchi LeanYou auth/tenant/deploy: verificare env Vercel, sync tenant JSON, redeploy se credenziali cambiano.
 
-Su Vercel i workspace usano `/tmp/.leanyou-data` (default automatico). Non confondere errori di salvataggio con 401.
+Su Vercel i workspace usano **Vercel Blob** se `BLOB_READ_WRITE_TOKEN` è impostato; altrimenti `/tmp` (effimero). Non confondere errori di salvataggio con 401.

@@ -7,54 +7,41 @@ import type {
 } from "@/types/leanyou";
 
 import {
-  deleteJsonFile,
-  getWorkspaceDir,
-  getWorkspaceFilePath,
-  listJsonFiles,
-  readJsonFile,
-  writeJsonFile,
-} from "./storage";
+  deleteStoredWorkspace,
+  getStoredWorkspace,
+  listStoredWorkspaces,
+  saveStoredWorkspace,
+} from "./workspace-storage";
 
 export async function listWorkspaces(
   tenantId: string
 ): Promise<LeonardoWorkspace[]> {
-  const dir = getWorkspaceDir(tenantId);
-  const files = await listJsonFiles(dir);
-  const workspaces = await Promise.all(
-    files.map((file) => readJsonFile<LeonardoWorkspace>(`${dir}/${file}`))
-  );
+  const workspaces = await listStoredWorkspaces(tenantId);
 
-  return workspaces
-    .filter((workspace): workspace is LeonardoWorkspace => Boolean(workspace))
-    .sort(
-      (a, b) =>
-        new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
-    );
+  return workspaces.sort(
+    (a, b) =>
+      new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
+  );
 }
 
 export async function getWorkspace(
   tenantId: string,
   workspaceId: string
 ): Promise<LeonardoWorkspace | null> {
-  return readJsonFile<LeonardoWorkspace>(
-    getWorkspaceFilePath(tenantId, workspaceId)
-  );
+  return getStoredWorkspace(tenantId, workspaceId);
 }
 
 export async function saveWorkspace(
   workspace: LeonardoWorkspace
 ): Promise<void> {
-  await writeJsonFile(
-    getWorkspaceFilePath(workspace.tenantId, workspace.id),
-    workspace
-  );
+  await saveStoredWorkspace(workspace);
 }
 
 export async function deleteWorkspace(
   tenantId: string,
   workspaceId: string
 ): Promise<void> {
-  await deleteJsonFile(getWorkspaceFilePath(tenantId, workspaceId));
+  await deleteStoredWorkspace(tenantId, workspaceId);
 }
 
 export function createWorkspace(
