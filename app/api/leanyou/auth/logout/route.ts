@@ -5,7 +5,7 @@ import {
   clientIpFromRequest,
   writeLeanYouAuditEvent,
 } from "@/lib/leanyou/audit-log";
-import { clearSessionCookie, getSession } from "@/lib/leanyou/session";
+import { getSession, withoutSessionCookie } from "@/lib/leanyou/session";
 
 export async function POST(request: Request) {
   const session = await getSession();
@@ -17,6 +17,5 @@ export async function POST(request: Request) {
     });
   }
 
-  await clearSessionCookie();
-  return NextResponse.json({ ok: true });
+  return withoutSessionCookie(NextResponse.json({ ok: true }));
 }

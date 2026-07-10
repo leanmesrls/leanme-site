@@ -13,7 +13,7 @@ import {
 } from "@/lib/leanyou/auth";
 import {
   createSessionToken,
-  setSessionCookie,
+  withSessionCookie,
 } from "@/lib/leanyou/session";
 
 function tenantMismatch(
@@ -117,14 +117,16 @@ async function handleLogin(
 
     const session = createSessionPayload(match.tenant, match.user);
     const token = await createSessionToken(session);
-    await setSessionCookie(token);
     await writeLeanYouAuditEvent({
       action: "login_success",
       method: "token",
       ip: clientIpFromRequest(request),
       ...auditContextFromSession(session),
     });
-    return NextResponse.json({ ok: true, session });
+    return withSessionCookie(
+      NextResponse.json({ ok: true, session }),
+      token
+    );
   }
 
   if (!body.email?.trim() || !body.password) {
@@ -181,12 +183,14 @@ async function handleLogin(
 
   const session = createSessionPayload(match.tenant, match.user);
   const token = await createSessionToken(session);
-  await setSessionCookie(token);
   await writeLeanYouAuditEvent({
     action: "login_success",
     method: "email",
     ip: clientIpFromRequest(request),
     ...auditContextFromSession(session),
   });
-  return NextResponse.json({ ok: true, session });
+  return withSessionCookie(
+    NextResponse.json({ ok: true, session }),
+    token
+  );
 }

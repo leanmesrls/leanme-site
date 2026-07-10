@@ -32,6 +32,7 @@ export function LeanYouLoginForm() {
     try {
       const response = await fetch("/api/leanyou/auth/login", {
         method: "POST",
+        credentials: "same-origin",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
       });
