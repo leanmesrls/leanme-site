@@ -29,8 +29,59 @@ npm run leanyou:access
 ```
 
 3. Leggi il registro accessi in `.leanyou-data/access-registry.md`
-4. Excel utenze attive: `.leanyou-data/utenze-attive.csv` (apribile con Excel)
+4. Excel credenziali (apribile con Excel):
+   - **`.leanyou-data/utenze-credenziali.csv`** — Azienda, Nome, Cognome, Email, Password
+   - **`.leanyou-data/utenze-attive.csv`** — include anche Token e URL diretto
 5. Avvia il sito e accedi da `/leanyou/login`
+
+## Deploy Vercel (demo.leanme.it)
+
+Su Vercel il file `.leanyou-data/tenants.json` **non esiste**. Carica i tenant via variabile d'ambiente:
+
+1. In locale: `npm run leanyou:access`
+2. Poi: `npm run leanyou:vercel-env` → copia il JSON stampato
+3. Vercel → Project → Settings → Environment Variables:
+   - `LEANYOU_TENANTS_JSON` = JSON minificato (Production)
+   - `LEANYOU_SESSION_SECRET` = stringa random lunga
+   - `OPENAI_API_KEY` = chiave OpenAI
+   - `NEXT_PUBLIC_SITE_URL` = `https://demo.leanme.it`
+4. Redeploy
+
+Priorità caricamento tenant: `LEANYOU_TENANTS_JSON` → file locale → `tenants.example.json`
+
+## Log accessi e attività
+
+### Locale / server con filesystem
+
+Per ogni tenant, file JSON Lines (una riga = un evento):
+
+```
+.leanyou-data/audit/{tenantId}/events.jsonl
+```
+
+Esempi tenant: `iec/events.jsonl`, `demo/events.jsonl`
+
+Tentativi di login falliti senza tenant noto:
+
+```
+.leanyou-data/audit/_global/events.jsonl
+```
+
+Eventi registrati (v1):
+
+- `login_success` / `login_failed` / `logout`
+- `workspace_create` / `workspace_update` / `workspace_delete`
+- `workspace_process_start` / `workspace_process_complete` / `workspace_process_failed`
+
+Ogni riga contiene: timestamp ISO, tenant, utente, azione, IP (se disponibile), risorsa.
+
+### Vercel (produzione)
+
+I file audit **non persistono** su Vercel (filesystem effimero). Gli stessi eventi vengono scritti anche su **stdout** con prefisso `leanyou_audit`.
+
+Consultabili in: **Vercel Dashboard → Project → Logs** → filtra per `leanyou_audit`.
+
+> Per audit persistente in produzione: prossimo step Postgres / Log Drain / servizio esterno.
 
 ## Accesso clienti
 
@@ -57,10 +108,13 @@ Credenziali iniziali (vedi anche `access-registry.md` dopo `npm run leanyou:acce
 Dati runtime in `.leanyou-data/` (gitignored):
 
 - `tenants.json` — utenze e token
+- `utenze-credenziali.csv` — Excel credenziali per azienda
+- `utenze-attive.csv` — Excel completo con token
 - `workspaces/{tenantId}/*.json` — workspace verbali
+- `audit/{tenantId}/events.jsonl` — log accessi e attività
 - `access-registry.md` — registro credenziali generate
 
-> Su Vercel il filesystem non è persistente: per produzione migrare a Postgres + Blob storage.
+> Su Vercel: usare `LEANYOU_TENANTS_JSON` per i tenant; workspace e audit file non persistono senza storage cloud.
 
 ## Prompt Leonardo
 

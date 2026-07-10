@@ -1,6 +1,10 @@
 import { NextResponse } from "next/server";
 
 import {
+  auditContextFromSession,
+  writeLeanYouAuditEvent,
+} from "@/lib/leanyou/audit-log";
+import {
   forbiddenResponse,
   requireSession,
   unauthorizedResponse,
@@ -66,6 +70,13 @@ export async function POST(request: Request) {
     });
 
     await saveWorkspace(workspace);
+    await writeLeanYouAuditEvent({
+      action: "workspace_create",
+      resourceType: "leonardo_workspace",
+      resourceId: workspace.id,
+      detail: workspace.title,
+      ...auditContextFromSession(session),
+    });
     return NextResponse.json({ workspace });
   } catch {
     return unauthorizedResponse();

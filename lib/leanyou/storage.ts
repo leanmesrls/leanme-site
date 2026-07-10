@@ -14,6 +14,16 @@ const TENANTS_FILE =
   process.env.LEANYOU_TENANTS_FILE ??
   path.join(DATA_ROOT, "tenants.json");
 
+export function getDataRoot(): string {
+  return path.isAbsolute(DATA_ROOT)
+    ? DATA_ROOT
+    : path.join(process.cwd(), DATA_ROOT);
+}
+
+function parseTenantsJson(raw: string): LeanYouTenantsFile {
+  return JSON.parse(raw) as LeanYouTenantsFile;
+}
+
 export function getLeanYouConfig(): LeanYouConfig {
   return configData as LeanYouConfig;
 }
@@ -40,6 +50,11 @@ export function getLeanYouPrompts(): {
 }
 
 export async function loadTenantsFile(): Promise<LeanYouTenantsFile> {
+  const envJson = process.env.LEANYOU_TENANTS_JSON?.trim();
+  if (envJson) {
+    return parseTenantsJson(envJson);
+  }
+
   const fallback = path.join(process.cwd(), "data/leanyou/tenants.example.json");
   const target = path.isAbsolute(TENANTS_FILE)
     ? TENANTS_FILE
@@ -47,15 +62,15 @@ export async function loadTenantsFile(): Promise<LeanYouTenantsFile> {
 
   try {
     const raw = await readFile(target, "utf8");
-    return JSON.parse(raw) as LeanYouTenantsFile;
+    return parseTenantsJson(raw);
   } catch {
     const raw = await readFile(fallback, "utf8");
-    return JSON.parse(raw) as LeanYouTenantsFile;
+    return parseTenantsJson(raw);
   }
 }
 
 export function getWorkspaceDir(tenantId: string): string {
-  return path.join(process.cwd(), DATA_ROOT, "workspaces", tenantId);
+  return path.join(getDataRoot(), "workspaces", tenantId);
 }
 
 export function getWorkspaceFilePath(
@@ -66,7 +81,10 @@ export function getWorkspaceFilePath(
 }
 
 export async function ensureDataDirs(): Promise<void> {
-  await mkdir(path.join(process.cwd(), DATA_ROOT, "workspaces"), {
+  await mkdir(path.join(getDataRoot(), "workspaces"), {
+    recursive: true,
+  });
+  await mkdir(path.join(getDataRoot(), "audit"), {
     recursive: true,
   });
 }

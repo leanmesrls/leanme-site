@@ -8,6 +8,7 @@
     "enhance:agents": "node scripts/enhance-agent-hp-images.mjs",
     "logo:transparent": "node scripts/logo-transparent-png.mjs",
     "leanyou:access": "node scripts/generate-leanyou-access.mjs",
+    "leanyou:vercel-env": "node scripts/print-leanyou-vercel-env.mjs",
     "prebuild": "npm run sync:partners",
     "dev": "next dev --turbopack",
     "build": "next build",

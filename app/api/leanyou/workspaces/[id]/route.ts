@@ -1,6 +1,10 @@
 import { NextResponse } from "next/server";
 
 import {
+  auditContextFromSession,
+  writeLeanYouAuditEvent,
+} from "@/lib/leanyou/audit-log";
+import {
   forbiddenResponse,
   requireSession,
   unauthorizedResponse,
@@ -76,6 +80,13 @@ export async function PATCH(request: Request, context: RouteContext) {
     };
 
     await saveWorkspace(next);
+    await writeLeanYouAuditEvent({
+      action: "workspace_update",
+      resourceType: "leonardo_workspace",
+      resourceId: next.id,
+      detail: next.title,
+      ...auditContextFromSession(session),
+    });
     return NextResponse.json({ workspace: next });
   } catch {
     return unauthorizedResponse();
@@ -96,6 +107,13 @@ export async function DELETE(_request: Request, context: RouteContext) {
     }
 
     await deleteWorkspace(session.tenantId, id);
+    await writeLeanYouAuditEvent({
+      action: "workspace_delete",
+      resourceType: "leonardo_workspace",
+      resourceId: workspace.id,
+      detail: workspace.title,
+      ...auditContextFromSession(session),
+    });
     return NextResponse.json({ ok: true });
   } catch {
     return unauthorizedResponse();

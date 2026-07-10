@@ -1,6 +1,10 @@
 import { NextResponse } from "next/server";
 
 import {
+  auditContextFromSession,
+  writeLeanYouAuditEvent,
+} from "@/lib/leanyou/audit-log";
+import {
   processLeonardoWorkspace,
   transcribeAudioBuffer,
 } from "@/lib/leanyou/leonardo-processor";
@@ -44,6 +48,13 @@ export async function POST(request: Request, context: RouteContext) {
     await updateWorkspaceStatus(session.tenantId, id, "processing", {
       errorMessage: null,
     });
+    await writeLeanYouAuditEvent({
+      action: "workspace_process_start",
+      resourceType: "leonardo_workspace",
+      resourceId: workspace.id,
+      detail: workspace.title,
+      ...auditContextFromSession(session),
+    });
 
     let transcript = workspace.transcript.trim();
     const body = (await request.json()) as LeonardoProcessRequestBody;
@@ -73,6 +84,13 @@ export async function POST(request: Request, context: RouteContext) {
     if (!transcript) {
       await updateWorkspaceStatus(session.tenantId, id, "failed", {
         errorMessage: "Nessuna trascrizione disponibile.",
+      });
+      await writeLeanYouAuditEvent({
+        action: "workspace_process_failed",
+        resourceType: "leonardo_workspace",
+        resourceId: workspace.id,
+        detail: "Nessuna trascrizione disponibile.",
+        ...auditContextFromSession(session),
       });
       return NextResponse.json(
         { error: "Carica un file o aggiungi informazioni testuali." },
@@ -118,6 +136,13 @@ export async function POST(request: Request, context: RouteContext) {
     };
 
     await saveWorkspace(completed);
+    await writeLeanYouAuditEvent({
+      action: "workspace_process_complete",
+      resourceType: "leonardo_workspace",
+      resourceId: completed.id,
+      detail: completed.title,
+      ...auditContextFromSession(session),
+    });
     return NextResponse.json({ workspace: completed });
   } catch (error) {
     const { id } = await context.params;
@@ -128,6 +153,13 @@ export async function POST(request: Request, context: RouteContext) {
     if (session) {
       await updateWorkspaceStatus(session.tenantId, id, "failed", {
         errorMessage: message,
+      });
+      await writeLeanYouAuditEvent({
+        action: "workspace_process_failed",
+        resourceType: "leonardo_workspace",
+        resourceId: id,
+        detail: message,
+        ...auditContextFromSession(session),
       });
     }
 

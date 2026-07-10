@@ -55,30 +55,14 @@ function csvEscape(value) {
   return text;
 }
 
-function buildExcelCsv(rows) {
-  const header = [
-    "Azienda",
-    "Nome",
-    "Cognome",
-    "Email",
-    "Password",
-    "Token",
-    "URL accesso diretto",
-  ];
+function buildExcelCsv(
+  rows,
+  columns
+) {
   const lines = [
-    header.join(";"),
+    columns.map((column) => column.label).join(";"),
     ...rows.map((row) =>
-      [
-        row.company,
-        row.firstName,
-        row.lastName,
-        row.email,
-        row.password,
-        row.token,
-        row.loginUrl,
-      ]
-        .map(csvEscape)
-        .join(";")
+      columns.map((column) => csvEscape(row[column.key])).join(";")
     ),
   ];
   return `\uFEFF${lines.join("\r\n")}`;
@@ -98,6 +82,7 @@ async function main() {
     "",
   ];
   const excelRows = [];
+  const credentialRows = [];
 
   const tenants = [];
 
@@ -156,6 +141,14 @@ async function main() {
         token: userToken,
         loginUrl: `${siteUrl}/leanyou/login?token=${userToken}`,
       });
+
+      credentialRows.push({
+        company: tenant.name,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        password: user.password,
+      });
     }
 
     tenants.push({
@@ -168,18 +161,51 @@ async function main() {
     });
   }
 
+  credentialRows.sort((a, b) =>
+    `${a.company}-${a.lastName}-${a.firstName}`.localeCompare(
+      `${b.company}-${b.lastName}-${b.firstName}`,
+      "it"
+    )
+  );
+
   const tenantsFile = { tenants };
   const tenantsPath = path.join(dataDir, "tenants.json");
   const registryPath = path.join(dataDir, "access-registry.md");
   const excelPath = path.join(dataDir, "utenze-attive.csv");
+  const credentialsPath = path.join(dataDir, "utenze-credenziali.csv");
+
+  const fullColumns = [
+    { key: "company", label: "Azienda" },
+    { key: "firstName", label: "Nome" },
+    { key: "lastName", label: "Cognome" },
+    { key: "email", label: "Email" },
+    { key: "password", label: "Password" },
+    { key: "token", label: "Token" },
+    { key: "loginUrl", label: "URL accesso diretto" },
+  ];
+  const credentialColumns = [
+    { key: "company", label: "Azienda" },
+    { key: "firstName", label: "Nome" },
+    { key: "lastName", label: "Cognome" },
+    { key: "email", label: "Email" },
+    { key: "password", label: "Password" },
+  ];
 
   await writeFile(tenantsPath, JSON.stringify(tenantsFile, null, 2), "utf8");
   await writeFile(registryPath, registryLines.join("\n"), "utf8");
-  await writeFile(excelPath, buildExcelCsv(excelRows), "utf8");
+  await writeFile(excelPath, buildExcelCsv(excelRows, fullColumns), "utf8");
+  await writeFile(
+    credentialsPath,
+    buildExcelCsv(credentialRows, credentialColumns),
+    "utf8"
+  );
 
   console.log(`Tenants scritti in: ${tenantsPath}`);
   console.log(`Registro accessi scritto in: ${registryPath}`);
-  console.log(`Excel utenze scritto in: ${excelPath}`);
+  console.log(`Excel completo (con token): ${excelPath}`);
+  console.log(`Excel credenziali (azienda/nome/cognome/email/pw): ${credentialsPath}`);
+  console.log("");
+  console.log("Per Vercel: npm run leanyou:vercel-env");
 }
 
 main().catch((error) => {
