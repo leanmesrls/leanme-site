@@ -1,6 +1,6 @@
 {
   "headerCta": {
-    "label": "PARLIAMO DEL TUO PROGETTO",
+    "label": "CONNETTITI CON NOI",
     "href": "/contatti"
   },
   "headerNavigation": [
@@ -8,14 +8,15 @@
     {
       "label": "CHI SIAMO",
       "href": "/chi-siamo",
-      "children": [{ "label": "LO STAFF IBRIDO", "href": "/staff-ibrido" }]
+      "children": [
+        { "label": "Staff Ibrido Humani+AI", "href": "/staff-ibrido" },
+        { "label": "DICONO DI NOI", "href": "/dicono-di-noi" }
+      ]
     },
     { "label": "COME POSSIAMO AIUTARTI", "href": "/come-possiamo-aiutarti" },
     { "label": "LEAN LAB", "href": "/leanlab" },
     { "label": "LEAN ACADEMY", "href": "/lean-academy" },
-    { "label": "DICONO DI NOI", "href": "/dicono-di-noi" },
-    { "label": "🔒 LEANYOU", "href": "/leanyou/login" },
-    { "label": "CONNECT", "href": "/contatti" }
+    { "label": "🔒 LEANYOU", "href": "/leanyou/login" }
   ],
   "hero": {
     "claimPrimary": "POWERED BY HUMAN INTELLIGENCE.",
@@ -218,7 +219,7 @@
     "title": "PARLIAMO DEL TUO PROGETTO?",
     "description": "Raccontaci le tue sfide, troviamo insieme la soluzione giusta.",
     "cta": {
-      "label": "CONNECT",
+      "label": "CONNETTITI CON NOI",
       "href": "/contatti"
     }
   },

@@ -207,7 +207,25 @@ async function main() {
   console.log(`Excel completo (con token): ${excelPath}`);
   console.log(`Excel credenziali (azienda/nome/cognome/email/pw/url): ${credentialsPath}`);
   console.log("");
-  console.log("Per Vercel: npm run leanyou:vercel-env");
+
+  if (process.env.LEANYOU_SKIP_VERCEL_SYNC === "1") {
+    console.log("Sync Vercel saltato (LEANYOU_SKIP_VERCEL_SYNC=1).");
+    console.log("Manuale: npm run leanyou:sync-vercel");
+    return;
+  }
+
+  try {
+    const { syncLeanYouTenantsToVercel } = await import(
+      "./sync-leanyou-vercel-env.mjs"
+    );
+    await syncLeanYouTenantsToVercel({ quiet: false });
+  } catch (error) {
+    console.warn("");
+    console.warn("Sync Vercel automatico non eseguito:", error.message);
+    console.warn("Fallback: npm run leanyou:vercel-env → incolla su Vercel");
+    console.warn("Oppure: vercel link && npm run leanyou:sync-vercel");
+    console.warn("");
+  }
 }
 
 main().catch((error) => {

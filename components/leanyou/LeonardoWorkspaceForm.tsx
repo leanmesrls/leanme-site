@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 import { leanyouLeonardoWorkspacePath } from "@/lib/leanyou/paths";
+import { todayEuropeanDate } from "@/lib/leanyou/dates";
 import type { LeonardoMeetingType } from "@/types/leanyou";
 
 const meetingTypes: Array<{ value: LeonardoMeetingType; label: string }> = [
@@ -30,6 +31,7 @@ export function LeonardoWorkspaceForm({ tenantSlug }: { tenantSlug: string }) {
 
     const response = await fetch("/api/leanyou/workspaces", {
       method: "POST",
+      credentials: "same-origin",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         title: formData.get("title"),
@@ -72,7 +74,7 @@ export function LeonardoWorkspaceForm({ tenantSlug }: { tenantSlug: string }) {
             ["title", "Titolo", "text", true],
             ["client", "Cliente", "text", true],
             ["organization", "Organizzazione", "text", false],
-            ["meetingDate", "Data riunione", "date", true],
+            ["meetingDate", "Data riunione (gg/mm/aaaa)", "text", true],
             ["participants", "Partecipanti", "text", false],
             ["moderator", "Moderatore", "text", false],
             ["secretary", "Segretario", "text", false],
@@ -92,8 +94,12 @@ export function LeonardoWorkspaceForm({ tenantSlug }: { tenantSlug: string }) {
               type={type}
               required={required}
               defaultValue={
+                id === "meetingDate" ? todayEuropeanDate() : undefined
+              }
+              placeholder={id === "meetingDate" ? "gg/mm/aaaa" : undefined}
+              pattern={
                 id === "meetingDate"
-                  ? new Date().toISOString().slice(0, 10)
+                  ? "\\d{2}/\\d{2}/\\d{4}"
                   : undefined
               }
               className="mt-2 w-full rounded-lg border border-white/15 bg-black px-4 py-3 text-sm outline-none focus:border-leanme-fuchsia"

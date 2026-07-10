@@ -15,6 +15,7 @@ import {
   blobToBase64,
   isTextFileName,
 } from "@/lib/leanyou/upload-payload";
+import { formatEuropeanDate } from "@/lib/leanyou/dates";
 import { leanyouLeonardoPath } from "@/lib/leanyou/paths";
 import type { LeanYouConfig, LeonardoWorkspace } from "@/types/leanyou";
 
@@ -48,6 +49,7 @@ export function LeonardoWorkspaceDetail({
       `/api/leanyou/workspaces/${workspace.id}/transcribe`,
       {
         method: "POST",
+        credentials: "same-origin",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           file: {
@@ -140,6 +142,7 @@ export function LeonardoWorkspaceDetail({
         `/api/leanyou/workspaces/${workspace.id}/process`,
         {
           method: "POST",
+          credentials: "same-origin",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ transcript: finalTranscript }),
         }
@@ -215,7 +218,7 @@ export function LeonardoWorkspaceDetail({
           </Link>
           <h2 className="mt-3 text-2xl font-bold">{workspace.title}</h2>
           <p className="mt-2 text-sm text-white/60">
-            {workspace.client} · {workspace.meetingDate} · {workspace.status}
+            {workspace.client} · {formatEuropeanDate(workspace.meetingDate)} · {workspace.status}
           </p>
         </div>
       </div>

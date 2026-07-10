@@ -13,6 +13,7 @@ import {
   leanyouLeonardoNewPath,
   leanyouLeonardoWorkspacePath,
 } from "@/lib/leanyou/paths";
+import { formatEuropeanDate } from "@/lib/leanyou/dates";
 import type { LeonardoWorkspace } from "@/types/leanyou";
 
 const statusLabels: Record<LeonardoWorkspace["status"], string> = {
@@ -53,6 +54,7 @@ export function LeonardoWorkspaceList({
   async function handleDelete(id: string) {
     const response = await fetch(`/api/leanyou/workspaces/${id}`, {
       method: "DELETE",
+      credentials: "same-origin",
     });
 
     if (response.ok) {
@@ -140,7 +142,7 @@ export function LeonardoWorkspaceList({
                     </p>
                     <h3 className="mt-2 text-lg font-bold">{workspace.title}</h3>
                     <p className="mt-1 text-sm text-white/60">
-                      {workspace.client} · {workspace.meetingDate}
+                      {workspace.client} · {formatEuropeanDate(workspace.meetingDate)}
                     </p>
                     {labels.length > 0 ? (
                       <div className="mt-3 flex flex-wrap gap-2">

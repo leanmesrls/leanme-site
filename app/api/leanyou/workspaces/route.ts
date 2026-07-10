@@ -6,9 +6,10 @@ import {
 } from "@/lib/leanyou/audit-log";
 import {
   forbiddenResponse,
+  handleLeanYouRouteError,
   requireSession,
-  unauthorizedResponse,
 } from "@/lib/leanyou/server-auth";
+import { normalizeMeetingDateInput } from "@/lib/leanyou/dates";
 import { tenantHasModule } from "@/lib/leanyou/auth";
 import {
   createWorkspace,
@@ -25,8 +26,17 @@ export async function GET() {
 
     const workspaces = await listWorkspaces(session.tenantId);
     return NextResponse.json({ workspaces });
-  } catch {
-    return unauthorizedResponse();
+  } catch (error) {
+    if (error instanceof Error && error.message === "INVALID_MEETING_DATE") {
+      return NextResponse.json(
+        { error: "Data riunione non valida. Usa il formato gg/mm/aaaa." },
+        { status: 400 }
+      );
+    }
+    return handleLeanYouRouteError(
+      error,
+      "Operazione workspace non riuscita."
+    );
   }
 }
 
@@ -59,7 +69,7 @@ export async function POST(request: Request) {
       title: body.title,
       client: body.client ?? session.tenantName,
       organization: body.organization ?? "",
-      meetingDate: body.meetingDate ?? new Date().toISOString().slice(0, 10),
+      meetingDate: normalizeMeetingDateInput(body.meetingDate),
       meetingType: body.meetingType ?? "client_meeting",
       tags: body.tags ?? [],
       participants: body.participants ?? "",
@@ -78,7 +88,16 @@ export async function POST(request: Request) {
       ...auditContextFromSession(session),
     });
     return NextResponse.json({ workspace });
-  } catch {
-    return unauthorizedResponse();
+  } catch (error) {
+    if (error instanceof Error && error.message === "INVALID_MEETING_DATE") {
+      return NextResponse.json(
+        { error: "Data riunione non valida. Usa il formato gg/mm/aaaa." },
+        { status: 400 }
+      );
+    }
+    return handleLeanYouRouteError(
+      error,
+      "Creazione workspace non riuscita."
+    );
   }
 }

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 
+import { formatEuropeanDate } from "@/lib/leanyou/dates";
 import type { LeonardoMeetingType, LeonardoWorkspace } from "@/types/leanyou";
 
 const meetingTypes: Array<{ value: LeonardoMeetingType; label: string }> = [
@@ -26,7 +27,7 @@ export function LeonardoWorkspaceMetadataForm({
     title: workspace.title,
     client: workspace.client,
     organization: workspace.organization,
-    meetingDate: workspace.meetingDate,
+    meetingDate: formatEuropeanDate(workspace.meetingDate),
     meetingType: workspace.meetingType,
     participants: workspace.participants,
     moderator: workspace.moderator,
@@ -46,6 +47,7 @@ export function LeonardoWorkspaceMetadataForm({
 
     const response = await fetch(`/api/leanyou/workspaces/${workspace.id}`, {
       method: "PATCH",
+      credentials: "same-origin",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         title: form.title,
@@ -106,7 +108,7 @@ export function LeonardoWorkspaceMetadataForm({
               ["title", "Titolo"],
               ["client", "Cliente"],
               ["organization", "Organizzazione"],
-              ["meetingDate", "Data riunione"],
+              ["meetingDate", "Data riunione (gg/mm/aaaa)"],
               ["participants", "Partecipanti"],
               ["moderator", "Moderatore"],
               ["secretary", "Segretario"],
@@ -118,9 +120,13 @@ export function LeonardoWorkspaceMetadataForm({
                 {label}
               </span>
               <input
-                type={field === "meetingDate" ? "date" : "text"}
+                type="text"
                 value={form[field]}
                 onChange={(event) => updateField(field, event.target.value)}
+                placeholder={field === "meetingDate" ? "gg/mm/aaaa" : undefined}
+                pattern={
+                  field === "meetingDate" ? "\\d{2}/\\d{2}/\\d{4}" : undefined
+                }
                 required={field === "title" || field === "client" || field === "meetingDate"}
                 className="mt-2 w-full rounded-lg border border-white/15 bg-black px-4 py-3 text-sm outline-none focus:border-leanme-fuchsia"
               />

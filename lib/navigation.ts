@@ -24,8 +24,12 @@ export function buildHeaderNavigation(
         ...item,
         children: chiSiamoChildren ?? [
           {
-            label: "Lo Staff Ibrido",
+            label: "Staff Ibrido Humani+AI",
             href: "/staff-ibrido",
+          },
+          {
+            label: "Dicono di noi",
+            href: "/dicono-di-noi",
           },
         ],
       };

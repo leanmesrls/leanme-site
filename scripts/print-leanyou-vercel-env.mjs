@@ -1,15 +1,9 @@
 #!/usr/bin/env node
 
-import { readFile } from "node:fs/promises";
-import path from "node:path";
-
-const root = process.cwd();
-const dataDir = path.join(root, process.env.LEANYOU_DATA_DIR ?? ".leanyou-data");
-const tenantsPath = path.join(dataDir, "tenants.json");
+import { loadMinifiedTenantsJson } from "./lib/leanyou-tenants-json.mjs";
 
 async function main() {
-  const raw = await readFile(tenantsPath, "utf8");
-  const minified = JSON.stringify(JSON.parse(raw));
+  const minified = await loadMinifiedTenantsJson();
 
   console.log("");
   console.log("=== Vercel → Settings → Environment Variables ===");
@@ -20,6 +14,9 @@ async function main() {
   console.log(minified);
   console.log("");
   console.log("Ambiente consigliato: Production (+ Preview se serve demo)");
+  console.log("");
+  console.log("Sync automatico: npm run leanyou:sync-vercel");
+  console.log("Sync + redeploy: npm run leanyou:sync-vercel -- --deploy");
   console.log("");
 }
 

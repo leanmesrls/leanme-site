@@ -36,16 +36,32 @@ npm run leanyou:access
 
 ## Deploy Vercel (demo.leanme.it)
 
-Su Vercel il file `.leanyou-data/tenants.json` **non esiste**. Carica i tenant via variabile d'ambiente:
+Su Vercel il file `.leanyou-data/tenants.json` **non esiste**. Senza env vars, login e token **non funzionano**.
 
-1. In locale: `npm run leanyou:access`
-2. Poi: `npm run leanyou:vercel-env` → copia il JSON stampato
-3. Vercel → Project → Settings → Environment Variables:
-   - `LEANYOU_TENANTS_JSON` = JSON minificato (Production)
-   - `LEANYOU_SESSION_SECRET` = stringa random lunga
-   - `OPENAI_API_KEY` = chiave OpenAI
-   - `NEXT_PUBLIC_SITE_URL` = `https://demo.leanme.it`
-4. Redeploy
+### Setup iniziale (una volta)
+
+Vercel → Project → Settings → Environment Variables (Production):
+
+| Variabile | Valore |
+|-----------|--------|
+| `LEANYOU_TENANTS_JSON` | vedi sync sotto |
+| `LEANYOU_SESSION_SECRET` | da `.env.local` |
+| `OPENAI_API_KEY` | da `.env.local` |
+| `NEXT_PUBLIC_SITE_URL` | `https://demo.leanme.it` |
+
+Collega il progetto locale: `vercel link`
+
+### Aggiornamento tenant / credenziali
+
+```bash
+npm run leanyou:access          # rigenera + sync automatico su Vercel
+npm run leanyou:sync-vercel     # solo sync LEANYOU_TENANTS_JSON
+npm run leanyou:sync-vercel -- --deploy   # sync + redeploy production
+```
+
+Fallback manuale: `npm run leanyou:vercel-env` → incolla JSON su Vercel → Redeploy.
+
+Per saltare il sync automatico: `LEANYOU_SKIP_VERCEL_SYNC=1 npm run leanyou:access`
 
 Priorità caricamento tenant: `LEANYOU_TENANTS_JSON` → file locale → `tenants.example.json`
 
@@ -114,7 +130,7 @@ Dati runtime in `.leanyou-data/` (gitignored):
 - `audit/{tenantId}/events.jsonl` — log accessi e attività
 - `access-registry.md` — registro credenziali generate
 
-> Su Vercel: usare `LEANYOU_TENANTS_JSON` per i tenant; workspace e audit file non persistono senza storage cloud.
+> Su Vercel: usare `LEANYOU_TENANTS_JSON` per i tenant. I workspace vengono salvati in `/tmp/.leanyou-data` (ephemeral fino a storage cloud). L'audit file non persiste senza storage cloud.
 
 ## Prompt Leonardo
 
@@ -190,4 +206,4 @@ Repository documenti tenant/evento con permessi per utenza.
 
 ---
 
-**Menu sito pubblico (2026-07):** HOME · CHI SIAMO · COME POSSIAMO AIUTARTI · LEAN LAB · LEAN ACADEMY · DICONO DI NOI · 🔒 LEANYOU · CONNECT
+**Menu sito pubblico (2026-07):** HOME · CHI SIAMO (Staff Ibrido Humani+AI, Dicono di noi) · COME POSSIAMO AIUTARTI · LEAN LAB · LEAN ACADEMY · 🔒 LEANYOU · CTA header «CONNETTITI CON NOI»

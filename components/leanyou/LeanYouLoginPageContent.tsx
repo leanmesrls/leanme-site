@@ -10,7 +10,7 @@ const config = configData as LeanYouConfig;
 
 export function LeanYouLoginPageContent() {
   return (
-    <div className="min-h-screen bg-black px-5 py-10 text-white md:px-8">
+    <div className="bg-black px-5 py-10 text-white md:px-8 md:py-14">
       <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[minmax(0,1fr)_420px] lg:items-center">
         <section>
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-leanme-fuchsia">

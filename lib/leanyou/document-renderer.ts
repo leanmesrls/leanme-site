@@ -1,6 +1,7 @@
 import type { LeonardoWorkspace } from "@/types/leanyou";
 
 import { compactStructuredKeywords } from "./keyword-compaction";
+import { formatEuropeanDate } from "./dates";
 
 type WorkspaceMeta = Pick<
   LeonardoWorkspace,
@@ -119,7 +120,7 @@ function renderDetailedMinutes(
   <h3>Titolo riunione</h3>
   <p>${escapeHtml(workspace.title)}</p>
   <h3>Data</h3>
-  <p>${escapeHtml(workspace.meetingDate || "-")}</p>
+  <p>${escapeHtml(formatEuropeanDate(workspace.meetingDate))}</p>
   <h3>Partecipanti</h3>
   ${renderList((data.partecipanti as unknown[]) ?? [])}
   <h3>Introduzione</h3>

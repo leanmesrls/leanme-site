@@ -9,7 +9,10 @@ import type {
   LeanYouTenantsFile,
 } from "@/types/leanyou";
 
-const DATA_ROOT = process.env.LEANYOU_DATA_DIR ?? ".leanyou-data";
+const DEFAULT_DATA_ROOT =
+  process.env.LEANYOU_DATA_DIR ??
+  (process.env.VERCEL === "1" ? "/tmp/.leanyou-data" : ".leanyou-data");
+const DATA_ROOT = DEFAULT_DATA_ROOT;
 const TENANTS_FILE =
   process.env.LEANYOU_TENANTS_FILE ??
   path.join(DATA_ROOT, "tenants.json");

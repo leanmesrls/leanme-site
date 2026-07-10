@@ -6,9 +6,10 @@ import {
 } from "@/lib/leanyou/audit-log";
 import {
   forbiddenResponse,
+  handleLeanYouRouteError,
   requireSession,
-  unauthorizedResponse,
 } from "@/lib/leanyou/server-auth";
+import { normalizeMeetingDateInput } from "@/lib/leanyou/dates";
 import { tenantHasModule } from "@/lib/leanyou/auth";
 import type { LeonardoWorkspace } from "@/types/leanyou";
 import {
@@ -35,8 +36,14 @@ export async function GET(_request: Request, context: RouteContext) {
     }
 
     return NextResponse.json({ workspace });
-  } catch {
-    return unauthorizedResponse();
+  } catch (error) {
+    if (error instanceof Error && error.message === "INVALID_MEETING_DATE") {
+      return NextResponse.json(
+        { error: "Data riunione non valida. Usa il formato gg/mm/aaaa." },
+        { status: 400 }
+      );
+    }
+    return handleLeanYouRouteError(error, "Operazione workspace non riuscita.");
   }
 }
 
@@ -58,7 +65,10 @@ export async function PATCH(request: Request, context: RouteContext) {
       title: body.title,
       client: body.client,
       organization: body.organization,
-      meetingDate: body.meetingDate,
+      meetingDate:
+        body.meetingDate !== undefined
+          ? normalizeMeetingDateInput(body.meetingDate)
+          : undefined,
       meetingType: body.meetingType,
       tags: body.tags,
       participants: body.participants,
@@ -88,8 +98,14 @@ export async function PATCH(request: Request, context: RouteContext) {
       ...auditContextFromSession(session),
     });
     return NextResponse.json({ workspace: next });
-  } catch {
-    return unauthorizedResponse();
+  } catch (error) {
+    if (error instanceof Error && error.message === "INVALID_MEETING_DATE") {
+      return NextResponse.json(
+        { error: "Data riunione non valida. Usa il formato gg/mm/aaaa." },
+        { status: 400 }
+      );
+    }
+    return handleLeanYouRouteError(error, "Aggiornamento workspace non riuscito.");
   }
 }
 
@@ -115,7 +131,7 @@ export async function DELETE(_request: Request, context: RouteContext) {
       ...auditContextFromSession(session),
     });
     return NextResponse.json({ ok: true });
-  } catch {
-    return unauthorizedResponse();
+  } catch (error) {
+    return handleLeanYouRouteError(error, "Eliminazione workspace non riuscita.");
   }
 }
