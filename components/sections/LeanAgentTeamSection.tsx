@@ -21,7 +21,7 @@ export function LeanAgentTeamSection({ data }: LeanAgentTeamSectionProps) {
           subtitle={data.subtitle}
           description={data.description}
         />
-        <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-16 grid items-start gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {staff.leanAgents.map((agent, index) => (
             <RevealOnScroll key={agent.slug} delay={index * 0.08}>
               <AgentCard agent={agent} />

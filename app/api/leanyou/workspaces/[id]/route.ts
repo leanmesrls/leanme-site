@@ -77,6 +77,7 @@ export async function PATCH(request: Request, context: RouteContext) {
       notes: body.notes,
       transcript: body.transcript,
       status: body.status,
+      linkedEventId: body.linkedEventId,
     };
 
     const next = {

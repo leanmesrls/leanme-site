@@ -3,6 +3,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowIcon } from "@/components/homepage/Icons";
+import {
+  agentCardImageClassName,
+  agentCardImageSrc,
+  agentHomepageTileClassName,
+} from "@/lib/agent-images";
 import { FuchsiaGlowCard } from "@/components/motion/FuchsiaGlowCard";
 import type { LeanAgent } from "@/types/content";
 
@@ -14,7 +19,7 @@ export function AgentHomepageCard({ agent }: AgentCardProps) {
   return (
     <FuchsiaGlowCard
       variant="agent"
-      className="aspect-[12/31] rounded-sm"
+      className={agentHomepageTileClassName}
       contentClassName="block h-full w-full"
     >
       <Link
@@ -34,20 +39,22 @@ export function AgentHomepageCard({ agent }: AgentCardProps) {
 }
 
 export function AgentCard({ agent }: AgentCardProps) {
+  const cardSrc = agentCardImageSrc(agent.slug);
+
   return (
     <Link
       href={`/staff-ibrido/lean-agent/${agent.slug}`}
-      className="group block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leanme-fuchsia"
+      className="group block h-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leanme-fuchsia"
     >
       <FuchsiaGlowCard
         variant="card"
-        className="flex flex-col rounded-xl border border-white/10 bg-[#111111]"
-        contentClassName="flex flex-col"
+        className="flex h-full flex-col rounded-xl border border-white/10 bg-[#111111]"
+        contentClassName="flex h-full flex-col"
       >
-        <div className="relative aspect-[3/4] w-full overflow-hidden rounded-t-xl">
+        <div className={agentCardImageClassName}>
           <Image
-            src={agent.cardImage.src}
-            alt={agent.cardImage.alt}
+            src={cardSrc}
+            alt={agent.cardImage?.alt ?? `${agent.name} — ${agent.role}`}
             fill
             className="object-contain object-top transition duration-500 group-hover:scale-[1.04]"
             sizes="(max-width: 1280px) 25vw, 220px"

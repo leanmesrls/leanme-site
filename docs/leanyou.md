@@ -162,9 +162,12 @@ I prompt sono in `data/leanyou/prompts.json`.
 
 Moduli previsti nell'area personale I&C, visibili in sidebar LeanYou in base a tenant e utenza:
 
-### 1. Leonardo · Secretary Assistant ✅ (v1)
+### 1. Leonardo · Secretary Assistant ✅ (v1 — Workspace verbali)
 
-Verbali da audio/video — già attivo.
+Verbali da audio/video — già attivo. In roadmap diventa voce **Workspace verbali** dentro la piattaforma **Leonardo** (`/leanyou/{tenant}/leonardo`), con collegamento opzionale agli eventi.
+
+**Scheda tecnica completa (generazione verbali):** `docs/leanyou-leonardo-scheda-tecnica.md`  
+**Piattaforma Leonardo (architettura + eventi):** `docs/leanyou-event-architecture.md`, `docs/leanyou-events.md`
 
 ### 2. Academy (LeanYou)
 
@@ -179,7 +182,8 @@ Cruscotto riepilogativo tenant: KPI eventi, attività recenti, scorciatoie modul
 
 ### 4. Eventi (gestionale congressi)
 
-Gestione end-to-end degli eventi:
+Gestione end-to-end degli eventi — **specifica e piano:** `docs/leanyou-events.md`  
+**Pack e funzioni per tier commerciale:** `docs/leanyou-event-platform-packs.md`
 
 - Anagrafica eventi
 - Logistica eventi

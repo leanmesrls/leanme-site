@@ -59,6 +59,7 @@ export async function POST(request: Request) {
       secretary?: string;
       notes?: string;
       transcript?: string;
+      linkedEventId?: string | null;
     };
 
     if (!body.title?.trim()) {
@@ -77,6 +78,7 @@ export async function POST(request: Request) {
       secretary: body.secretary ?? session.userName,
       notes: body.notes ?? "",
       transcript: body.transcript ?? "",
+      linkedEventId: body.linkedEventId ?? null,
     });
 
     await saveWorkspace(workspace);

@@ -63,3 +63,11 @@ GitHub is the source repository.
 Vercel automatically deploys from GitHub.
 
 All commits must remain production ready.
+
+LeanYou / Leonardo
+
+Multi-tenant customer area. Architecture:
+
+- `docs/leanyou-event-architecture.md` — menu, sezioni evento, AI, sito pubblico
+- `docs/leanyou-events.md` — operational spec and sprints
+- `docs/leanyou-event-platform-packs.md` — commercial packs CORE → PLATINUM

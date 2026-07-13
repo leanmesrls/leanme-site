@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import configData from "@/data/leanyou/config.json";
 import { LeonardoWorkspaceMetadataForm } from "@/components/leanyou/LeonardoWorkspaceMetadataForm";
@@ -10,28 +10,39 @@ import {
   type MediaPrepProgress,
 } from "@/lib/leanyou/ffmpeg-client";
 import { mergeTranscriptParts } from "@/lib/leanyou/transcription-merge";
-import { combineTranscriptSources } from "@/lib/leanyou/transcription-cleanup";
+import {
+  combineTranscriptSources,
+  isStaleLeonardoProcessing,
+  transcriptValidationMessage,
+} from "@/lib/leanyou/transcription-cleanup";
 import {
   blobToBase64,
   isTextFileName,
 } from "@/lib/leanyou/upload-payload";
 import { formatEuropeanDate } from "@/lib/leanyou/dates";
-import { leanyouLeonardoPath } from "@/lib/leanyou/paths";
-import type { LeanYouConfig, LeonardoWorkspace } from "@/types/leanyou";
+import { leanyouLeonardoVerbaliPath } from "@/lib/leanyou/paths";
+import type { LeanYouConfig, LeonardoEvent, LeonardoWorkspace } from "@/types/leanyou";
 
 const config = configData as LeanYouConfig;
 
 interface LeonardoWorkspaceDetailProps {
   tenantSlug: string;
   initialWorkspace: LeonardoWorkspace;
+  events?: LeonardoEvent[];
 }
 
 export function LeonardoWorkspaceDetail({
   tenantSlug,
   initialWorkspace,
+  events = [],
 }: LeonardoWorkspaceDetailProps) {
   const [workspace, setWorkspace] = useState(initialWorkspace);
-  const [supplementalText, setSupplementalText] = useState("");
+  const [supplementalText, setSupplementalText] = useState(
+    initialWorkspace.transcript.trim() &&
+      Object.keys(initialWorkspace.documents).length === 0
+      ? initialWorkspace.transcript
+      : ""
+  );
   const [file, setFile] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState<MediaPrepProgress | null>(null);
@@ -39,6 +50,55 @@ export function LeonardoWorkspaceDetail({
   const [activeDoc, setActiveDoc] = useState(
     config.leonardo.documentTypes[0]?.id ?? "integral_transcript"
   );
+
+  const processingLocked =
+    workspace.status === "processing" && !isStaleLeonardoProcessing(workspace);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    async function syncWorkspace(): Promise<void> {
+      try {
+        const fresh = await fetchWorkspace();
+        if (cancelled) {
+          return;
+        }
+
+        if (isStaleLeonardoProcessing(fresh)) {
+          const response = await fetch(
+            `/api/leanyou/workspaces/${fresh.id}`,
+            {
+              method: "PATCH",
+              credentials: "same-origin",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                status: fresh.transcript.trim() ? "content_ready" : "draft",
+                errorMessage: null,
+              }),
+            }
+          );
+          const result = (await response.json()) as {
+            workspace?: LeonardoWorkspace;
+          };
+          if (!cancelled && result.workspace) {
+            setWorkspace(result.workspace);
+            return;
+          }
+        }
+
+        setWorkspace(fresh);
+      } catch {
+        /* ignore sync errors on mount */
+      }
+    }
+
+    void syncWorkspace();
+
+    return () => {
+      cancelled = true;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [workspace.id]);
 
   async function transcribeAudioPart(
     name: string,
@@ -200,7 +260,7 @@ export function LeonardoWorkspaceDetail({
 
       if (file) {
         videoTranscript = await resolveTranscriptFromFile(file);
-      } else if (workspace.transcript.trim()) {
+      } else if (!supplementalText.trim() && workspace.transcript.trim()) {
         videoTranscript = workspace.transcript.trim();
       }
 
@@ -209,8 +269,9 @@ export function LeonardoWorkspaceDetail({
         supplementalText
       );
 
-      if (!finalTranscript) {
-        setError("Carica un video/audio o aggiungi informazioni testuali.");
+      const validationError = transcriptValidationMessage(finalTranscript);
+      if (validationError) {
+        setError(validationError);
         setLoading(false);
         return;
       }
@@ -235,7 +296,7 @@ export function LeonardoWorkspaceDetail({
           method: "POST",
           credentials: "same-origin",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({}),
+          body: JSON.stringify({ transcript: finalTranscript }),
         }
       );
 
@@ -293,13 +354,18 @@ export function LeonardoWorkspaceDetail({
     ? `${progress.message}${progress.percent > 0 ? ` (${progress.percent}%)` : ""}`
     : null;
   const activeDocument = workspace.documents[activeDoc];
+  const generatedDocumentCount = Object.keys(workspace.documents).length;
+  const generateLabel =
+    loading || processingLocked
+      ? progressLabel ?? "Elaborazione in corso..."
+      : "Genera verbali";
 
   return (
     <div className="space-y-6">
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
           <Link
-            href={leanyouLeonardoPath(tenantSlug)}
+            href={leanyouLeonardoVerbaliPath(tenantSlug)}
             className="text-xs font-semibold uppercase tracking-[0.1em] text-leanme-fuchsia"
           >
             ← Torna ai workspace
@@ -314,6 +380,7 @@ export function LeonardoWorkspaceDetail({
       <LeonardoWorkspaceMetadataForm
         key={`${workspace.id}-${workspace.updatedAt}`}
         workspace={workspace}
+        events={events}
         onUpdated={setWorkspace}
       />
 
@@ -366,6 +433,13 @@ export function LeonardoWorkspaceDetail({
               </div>
             </div>
           ) : null}
+          {processingLocked ? (
+            <p className="rounded-lg border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-sm text-amber-100">
+              Generazione verbali in corso sul server. Attendi qualche minuto e
+              ricarica la pagina, oppure riprova se l&apos;elaborazione risulta
+              bloccata.
+            </p>
+          ) : null}
           {error || workspace.errorMessage ? (
             <p className="rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-200">
               {error ?? workspace.errorMessage}
@@ -374,12 +448,10 @@ export function LeonardoWorkspaceDetail({
           <button
             type="button"
             onClick={handleProcess}
-            disabled={loading || workspace.status === "processing"}
+            disabled={loading || processingLocked}
             className="rounded-full bg-leanme-fuchsia px-6 py-3 text-xs font-semibold uppercase tracking-[0.08em] text-white transition hover:bg-leanme-fuchsia-dark disabled:opacity-60"
           >
-            {loading || workspace.status === "processing"
-              ? progressLabel ?? "Elaborazione in corso..."
-              : "Genera verbali"}
+            {generateLabel}
           </button>
         </section>
 
@@ -387,6 +459,12 @@ export function LeonardoWorkspaceDetail({
           <h3 className="text-sm font-bold uppercase tracking-[0.12em] text-leanme-fuchsia">
             Documenti generati
           </h3>
+          {generatedDocumentCount > 0 ? (
+            <p className="mt-3 text-xs text-emerald-300">
+              {generatedDocumentCount} documenti pronti — seleziona una scheda
+              per l&apos;anteprima o scarica in Word.
+            </p>
+          ) : null}
           <div className="mt-4 flex flex-wrap gap-2">
             {config.leonardo.documentTypes.map((doc) => (
               <button

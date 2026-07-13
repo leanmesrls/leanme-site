@@ -13,12 +13,19 @@ import {
   saveStoredWorkspace,
 } from "./workspace-storage";
 
+function normalizeWorkspace(workspace: LeonardoWorkspace): LeonardoWorkspace {
+  return {
+    ...workspace,
+    linkedEventId: workspace.linkedEventId ?? null,
+  };
+}
+
 export async function listWorkspaces(
   tenantId: string
 ): Promise<LeonardoWorkspace[]> {
   const workspaces = await listStoredWorkspaces(tenantId);
 
-  return workspaces.sort(
+  return workspaces.map(normalizeWorkspace).sort(
     (a, b) =>
       new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
   );
@@ -28,7 +35,8 @@ export async function getWorkspace(
   tenantId: string,
   workspaceId: string
 ): Promise<LeonardoWorkspace | null> {
-  return getStoredWorkspace(tenantId, workspaceId);
+  const workspace = await getStoredWorkspace(tenantId, workspaceId);
+  return workspace ? normalizeWorkspace(workspace) : null;
 }
 
 export async function saveWorkspace(
@@ -58,6 +66,7 @@ export function createWorkspace(
     secretary: string;
     notes: string;
     transcript?: string;
+    linkedEventId?: string | null;
   }
 ): LeonardoWorkspace {
   const now = new Date().toISOString();
@@ -76,6 +85,7 @@ export function createWorkspace(
     moderator: input.moderator.trim(),
     secretary: input.secretary.trim(),
     notes: input.notes.trim(),
+    linkedEventId: input.linkedEventId ?? null,
     status: input.transcript?.trim() ? "content_ready" : "draft",
     transcript: input.transcript?.trim() ?? "",
     structured: null,
@@ -106,6 +116,14 @@ export async function updateWorkspaceStatus(
 
   await saveWorkspace(next);
   return next;
+}
+
+export async function listWorkspacesForEvent(
+  tenantId: string,
+  eventId: string
+): Promise<LeonardoWorkspace[]> {
+  const workspaces = await listWorkspaces(tenantId);
+  return workspaces.filter((workspace) => workspace.linkedEventId === eventId);
 }
 
 export function getDashboardStats(workspaces: LeonardoWorkspace[]) {

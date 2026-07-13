@@ -12,7 +12,13 @@ const meetingTypes: Array<{ value: LeonardoMeetingType; label: string }> = [
   { value: "internal_meeting", label: "Riunione interna" },
 ];
 
-export function LeonardoWorkspaceForm({ tenantSlug }: { tenantSlug: string }) {
+export function LeonardoWorkspaceForm({
+  tenantSlug,
+  linkedEventId,
+}: {
+  tenantSlug: string;
+  linkedEventId?: string;
+}) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -42,6 +48,7 @@ export function LeonardoWorkspaceForm({ tenantSlug }: { tenantSlug: string }) {
         secretary: formData.get("secretary"),
         notes: formData.get("notes"),
         tags,
+        linkedEventId: linkedEventId?.trim() || null,
       }),
     });
 

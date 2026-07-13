@@ -7,6 +7,14 @@ const HALLUCINATION_PATTERNS = [
   /(?:subscribe to the channel[\s.,]*)+/gi,
 ];
 
+export function countMeaningfulChars(text: string): number {
+  return text.replace(/[^\p{L}\p{N}]/gu, "").trim().length;
+}
+
+export function hasMinimumTranscriptContent(text: string, min = 12): boolean {
+  return countMeaningfulChars(text) >= min;
+}
+
 export function cleanTranscriptionPart(text: string): string {
   let cleaned = text.trim();
 
@@ -20,8 +28,7 @@ export function cleanTranscriptionPart(text: string): string {
     return "";
   }
 
-  const meaningful = cleaned.replace(/[^\p{L}\p{N}]/gu, "").trim();
-  if (meaningful.length < 12) {
+  if (!hasMinimumTranscriptContent(cleaned)) {
     return "";
   }
 
@@ -44,7 +51,7 @@ export function combineTranscriptSources(
   supplementalText: string
 ): string {
   const cleanedVideo = cleanFullTranscript(videoTranscript);
-  const cleanedSupplement = supplementalText.trim();
+  const cleanedSupplement = cleanFullTranscript(supplementalText);
 
   if (cleanedVideo && cleanedSupplement) {
     return `${cleanedVideo}\n\n---\n\nInformazioni testuali aggiuntive:\n\n${cleanedSupplement}`;
@@ -55,4 +62,32 @@ export function combineTranscriptSources(
   }
 
   return cleanedSupplement;
+}
+
+export const MIN_TRANSCRIPT_MEANINGFUL_CHARS = 12;
+
+export function transcriptValidationMessage(text: string): string | null {
+  const trimmed = text.trim();
+  if (!trimmed) {
+    return "Carica un video/audio o aggiungi informazioni testuali.";
+  }
+
+  const cleaned = cleanFullTranscript(trimmed);
+  if (!cleaned) {
+    return `La trascrizione è troppo breve o non contiene testo utilizzabile (servono almeno ${MIN_TRANSCRIPT_MEANINGFUL_CHARS} caratteri significativi).`;
+  }
+
+  return null;
+}
+
+/** Elaborazione interrotta (timeout/chiusura tab): consente un nuovo tentativo. */
+export function isStaleLeonardoProcessing(
+  workspace: { status: string; updatedAt: string },
+  staleAfterMs = 3 * 60 * 1000
+): boolean {
+  if (workspace.status !== "processing") {
+    return false;
+  }
+
+  return Date.now() - new Date(workspace.updatedAt).getTime() > staleAfterMs;
 }

@@ -3,5 +3,9 @@ export default function LeanYouRootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <div className="bg-black text-white">{children}</div>;
+  return (
+    <div className="fixed inset-0 z-[120] min-h-[100dvh] overflow-y-auto bg-black text-white">
+      {children}
+    </div>
+  );
 }

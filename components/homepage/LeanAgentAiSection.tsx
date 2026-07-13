@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowIcon } from "@/components/homepage/Icons";
 import { SectionTitle } from "@/components/homepage/SectionTitle";
 import { FuchsiaGlowCard } from "@/components/motion/FuchsiaGlowCard";
+import { agentHomepageTileClassName } from "@/lib/agent-images";
 import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
 import type { HomepageData } from "@/types/homepage";
 
@@ -20,7 +21,7 @@ function AgentCompactCard({
   return (
     <FuchsiaGlowCard
       variant="agent"
-      className="aspect-[12/31] rounded-sm"
+      className={agentHomepageTileClassName}
       contentClassName="block h-full w-full"
     >
       <Link
@@ -64,7 +65,7 @@ export function LeanAgentAiSection({ data }: LeanAgentAiSectionProps) {
           </div>
         </RevealOnScroll>
 
-        <div className="mt-6 grid grid-cols-2 gap-5 px-2 sm:grid-cols-3 md:grid-cols-4 md:gap-6 xl:grid-cols-7">
+        <div className="mt-6 grid grid-cols-2 items-start gap-5 px-2 sm:grid-cols-3 md:grid-cols-4 md:gap-6 xl:grid-cols-7">
           {data.agents.map((agent) => (
             <AgentCompactCard key={agent.slug} agent={agent} />
           ))}

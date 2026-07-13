@@ -67,12 +67,9 @@ export function LeonardoWorkspaceList({
     <div className="space-y-4">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h2 className="text-lg font-bold tracking-[0.04em]">
-            Workspace verbali
-          </h2>
+          <h2 className="text-lg font-bold tracking-[0.04em]">Verbali AI</h2>
           <p className="mt-1 text-sm text-white/60">
-            Cerca per titolo, cliente, tag manuali o keyword generate dai
-            verbali.
+            Cerca per titolo, cliente, tag manuali o keyword generate dai verbali.
           </p>
         </div>
         <Link

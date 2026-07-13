@@ -140,7 +140,7 @@ export default function StaffIbridoPage() {
             Ogni Lean.Agent possiede una pagina dedicata. Non sostituiscono il
             lavoro umano: lo completano, lo accelerano, lo rendono più efficace.
           </p>
-          <div className="mt-6 grid grid-cols-2 gap-5 px-2 sm:grid-cols-3 md:grid-cols-4 md:gap-6 xl:grid-cols-7">
+          <div className="mt-6 grid grid-cols-2 items-start gap-5 px-2 sm:grid-cols-3 md:grid-cols-4 md:gap-6 xl:grid-cols-7">
             {staff.leanAgents.map((agent, index) => (
               <RevealOnScroll key={agent.slug} delay={index * 0.05}>
                 <AgentHomepageCard agent={agent} />

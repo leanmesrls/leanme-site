@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import { ArrowIcon } from "@/components/homepage/Icons";
 import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
+import { agentCardImageClassName, agentCardImageSrc } from "@/lib/agent-images";
 import { cn } from "@/lib/utils";
 import type { LeanAgent, Specialist, TeamMember } from "@/types/content";
 
@@ -182,10 +183,12 @@ export function LeanAgentProfile({
       <section className="border-b border-white/10 bg-[#0a0a0a]">
         <div className="mx-auto grid max-w-[1440px] gap-6 px-5 py-10 md:px-10 md:py-12 lg:grid-cols-[minmax(0,240px)_1fr] lg:items-start lg:gap-10 lg:px-12 xl:grid-cols-[minmax(0,260px)_1fr]">
           <RevealOnScroll>
-            <div className="relative mx-auto aspect-[3/4] w-full max-w-[200px] overflow-hidden rounded-xl border border-white/10 bg-[#111111] sm:max-w-[220px] md:max-w-[240px] lg:mx-0 lg:max-w-[260px]">
+            <div
+              className={`mx-auto w-full max-w-[200px] rounded-xl border border-white/10 bg-[#111111] sm:max-w-[220px] md:max-w-[240px] lg:mx-0 lg:max-w-[260px] ${agentCardImageClassName}`}
+            >
               <Image
-                src={agent.cardImage.src}
-                alt={agent.cardImage.alt}
+                src={agentCardImageSrc(agent.slug)}
+                alt={agent.cardImage?.alt ?? agent.name}
                 fill
                 priority
                 className="object-contain object-top"

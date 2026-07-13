@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 import { formatEuropeanDate } from "@/lib/leanyou/dates";
-import type { LeonardoMeetingType, LeonardoWorkspace } from "@/types/leanyou";
+import type { LeonardoEvent, LeonardoMeetingType, LeonardoWorkspace } from "@/types/leanyou";
 
 const meetingTypes: Array<{ value: LeonardoMeetingType; label: string }> = [
   { value: "client_meeting", label: "Riunione cliente" },
@@ -13,11 +13,13 @@ const meetingTypes: Array<{ value: LeonardoMeetingType; label: string }> = [
 
 interface LeonardoWorkspaceMetadataFormProps {
   workspace: LeonardoWorkspace;
+  events?: LeonardoEvent[];
   onUpdated: (workspace: LeonardoWorkspace) => void;
 }
 
 export function LeonardoWorkspaceMetadataForm({
   workspace,
+  events = [],
   onUpdated,
 }: LeonardoWorkspaceMetadataFormProps) {
   const [open, setOpen] = useState(false);
@@ -34,6 +36,7 @@ export function LeonardoWorkspaceMetadataForm({
     secretary: workspace.secretary,
     notes: workspace.notes,
     tags: workspace.tags.join(", "),
+    linkedEventId: workspace.linkedEventId ?? "",
   });
 
   function updateField(field: keyof typeof form, value: string) {
@@ -63,6 +66,7 @@ export function LeonardoWorkspaceMetadataForm({
           .split(",")
           .map((tag) => tag.trim())
           .filter(Boolean),
+        linkedEventId: form.linkedEventId.trim() || null,
       }),
     });
 
@@ -151,6 +155,29 @@ export function LeonardoWorkspaceMetadataForm({
               ))}
             </select>
           </label>
+
+          {events.length > 0 ? (
+            <label>
+              <span className="text-xs font-semibold uppercase tracking-[0.1em] text-white/55">
+                Evento collegato
+              </span>
+              <select
+                value={form.linkedEventId}
+                onChange={(event) =>
+                  updateField("linkedEventId", event.target.value)
+                }
+                className="mt-2 w-full rounded-lg border border-white/15 bg-black px-4 py-3 text-sm outline-none focus:border-leanme-fuchsia"
+              >
+                <option value="">Nessun evento</option>
+                {events.map((event) => (
+                  <option key={event.id} value={event.id}>
+                    {event.cdc ? `${event.cdc} · ` : ""}
+                    {event.title}
+                  </option>
+                ))}
+              </select>
+            </label>
+          ) : null}
 
           <label className="md:col-span-2">
             <span className="text-xs font-semibold uppercase tracking-[0.1em] text-white/55">

@@ -8,7 +8,7 @@ import {
   processLeonardoWorkspace,
   transcribeAudioBuffer,
 } from "@/lib/leanyou/leonardo-processor";
-import { cleanFullTranscript } from "@/lib/leanyou/transcription-cleanup";
+import { cleanFullTranscript, transcriptValidationMessage } from "@/lib/leanyou/transcription-cleanup";
 import { tenantHasModule } from "@/lib/leanyou/auth";
 import {
   forbiddenResponse,
@@ -109,7 +109,26 @@ export async function POST(request: Request, context: RouteContext) {
       );
     }
 
+    const rawTranscript = transcript;
     transcript = cleanFullTranscript(transcript);
+
+    if (!transcript) {
+      const transcriptError =
+        transcriptValidationMessage(rawTranscript) ??
+        "La trascrizione non contiene testo utilizzabile dopo la pulizia.";
+      await updateWorkspaceStatus(session.tenantId, id, "failed", {
+        transcript: rawTranscript,
+        errorMessage: transcriptError,
+      });
+      await writeLeanYouAuditEvent({
+        action: "workspace_process_failed",
+        resourceType: "leonardo_workspace",
+        resourceId: workspace.id,
+        detail: transcriptError,
+        ...auditContextFromSession(session),
+      });
+      return NextResponse.json({ error: transcriptError }, { status: 400 });
+    }
 
     const workspaceContext = [
       `Titolo: ${workspace.title}`,

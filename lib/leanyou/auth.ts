@@ -6,6 +6,7 @@ import type {
   LeanYouUser,
 } from "@/types/leanyou";
 
+import { resolveLeonardoCapabilities } from "./capabilities";
 import { loadTenantsFile } from "./storage";
 
 export async function findTenantBySlug(
@@ -87,6 +88,7 @@ export function createSessionPayload(
     userEmail: user.email,
     userRole: user.role,
     modules: tenant.modules,
+    leonardoCapabilities: resolveLeonardoCapabilities(tenant),
   };
 }
 
@@ -96,3 +98,5 @@ export function tenantHasModule(
 ): boolean {
   return session.modules.includes(module);
 }
+
+export { tenantHasLeonardoCapability } from "./capabilities";
