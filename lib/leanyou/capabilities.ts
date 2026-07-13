@@ -12,28 +12,23 @@ export const LEONARDO_UPGRADE_EMAIL = "info@leanme.it";
 export const LEONARDO_UPGRADE_HINT =
   "contatta LeanMe per l'upload dei tuoi servizi";
 
-export function deriveLeonardoCapabilities(
-  modules: LeanYouModule[]
-): LeanYouLeonardoCapabilities {
-  const hasLeonardo = modules.includes("leonardo");
-  const hasEvents = modules.includes("events");
-
+function emptyLeonardoCapabilities(): LeanYouLeonardoCapabilities {
   return {
-    hub: hasLeonardo || hasEvents,
-    verbali: hasLeonardo,
-    eventi: hasEvents,
-    contatti: hasEvents,
+    hub: false,
+    verbali: false,
+    eventi: false,
+    contatti: false,
     finance: false,
-    lean_human: hasLeonardo || hasEvents,
+    lean_human: false,
     government: false,
-    hotel: hasEvents,
-    logistica: hasEvents,
+    hotel: false,
+    logistica: false,
     budget: false,
     comunicazioni: false,
-    ospiti: hasEvents,
-    docenti: hasEvents,
-    delegazioni: hasEvents,
-    registrazione: hasEvents,
+    ospiti: false,
+    docenti: false,
+    delegazioni: false,
+    registrazione: false,
     abstract: false,
     survey: false,
     connect: false,
@@ -49,6 +44,57 @@ export function deriveLeonardoCapabilities(
   };
 }
 
+/** Pilot: tenant LeanYou con almeno un modulo base → piattaforma completa aperta. */
+function fullLeonardoCapabilities(): LeanYouLeonardoCapabilities {
+  return {
+    hub: true,
+    verbali: true,
+    eventi: true,
+    contatti: true,
+    finance: true,
+    lean_human: true,
+    government: true,
+    hotel: true,
+    logistica: true,
+    budget: true,
+    comunicazioni: true,
+    ospiti: true,
+    docenti: true,
+    delegazioni: true,
+    registrazione: true,
+    abstract: true,
+    survey: true,
+    connect: true,
+    ecm: true,
+    stampati: true,
+    archivio_mail: true,
+    public_site: true,
+    participant_portal: true,
+    payments_paypal: true,
+    ai_writing: true,
+    ai_graphics: true,
+    ai_assistant: true,
+  };
+}
+
+function tenantHasLeanYouAccess(modules: LeanYouModule[]): boolean {
+  return (
+    modules.includes("leonardo") ||
+    modules.includes("events") ||
+    modules.includes("government")
+  );
+}
+
+export function deriveLeonardoCapabilities(
+  modules: LeanYouModule[]
+): LeanYouLeonardoCapabilities {
+  if (!tenantHasLeanYouAccess(modules)) {
+    return emptyLeonardoCapabilities();
+  }
+
+  return fullLeonardoCapabilities();
+}
+
 export function resolveLeonardoCapabilities(
   tenant: LeanYouTenant
 ): LeanYouLeonardoCapabilities {
@@ -62,9 +108,6 @@ export function resolveLeonardoCapabilities(
 export function getSessionLeonardoCapabilities(
   session: LeanYouSession
 ): LeanYouLeonardoCapabilities {
-  if (session.leonardoCapabilities) {
-    return session.leonardoCapabilities;
-  }
   return deriveLeonardoCapabilities(session.modules);
 }
 

@@ -6,7 +6,7 @@ import type {
   LeanYouUser,
 } from "@/types/leanyou";
 
-import { resolveLeonardoCapabilities } from "./capabilities";
+import { getSessionLeonardoCapabilities, resolveLeonardoCapabilities } from "./capabilities";
 import { loadTenantsFile } from "./storage";
 
 export async function findTenantBySlug(
@@ -96,7 +96,25 @@ export function tenantHasModule(
   session: LeanYouSession,
   module: LeanYouSession["modules"][number]
 ): boolean {
-  return session.modules.includes(module);
+  if (session.modules.includes(module)) {
+    return true;
+  }
+
+  const capabilities = getSessionLeonardoCapabilities(session);
+
+  if (module === "events") {
+    return capabilities.eventi || capabilities.contatti || capabilities.ospiti;
+  }
+
+  if (module === "government") {
+    return capabilities.government;
+  }
+
+  if (module === "leonardo") {
+    return capabilities.verbali || capabilities.hub;
+  }
+
+  return false;
 }
 
 export { tenantHasLeonardoCapability } from "./capabilities";

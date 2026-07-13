@@ -73,11 +73,11 @@ async function logout() {
 function isNavEnabled(session: LeanYouSession, item: LeanYouNavItem): boolean {
   const capabilities = getSessionLeonardoCapabilities(session);
 
-  if (item.module && !session.modules.includes(item.module)) {
-    return false;
+  if (item.capability) {
+    return capabilities[item.capability];
   }
 
-  if (item.capability && !capabilities[item.capability]) {
+  if (item.module && !session.modules.includes(item.module)) {
     return false;
   }
 
