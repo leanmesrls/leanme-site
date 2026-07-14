@@ -3,7 +3,10 @@
 import Link from "next/link";
 import { useMemo, useState } from "react";
 
+import { LEONARDO_LIST_NAME_CELL, LEONARDO_LIST_NAME_LINK, LEONARDO_PAGE_TITLE } from "@/components/leanyou/leonardo-ui";
+import { LeonardoListSortSelect } from "@/components/leanyou/LeonardoListSortSelect";
 import { formatEuropeanDate } from "@/lib/leanyou/dates";
+import { sortEvents, type ListSortMode } from "@/lib/leanyou/list-sort";
 import {
   leanyouLeonardoEventNewPath,
   leanyouLeonardoEventPath,
@@ -28,19 +31,21 @@ export function LeonardoEventList({
 }: LeonardoEventListProps) {
   const [events, setEvents] = useState(initialEvents);
   const [query, setQuery] = useState("");
+  const [sortMode, setSortMode] = useState<ListSortMode>("date_start");
 
   const filtered = useMemo(() => {
     const normalized = query.trim().toLowerCase();
-    if (!normalized) {
-      return events;
+    let rows = events;
+    if (normalized) {
+      rows = rows.filter(
+        (event) =>
+          event.title.toLowerCase().includes(normalized) ||
+          event.cdc.toLowerCase().includes(normalized) ||
+          event.venue.toLowerCase().includes(normalized)
+      );
     }
-    return events.filter(
-      (event) =>
-        event.title.toLowerCase().includes(normalized) ||
-        event.cdc.toLowerCase().includes(normalized) ||
-        event.venue.toLowerCase().includes(normalized)
-    );
-  }, [events, query]);
+    return sortEvents(rows, sortMode);
+  }, [events, query, sortMode]);
 
   async function handleDelete(id: string) {
     const response = await fetch(`/api/leanyou/events/${id}`, {
@@ -56,26 +61,35 @@ export function LeonardoEventList({
     <div className="space-y-4">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h2 className="text-lg font-bold tracking-[0.04em]">Eventi</h2>
+          <h2 className={LEONARDO_PAGE_TITLE}>Eventi</h2>
           <p className="mt-1 text-sm text-white/60">
             Gestione eventi, CDC, sedi e date. Import massivo in arrivo.
           </p>
         </div>
-        <Link
-          href={leanyouLeonardoEventNewPath(tenantSlug)}
-          className="inline-flex rounded-full bg-leanme-fuchsia px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.08em] text-white transition hover:bg-leanme-fuchsia-dark"
-        >
-          Nuovo evento
-        </Link>
+        <div className="flex flex-wrap items-center gap-2">
+          <Link
+            href={leanyouLeonardoEventNewPath(tenantSlug)}
+            className="inline-flex rounded-full bg-leanme-fuchsia px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.08em] text-white transition hover:bg-leanme-fuchsia-dark"
+          >
+            Nuovo evento
+          </Link>
+        </div>
       </div>
 
-      <input
-        type="search"
-        value={query}
-        onChange={(event) => setQuery(event.target.value)}
-        placeholder="Cerca per titolo, CDC, sede..."
-        className="w-full rounded-lg border border-white/15 bg-[#111111] px-4 py-3 text-sm outline-none focus:border-leanme-fuchsia"
-      />
+      <div className="grid gap-3 md:grid-cols-[1fr_minmax(180px,240px)]">
+        <input
+          type="search"
+          value={query}
+          onChange={(event) => setQuery(event.target.value)}
+          placeholder="Cerca per titolo, CDC, sede..."
+          className="w-full rounded-lg border border-white/15 bg-[#111111] px-4 py-3 text-sm outline-none focus:border-leanme-fuchsia"
+        />
+        <LeonardoListSortSelect
+          value={sortMode}
+          onChange={(value) => setSortMode(value as ListSortMode)}
+          includeEventDate
+        />
+      </div>
 
       {filtered.length === 0 ? (
         <p className="rounded-xl border border-white/10 bg-[#111111] p-6 text-sm text-white/60">
@@ -97,10 +111,11 @@ export function LeonardoEventList({
             <tbody>
               {filtered.map((event) => (
                 <tr key={event.id} className="border-t border-white/10 bg-[#111111]">
-                  <td className="px-4 py-3 font-medium">
+                  <td className={`px-4 py-3 ${LEONARDO_LIST_NAME_CELL}`}>
                     <Link
                       href={leanyouLeonardoEventPath(tenantSlug, event.id)}
-                      className="hover:text-leanme-fuchsia"
+                      title={event.title}
+                      className={LEONARDO_LIST_NAME_LINK}
                     >
                       {event.title}
                     </Link>

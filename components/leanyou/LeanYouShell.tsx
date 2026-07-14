@@ -13,7 +13,9 @@ import {
 } from "@/lib/leanyou/capabilities";
 import { LeanYouUpgradeHint } from "@/components/leanyou/LeanYouUpgradeHint";
 import {
+  leanyouLeonardoCestinoPath,
   leanyouLeonardoPath,
+  leanyouLeonardoProfiloPath,
   leanyouLoginPath,
   leanyouTenantBase,
 } from "@/lib/leanyou/paths";
@@ -27,10 +29,55 @@ interface LeanYouShellProps {
   children: React.ReactNode;
 }
 
-type NavEntry = LeanYouNavItem & { href: string; enabled: boolean };
+type NavEntry = Omit<LeanYouNavItem, "href" | "children"> & {
+  href: string;
+  enabled: boolean;
+  children?: NavEntry[];
+};
 
-function NavIcon({ icon }: { icon: LeanYouNavItem["icon"] }) {
-  const paths: Record<LeanYouNavItem["icon"], string> = {
+function resolveNavHref(
+  item: LeanYouNavItem,
+  tenantBase: string,
+  leonardoBase: string
+): string {
+  return item.segment ? `${tenantBase}/${item.segment}` : leonardoBase;
+}
+
+function mapNavEntry(
+  item: LeanYouNavItem,
+  tenantBase: string,
+  leonardoBase: string,
+  session: LeanYouSession
+): NavEntry {
+  const children = item.children?.map((child) =>
+    mapNavEntry(child, tenantBase, leonardoBase, session)
+  );
+  const href = resolveNavHref(item, tenantBase, leonardoBase);
+  const enabled = children?.length
+    ? children.some((child) => child.enabled)
+    : isNavEnabled(session, item);
+
+  return {
+    id: item.id,
+    label: item.label,
+    segment: item.segment,
+    module: item.module,
+    capability: item.capability,
+    icon: item.icon,
+    href,
+    enabled,
+    children,
+  };
+}
+
+function isNavActive(pathname: string, href: string, leonardoBase: string): boolean {
+  return href === leonardoBase
+    ? pathname === leonardoBase
+    : pathname.startsWith(href);
+}
+
+function NavIcon({ icon }: { icon: NonNullable<LeanYouNavItem["icon"]> }) {
+  const paths: Record<NonNullable<LeanYouNavItem["icon"]>, string> = {
     dashboard:
       "M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-5v-6H10v6H5a1 1 0 0 1-1-1v-9.5Z",
     leonardo:
@@ -65,6 +112,106 @@ function NavIcon({ icon }: { icon: LeanYouNavItem["icon"] }) {
   );
 }
 
+type FooterNavIcon = "trash" | "profile";
+
+function FooterNavIconGlyph({ icon }: { icon: FooterNavIcon }) {
+  const paths: Record<FooterNavIcon, string> = {
+    trash:
+      "M4 7h16M6 7V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2M9 11v6M15 11v6M10 7l1 12h2l1-12",
+    profile:
+      "M12 12a4 4 0 1 0-4-4 4 4 0 0 0 4 4Zm-7 8a7 7 0 0 1 14 0H5Z",
+  };
+
+  return (
+    <svg
+      aria-hidden
+      viewBox="0 0 24 24"
+      className="h-4 w-4 shrink-0"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.6"
+    >
+      <path d={paths[icon]} strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function FooterNavLink({
+  href,
+  label,
+  icon,
+  pathname,
+  onNavigate,
+}: {
+  href: string;
+  label: string;
+  icon: FooterNavIcon;
+  pathname: string;
+  onNavigate?: () => void;
+}) {
+  const active = pathname.startsWith(href);
+
+  return (
+    <Link
+      href={href}
+      onClick={onNavigate}
+      className={cn(
+        "flex min-h-10 items-center gap-3 rounded-lg px-3 py-2 text-sm transition",
+        active
+          ? "bg-leanme-fuchsia/15 text-white"
+          : "text-white/65 hover:bg-white/[0.04] hover:text-white"
+      )}
+    >
+      <FooterNavIconGlyph icon={icon} />
+      <span>{label}</span>
+    </Link>
+  );
+}
+
+function SidebarFooter({
+  tenantSlug,
+  pathname,
+  onNavigate,
+}: {
+  tenantSlug: string;
+  pathname: string;
+  onNavigate?: () => void;
+}) {
+  return (
+    <div className="shrink-0 space-y-1 border-t border-white/10 pt-4">
+      <FooterNavLink
+        href={leanyouLeonardoCestinoPath(tenantSlug)}
+        label="Cestino"
+        icon="trash"
+        pathname={pathname}
+        onNavigate={onNavigate}
+      />
+      <FooterNavLink
+        href={leanyouLeonardoProfiloPath(tenantSlug)}
+        label="Profilo"
+        icon="profile"
+        pathname={pathname}
+        onNavigate={onNavigate}
+      />
+    </div>
+  );
+}
+
+function LogoutButton({ className }: { className?: string }) {
+  return (
+    <button
+      type="button"
+      onClick={() => logout()}
+      className={cn(
+        "w-full rounded-lg border border-white/15 px-3 py-2.5 text-left text-sm text-white/70 transition hover:border-white/30 hover:text-white",
+        className
+      )}
+    >
+      Esci
+    </button>
+  );
+}
+
 async function logout() {
   await fetch("/api/leanyou/auth/logout", { method: "POST" });
   window.location.href = leanyouLoginPath();
@@ -84,6 +231,62 @@ function isNavEnabled(session: LeanYouSession, item: LeanYouNavItem): boolean {
   return true;
 }
 
+function NavLink({
+  item,
+  pathname,
+  leonardoBase,
+  onNavigate,
+  nested = false,
+}: {
+  item: NavEntry;
+  pathname: string;
+  leonardoBase: string;
+  onNavigate?: () => void;
+  nested?: boolean;
+}) {
+  const active = isNavActive(pathname, item.href, leonardoBase);
+
+  if (!item.enabled) {
+    return (
+      <a
+        href={leonardoUpgradeMailto(`LeanYou - Upgrade ${item.label}`)}
+        onClick={onNavigate}
+        className={cn(
+          "flex min-h-10 items-start gap-3 rounded-lg px-3 py-2 text-sm text-white/35 transition hover:bg-white/[0.03] hover:text-white/50",
+          nested && "ml-3 border-l border-white/10 pl-3"
+        )}
+        title={LEONARDO_UPGRADE_HINT}
+      >
+        <span className="min-w-0 flex-1">
+          <span className="block font-medium text-white/50">{item.label}</span>
+          <LeanYouUpgradeHint className="mt-1.5" iconSize={16} />
+        </span>
+      </a>
+    );
+  }
+
+  return (
+    <Link
+      href={item.href}
+      onClick={onNavigate}
+      className={cn(
+        "flex min-h-10 items-center gap-3 rounded-lg px-3 py-2 text-sm transition",
+        nested ? "ml-3 border-l border-white/10 pl-3 text-[13px]" : "min-h-11 py-2.5",
+        active
+          ? nested
+            ? "border-leanme-fuchsia/60 bg-leanme-fuchsia/10 text-white"
+            : "bg-leanme-fuchsia/15 text-white"
+          : "text-white/65 hover:bg-white/[0.04] hover:text-white"
+      )}
+    >
+      {!nested && item.icon ? (
+        <NavIcon icon={item.icon === "locked" ? "dashboard" : item.icon} />
+      ) : null}
+      <span>{item.label}</span>
+    </Link>
+  );
+}
+
 function LeonardoNav({
   navigation,
   pathname,
@@ -95,46 +298,96 @@ function LeonardoNav({
   leonardoBase: string;
   onNavigate?: () => void;
 }) {
+  const [collapsedGroups, setCollapsedGroups] = useState<Record<string, boolean>>(
+    {}
+  );
+
+  function isGroupCollapsed(item: NavEntry): boolean {
+    const groupActive = item.children?.some((child) =>
+      isNavActive(pathname, child.href, leonardoBase)
+    );
+    if (groupActive) {
+      return false;
+    }
+    return collapsedGroups[item.id] ?? true;
+  }
+
+  function toggleGroup(itemId: string) {
+    setCollapsedGroups((current) => {
+      const isCollapsed = current[itemId] ?? true;
+      return {
+        ...current,
+        [itemId]: !isCollapsed,
+      };
+    });
+  }
+
   return (
     <nav aria-label="Leonardo" className="space-y-1">
       {navigation.map((item) => {
-        const active =
-          item.href === leonardoBase
-            ? pathname === leonardoBase
-            : pathname.startsWith(item.href);
+        if (item.children?.length) {
+          const groupActive = item.children.some((child) =>
+            isNavActive(pathname, child.href, leonardoBase)
+          );
+          const collapsed = isGroupCollapsed(item);
 
-        if (!item.enabled) {
           return (
-            <a
-              key={item.id}
-              href={leonardoUpgradeMailto(`LeanYou - Upgrade ${item.label}`)}
-              onClick={onNavigate}
-              className="flex min-h-11 items-start gap-3 rounded-lg px-3 py-2.5 text-sm text-white/35 transition hover:bg-white/[0.03] hover:text-white/50"
-              title={LEONARDO_UPGRADE_HINT}
-            >
-              <span className="min-w-0 flex-1">
-                <span className="block font-medium text-white/50">{item.label}</span>
-                <LeanYouUpgradeHint className="mt-1.5" iconSize={16} />
-              </span>
-            </a>
+            <div key={item.id} className="space-y-0.5">
+              <button
+                type="button"
+                onClick={() => toggleGroup(item.id)}
+                aria-expanded={!collapsed}
+                className={cn(
+                  "flex min-h-10 w-full items-center gap-3 rounded-lg px-3 py-2 text-left text-sm font-medium transition hover:bg-white/[0.04]",
+                  groupActive ? "text-white" : "text-white/55"
+                )}
+              >
+                {item.icon ? (
+                  <NavIcon
+                    icon={item.icon === "locked" ? "dashboard" : item.icon}
+                  />
+                ) : null}
+                <span className="flex-1">{item.label}</span>
+                <svg
+                  aria-hidden
+                  viewBox="0 0 24 24"
+                  className={cn(
+                    "h-4 w-4 shrink-0 transition-transform",
+                    collapsed ? "" : "rotate-180"
+                  )}
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                >
+                  <path d="M6 9l6 6 6-6" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+              {!collapsed ? (
+                <div className="space-y-0.5">
+                  {item.children.map((child) => (
+                    <NavLink
+                      key={child.id}
+                      item={child}
+                      pathname={pathname}
+                      leonardoBase={leonardoBase}
+                      onNavigate={onNavigate}
+                      nested
+                    />
+                  ))}
+                </div>
+              ) : null}
+            </div>
           );
         }
 
         return (
-          <Link
+          <NavLink
             key={item.id}
-            href={item.href}
-            onClick={onNavigate}
-            className={cn(
-              "flex min-h-11 items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition",
-              active
-                ? "bg-leanme-fuchsia/15 text-white"
-                : "text-white/65 hover:bg-white/[0.04] hover:text-white"
-            )}
-          >
-            <NavIcon icon={item.icon === "locked" ? "dashboard" : item.icon} />
-            <span>{item.label}</span>
-          </Link>
+            item={item}
+            pathname={pathname}
+            leonardoBase={leonardoBase}
+            onNavigate={onNavigate}
+          />
         );
       })}
     </nav>
@@ -147,11 +400,9 @@ export function LeanYouShell({ session, children }: LeanYouShellProps) {
   const leonardoBase = leanyouLeonardoPath(session.tenantSlug);
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  const navigation = config.navigation.map((item) => ({
-    ...item,
-    href: item.segment ? `${tenantBase}/${item.segment}` : leonardoBase,
-    enabled: isNavEnabled(session, item),
-  }));
+  const navigation = config.navigation.map((item) =>
+    mapNavEntry(item, tenantBase, leonardoBase, session)
+  );
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
@@ -167,7 +418,7 @@ export function LeanYouShell({ session, children }: LeanYouShellProps) {
   return (
     <div className="min-h-[100dvh] bg-black text-white">
       <div className="mx-auto flex min-h-[100dvh] max-w-[1600px]">
-        <aside className="hidden w-72 shrink-0 border-r border-white/10 bg-[#0a0a0a] px-5 py-8 lg:block">
+        <aside className="hidden w-72 shrink-0 flex-col border-r border-white/10 bg-[#0a0a0a] px-5 py-8 lg:flex">
           <div className="border-b border-white/10 pb-6">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-leanme-fuchsia">
               LeanYou
@@ -178,25 +429,22 @@ export function LeanYouShell({ session, children }: LeanYouShellProps) {
             <p className="mt-1 text-xs text-white/55">{session.userName}</p>
           </div>
 
-          <p className="mt-6 text-[10px] font-semibold uppercase tracking-[0.16em] text-white/40">
-            Leonardo
-          </p>
+          <div className="flex min-h-0 flex-1 flex-col">
+            <p className="mt-6 text-[10px] font-semibold uppercase tracking-[0.16em] text-white/40">
+              Leonardo
+            </p>
 
-          <div className="mt-2">
-            <LeonardoNav
-              navigation={navigation}
-              pathname={pathname}
-              leonardoBase={leonardoBase}
-            />
+            <div className="mt-2 min-h-0 flex-1 overflow-y-auto">
+              <LeonardoNav
+                navigation={navigation}
+                pathname={pathname}
+                leonardoBase={leonardoBase}
+              />
+            </div>
+
+            <SidebarFooter tenantSlug={session.tenantSlug} pathname={pathname} />
+            <LogoutButton className="mt-3 shrink-0" />
           </div>
-
-          <button
-            type="button"
-            onClick={() => logout()}
-            className="mt-8 w-full rounded-lg border border-white/15 px-3 py-2.5 text-left text-sm text-white/70 transition hover:border-white/30 hover:text-white"
-          >
-            Esci
-          </button>
         </aside>
 
         <div className="flex min-w-0 flex-1 flex-col">
@@ -295,11 +543,11 @@ export function LeanYouShell({ session, children }: LeanYouShellProps) {
                 </svg>
               </button>
             </div>
-            <div className="flex-1 overflow-y-auto px-4 py-4">
+            <div className="flex min-h-0 flex-1 flex-col overflow-hidden px-4 py-4">
               <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-white/40">
                 Leonardo
               </p>
-              <div className="mt-2">
+              <div className="mt-2 min-h-0 flex-1 overflow-y-auto">
                 <LeonardoNav
                   navigation={navigation}
                   pathname={pathname}
@@ -307,15 +555,14 @@ export function LeanYouShell({ session, children }: LeanYouShellProps) {
                   onNavigate={() => setMobileOpen(false)}
                 />
               </div>
+              <SidebarFooter
+                tenantSlug={session.tenantSlug}
+                pathname={pathname}
+                onNavigate={() => setMobileOpen(false)}
+              />
             </div>
-            <div className="border-t border-white/10 p-4">
-              <button
-                type="button"
-                onClick={() => logout()}
-                className="w-full rounded-lg border border-white/15 px-3 py-3 text-left text-sm text-white/70"
-              >
-                Esci
-              </button>
+            <div className="shrink-0 border-t border-white/10 p-4">
+              <LogoutButton className="py-3" />
             </div>
           </div>
         </div>

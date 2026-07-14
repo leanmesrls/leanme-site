@@ -38,6 +38,14 @@ export function leanyouLeonardoEventiPath(tenantSlug: string): string {
   return `${leanyouLeonardoPath(tenantSlug)}/eventi`;
 }
 
+export function leanyouLeonardoCestinoPath(tenantSlug: string): string {
+  return `${leanyouLeonardoPath(tenantSlug)}/cestino`;
+}
+
+export function leanyouLeonardoProfiloPath(tenantSlug: string): string {
+  return `${leanyouLeonardoPath(tenantSlug)}/profilo`;
+}
+
 export function leanyouLeonardoEventNewPath(tenantSlug: string): string {
   return `${leanyouLeonardoEventiPath(tenantSlug)}/new`;
 }
@@ -51,6 +59,63 @@ export function leanyouLeonardoEventPath(
 
 export function leanyouLeonardoContattiPath(tenantSlug: string): string {
   return `${leanyouLeonardoPath(tenantSlug)}/contatti`;
+}
+
+export function leanyouLeonardoContactPath(
+  tenantSlug: string,
+  contactId: string
+): string {
+  return `${leanyouLeonardoContattiPath(tenantSlug)}/${contactId}`;
+}
+
+export function leanyouLeonardoSediPath(tenantSlug: string): string {
+  return `${leanyouLeonardoPath(tenantSlug)}/sedi`;
+}
+
+export function leanyouLeonardoFornitoriPath(tenantSlug: string): string {
+  return `${leanyouLeonardoPath(tenantSlug)}/fornitori`;
+}
+
+export function leanyouLeonardoSupplierPath(
+  tenantSlug: string,
+  supplierId: string
+): string {
+  return `${leanyouLeonardoFornitoriPath(tenantSlug)}/${supplierId}`;
+}
+
+/** Deep link rubrica fornitori — apre scheda in popup (`?fornitore=`). */
+export function leanyouLeonardoSupplierSheetPath(
+  tenantSlug: string,
+  supplierId: string
+): string {
+  return `${leanyouLeonardoFornitoriPath(tenantSlug)}?fornitore=${encodeURIComponent(supplierId)}`;
+}
+
+/** Deep link rubrica contatti — apre scheda in popup (`?contatto=`). */
+export function leanyouLeonardoContactSheetPath(
+  tenantSlug: string,
+  contactId: string
+): string {
+  return `${leanyouLeonardoContattiPath(tenantSlug)}?contatto=${encodeURIComponent(contactId)}`;
+}
+
+/** Deep link rubrica sedi — apre scheda in popup (`?sede=`). */
+export function leanyouLeonardoVenueSheetPath(
+  tenantSlug: string,
+  venueId: string
+): string {
+  return `${leanyouLeonardoSediPath(tenantSlug)}?sede=${encodeURIComponent(venueId)}`;
+}
+
+export function leanyouLeonardoClientiPath(tenantSlug: string): string {
+  return `${leanyouLeonardoPath(tenantSlug)}/clienti`;
+}
+
+export function leanyouLeonardoVenuePath(
+  tenantSlug: string,
+  venueId: string
+): string {
+  return `${leanyouLeonardoSediPath(tenantSlug)}/${venueId}`;
 }
 
 export function leanyouLeonardoFinancePath(tenantSlug: string): string {
