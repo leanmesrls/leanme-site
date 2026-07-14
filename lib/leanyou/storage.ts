@@ -55,7 +55,11 @@ export function getLeanYouPrompts(): {
 export async function loadTenantsFile(): Promise<LeanYouTenantsFile> {
   const envJson = process.env.LEANYOU_TENANTS_JSON?.trim();
   if (envJson) {
-    return parseTenantsJson(envJson);
+    try {
+      return parseTenantsJson(envJson);
+    } catch (error) {
+      console.error("[leanyou] LEANYOU_TENANTS_JSON non valido:", error);
+    }
   }
 
   const fallback = path.join(process.cwd(), "data/leanyou/tenants.example.json");

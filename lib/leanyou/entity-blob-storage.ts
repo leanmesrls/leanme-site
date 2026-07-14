@@ -11,16 +11,21 @@ function sleep(ms: number): Promise<void> {
 }
 
 async function readBlobJson<T>(pathname: string): Promise<T | null> {
-  const result = await get(pathname, {
-    access: BLOB_ACCESS,
-    useCache: false,
-  });
-  if (!result?.stream) {
+  try {
+    const result = await get(pathname, {
+      access: BLOB_ACCESS,
+      useCache: false,
+    });
+    if (!result?.stream) {
+      return null;
+    }
+
+    const raw = await new Response(result.stream).text();
+    return JSON.parse(raw) as T;
+  } catch (error) {
+    console.error(`[leanyou] Blob JSON non leggibile (${pathname}):`, error);
     return null;
   }
-
-  const raw = await new Response(result.stream).text();
-  return JSON.parse(raw) as T;
 }
 
 export function createEntityBlobStore(collectionRoot: string) {
