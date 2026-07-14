@@ -29,7 +29,7 @@ const tenantsInput = [
   },
   {
     id: "demo",
-    name: "Nome Azienda",
+    name: "Demo LeanYou",
     slug: "demo",
     profile: "showcase",
     modules: ["leonardo", "events", "government"],
