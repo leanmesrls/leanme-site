@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 
 import { LEONARDO_PANEL_TITLE } from "@/components/leanyou/leonardo-ui";
+import { LeonardoRevisionConflictDialog } from "@/components/leanyou/LeonardoRevisionConflictDialog";
 import { LeonardoDateTimeInput } from "@/components/leanyou/LeonardoDateTimeInput";
 import { LeonardoVenuePicker } from "@/components/leanyou/LeonardoVenuePicker";
 import {
@@ -10,6 +11,7 @@ import {
   normalizeRelatedEvents,
   RELATED_EVENT_KIND_LABELS,
 } from "@/lib/leanyou/related-events";
+import { isRevisionConflictPayload } from "@/lib/leanyou/revision-conflict";
 import type {
   LeonardoEvent,
   LeonardoRelatedEvent,
@@ -39,6 +41,10 @@ export function LeonardoEventRelatedEventsPanel({
   );
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
+  const [conflict, setConflict] = useState<{
+    updatedBy?: string;
+    updatedAt?: string;
+  } | null>(null);
 
   useEffect(() => {
     setRelatedEvents(normalizeRelatedEvents(event.relatedEvents));
@@ -99,8 +105,19 @@ export function LeonardoEventRelatedEventsPanel({
     const payload = (await response.json()) as {
       error?: string;
       event?: LeonardoEvent;
+      updatedBy?: string;
+      updatedAt?: string;
     };
     setSaving(false);
+
+    if (response.status === 409 && isRevisionConflictPayload(payload)) {
+      setConflict({
+        updatedBy: payload.updatedBy,
+        updatedAt: payload.updatedAt,
+      });
+      setMessage(null);
+      return;
+    }
 
     if (!response.ok || !payload.event) {
       setMessage(payload.error ?? "Salvataggio eventi correlati non riuscito.");
@@ -113,6 +130,14 @@ export function LeonardoEventRelatedEventsPanel({
   }
 
   return (
+    <>
+      <LeonardoRevisionConflictDialog
+        open={Boolean(conflict)}
+        updatedBy={conflict?.updatedBy}
+        updatedAt={conflict?.updatedAt}
+        onReload={() => window.location.reload()}
+        onDismiss={() => setConflict(null)}
+      />
     <section className="space-y-4 rounded-xl border border-white/10 bg-[#111111] p-6">
       <div>
         <h3 className={LEONARDO_PANEL_TITLE}>Eventi correlati</h3>
@@ -278,5 +303,6 @@ export function LeonardoEventRelatedEventsPanel({
 
       {message ? <p className="text-sm text-leanme-fuchsia">{message}</p> : null}
     </section>
+    </>
   );
 }
