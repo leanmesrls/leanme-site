@@ -15,6 +15,7 @@ import {
   listContacts,
   saveContact,
 } from "@/lib/leanyou/contacts";
+import { normalizeTagsList, parseTagsRaw } from "@/lib/leanyou/contact-tags";
 
 export async function GET() {
   try {
@@ -49,6 +50,7 @@ export async function POST(request: Request) {
       email?: string;
       phone?: string;
       organization?: string;
+      tags?: string | string[];
       notes?: string;
     };
 
@@ -74,6 +76,10 @@ export async function POST(request: Request) {
       }
     }
 
+    const tags = Array.isArray(body.tags)
+      ? normalizeTagsList(body.tags)
+      : parseTagsRaw(body.tags ?? "");
+
     const contact = createContact(session, {
       firstName: body.firstName,
       lastName: body.lastName,
@@ -82,6 +88,7 @@ export async function POST(request: Request) {
         ? [{ label: "Principale", number: body.phone.trim() }]
         : [],
       organization: body.organization ?? "",
+      tags,
       notes: body.notes ?? "",
     });
 

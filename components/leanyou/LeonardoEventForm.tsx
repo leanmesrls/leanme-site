@@ -7,19 +7,26 @@ import {
   LeonardoEventTaxonomyFields,
   type EventTaxonomyFormState,
 } from "@/components/leanyou/LeonardoEventTaxonomyFields";
+import { LeonardoVenuePicker } from "@/components/leanyou/LeonardoVenuePicker";
+import { LeonardoDateInput } from "@/components/leanyou/LeonardoDateInput";
+import { validateEventDateRange } from "@/lib/leanyou/dates";
 import { leanyouLeonardoEventPath } from "@/lib/leanyou/paths";
+import type { LeonardoVenue } from "@/types/leanyou";
 
 interface LeonardoEventFormProps {
   tenantSlug: string;
+  venues: LeonardoVenue[];
 }
 
-export function LeonardoEventForm({ tenantSlug }: LeonardoEventFormProps) {
+export function LeonardoEventForm({ tenantSlug, venues }: LeonardoEventFormProps) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [dateError, setDateError] = useState<string | null>(null);
   const [form, setForm] = useState({
     cdc: "",
     title: "",
+    venueId: null as string | null,
     venue: "",
     startDate: "",
     endDate: "",
@@ -36,6 +43,14 @@ export function LeonardoEventForm({ tenantSlug }: LeonardoEventFormProps) {
     event.preventDefault();
     setLoading(true);
     setError(null);
+
+    const validation = validateEventDateRange(form.startDate, form.endDate);
+    if (!validation.ok) {
+      setDateError(validation.message);
+      setLoading(false);
+      return;
+    }
+    setDateError(null);
 
     const response = await fetch("/api/leanyou/events", {
       method: "POST",
@@ -93,41 +108,52 @@ export function LeonardoEventForm({ tenantSlug }: LeonardoEventFormProps) {
         />
       </label>
 
-      <label className="block">
-        <span className="text-xs font-semibold uppercase tracking-[0.1em] text-white/55">
-          Sede
-        </span>
-        <input
-          value={form.venue}
-          onChange={(e) => setForm({ ...form, venue: e.target.value })}
-          className="mt-2 w-full rounded-lg border border-white/15 bg-black px-4 py-3 text-sm outline-none focus:border-leanme-fuchsia"
-        />
-      </label>
+      <LeonardoVenuePicker
+        tenantSlug={tenantSlug}
+        venues={venues}
+        venueId={form.venueId}
+        venueText={form.venue}
+        onChange={({ venueId, venue }) =>
+          setForm((current) => ({ ...current, venueId, venue }))
+        }
+      />
 
       <div className="grid gap-4 md:grid-cols-2">
         <label className="block">
           <span className="text-xs font-semibold uppercase tracking-[0.1em] text-white/55">
             Data inizio (gg/mm/aaaa)
           </span>
-          <input
-            placeholder="gg/mm/aaaa"
-            value={form.startDate}
-            onChange={(e) => setForm({ ...form, startDate: e.target.value })}
-            className="mt-2 w-full rounded-lg border border-white/15 bg-black px-4 py-3 text-sm outline-none focus:border-leanme-fuchsia"
-          />
+          <div className="mt-2">
+            <LeonardoDateInput
+              value={form.startDate}
+              onChange={(startDate) => {
+                const validation = validateEventDateRange(startDate, form.endDate);
+                setDateError(validation.ok ? null : validation.message);
+                setForm({ ...form, startDate });
+              }}
+              className="w-full rounded-lg border border-white/15 bg-black px-4 py-3 text-sm outline-none focus:border-leanme-fuchsia"
+            />
+          </div>
         </label>
         <label className="block">
           <span className="text-xs font-semibold uppercase tracking-[0.1em] text-white/55">
             Data fine (gg/mm/aaaa)
           </span>
-          <input
-            placeholder="gg/mm/aaaa"
-            value={form.endDate}
-            onChange={(e) => setForm({ ...form, endDate: e.target.value })}
-            className="mt-2 w-full rounded-lg border border-white/15 bg-black px-4 py-3 text-sm outline-none focus:border-leanme-fuchsia"
-          />
+          <div className="mt-2">
+            <LeonardoDateInput
+              value={form.endDate}
+              onChange={(endDate) => {
+                const validation = validateEventDateRange(form.startDate, endDate);
+                setDateError(validation.ok ? null : validation.message);
+                setForm({ ...form, endDate });
+              }}
+              className="w-full rounded-lg border border-white/15 bg-black px-4 py-3 text-sm outline-none focus:border-leanme-fuchsia"
+            />
+          </div>
         </label>
       </div>
+
+      {dateError ? <p className="text-sm text-red-300">{dateError}</p> : null}
 
       <label className="block">
         <span className="text-xs font-semibold uppercase tracking-[0.1em] text-white/55">

@@ -11,6 +11,8 @@ import {
 } from "@/lib/leanyou/server-auth";
 import type { LeanYouContact } from "@/types/leanyou";
 import { deleteContact, getContact, saveContact } from "@/lib/leanyou/contacts";
+import { sessionUserId } from "@/lib/leanyou/entity-lifecycle";
+import { normalizeTagsList, parseTagsRaw } from "@/lib/leanyou/contact-tags";
 
 interface RouteContext {
   params: Promise<{ id: string }>;
@@ -56,6 +58,8 @@ export async function PATCH(request: Request, context: RouteContext) {
 
     const body = (await request.json()) as Partial<LeanYouContact> & {
       phone?: string;
+      tags?: string | string[];
+      expectedRevision?: number;
     };
 
     const next: LeanYouContact = {
@@ -70,16 +74,28 @@ export async function PATCH(request: Request, context: RouteContext) {
         body.organization !== undefined
           ? body.organization.trim()
           : contact.organization,
+      tags: body.tags !== undefined
+        ? Array.isArray(body.tags)
+          ? normalizeTagsList(body.tags)
+          : parseTagsRaw(body.tags)
+        : contact.tags ?? [],
       notes: body.notes !== undefined ? body.notes.trim() : contact.notes,
-      updatedAt: new Date().toISOString(),
     };
+
+    if (body.fiscalCode !== undefined) {
+      const normalized = body.fiscalCode.trim().toUpperCase();
+      next.fiscalCode = normalized || undefined;
+    }
 
     if (body.phone?.trim()) {
       next.phones = [{ label: "Principale", number: body.phone.trim() }];
     }
 
-    await saveContact(next);
-    return NextResponse.json({ contact: next });
+    const saved = await saveContact(next, {
+      expectedRevision: body.expectedRevision,
+      userId: sessionUserId(session),
+    });
+    return NextResponse.json({ contact: saved });
   } catch (error) {
     return handleLeanYouRouteError(error, "Aggiornamento contatto non riuscito.");
   }
@@ -96,7 +112,7 @@ export async function DELETE(_request: Request, context: RouteContext) {
     }
 
     const { id } = await context.params;
-    await deleteContact(session.tenantId, id);
+    await deleteContact(session.tenantId, id, sessionUserId(session));
     return NextResponse.json({ ok: true });
   } catch (error) {
     return handleLeanYouRouteError(error, "Eliminazione contatto non riuscita.");

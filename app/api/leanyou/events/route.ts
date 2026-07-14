@@ -10,6 +10,7 @@ import {
   requireSession,
 } from "@/lib/leanyou/server-auth";
 import { createEvent, listEvents, saveEvent } from "@/lib/leanyou/events";
+import { resolveEventVenueFields } from "@/lib/leanyou/event-venue";
 import { normalizeMeetingDateInput } from "@/lib/leanyou/dates";
 import type {
   LeonardoEcmModality,
@@ -47,6 +48,7 @@ export async function POST(request: Request) {
       cdc?: string;
       title?: string;
       venue?: string;
+      venueId?: string | null;
       startDate?: string;
       endDate?: string;
       categoryId?: LeonardoEventCategoryId;
@@ -61,10 +63,16 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Titolo obbligatorio." }, { status: 400 });
     }
 
+    const venueFields = await resolveEventVenueFields(session.tenantId, {
+      venueId: body.venueId ?? null,
+      venue: body.venue ?? "",
+    });
+
     const event = createEvent(session, {
       cdc: body.cdc ?? "",
       title: body.title,
-      venue: body.venue ?? "",
+      venue: venueFields.venue,
+      venueId: venueFields.venueId,
       startDate: normalizeMeetingDateInput(body.startDate),
       endDate: normalizeMeetingDateInput(body.endDate || body.startDate),
       categoryId: body.categoryId,

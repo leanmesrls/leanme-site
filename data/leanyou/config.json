@@ -37,12 +37,43 @@
       "icon": "events"
     },
     {
-      "id": "contatti",
-      "label": "Rubrica contatti",
-      "segment": "leonardo/contatti",
-      "module": "events",
-      "capability": "contatti",
-      "icon": "contacts"
+      "id": "rubrica",
+      "label": "Rubrica",
+      "icon": "contacts",
+      "children": [
+        {
+          "id": "contatti",
+          "label": "Contatti",
+          "segment": "leonardo/contatti",
+          "module": "events",
+          "capability": "contatti",
+          "icon": "contacts"
+        },
+        {
+          "id": "sedi",
+          "label": "Sedi",
+          "segment": "leonardo/sedi",
+          "module": "events",
+          "capability": "eventi",
+          "icon": "events"
+        },
+        {
+          "id": "fornitori",
+          "label": "Fornitori",
+          "segment": "leonardo/fornitori",
+          "module": "events",
+          "capability": "fornitori",
+          "icon": "contacts"
+        },
+        {
+          "id": "clienti",
+          "label": "Clienti",
+          "segment": "leonardo/clienti",
+          "module": "events",
+          "capability": "clienti",
+          "icon": "contacts"
+        }
+      ]
     },
     {
       "id": "verbali",

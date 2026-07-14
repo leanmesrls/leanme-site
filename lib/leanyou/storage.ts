@@ -87,7 +87,7 @@ export async function ensureDataDirs(): Promise<void> {
   await mkdir(path.join(getDataRoot(), "workspaces"), {
     recursive: true,
   });
-  await mkdir(path.join(getDataRoot(), "audit"), {
+  await mkdir(path.join(getDataRoot(), "versions"), {
     recursive: true,
   });
 }

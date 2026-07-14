@@ -1,119 +1,75 @@
-import type {
-  LeanYouLeonardoCapabilities,
-  LeanYouModule,
-  LeanYouSession,
-  LeanYouTenant,
-} from "@/types/leanyou";
+import type { LeanYouSession, LeanYouTenant } from "@/types/leanyou";
 
-export type LeonardoCapabilityKey = keyof LeanYouLeonardoCapabilities;
+export {
+  emptyLeonardoCapabilities,
+  fullLeonardoCapabilities,
+  LEONARDO_UPGRADE_EMAIL,
+  LEONARDO_UPGRADE_HINT,
+  tenantHasLeanYouAccess,
+  type LeonardoCapabilityKey,
+} from "./capabilities-core";
 
-export const LEONARDO_UPGRADE_EMAIL = "info@leanme.it";
+export {
+  isShowcaseTenant,
+  listCapabilityPresets,
+  resolveCapabilityPresetForTenant,
+  resolveLeonardoCapabilities,
+  type LeanYouTenantProfile,
+} from "./tenant-capabilities";
 
-export const LEONARDO_UPGRADE_HINT =
-  "contatta LeanMe per l'upload dei tuoi servizi";
+import {
+  emptyLeonardoCapabilities,
+  type LeonardoCapabilityKey,
+} from "./capabilities-core";
+import {
+  isShowcaseTenant,
+  resolveCapabilityPresetForTenant,
+  resolveLeonardoCapabilities,
+} from "./tenant-capabilities";
 
-function emptyLeonardoCapabilities(): LeanYouLeonardoCapabilities {
+import { LEONARDO_UPGRADE_EMAIL } from "./capabilities-core";
+
+function tenantFromSession(session: LeanYouSession): LeanYouTenant {
+  const profile =
+    session.tenantProfile ??
+    (isShowcaseTenant({ slug: session.tenantSlug }) ? "showcase" : undefined);
+
   return {
-    hub: false,
-    verbali: false,
-    eventi: false,
-    contatti: false,
-    finance: false,
-    lean_human: false,
-    government: false,
-    hotel: false,
-    logistica: false,
-    budget: false,
-    comunicazioni: false,
-    ospiti: false,
-    docenti: false,
-    delegazioni: false,
-    registrazione: false,
-    abstract: false,
-    survey: false,
-    connect: false,
-    ecm: false,
-    stampati: false,
-    archivio_mail: false,
-    public_site: false,
-    participant_portal: false,
-    payments_paypal: false,
-    ai_writing: false,
-    ai_graphics: false,
-    ai_assistant: false,
+    id: session.tenantId,
+    name: session.tenantName,
+    slug: session.tenantSlug,
+    accessToken: "",
+    modules: session.modules,
+    profile,
+    capabilityPreset: resolveCapabilityPresetForTenant({
+      slug: session.tenantSlug,
+      capabilityPreset: session.capabilityPreset,
+    }),
+    leonardoCapabilities: session.leonardoCapabilitiesOverride,
+    users: [],
   };
-}
-
-/** Pilot: tenant LeanYou con almeno un modulo base → piattaforma completa aperta. */
-function fullLeonardoCapabilities(): LeanYouLeonardoCapabilities {
-  return {
-    hub: true,
-    verbali: true,
-    eventi: true,
-    contatti: true,
-    finance: true,
-    lean_human: true,
-    government: true,
-    hotel: true,
-    logistica: true,
-    budget: true,
-    comunicazioni: true,
-    ospiti: true,
-    docenti: true,
-    delegazioni: true,
-    registrazione: true,
-    abstract: true,
-    survey: true,
-    connect: true,
-    ecm: true,
-    stampati: true,
-    archivio_mail: true,
-    public_site: true,
-    participant_portal: true,
-    payments_paypal: true,
-    ai_writing: true,
-    ai_graphics: true,
-    ai_assistant: true,
-  };
-}
-
-function tenantHasLeanYouAccess(modules: LeanYouModule[]): boolean {
-  return (
-    modules.includes("leonardo") ||
-    modules.includes("events") ||
-    modules.includes("government")
-  );
-}
-
-export function deriveLeonardoCapabilities(
-  modules: LeanYouModule[]
-): LeanYouLeonardoCapabilities {
-  if (!tenantHasLeanYouAccess(modules)) {
-    return emptyLeonardoCapabilities();
-  }
-
-  return fullLeonardoCapabilities();
-}
-
-export function resolveLeonardoCapabilities(
-  tenant: LeanYouTenant
-): LeanYouLeonardoCapabilities {
-  const derived = deriveLeonardoCapabilities(tenant.modules);
-  if (tenant.leonardoCapabilities) {
-    return { ...derived, ...tenant.leonardoCapabilities };
-  }
-  return derived;
 }
 
 export function getSessionLeonardoCapabilities(
   session: LeanYouSession
-): LeanYouLeonardoCapabilities {
-  return deriveLeonardoCapabilities(session.modules);
+): NonNullable<LeanYouSession["leonardoCapabilities"]> {
+  const resolved = resolveLeonardoCapabilities(tenantFromSession(session));
+  const legacy = session.leonardoCapabilities;
+
+  if (!legacy) {
+    return resolved;
+  }
+
+  const merged = { ...resolved };
+  for (const key of Object.keys(emptyLeonardoCapabilities()) as LeonardoCapabilityKey[]) {
+    merged[key] = resolved[key] || legacy[key] === true;
+  }
+  return merged;
 }
 
 export function tenantHasLeonardoCapability(
   session: LeanYouSession,
-  capability: LeonardoCapabilityKey
+  capability: keyof NonNullable<LeanYouSession["leonardoCapabilities"]>
 ): boolean {
   return getSessionLeonardoCapabilities(session)[capability];
 }

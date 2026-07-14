@@ -1,12 +1,14 @@
+import { Suspense } from "react";
 import { notFound, redirect } from "next/navigation";
 
 import { LeanYouShell } from "@/components/leanyou/LeanYouShell";
-import { LeonardoContactList } from "@/components/leanyou/LeonardoContactList";
+import { LeonardoContactListPageClient } from "@/components/leanyou/LeonardoContactListPageClient";
 import {
   findTenantBySlug,
   tenantHasLeonardoCapability,
   tenantHasModule,
 } from "@/lib/leanyou/auth";
+import { getSessionLeonardoCapabilities } from "@/lib/leanyou/capabilities";
 import { listContacts } from "@/lib/leanyou/contacts";
 import { createPageMetadata } from "@/lib/metadata";
 import {
@@ -49,11 +51,18 @@ export default async function LeonardoContattiPage({ params }: PageProps) {
     redirect(leanyouLeonardoPath(tenantSlug));
   }
 
+  const capabilities = getSessionLeonardoCapabilities(session);
   const contacts = await listContacts(session.tenantId);
 
   return (
     <LeanYouShell session={session}>
-      <LeonardoContactList initialContacts={contacts} />
+      <Suspense fallback={<p className="text-sm text-white/50">Caricamento rubrica…</p>}>
+        <LeonardoContactListPageClient
+          tenantSlug={tenantSlug}
+          initialContacts={contacts}
+          clientiEnabled={capabilities.clienti}
+        />
+      </Suspense>
     </LeanYouShell>
   );
 }

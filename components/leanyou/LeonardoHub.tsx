@@ -4,6 +4,8 @@ import { LeanYouUpgradeHint } from "@/components/leanyou/LeanYouUpgradeHint";
 import {
   leanyouLeonardoContattiPath,
   leanyouLeonardoEventiPath,
+  leanyouLeonardoFornitoriPath,
+  leanyouLeonardoSediPath,
   leanyouLeonardoVerbaliPath,
 } from "@/lib/leanyou/paths";
 import type { LeonardoEvent, LeonardoWorkspace } from "@/types/leanyou";
@@ -13,6 +15,9 @@ interface LeonardoHubProps {
   workspaces: LeonardoWorkspace[];
   events: LeonardoEvent[];
   contactCount: number;
+  venueCount: number;
+  supplierCount: number;
+  fornitoriEnabled: boolean;
   verbaliEnabled: boolean;
   eventiEnabled: boolean;
 }
@@ -22,8 +27,11 @@ export function LeonardoHub({
   workspaces,
   events,
   contactCount,
+  venueCount,
+  supplierCount,
   verbaliEnabled,
   eventiEnabled,
+  fornitoriEnabled,
 }: LeonardoHubProps) {
   const completedVerbali = workspaces.filter(
     (workspace) => workspace.status === "completed"
@@ -41,9 +49,9 @@ export function LeonardoHub({
     {
       enabled: eventiEnabled,
       href: leanyouLeonardoContattiPath(tenantSlug),
-      title: "Rubrica contatti",
-      description: "Anagrafiche partecipanti, relatori, staff e fornitori.",
-      stat: `${contactCount} contatti`,
+      title: "Rubrica",
+      description: "Contatti, sedi, fornitori e clienti.",
+      stat: `${contactCount} contatti · ${venueCount} sedi · ${supplierCount} fornitori`,
     },
     {
       enabled: verbaliEnabled,
@@ -62,6 +70,26 @@ export function LeonardoHub({
           Piattaforma gestionale per eventi, anagrafiche e segreteria. Seleziona
           uno strumento dalla colonna sinistra o dalle schede sotto.
         </p>
+        {eventiEnabled ? (
+          <p className="mt-2 text-xs text-white/45">
+            Rubrica:{" "}
+            <Link href={leanyouLeonardoContattiPath(tenantSlug)} className="text-leanme-fuchsia hover:underline">
+              Contatti
+            </Link>
+            {" · "}
+            <Link href={leanyouLeonardoSediPath(tenantSlug)} className="text-leanme-fuchsia hover:underline">
+              Sedi
+            </Link>
+            {fornitoriEnabled ? (
+              <>
+                {" · "}
+                <Link href={leanyouLeonardoFornitoriPath(tenantSlug)} className="text-leanme-fuchsia hover:underline">
+                  Fornitori
+                </Link>
+              </>
+            ) : null}
+          </p>
+        ) : null}
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">

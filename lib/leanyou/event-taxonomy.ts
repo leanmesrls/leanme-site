@@ -5,6 +5,9 @@ import type {
   LeonardoEventCategoryId,
 } from "@/types/leanyou";
 
+import { normalizeHotelBlocks } from "./event-hotel";
+import { normalizeRelatedEvents } from "./related-events";
+
 export type EventTaxonomyConfig = typeof taxonomyData;
 
 const taxonomy = taxonomyData as EventTaxonomyConfig;
@@ -63,6 +66,9 @@ export function normalizeLeonardoEvent(event: LeonardoEvent): LeonardoEvent {
     healthAreaId: event.healthAreaId ?? null,
     ecmEnabled,
     ecmModality: event.ecmModality ?? null,
+    venueId: event.venueId ?? null,
+    hotelBlocks: normalizeHotelBlocks(event),
+    relatedEvents: normalizeRelatedEvents(event.relatedEvents),
     type: event.type ?? (ecmEnabled ? "ecm" : "base"),
   };
 }

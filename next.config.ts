@@ -12,6 +12,8 @@ const crossOriginIsolationHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  // Build locale (`npm run build`) usa `.next-prod` per non corrompere la cache dev.
+  distDir: process.env.LEANYOU_PROD_BUILD === "1" ? ".next-prod" : ".next",
   devIndicators: false,
   experimental: {
     middlewareClientMaxBodySize: "35mb",

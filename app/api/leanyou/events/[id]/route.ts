@@ -9,14 +9,17 @@ import {
   handleLeanYouRouteError,
   requireSession,
 } from "@/lib/leanyou/server-auth";
+import { sessionUserId } from "@/lib/leanyou/entity-lifecycle";
 import { normalizeMeetingDateInput } from "@/lib/leanyou/dates";
 import {
   isHealthFormationCategory,
   normalizeLeonardoEvent,
   validateEventTaxonomy,
 } from "@/lib/leanyou/event-taxonomy";
-import type { LeonardoEvent } from "@/types/leanyou";
+import type { LeonardoEvent, LeonardoEventHotelBlock } from "@/types/leanyou";
 import { deleteEvent, getEvent, saveEvent } from "@/lib/leanyou/events";
+import { resolveEventVenueFields } from "@/lib/leanyou/event-venue";
+import { normalizeHotelBlocks } from "@/lib/leanyou/event-hotel";
 
 interface RouteContext {
   params: Promise<{ id: string }>;
@@ -60,7 +63,10 @@ export async function PATCH(request: Request, context: RouteContext) {
       return NextResponse.json({ error: "Evento non trovato." }, { status: 404 });
     }
 
-    const body = (await request.json()) as Partial<LeonardoEvent>;
+    const body = (await request.json()) as Partial<LeonardoEvent> & {
+      hotelBlocks?: LeonardoEventHotelBlock[];
+      expectedRevision?: number;
+    };
     const categoryId = body.categoryId ?? event.categoryId;
     const healthAreaId =
       body.healthAreaId !== undefined ? body.healthAreaId : event.healthAreaId;
@@ -79,11 +85,17 @@ export async function PATCH(request: Request, context: RouteContext) {
       return NextResponse.json({ error: taxonomyError }, { status: 400 });
     }
 
+    const venueFields = await resolveEventVenueFields(session.tenantId, {
+      venueId: body.venueId !== undefined ? body.venueId : event.venueId ?? null,
+      venue: body.venue !== undefined ? body.venue : event.venue,
+    });
+
     const next = normalizeLeonardoEvent({
       ...event,
       cdc: body.cdc !== undefined ? body.cdc.trim() : event.cdc,
       title: body.title !== undefined ? body.title.trim() : event.title,
-      venue: body.venue !== undefined ? body.venue.trim() : event.venue,
+      venue: venueFields.venue,
+      venueId: venueFields.venueId,
       startDate:
         body.startDate !== undefined
           ? normalizeMeetingDateInput(body.startDate)
@@ -101,11 +113,21 @@ export async function PATCH(request: Request, context: RouteContext) {
           : null,
       status: body.status ?? event.status,
       notes: body.notes !== undefined ? body.notes.trim() : event.notes,
-      updatedAt: new Date().toISOString(),
+      hotelBlocks:
+        body.hotelBlocks !== undefined
+          ? normalizeHotelBlocks({ hotelBlocks: body.hotelBlocks })
+          : event.hotelBlocks,
+      relatedEvents:
+        body.relatedEvents !== undefined
+          ? body.relatedEvents
+          : event.relatedEvents,
     });
 
-    await saveEvent(next);
-    return NextResponse.json({ event: next });
+    const saved = await saveEvent(next, {
+      expectedRevision: body.expectedRevision,
+      userId: sessionUserId(session),
+    });
+    return NextResponse.json({ event: saved });
   } catch (error) {
     if (error instanceof Error && error.message === "INVALID_MEETING_DATE") {
       return NextResponse.json(
@@ -128,7 +150,7 @@ export async function DELETE(_request: Request, context: RouteContext) {
     }
 
     const { id } = await context.params;
-    await deleteEvent(session.tenantId, id);
+    await deleteEvent(session.tenantId, id, sessionUserId(session));
     return NextResponse.json({ ok: true });
   } catch (error) {
     return handleLeanYouRouteError(error, "Eliminazione evento non riuscita.");

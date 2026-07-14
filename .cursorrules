@@ -53,3 +53,13 @@ Never remove existing features without permission.
 Always generate maintainable code.
 
 If documentation conflicts with the prompt, ask before changing the architecture.
+
+## Dev server locale (LeanYou / localhost)
+
+- Dev locale: **http://localhost:3011** — avvia sempre con `npm run dev` (non `next dev` diretto).
+- `npm run dev` pulisce automaticamente `.next` se contiene cache di production build (evita pagina bianca / 500).
+- `npm run build` termina il dev sulla porta 3011 e scrive in `.next-prod` (non tocca la cache dev).
+- Dopo ogni `npm run build`, riavvia il dev con `npm run dev`.
+- Non lanciare `npx next build` a mano mentre il dev è attivo: usa sempre `npm run build`.
+- Se compare pagina bianca o 500 su localhost:3011: termina il dev, elimina `.next`, riavvia con `npm run dev`.
+- Su Windows usare `npm.cmd` nei comandi shell se necessario.

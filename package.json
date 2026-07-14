@@ -11,9 +11,10 @@
     "leanyou:access": "node scripts/generate-leanyou-access.mjs",
     "leanyou:vercel-env": "node scripts/print-leanyou-vercel-env.mjs",
     "leanyou:sync-vercel": "node scripts/sync-leanyou-vercel-env.mjs",
-    "prebuild": "npm run sync:partners && npm run copy:ffmpeg",
-    "dev": "next dev --turbopack",
-    "build": "next build",
+    "leanyou:import-templates": "node scripts/generate-leanyou-import-templates.mjs",
+    "prebuild": "npm run sync:partners && npm run copy:ffmpeg && npm run leanyou:import-templates",
+    "dev": "node scripts/run-dev.mjs",
+    "build": "node scripts/run-build.mjs",
     "start": "next start",
     "lint": "next lint"
   },
@@ -28,7 +29,8 @@
     "jose": "^6.2.3",
     "next": "^15.5.4",
     "react": "^19.1.1",
-    "react-dom": "^19.1.1"
+    "react-dom": "^19.1.1",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",

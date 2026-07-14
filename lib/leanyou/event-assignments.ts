@@ -4,27 +4,52 @@ import eventsConfig from "@/data/leanyou/events-config.json";
 import type {
   LeanYouContact,
   LeanYouSession,
+  LeonardoAssignmentHospitality,
   LeonardoEventContactAssignment,
   LeonardoEventRoleCategory,
+  LeonardoRelatedEventParticipation,
 } from "@/types/leanyou";
 
 import { getContact } from "./contacts";
 import { formatContactName } from "./contact-display";
 import {
-  deleteStoredAssignment,
+  assertRevisionMatch,
+  isEntityActive,
+  markEntityDeleted,
+  prepareEntityCreate,
+  prepareEntityUpdate,
+  sessionUserId,
+  withLifecycleDefaults,
+} from "./entity-lifecycle";
+import { getEvent } from "./events";
+import { normalizeAssignmentHospitality } from "./hospitality";
+import { normalizeRelatedParticipations } from "./related-events";
+import {
   getStoredAssignment,
   listStoredAssignments,
   saveStoredAssignment,
 } from "./event-assignment-storage";
+import { saveEntityVersionSnapshot } from "./version-storage";
 
 const roleCategories = eventsConfig.roleCategories as Array<{
   id: LeonardoEventRoleCategory;
   label: string;
 }>;
 
+function normalizeAssignment(
+  assignment: LeonardoEventContactAssignment
+): LeonardoEventContactAssignment {
+  return withLifecycleDefaults(
+    assignment
+  ) as LeonardoEventContactAssignment;
+}
+
 export function getEventRoleCategoryLabel(
   roleCategory: LeonardoEventRoleCategory
 ): string {
+  if (roleCategory === "staff") {
+    return "Staff interno";
+  }
   return (
     roleCategories.find((item) => item.id === roleCategory)?.label ?? roleCategory
   );
@@ -40,7 +65,11 @@ export async function listAssignmentsForEvent(
 ): Promise<LeonardoEventContactAssignment[]> {
   const assignments = await listStoredAssignments(tenantId);
   return assignments
-    .filter((assignment) => assignment.eventId === eventId)
+    .map((assignment) => normalizeAssignment(assignment))
+    .filter(
+      (assignment) =>
+        assignment.eventId === eventId && isEntityActive(assignment)
+    )
     .sort((a, b) => b.updatedAt.localeCompare(a.updatedAt));
 }
 
@@ -50,21 +79,53 @@ export async function listAssignmentsForContact(
 ): Promise<LeonardoEventContactAssignment[]> {
   const assignments = await listStoredAssignments(tenantId);
   return assignments
-    .filter((assignment) => assignment.contactId === contactId)
+    .map((assignment) => normalizeAssignment(assignment))
+    .filter(
+      (assignment) =>
+        assignment.contactId === contactId && isEntityActive(assignment)
+    )
     .sort((a, b) => b.updatedAt.localeCompare(a.updatedAt));
 }
 
 export async function getAssignment(
   tenantId: string,
-  assignmentId: string
+  assignmentId: string,
+  options?: { includeDeleted?: boolean }
 ): Promise<LeonardoEventContactAssignment | null> {
-  return getStoredAssignment(tenantId, assignmentId);
+  const assignment = await getStoredAssignment(tenantId, assignmentId);
+  if (!assignment) {
+    return null;
+  }
+  const normalized = normalizeAssignment(assignment);
+  if (!options?.includeDeleted && !isEntityActive(normalized)) {
+    return null;
+  }
+  return normalized;
 }
 
 export function isValidRoleCategory(
   value: string
 ): value is LeonardoEventRoleCategory {
+  if (value === "staff") {
+    return true;
+  }
   return roleCategories.some((item) => item.id === value);
+}
+
+async function persistAssignment(
+  assignment: LeonardoEventContactAssignment,
+  previous: LeonardoEventContactAssignment | null
+): Promise<void> {
+  if (previous) {
+    await saveEntityVersionSnapshot(
+      assignment.tenantId,
+      "assignment",
+      assignment.id,
+      previous.revision ?? 1,
+      previous
+    );
+  }
+  await saveStoredAssignment(assignment);
 }
 
 export async function createEventContactAssignment(
@@ -74,6 +135,7 @@ export async function createEventContactAssignment(
     contactId: string;
     roleCategory: LeonardoEventRoleCategory;
     notes?: string;
+    hospitality?: LeonardoAssignmentHospitality;
   }
 ): Promise<LeonardoEventContactAssignment> {
   const contact = await getContact(session.tenantId, input.contactId);
@@ -92,26 +154,117 @@ export async function createEventContactAssignment(
   }
 
   const now = new Date().toISOString();
-  const assignment: LeonardoEventContactAssignment = {
+  const userId = sessionUserId(session);
+  const draft: LeonardoEventContactAssignment = {
     id: randomUUID(),
     tenantId: session.tenantId,
     eventId: input.eventId,
     contactId: input.contactId,
     roleCategory: input.roleCategory,
     notes: input.notes?.trim() ?? "",
+    hospitality: normalizeAssignmentHospitality(input.hospitality),
+    relatedParticipations: [],
     createdAt: now,
     updatedAt: now,
   };
 
-  await saveStoredAssignment(assignment);
+  const assignment = prepareEntityCreate(
+    normalizeAssignment(draft),
+    userId
+  );
+  await persistAssignment(assignment, null);
   return assignment;
 }
 
 export async function deleteEventContactAssignment(
   tenantId: string,
-  assignmentId: string
+  assignmentId: string,
+  userId: string
 ): Promise<void> {
-  await deleteStoredAssignment(tenantId, assignmentId);
+  const assignment = await getAssignment(tenantId, assignmentId, {
+    includeDeleted: true,
+  });
+  if (!assignment) {
+    return;
+  }
+  const deleted = markEntityDeleted(assignment, userId);
+  await persistAssignment(deleted, assignment);
+}
+
+export async function updateEventContactAssignment(
+  tenantId: string,
+  assignmentId: string,
+  input: {
+    notes?: string;
+    hospitality?: LeonardoAssignmentHospitality;
+    relatedParticipations?: LeonardoRelatedEventParticipation[];
+    expectedRevision?: number;
+    userId?: string;
+  }
+): Promise<LeonardoEventContactAssignment> {
+  const assignment = await getAssignment(tenantId, assignmentId);
+  if (!assignment) {
+    throw new Error("ASSIGNMENT_NOT_FOUND");
+  }
+
+  assertRevisionMatch(assignment, input.expectedRevision);
+
+  const event = await getEvent(tenantId, assignment.eventId);
+  const relatedEvents = event?.relatedEvents ?? [];
+
+  const merged: LeonardoEventContactAssignment = {
+    ...assignment,
+    notes: input.notes !== undefined ? input.notes.trim() : assignment.notes,
+    hospitality:
+      input.hospitality !== undefined
+        ? normalizeAssignmentHospitality(input.hospitality)
+        : normalizeAssignmentHospitality(assignment.hospitality),
+    relatedParticipations:
+      input.relatedParticipations !== undefined
+        ? normalizeRelatedParticipations(
+            relatedEvents,
+            input.relatedParticipations
+          )
+        : normalizeRelatedParticipations(
+            relatedEvents,
+            assignment.relatedParticipations
+          ),
+  };
+
+  const userId = input.userId ?? assignment.updatedBy ?? "system";
+  const next = prepareEntityUpdate(merged, userId);
+  const updated: LeonardoEventContactAssignment = {
+    ...merged,
+    revision: next.revision,
+    updatedAt: next.updatedAt!,
+    updatedBy: next.updatedBy,
+  };
+
+  await persistAssignment(updated, assignment);
+  return updated;
+}
+
+export type ContactAssignmentWithEvent = LeonardoEventContactAssignment & {
+  eventTitle: string;
+  roleLabel: string;
+};
+
+export async function listAssignmentsForContactWithEvents(
+  tenantId: string,
+  contactId: string
+): Promise<ContactAssignmentWithEvent[]> {
+  const assignments = await listAssignmentsForContact(tenantId, contactId);
+  const enriched = await Promise.all(
+    assignments.map(async (assignment) => {
+      const event = await getEvent(tenantId, assignment.eventId);
+      return {
+        ...assignment,
+        eventTitle: event?.title ?? "Evento",
+        roleLabel: getEventRoleCategoryLabel(assignment.roleCategory),
+      };
+    })
+  );
+  return enriched;
 }
 
 export type EventAssignmentWithContact = LeonardoEventContactAssignment & {

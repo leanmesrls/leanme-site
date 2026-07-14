@@ -11,43 +11,140 @@ import type {
 
 import { normalizeMeetingDateInput } from "./dates";
 import {
+  assertRevisionMatch,
+  isEntityActive,
+  markEntityDeleted,
+  markEntityRestored,
+  prepareEntityCreate,
+  prepareEntityUpdate,
+  sessionUserId,
+  withLifecycleDefaults,
+} from "./entity-lifecycle";
+import {
   isHealthFormationCategory,
   normalizeLeonardoEvent,
   validateEventTaxonomy,
 } from "./event-taxonomy";
 import {
-  deleteStoredEvent,
   getStoredEvent,
   listStoredEvents,
   saveStoredEvent,
 } from "./event-storage";
+import { saveEntityVersionSnapshot } from "./version-storage";
+
+function normalizeStoredEvent(event: LeonardoEvent): LeonardoEvent {
+  return normalizeLeonardoEvent(withLifecycleDefaults(event) as LeonardoEvent);
+}
 
 export async function listEvents(tenantId: string): Promise<LeonardoEvent[]> {
   const events = await listStoredEvents(tenantId);
   return events
-    .map((event) => normalizeLeonardoEvent(event))
+    .map((event) => normalizeStoredEvent(event))
+    .filter(isEntityActive)
     .sort(
       (a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
     );
 }
 
-export async function getEvent(
-  tenantId: string,
-  eventId: string
-): Promise<LeonardoEvent | null> {
-  const event = await getStoredEvent(tenantId, eventId);
-  return event ? normalizeLeonardoEvent(event) : null;
+export async function listDeletedEvents(
+  tenantId: string
+): Promise<LeonardoEvent[]> {
+  const events = await listStoredEvents(tenantId);
+  return events
+    .map((event) => normalizeStoredEvent(event))
+    .filter((event) => !isEntityActive(event))
+    .sort((a, b) => (b.deletedAt ?? "").localeCompare(a.deletedAt ?? ""));
 }
 
-export async function saveEvent(event: LeonardoEvent): Promise<void> {
+export async function getEvent(
+  tenantId: string,
+  eventId: string,
+  options?: { includeDeleted?: boolean }
+): Promise<LeonardoEvent | null> {
+  const event = await getStoredEvent(tenantId, eventId);
+  if (!event) {
+    return null;
+  }
+  const normalized = normalizeStoredEvent(event);
+  if (!options?.includeDeleted && !isEntityActive(normalized)) {
+    return null;
+  }
+  return normalized;
+}
+
+async function persistEvent(
+  event: LeonardoEvent,
+  previous: LeonardoEvent | null
+): Promise<void> {
+  if (previous) {
+    await saveEntityVersionSnapshot(
+      event.tenantId,
+      "event",
+      event.id,
+      previous.revision ?? 1,
+      previous
+    );
+  }
   await saveStoredEvent(event);
+}
+
+export async function saveEvent(
+  event: LeonardoEvent,
+  options?: {
+    expectedRevision?: number;
+    userId?: string;
+    previous?: LeonardoEvent | null;
+  }
+): Promise<LeonardoEvent> {
+  const normalized = normalizeStoredEvent(event);
+  const previous =
+    options?.previous ??
+    (await getStoredEvent(normalized.tenantId, normalized.id));
+
+  if (previous) {
+    const prevNorm = normalizeStoredEvent(previous);
+    assertRevisionMatch(prevNorm, options?.expectedRevision);
+    const userId = options?.userId ?? normalized.updatedBy ?? "system";
+    const next = prepareEntityUpdate(prevNorm, userId);
+    const merged = normalizeStoredEvent({
+      ...normalized,
+      revision: next.revision,
+      updatedAt: next.updatedAt,
+      updatedBy: next.updatedBy,
+    });
+    await persistEvent(merged, prevNorm);
+    return merged;
+  }
+
+  await saveStoredEvent(normalized);
+  return normalized;
 }
 
 export async function deleteEvent(
   tenantId: string,
-  eventId: string
+  eventId: string,
+  userId: string
 ): Promise<void> {
-  await deleteStoredEvent(tenantId, eventId);
+  const event = await getEvent(tenantId, eventId, { includeDeleted: true });
+  if (!event) {
+    return;
+  }
+  const deleted = markEntityDeleted(event, userId);
+  await persistEvent(deleted, event);
+}
+
+export async function restoreEvent(
+  tenantId: string,
+  eventId: string,
+  userId: string
+): Promise<LeonardoEvent | null> {
+  const event = await getEvent(tenantId, eventId, { includeDeleted: true });
+  if (!event || isEntityActive(event)) {
+    return null;
+  }
+  const restored = markEntityRestored(event, userId);
+  await persistEvent(restored, event);
+  return restored;
 }
 
 export function createEvent(
@@ -56,6 +153,7 @@ export function createEvent(
     cdc: string;
     title: string;
     venue: string;
+    venueId?: string | null;
     startDate: string;
     endDate: string;
     categoryId?: LeonardoEventCategoryId;
@@ -68,6 +166,7 @@ export function createEvent(
   }
 ): LeonardoEvent {
   const now = new Date().toISOString();
+  const userId = sessionUserId(session);
   const startDate = normalizeMeetingDateInput(input.startDate);
   const endDate = normalizeMeetingDateInput(input.endDate || input.startDate);
   const categoryId =
@@ -90,13 +189,14 @@ export function createEvent(
     input.ecmEnabled ??
     (isHealthFormationCategory(categoryId) ? null : false);
 
-  return normalizeLeonardoEvent({
+  const draft = normalizeLeonardoEvent({
     id: randomUUID(),
     tenantId: session.tenantId,
     createdBy: session.userId,
     cdc: input.cdc.trim(),
     title: input.title.trim(),
     venue: input.venue.trim(),
+    venueId: input.venueId ?? null,
     startDate,
     endDate,
     categoryId,
@@ -111,6 +211,8 @@ export function createEvent(
     createdAt: now,
     updatedAt: now,
   });
+
+  return prepareEntityCreate(withLifecycleDefaults(draft) as LeonardoEvent, userId);
 }
 
 export function getEventDashboardStats(events: LeonardoEvent[]) {

@@ -78,3 +78,19 @@ export async function findContactByEmail(
     ) ?? null
   );
 }
+
+export async function findContactByFiscalCode(
+  tenantId: string,
+  fiscalCode: string
+): Promise<LeanYouContact | null> {
+  const normalized = fiscalCode.trim().toUpperCase();
+  if (!normalized) {
+    return null;
+  }
+  const contacts = await listStoredContacts(tenantId);
+  return (
+    contacts.find(
+      (contact) => (contact.fiscalCode ?? "").trim().toUpperCase() === normalized
+    ) ?? null
+  );
+}

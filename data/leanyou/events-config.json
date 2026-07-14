@@ -6,6 +6,7 @@
     { "value": "archived", "label": "Archiviato" }
   ],
   "roleCategories": [
+    { "id": "partecipante", "label": "Partecipante" },
     { "id": "ospite", "label": "Ospite" },
     { "id": "docente", "label": "Docente" },
     { "id": "relatore", "label": "Relatore" },
@@ -14,7 +15,8 @@
     { "id": "delegazione", "label": "Delegazione" },
     { "id": "sponsor", "label": "Sponsor" },
     { "id": "patrocinio", "label": "Patrocinio" },
-    { "id": "staff", "label": "Staff" }
+    { "id": "staff_interno", "label": "Staff interno" },
+    { "id": "staff_esterno", "label": "Staff esterno" }
   ],
   "graphicCategories": [
     { "id": "programma", "label": "Programma" },

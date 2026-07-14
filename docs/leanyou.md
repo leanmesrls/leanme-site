@@ -34,6 +34,20 @@ npm run leanyou:access
    - **`.leanyou-data/utenze-attive.csv`** — include anche Token e URL diretto
 5. Avvia il sito e accedi da `/leanyou/login`
 
+## Import massivo (Excel)
+
+Modelli scaricabili (generati a build):
+
+| Rubrica | Modello Excel | API import |
+|---------|---------------|------------|
+| Contatti | `/assets/leanyou/import/leanyou-rubrica-contatti.xlsx` | `POST /api/leanyou/contacts/import` |
+| Sedi | `/assets/leanyou/import/leanyou-rubrica-sedi.xlsx` | `POST /api/leanyou/venues/import` |
+
+- Foglio **Istruzioni** + foglio **Dati** (riga 1 = intestazioni).
+- Contatti obbligatori: **Nome**, **Cognome**. Email duplicata → riga saltata.
+- Sedi obbligatorie: **Nome sede**, **Indirizzo sede**, **Città**, **Provincia sede**.
+- Rigenera modelli: `npm run leanyou:import-templates`
+
 ## Deploy Vercel (demo.leanme.it)
 
 Su Vercel il file `.leanyou-data/tenants.json` **non esiste**. Senza env vars, login e token **non funzionano**.
@@ -145,6 +159,8 @@ Dati runtime in `.leanyou-data/` (gitignored):
 - `access-registry.md` — registro credenziali generate
 
 > **Produzione:** tenant via `LEANYOU_TENANTS_JSON`. Workspace via **Vercel Blob** (`BLOB_READ_WRITE_TOKEN`, path `leanyou/workspaces/...`). Senza Blob: fallback `/tmp` (effimero). Audit solo su Vercel Logs.
+
+**Resilienza dati (concorrenza, versioning, backup, cestino 30 gg):** vedi `docs/leanyou-data-resilience.md`.
 
 ## Prompt Leonardo
 

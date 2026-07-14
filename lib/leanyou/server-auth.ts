@@ -1,4 +1,6 @@
 import { getSession } from "@/lib/leanyou/session";
+import { isRevisionConflictError } from "@/lib/leanyou/entity-lifecycle";
+import { revisionConflictResponse } from "@/lib/leanyou/revision-conflict";
 import type { LeanYouSession } from "@/types/leanyou";
 
 export async function requireSession(): Promise<LeanYouSession> {
@@ -27,6 +29,10 @@ export function handleLeanYouRouteError(
 ) {
   if (isUnauthorizedError(error)) {
     return unauthorizedResponse();
+  }
+
+  if (isRevisionConflictError(error)) {
+    return revisionConflictResponse(error);
   }
 
   console.error(

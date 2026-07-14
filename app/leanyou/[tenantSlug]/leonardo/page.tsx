@@ -9,9 +9,11 @@ import {
 import { getSessionLeonardoCapabilities } from "@/lib/leanyou/capabilities";
 import { listContacts } from "@/lib/leanyou/contacts";
 import { listEvents } from "@/lib/leanyou/events";
+import { listSuppliers } from "@/lib/leanyou/suppliers";
 import { createPageMetadata } from "@/lib/metadata";
 import { leanyouLeonardoPath, leanyouLoginPath } from "@/lib/leanyou/paths";
 import { getSession } from "@/lib/leanyou/session";
+import { listVenues } from "@/lib/leanyou/venues";
 import { listWorkspaces } from "@/lib/leanyou/workspaces";
 
 interface PageProps {
@@ -46,7 +48,7 @@ export default async function LeonardoHubPage({ params }: PageProps) {
     redirect(leanyouLoginPath());
   }
 
-  const [workspaces, events, contacts] = await Promise.all([
+  const [workspaces, events, contacts, venues, suppliers] = await Promise.all([
     tenantHasLeonardoCapability(session, "verbali")
       ? listWorkspaces(session.tenantId)
       : Promise.resolve([]),
@@ -55,6 +57,12 @@ export default async function LeonardoHubPage({ params }: PageProps) {
       : Promise.resolve([]),
     tenantHasLeonardoCapability(session, "contatti")
       ? listContacts(session.tenantId)
+      : Promise.resolve([]),
+    tenantHasLeonardoCapability(session, "eventi")
+      ? listVenues(session.tenantId)
+      : Promise.resolve([]),
+    tenantHasLeonardoCapability(session, "fornitori")
+      ? listSuppliers(session.tenantId)
       : Promise.resolve([]),
   ]);
 
@@ -65,8 +73,11 @@ export default async function LeonardoHubPage({ params }: PageProps) {
         workspaces={workspaces}
         events={events}
         contactCount={contacts.length}
+        venueCount={venues.length}
+        supplierCount={suppliers.length}
         verbaliEnabled={capabilities.verbali}
         eventiEnabled={capabilities.eventi}
+        fornitoriEnabled={capabilities.fornitori}
       />
     </LeanYouShell>
   );

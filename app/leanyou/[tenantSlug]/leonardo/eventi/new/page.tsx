@@ -14,6 +14,7 @@ import {
   leanyouLoginPath,
 } from "@/lib/leanyou/paths";
 import { getSession } from "@/lib/leanyou/session";
+import { listVenues } from "@/lib/leanyou/venues";
 
 interface PageProps {
   params: Promise<{ tenantSlug: string }>;
@@ -48,9 +49,11 @@ export default async function LeonardoEventiNewPage({ params }: PageProps) {
     redirect(leanyouLeonardoPath(tenantSlug));
   }
 
+  const venues = await listVenues(session.tenantId);
+
   return (
     <LeanYouShell session={session}>
-      <LeonardoEventForm tenantSlug={tenantSlug} />
+      <LeonardoEventForm tenantSlug={tenantSlug} venues={venues} />
     </LeanYouShell>
   );
 }

@@ -3,12 +3,14 @@
 import Link from "next/link";
 import { useMemo, useState } from "react";
 
+import { LeonardoListSortSelect } from "@/components/leanyou/LeonardoListSortSelect";
 import {
   collectFilterLabels,
   getWorkspaceKeywords,
   getWorkspaceSearchLabels,
   workspaceMatchesFilters,
 } from "@/lib/leanyou/workspace-search";
+import { sortWorkspaces, type ListSortMode } from "@/lib/leanyou/list-sort";
 import {
   leanyouLeonardoNewPath,
   leanyouLeonardoWorkspacePath,
@@ -36,6 +38,7 @@ export function LeonardoWorkspaceList({
   const [workspaces, setWorkspaces] = useState(initialWorkspaces);
   const [query, setQuery] = useState("");
   const [tagFilter, setTagFilter] = useState("");
+  const [sortMode, setSortMode] = useState<ListSortMode>("created_at");
   const [pendingDeleteId, setPendingDeleteId] = useState<string | null>(null);
 
   const filterLabels = useMemo(
@@ -43,13 +46,12 @@ export function LeonardoWorkspaceList({
     [workspaces]
   );
 
-  const filteredWorkspaces = useMemo(
-    () =>
-      workspaces.filter((workspace) =>
-        workspaceMatchesFilters(workspace, query, tagFilter)
-      ),
-    [workspaces, query, tagFilter]
-  );
+  const filteredWorkspaces = useMemo(() => {
+    const rows = workspaces.filter((workspace) =>
+      workspaceMatchesFilters(workspace, query, tagFilter)
+    );
+    return sortWorkspaces(rows, sortMode);
+  }, [workspaces, query, tagFilter, sortMode]);
 
   async function handleDelete(id: string) {
     const response = await fetch(`/api/leanyou/workspaces/${id}`, {
@@ -80,8 +82,8 @@ export function LeonardoWorkspaceList({
         </Link>
       </div>
 
-      <div className="grid gap-3 rounded-xl border border-white/10 bg-[#111111] p-4 md:grid-cols-[minmax(0,1.4fr)_minmax(0,0.8fr)]">
-        <label className="block">
+      <div className="grid gap-3 rounded-xl border border-white/10 bg-[#111111] p-4 md:grid-cols-2 lg:grid-cols-3">
+        <label className="block min-w-0 md:col-span-2 lg:col-span-1">
           <span className="text-xs font-semibold uppercase tracking-[0.1em] text-white/55">
             Cerca
           </span>
@@ -90,17 +92,17 @@ export function LeonardoWorkspaceList({
             value={query}
             onChange={(event) => setQuery(event.target.value)}
             placeholder="Titolo, cliente, keyword, tag..."
-            className="mt-2 w-full rounded-lg border border-white/15 bg-black px-4 py-3 text-sm outline-none focus:border-leanme-fuchsia"
+            className="mt-2 w-full min-w-0 rounded-lg border border-white/15 bg-black px-4 py-3 text-sm outline-none focus:border-leanme-fuchsia"
           />
         </label>
-        <label className="block">
+        <label className="block min-w-0">
           <span className="text-xs font-semibold uppercase tracking-[0.1em] text-white/55">
             Tag / keyword
           </span>
           <select
             value={tagFilter}
             onChange={(event) => setTagFilter(event.target.value)}
-            className="mt-2 w-full rounded-lg border border-white/15 bg-black px-4 py-3 text-sm outline-none focus:border-leanme-fuchsia"
+            className="mt-2 w-full min-w-0 rounded-lg border border-white/15 bg-black px-4 py-3 text-sm outline-none focus:border-leanme-fuchsia"
           >
             <option value="">Tutti</option>
             {filterLabels.map((label) => (
@@ -110,6 +112,12 @@ export function LeonardoWorkspaceList({
             ))}
           </select>
         </label>
+        <LeonardoListSortSelect
+          value={sortMode}
+          onChange={(value) => setSortMode(value as ListSortMode)}
+          includeEventDate
+          className="mt-2 w-full min-w-0 rounded-lg border border-white/15 bg-black px-4 py-3 text-sm outline-none focus:border-leanme-fuchsia"
+        />
       </div>
 
       {workspaces.length === 0 ? (
