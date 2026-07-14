@@ -11,9 +11,13 @@ const crossOriginIsolationHeaders = [
   },
 ];
 
+// Build locale (`npm run build`) usa `.next-prod` per non corrompere la cache dev.
+// Su Vercel resta sempre `.next` (output atteso dalla piattaforma).
+const useLocalProdDistDir =
+  process.env.LEANYOU_PROD_BUILD === "1" && process.env.VERCEL !== "1";
+
 const nextConfig: NextConfig = {
-  // Build locale (`npm run build`) usa `.next-prod` per non corrompere la cache dev.
-  distDir: process.env.LEANYOU_PROD_BUILD === "1" ? ".next-prod" : ".next",
+  distDir: useLocalProdDistDir ? ".next-prod" : ".next",
   devIndicators: false,
   experimental: {
     middlewareClientMaxBodySize: "35mb",

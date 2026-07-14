@@ -3,10 +3,12 @@ import { join } from "node:path";
 
 import { DEV_PORT, killPort, root } from "./dev-utils.mjs";
 
-console.log(
-  `[leanme] Verifica dev server sulla porta ${DEV_PORT} prima della build...`
-);
-killPort(DEV_PORT);
+if (process.env.VERCEL !== "1") {
+  console.log(
+    `[leanme] Verifica dev server sulla porta ${DEV_PORT} prima della build...`
+  );
+  killPort(DEV_PORT);
+}
 
 const nextCli = join(root, "node_modules", "next", "dist", "bin", "next");
 const result = spawnSync(process.execPath, [nextCli, "build"], {
