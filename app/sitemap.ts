@@ -81,6 +81,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/privacy",
     "/privacy-newsletter",
     "/cookie",
+    "/termini-ia",
     "/accessibilita",
     "/credits",
   ].map((path) => ({

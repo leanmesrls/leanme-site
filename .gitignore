@@ -36,6 +36,9 @@ yarn-error.log*
 # Local runtime leftovers (legacy LeanYou data, if present)
 .leanyou-data/
 
+# Teresa pubblica — thread locali (dev)
+.teresa-data/
+
 # vercel
 .vercel
 

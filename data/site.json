@@ -43,6 +43,7 @@
       { "label": "Privacy Policy", "href": "/privacy" },
       { "label": "Informativa Newsletter", "href": "/privacy-newsletter" },
       { "label": "Cookie Policy", "href": "/cookie" },
+      { "label": "Termini IA", "href": "/termini-ia" },
       { "label": "Accessibilità (EAA)", "href": "/accessibilita" }
     ]
   },

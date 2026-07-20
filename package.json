@@ -16,9 +16,11 @@
   "dependencies": {
     "framer-motion": "^12.23.12",
     "geist": "^1.5.1",
+    "jose": "^6.2.3",
     "next": "^15.5.4",
     "react": "^19.1.1",
-    "react-dom": "^19.1.1"
+    "react-dom": "^19.1.1",
+    "resend": "^6.17.2"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",

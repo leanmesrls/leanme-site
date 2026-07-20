@@ -2,7 +2,7 @@ import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import { Header } from "@/components/layout/Header";
 import { SiteFooter } from "@/components/layout/SiteFooter";
-import { TeresaChatbot } from "@/components/integrations/TeresaChatbot";
+import { TeresaPublicChat } from "@/components/integrations/TeresaPublicChat";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { organizationSchema, websiteSchema } from "@/lib/structured-data";
 import { getDefaultMetadata } from "@/lib/metadata";
@@ -22,10 +22,14 @@ export default function RootLayout({
     >
       <body className="min-h-screen bg-black font-sans text-white antialiased">
         <JsonLd data={[organizationSchema(), websiteSchema()]} />
-        <Header />
-        <main>{children}</main>
-        <SiteFooter />
-        <TeresaChatbot />
+        <div className="flex min-h-screen">
+          <div className="flex min-w-0 flex-1 flex-col">
+            <Header />
+            <main className="flex-1">{children}</main>
+            <SiteFooter />
+          </div>
+          <TeresaPublicChat />
+        </div>
       </body>
     </html>
   );

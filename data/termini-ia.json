@@ -1,0 +1,107 @@
+{
+  "hero": {
+    "title": "Termini e condizioni sull'uso dell'Intelligenza Artificiale",
+    "lastUpdated": "20 luglio 2026"
+  },
+  "sections": [
+    {
+      "id": "oggetto",
+      "title": "1. Oggetto",
+      "paragraphs": [
+        "I presenti Termini disciplinano l'utilizzo degli assistenti conversazionali basati su Intelligenza Artificiale offerti da LeanMe S.r.l.s. sul sito pubblico (Lean.Agent.Teresa) e, ove applicabile, nelle piattaforme Suite LeanMe.",
+        "Utilizzando la chat AI dichiari di aver letto e accettato questi Termini, oltre all'Informativa Privacy e alla Cookie Policy del sito."
+      ]
+    },
+    {
+      "id": "titolare",
+      "title": "2. Titolare",
+      "paragraphs": [
+        "Il servizio è erogato da:"
+      ],
+      "lines": [
+        "LeanMe S.r.l.s.",
+        "Via Porrettana 150",
+        "40135 Bologna (BO)",
+        "P. IVA: 03887091209",
+        "E-mail: info@leanme.it"
+      ]
+    },
+    {
+      "id": "finalita",
+      "title": "3. Finalità del servizio",
+      "paragraphs": [
+        "L'assistente AI sul sito pubblico ha lo scopo di:"
+      ],
+      "items": [
+        "fornire informazioni sui contenuti pubblicati sul sito LeanMe;",
+        "orientare verso attività, percorsi e Suite LeanMe;",
+        "raccogliere dati di contatto (nome, cognome, e-mail) per rispondere alle richieste e consentire follow-up da parte del team LeanMe;",
+        "indirizzare verso moduli ufficiali (contatti, consulenza, newsletter) quando opportuno."
+      ],
+      "footerParagraphs": [
+        "L'assistente non sostituisce una consulenza professionale personalizzata né costituisce un impegno contrattuale automatico."
+      ]
+    },
+    {
+      "id": "dati",
+      "title": "4. Dati trattati",
+      "paragraphs": [
+        "Nell'ambito della chat possono essere trattati:"
+      ],
+      "items": [
+        "nome e cognome;",
+        "indirizzo e-mail;",
+        "contenuto dei messaggi scambiati;",
+        "metadati tecnici (data/ora, identificativo sessione, pagina di contesto).",
+        "eventuale accettazione dei presenti Termini IA."
+      ],
+      "footerParagraphs": [
+        "I dati sono trattati secondo l'Informativa Privacy. La base giuridica principale è l'esecuzione di misure precontrattuali / legittimo interesse a rispondere alle richieste, e il consenso ove richiesto per finalità di marketing."
+      ]
+    },
+    {
+      "id": "modelli",
+      "title": "5. Modelli e fornitori AI",
+      "paragraphs": [
+        "Per generare le risposte LeanMe può avvalersi di modelli di linguaggio forniti da terzi (ad esempio OpenAI), trattati come responsabili del trattamento ove previsto dal contratto e dalle misure di sicurezza applicabili.",
+        "Le conversazioni possono essere trasmesse a tali fornitori esclusivamente per erogare il servizio di assistenza conversazionale."
+      ]
+    },
+    {
+      "id": "limiti",
+      "title": "6. Limiti e accuratezza",
+      "paragraphs": [
+        "Le risposte dell'assistente possono contenere imprecisioni. Verifica sempre le informazioni rilevanti sulle pagine ufficiali del sito o contattando LeanMe.",
+        "Non utilizzare la chat per trasmettere dati sanitari particolari, credenziali, dati bancari o contenuti illeciti."
+      ]
+    },
+    {
+      "id": "decisioni",
+      "title": "7. Assenza di decisioni automatizzate critiche",
+      "paragraphs": [
+        "Il servizio non produce decisioni automatizzate che producano effetti giuridici significativi sull'interessato ai sensi dell'art. 22 GDPR. Eventuali follow-up commerciali o operativi sono gestiti da persone del team LeanMe."
+      ]
+    },
+    {
+      "id": "retention",
+      "title": "8. Conservazione",
+      "paragraphs": [
+        "Le conversazioni e i dati di contatto associati sono conservati per il tempo necessario a gestire la richiesta e, in ogni caso, secondo i termini indicati nell'Informativa Privacy, salvo obblighi di legge diversi."
+      ]
+    },
+    {
+      "id": "diritti",
+      "title": "9. Diritti dell'interessato",
+      "paragraphs": [
+        "Puoi esercitare i diritti previsti dal GDPR (accesso, rettifica, cancellazione, limitazione, opposizione, portabilità) scrivendo a info@leanme.it o agli recapiti indicati nell'Informativa Privacy."
+      ]
+    },
+    {
+      "id": "modifiche",
+      "title": "10. Modifiche",
+      "paragraphs": [
+        "LeanMe può aggiornare i presenti Termini. La data di ultimo aggiornamento è indicata in cima alla pagina. L'uso continuato del servizio dopo la pubblicazione costituisce accettazione delle modifiche, ove consentito dalla legge."
+      ]
+    }
+  ]
+}

@@ -19,6 +19,7 @@ import accessibilityData from "@/data/accessibility.json";
 import creditsData from "@/data/credits.json";
 import seoContentData from "@/data/seo-content.json";
 import suiteData from "@/data/suite.json";
+import terminiIaData from "@/data/termini-ia.json";
 
 import type {
   AcademyData,
@@ -151,6 +152,10 @@ export function getPrenotaConsulenzaData(): PrenotaConsulenzaData {
 
 export function getPrivacyData(): LegalDocumentData {
   return privacyData as LegalDocumentData;
+}
+
+export function getTerminiIaData(): LegalDocumentData {
+  return terminiIaData as LegalDocumentData;
 }
 
 export function getPrivacyNewsletterData(): LegalDocumentData {

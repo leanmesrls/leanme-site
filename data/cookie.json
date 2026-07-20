@@ -59,7 +59,8 @@
         "Google Analytics 4 (analisi statistiche del traffico);",
         "Google Tag Manager;",
         "Cookiebot (gestione del consenso ai cookie);",
-        "Jotform (moduli di contatto, newsletter e assistente AI Teresa);",
+        "Jotform (moduli di contatto, newsletter e prenotazione consulenza);",
+        "assistente Lean.Agent.Teresa sul sito (chat nativa LeanMe);",
         "eventuali servizi di hosting, CDN e piattaforme di supporto tecnico."
       ],
       "footerParagraphs": [
@@ -70,9 +71,18 @@
       "id": "jotform",
       "title": "Cookie utilizzati da Jotform",
       "paragraphs": [
-        "Alcuni moduli presenti sul sito, inclusi il modulo Contattaci, l'iscrizione alla newsletter e l'assistente virtuale Teresa · Lean.Agent AI, sono forniti tramite la piattaforma Jotform.",
-        "Jotform può utilizzare cookie tecnici necessari al corretto funzionamento dei moduli e dell'assistente virtuale.",
+        "Alcuni moduli presenti sul sito (Contattaci, newsletter, prenota consulenza) possono essere forniti tramite la piattaforma Jotform.",
+        "Jotform può utilizzare cookie tecnici necessari al corretto funzionamento dei moduli.",
         "Per maggiori informazioni è possibile consultare l'informativa privacy di Jotform."
+      ]
+    },
+    {
+      "id": "teresa",
+      "title": "Assistente Lean.Agent.Teresa",
+      "paragraphs": [
+        "L'assistente conversazionale Teresa sul sito pubblico è un servizio nativo LeanMe.",
+        "Per funzionare utilizza un cookie tecnico di sessione visitatore e tratta i dati indicati nei Termini IA (nome, cognome, e-mail e contenuti della chat).",
+        "Maggiori dettagli sono disponibili nella pagina Termini IA e nell'Informativa Privacy."
       ]
     },
     {
