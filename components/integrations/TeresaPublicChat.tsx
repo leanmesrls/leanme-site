@@ -16,7 +16,7 @@ import { TeresaRailChevron } from "@/components/integrations/TeresaRailChevron";
 import { cn } from "@/lib/utils";
 
 const BADGE_SRC = "/assets/official/leanyou/agent-badges/teresa.png";
-const STORAGE_KEY = "leanme.teresa-public-rail";
+const STORAGE_KEY = "leanme.teresa-public-rail.v2";
 const ACTIVE_THREAD_KEY = "leanme.teresa-public-active-thread";
 const MIN_WIDTH = 280;
 const MAX_WIDTH = 480;
@@ -62,23 +62,23 @@ type ChatPayload = {
 
 function readStored(): StoredRail {
   if (typeof window === "undefined") {
-    return { open: true, width: DEFAULT_WIDTH };
+    return { open: false, width: DEFAULT_WIDTH };
   }
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) {
-      return { open: true, width: DEFAULT_WIDTH };
+      return { open: false, width: DEFAULT_WIDTH };
     }
     const parsed = JSON.parse(raw) as Partial<StoredRail>;
     return {
-      open: parsed.open !== false,
+      open: parsed.open === true,
       width: Math.min(
         MAX_WIDTH,
         Math.max(MIN_WIDTH, Number(parsed.width) || DEFAULT_WIDTH)
       ),
     };
   } catch {
-    return { open: true, width: DEFAULT_WIDTH };
+    return { open: false, width: DEFAULT_WIDTH };
   }
 }
 
@@ -190,7 +190,7 @@ function TeresaMessages({
 export function TeresaPublicChat() {
   const pathname = usePathname();
   const [ready, setReady] = useState(false);
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [width, setWidth] = useState(DEFAULT_WIDTH);
   const [threadId, setThreadId] = useState<string | null>(null);
