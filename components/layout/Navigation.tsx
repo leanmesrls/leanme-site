@@ -1,8 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { SuiteAppsIcon } from "@/components/layout/SuiteAppsIcon";
+import { isExternalHref } from "@/lib/nav-href";
 import { cn } from "@/lib/utils";
 import type { NavItem } from "@/types/content";
 
@@ -30,9 +32,13 @@ function ChevronDown({ className }: { className?: string }) {
 }
 
 function isItemActive(pathname: string, href: string) {
-  return href === "/"
+  if (isExternalHref(href)) {
+    return false;
+  }
+  const pathOnly = href.split("#")[0] || "/";
+  return pathOnly === "/"
     ? pathname === "/"
-    : pathname === href || pathname.startsWith(`${href}/`);
+    : pathname === pathOnly || pathname.startsWith(`${pathOnly}/`);
 }
 
 function getLinkClassName(
@@ -69,7 +75,7 @@ function getLinkClassName(
   }
 
   return cn(
-    "block px-2 py-2 text-[10px] font-semibold uppercase tracking-[0.08em] transition-colors duration-200 2xl:text-[11px]",
+    "inline-flex items-center gap-1.5 px-2 py-2 text-[10px] font-semibold uppercase tracking-[0.08em] transition-colors duration-200 2xl:text-[11px]",
     isDark
       ? isActive
         ? "text-leanme-fuchsia"
@@ -77,6 +83,47 @@ function getLinkClassName(
       : isActive
         ? "bg-leanme-fuchsia/10 font-medium text-leanme-fuchsia"
         : "text-leanme-gray-700 hover:text-leanme-fuchsia"
+  );
+}
+
+function NavLabel({ item }: { item: NavItem }) {
+  return (
+    <>
+      {item.icon === "suite" ? <SuiteAppsIcon /> : null}
+      <span>{item.label}</span>
+    </>
+  );
+}
+
+function NavHref({
+  href,
+  className,
+  onNavigate,
+  children,
+}: {
+  href: string;
+  className?: string;
+  onNavigate?: () => void;
+  children: ReactNode;
+}) {
+  if (isExternalHref(href)) {
+    return (
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        onClick={onNavigate}
+        className={className}
+      >
+        {children}
+      </a>
+    );
+  }
+
+  return (
+    <Link href={href} onClick={onNavigate} className={className}>
+      {children}
+    </Link>
   );
 }
 
@@ -113,16 +160,16 @@ export function Navigation({
             return (
               <li key={item.href}>
                 <div className="flex items-stretch gap-1">
-                  <Link
+                  <NavHref
                     href={item.href}
-                    onClick={onNavigate}
+                    onNavigate={onNavigate}
                     className={cn(
                       getLinkClassName(isActive, isDark, { isVertical: true }),
                       "min-w-0 flex-1"
                     )}
                   >
-                    {item.label}
-                  </Link>
+                    <NavLabel item={item} />
+                  </NavHref>
                   <button
                     type="button"
                     aria-expanded={isExpanded}
@@ -149,9 +196,9 @@ export function Navigation({
                   <ul className="mt-1 space-y-1 border-l border-white/10 pl-3">
                     {item.children?.map((child) => (
                       <li key={child.href}>
-                        <Link
+                        <NavHref
                           href={child.href}
-                          onClick={onNavigate}
+                          onNavigate={onNavigate}
                           className={getLinkClassName(
                             isItemActive(pathname, child.href),
                             isDark,
@@ -159,7 +206,7 @@ export function Navigation({
                           )}
                         >
                           {child.label}
-                        </Link>
+                        </NavHref>
                       </li>
                     ))}
                   </ul>
@@ -171,25 +218,24 @@ export function Navigation({
           if (hasChildren && !isVertical) {
             return (
               <li key={item.href} className="group relative">
-                <Link
+                <NavHref
                   href={item.href}
-                  onClick={onNavigate}
-                  aria-haspopup="true"
+                  onNavigate={onNavigate}
                   className={cn(
                     getLinkClassName(isActive, isDark),
-                    "inline-flex items-center gap-1"
+                    "gap-1"
                   )}
                 >
-                  {item.label}
+                  <NavLabel item={item} />
                   <ChevronDown className="h-3 w-3 opacity-70" />
-                </Link>
+                </NavHref>
                 <div className="pointer-events-none absolute left-0 top-full z-50 hidden min-w-[20rem] pt-2 group-hover:pointer-events-auto group-hover:block group-focus-within:pointer-events-auto group-focus-within:block">
                   <ul className="overflow-hidden rounded-xl border border-white/10 bg-black py-2 shadow-2xl">
                     {item.children?.map((child) => (
                       <li key={child.href}>
-                        <Link
+                        <NavHref
                           href={child.href}
-                          onClick={onNavigate}
+                          onNavigate={onNavigate}
                           className={getLinkClassName(
                             isItemActive(pathname, child.href),
                             isDark,
@@ -197,7 +243,7 @@ export function Navigation({
                           )}
                         >
                           {child.label}
-                        </Link>
+                        </NavHref>
                       </li>
                     ))}
                   </ul>
@@ -208,13 +254,13 @@ export function Navigation({
 
           return (
             <li key={item.href}>
-              <Link
+              <NavHref
                 href={item.href}
-                onClick={onNavigate}
+                onNavigate={onNavigate}
                 className={getLinkClassName(isActive, isDark, { isVertical })}
               >
-                {item.label}
-              </Link>
+                <NavLabel item={item} />
+              </NavHref>
             </li>
           );
         })}

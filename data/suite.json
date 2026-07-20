@@ -1,0 +1,104 @@
+{
+  "intro": {
+    "title": "Suite LeanMe",
+    "subtitle": "Gli strumenti digitali per lavorare come un'Azienda Ibrida",
+    "description": [
+      "La Suite LeanMe raccoglie le piattaforme operative progettate per aziende, strutture sanitarie, società scientifiche e organizzatori di eventi.",
+      "Ogni strumento nasce per semplificare processi complessi, collegare persone e Lean.Agent AI, e rendere operativo il metodo LeanMe nel lavoro quotidiano.",
+      "Stiamo popolando progressivamente la Suite: qui trovi già LeanEvent e, a breve, i moduli dedicati alle altre aree operative."
+    ]
+  },
+  "toolsTitle": "Strumenti della Suite",
+  "tools": [
+    {
+      "id": "lean-event",
+      "name": "LeanEvent",
+      "eyebrow": "Primo strumento",
+      "description": "Area riservata per la gestione eventi, ospitalità, rubriche e strumenti di segreteria potenziati da Lean.Agent.AI.",
+      "href": "https://event.leanme.it/lean-event",
+      "external": true,
+      "ctaLabel": "Accedi a LeanEvent",
+      "status": "live"
+    },
+    {
+      "id": "lean-forms",
+      "name": "LeanForms",
+      "eyebrow": "In arrivo",
+      "description": "Moduli digitali per registrazioni, raccolta dati e flussi operativi personalizzati.",
+      "href": null,
+      "external": false,
+      "ctaLabel": "Presto disponibile",
+      "status": "coming_soon"
+    },
+    {
+      "id": "lean-government",
+      "name": "LeanGovernment",
+      "eyebrow": "In arrivo",
+      "description": "Strumenti per società scientifiche, governance associativa e processi istituzionali.",
+      "href": null,
+      "external": false,
+      "ctaLabel": "Presto disponibile",
+      "status": "coming_soon"
+    },
+    {
+      "id": "lean-healthcare",
+      "name": "LeanHealthcare",
+      "eyebrow": "In arrivo",
+      "description": "Soluzioni digitali per strutture sanitarie, processi clinico-operativi e automazioni di servizio.",
+      "href": null,
+      "external": false,
+      "ctaLabel": "Presto disponibile",
+      "status": "coming_soon"
+    },
+    {
+      "id": "lean-engagement",
+      "name": "LeanEngagement",
+      "eyebrow": "In arrivo",
+      "description": "Engagement di community, partecipanti e stakeholder con esperienze interattive e misurabili.",
+      "href": null,
+      "external": false,
+      "ctaLabel": "Presto disponibile",
+      "status": "coming_soon"
+    },
+    {
+      "id": "lean-hologram",
+      "name": "LeanHologram",
+      "eyebrow": "In arrivo",
+      "description": "Presenze e contenuti olografici per eventi, formazione e storytelling immersivo.",
+      "href": null,
+      "external": false,
+      "ctaLabel": "Presto disponibile",
+      "status": "coming_soon"
+    },
+    {
+      "id": "lean-gala",
+      "name": "LeanGala",
+      "eyebrow": "In arrivo",
+      "description": "Gestione di gala, cene istituzionali e momenti premium collegati agli eventi.",
+      "href": null,
+      "external": false,
+      "ctaLabel": "Presto disponibile",
+      "status": "coming_soon"
+    },
+    {
+      "id": "lean-communication",
+      "name": "LeanCommunication",
+      "eyebrow": "In arrivo",
+      "description": "Comunicazione integrata: contenuti, canali e narrative coerenti con il brand LeanMe.",
+      "href": null,
+      "external": false,
+      "ctaLabel": "Presto disponibile",
+      "status": "coming_soon"
+    },
+    {
+      "id": "lean-websites-apps",
+      "name": "LeanWebsites & Apps",
+      "eyebrow": "In arrivo",
+      "description": "Siti web e applicazioni digitali su misura, progettati per Aziende Ibride.",
+      "href": null,
+      "external": false,
+      "ctaLabel": "Presto disponibile",
+      "status": "coming_soon"
+    }
+  ]
+}

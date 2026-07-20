@@ -1,6 +1,9 @@
+export type NavIcon = "suite";
+
 export interface NavItem {
   label: string;
   href: string;
+  icon?: NavIcon;
   children?: NavItem[];
 }
 
@@ -494,4 +497,25 @@ export interface CreditsData {
     items: string[];
     footer: string;
   };
+}
+
+export interface SuiteTool {
+  id: string;
+  name: string;
+  eyebrow: string;
+  description: string;
+  href: string | null;
+  external: boolean;
+  ctaLabel: string;
+  status: "live" | "coming_soon";
+}
+
+export interface SuiteData {
+  intro: {
+    title: string;
+    subtitle: string;
+    description: string[];
+  };
+  toolsTitle: string;
+  tools: SuiteTool[];
 }

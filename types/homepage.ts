@@ -1,6 +1,9 @@
+export type HomeNavIcon = "suite";
+
 export interface HomeNavItem {
   label: string;
   href: string;
+  icon?: HomeNavIcon;
   children?: HomeNavItem[];
 }
 

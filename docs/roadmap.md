@@ -14,7 +14,8 @@ Phase 2
 - Academy
 - Case Studies
 - Events
-- Customer Portal (LeanYou — v1 Leonardo live; roadmap I&C in `docs/leanyou.md`)
+- Customer Portal (LeanEvent — progetto dedicato `leanme-event` / event.leanme.it)
+- Suite LeanMe (hub pubblico `/suite`)
 
 Phase 3
 

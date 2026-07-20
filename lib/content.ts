@@ -18,6 +18,7 @@ import cookieData from "@/data/cookie.json";
 import accessibilityData from "@/data/accessibility.json";
 import creditsData from "@/data/credits.json";
 import seoContentData from "@/data/seo-content.json";
+import suiteData from "@/data/suite.json";
 
 import type {
   AcademyData,
@@ -35,6 +36,7 @@ import type {
   FaqItem,
   SiteConfig,
   StaffData,
+  SuiteData,
   Testimonial,
 } from "@/types/content";
 import type { HomepageData } from "@/types/homepage";
@@ -47,6 +49,10 @@ export function getSiteConfig(): SiteConfig {
 
 export function getHomepageData(): HomepageData {
   return homepageData as HomepageData;
+}
+
+export function getSuiteData(): SuiteData {
+  return suiteData as SuiteData;
 }
 
 export function getPercorsiData(): {

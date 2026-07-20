@@ -16,7 +16,22 @@
     { "label": "COME POSSIAMO AIUTARTI", "href": "/come-possiamo-aiutarti" },
     { "label": "LEAN LAB", "href": "/leanlab" },
     { "label": "LEAN ACADEMY", "href": "/lean-academy" },
-    { "label": "🔒 LEANYOU", "href": "/leanyou/login" }
+    {
+      "label": "SUITE",
+      "href": "/suite",
+      "icon": "suite",
+      "children": [
+        { "label": "LeanEvent", "href": "https://event.leanme.it/lean-event" },
+        { "label": "LeanForms", "href": "/suite#lean-forms" },
+        { "label": "LeanGovernment", "href": "/suite#lean-government" },
+        { "label": "LeanHealthcare", "href": "/suite#lean-healthcare" },
+        { "label": "LeanEngagement", "href": "/suite#lean-engagement" },
+        { "label": "LeanHologram", "href": "/suite#lean-hologram" },
+        { "label": "LeanGala", "href": "/suite#lean-gala" },
+        { "label": "LeanCommunication", "href": "/suite#lean-communication" },
+        { "label": "LeanWebsites & Apps", "href": "/suite#lean-websites-apps" }
+      ]
+    }
   ],
   "hero": {
     "claimPrimary": "POWERED BY HUMAN INTELLIGENCE.",
