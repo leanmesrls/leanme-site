@@ -2,7 +2,7 @@
 
 Area pubblica per immagini di comunicazioni LeanMe (newsletter, social, campagne).
 
-Servite da: `https://leanme.it/assets/communications/...`
+Servite da: `https://demo.leanme.it/assets/communications/...`
 
 ## Newsletter
 
