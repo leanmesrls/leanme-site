@@ -48,7 +48,7 @@ function ArticleCard({ article }: { article: LeanLabArticle }) {
             src={imageSrc}
             alt={article.title}
             fill
-            className="object-cover"
+            className="object-cover object-top"
             sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 25vw"
           />
         </div>
@@ -68,6 +68,18 @@ function ArticleCard({ article }: { article: LeanLabArticle }) {
   );
 }
 
+function sortByDateDesc(items: LeanLabArticle[]) {
+  return [...items].sort(
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+  );
+}
+
+function defaultLeanLabTab(tabs: HomepageData["leanLab"]["tabs"]) {
+  return tabs.find((tab) => tab.id === "all" || tab.category === "all")?.id
+    ?? tabs[0]?.id
+    ?? "all";
+}
+
 export function LeanLabCarousel({
   data,
   articles,
@@ -76,14 +88,17 @@ export function LeanLabCarousel({
   className,
 }: LeanLabCarouselProps) {
   const reducedMotion = useReducedMotion();
-  const [activeTab, setActiveTab] = useState(data.tabs[0]?.id ?? "progetti");
+  const [activeTab, setActiveTab] = useState(() => defaultLeanLabTab(data.tabs));
   const [page, setPage] = useState(0);
 
   const activeCategory = data.tabs.find((tab) => tab.id === activeTab)?.category;
-  const filtered = useMemo(
-    () => articles.filter((article) => article.category === activeCategory),
-    [articles, activeCategory]
-  );
+  const filtered = useMemo(() => {
+    const list =
+      activeCategory === "all" || !activeCategory
+        ? articles
+        : articles.filter((article) => article.category === activeCategory);
+    return sortByDateDesc(list);
+  }, [articles, activeCategory]);
 
   const pageSize = 4;
   const totalPages = Math.max(1, Math.ceil(filtered.length / pageSize));
@@ -184,11 +199,17 @@ export function LeanLabCarousel({
               transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] as const }}
               className="hidden gap-4 md:grid md:grid-cols-2 lg:grid-cols-4 lg:gap-5"
             >
-              {visible.map((article, index) => (
-                <RevealOnScroll key={article.slug} delay={index * 0.06}>
-                  <ArticleCard article={article} />
-                </RevealOnScroll>
-              ))}
+              {visible.length > 0 ? (
+                visible.map((article, index) => (
+                  <RevealOnScroll key={article.slug} delay={index * 0.06}>
+                    <ArticleCard article={article} />
+                  </RevealOnScroll>
+                ))
+              ) : (
+                <p className="col-span-full text-sm text-white/45">
+                  Nessun articolo in questa categoria al momento.
+                </p>
+              )}
             </motion.div>
           </AnimatePresence>
 
@@ -201,7 +222,13 @@ export function LeanLabCarousel({
               transition={{ duration: 0.3 }}
               className="md:hidden"
             >
-              {visible[0] && <ArticleCard article={visible[0]} />}
+              {visible[0] ? (
+                <ArticleCard article={visible[0]} />
+              ) : (
+                <p className="text-sm text-white/45">
+                  Nessun articolo in questa categoria al momento.
+                </p>
+              )}
             </motion.div>
           </AnimatePresence>
 

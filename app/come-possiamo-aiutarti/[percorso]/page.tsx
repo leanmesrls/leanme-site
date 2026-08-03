@@ -1,11 +1,9 @@
 import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { ServiceIconBadge } from "@/components/homepage/Icons";
-import {
-  PAGE_CONTENT_AFTER_INTRO_CLASS,
-  PAGE_INTRO_SECTION_CLASS,
-} from "@/components/layout/HighlightCard";
+import { PAGE_CONTENT_AFTER_INTRO_CLASS } from "@/components/layout/HighlightCard";
 import { PageHero } from "@/components/layout/PageHero";
 import { PageHighlightBlock } from "@/components/layout/PageHighlightBlock";
 import { PageSection } from "@/components/layout/PageSection";
@@ -100,8 +98,16 @@ export default async function PercorsoPage({ params }: PageProps) {
         title={percorso.title}
         subtitle={percorso.shortDescription}
       />
-      <PageSection className={PAGE_INTRO_SECTION_CLASS}>
-        <PageHighlightBlock paragraphs={percorso.description} />
+      <PageSection className="pt-8 pb-0 md:pt-10 md:pb-0">
+        <FadeIn>
+          <Link
+            href="/come-possiamo-aiutarti"
+            className="mb-6 inline-block text-xs font-semibold uppercase tracking-[0.1em] text-leanme-purple transition hover:text-white"
+          >
+            ← Come possiamo aiutarti
+          </Link>
+          <PageHighlightBlock paragraphs={percorso.description} />
+        </FadeIn>
       </PageSection>
 
       <PageSection className={`${PAGE_CONTENT_AFTER_INTRO_CLASS} pb-0 md:pb-0`}>

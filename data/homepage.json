@@ -182,6 +182,7 @@
       "href": "/newsletter"
     },
     "tabs": [
+      { "id": "all", "label": "ALL", "category": "all" },
       { "id": "progetti", "label": "PROGETTI", "category": "progetti-conclusi" },
       { "id": "ricerca", "label": "RICERCA & INNOVAZIONE", "category": "ricerca-e-innovazione" },
       { "id": "vita", "label": "VITA IN LEANME", "category": "vita-in-leanme" },

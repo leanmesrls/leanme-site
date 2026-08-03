@@ -151,16 +151,25 @@ export interface LeanLabCategory {
   description: string;
 }
 
+export type LeanLabArticleBodyTemplate = "newsletter-episodio-00";
+
 export interface LeanLabArticle {
   slug: string;
   category: string;
   title: string;
-  excerpt: string;
+  /** Testo card/SEO; array = più paragrafi nel box riepilogo. */
+  excerpt: string | string[];
   date: string;
   readTime: string;
   image: ImageAsset;
   author: string;
   tags?: string[];
+  /** Template corpo articolo (es. newsletter con layout dedicato). */
+  bodyTemplate?: LeanLabArticleBodyTemplate;
+  /** Nasconde immagine hero standard quando il corpo include grafica completa. */
+  hideDefaultImage?: boolean;
+  /** Riassunto GEO in fondo alla pagina articolo. */
+  inPocheParole?: string[];
 }
 
 export interface LeanLabPageData {

@@ -37,7 +37,7 @@ export function ArticleCard({ article }: ArticleCardProps) {
             src={imageSrc}
             alt={article.image.alt}
             fill
-            className="object-cover opacity-80 transition group-hover:opacity-100"
+            className="object-cover object-top opacity-80 transition group-hover:opacity-100"
             sizes="(max-width: 1280px) 33vw, 320px"
           />
           <div className="pointer-events-none absolute inset-0 z-[1] bg-transparent transition-colors duration-300 group-hover:bg-leanme-fuchsia/20" />

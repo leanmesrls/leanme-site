@@ -1,0 +1,29 @@
+---
+description: GEO — box «In poche parole» in fondo alle pagine pubbliche
+alwaysApply: true
+---
+
+# GEO: In poche parole
+
+Per ottimizzazione GEO (Generative Engine Optimization), quando crei o aggiorni una **pagina pubblica** del sito:
+
+1. Valuta se aggiungere in fondo il box `InPocheParoleBox` (`components/seo/InPocheParoleBox.tsx`).
+2. **Includilo** se la pagina ha contenuto editoriale, informativo o di servizio utile agli AI overview / citazioni (hub, servizi, LeanLab, Academy, Chi siamo, articoli, percorsi, ecc.).
+3. **Puoi ometterlo** solo su pagine puramente funzionali/legali (es. privacy tecnica) dove un riassunto non aggiunge valore.
+
+## Dove mettere i testi
+
+- Pagine statiche / hub: `data/seo-content.json` → `pages[path].inPocheParole` + `getSeoInPocheParole(path)`.
+- Percorsi: campo `inPocheParole` in `data/percorsi.json`.
+- Articoli LeanLab: campo `inPocheParole` in `data/leanlab/articles.json`.
+
+## Formato
+
+Di solito **4 paragrafi brevi** in italiano, tono LeanMe (concreto, human + AI, anti-hype):
+
+1. Chi/cosa è la pagina
+2. Problema o contesto
+3. Come LeanMe interviene
+4. Differenza / positioning Azienda Ibrida
+
+Renderizzare in fondo alla pagina, dopo il contenuto principale e prima del footer.

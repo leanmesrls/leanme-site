@@ -4,7 +4,6 @@ import { notFound } from "next/navigation";
 
 import { ChiSiamoPersonProfile } from "@/components/chi-siamo/ChiSiamoPersonProfile";
 import { ArrowIcon } from "@/components/homepage/Icons";
-import { PAGE_INTRO_SECTION_CLASS } from "@/components/layout/HighlightCard";
 import { PageHero } from "@/components/layout/PageHero";
 import { PageHighlightBlock } from "@/components/layout/PageHighlightBlock";
 import { PageSection } from "@/components/layout/PageSection";
@@ -99,39 +98,36 @@ function SimplePersonProfile({
         title={person.name}
         subtitle={person.role}
       />
-      <PageSection className={PAGE_INTRO_SECTION_CLASS}>
-        <PageHighlightBlock paragraphs={[person.tagline, ...person.bio]} />
-      </PageSection>
-      <PageSection className="pt-0 md:pt-0">
+      <PageSection className="pt-8 pb-20 md:pt-10 md:pb-28 lg:pb-32">
         <FadeIn>
           <Link
             href="/chi-siamo"
-            className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.08em] text-white/50 transition hover:text-white"
+            className="mb-6 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.08em] text-leanme-purple transition hover:text-white"
           >
             <span aria-hidden="true">←</span>
             Torna a Chi siamo
           </Link>
-        </FadeIn>
-
-        <FadeIn delay={0.08} className="mt-10 max-w-sm">
-          <div className="overflow-hidden rounded-xl border border-white/10">
-            <Image
-              src={person.image}
-              alt={person.name}
-              width={720}
-              height={900}
-              className="h-auto w-full object-cover object-top"
-              priority
-              sizes="(max-width: 1024px) 100vw, 360px"
-            />
+          <PageHighlightBlock paragraphs={[person.tagline, ...person.bio]} />
+          <div className="mt-10 max-w-sm">
+            <div className="overflow-hidden rounded-xl border border-white/10">
+              <Image
+                src={person.image}
+                alt={person.name}
+                width={720}
+                height={900}
+                className="h-auto w-full object-cover object-top"
+                priority
+                sizes="(max-width: 1024px) 100vw, 360px"
+              />
+            </div>
+            <Link
+              href="/contatti"
+              className="mt-8 inline-flex items-center gap-2 rounded-full bg-leanme-fuchsia px-6 py-3 text-[11px] font-semibold uppercase tracking-[0.08em] text-white transition hover:bg-leanme-fuchsia-dark md:text-xs"
+            >
+              Connect
+              <ArrowIcon />
+            </Link>
           </div>
-          <Link
-            href="/contatti"
-            className="mt-8 inline-flex items-center gap-2 rounded-full bg-leanme-fuchsia px-6 py-3 text-[11px] font-semibold uppercase tracking-[0.08em] text-white transition hover:bg-leanme-fuchsia-dark md:text-xs"
-          >
-            Connect
-            <ArrowIcon />
-          </Link>
         </FadeIn>
       </PageSection>
     </>

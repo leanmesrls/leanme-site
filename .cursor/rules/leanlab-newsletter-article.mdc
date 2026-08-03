@@ -1,0 +1,20 @@
+---
+description: Modello articolo LeanLab da newsletter (Episodio 00 = template)
+alwaysApply: true
+---
+
+# LeanLab — articolo da newsletter
+
+**Modello di riferimento:** `LeanMe // Rebuild // Episodio 00`  
+Slug: `leanme-rebuild-episodio-00` · file: `data/leanlab/articles.json`, `components/leanlab/articles/NewsletterEpisodio00.tsx`
+
+Quando pubblichi una nuova newsletter come articolo blog:
+
+1. **Titolo** = oggetto newsletter (es. `LeanMe // Rebuild // Episodio NN`).
+2. **Slug** kebab-case coerente col titolo.
+3. **PNG ufficiale** in `docs/assets/leanlab/` → sync `npm run leanlab:sync-newsletter` (o copia in `public/assets/leanlab/`). **Non modificare** la grafica.
+4. **Corpo:** template dedicato che mostra il PNG as-is (`bodyTemplate` + `hideDefaultImage: true`).
+5. **Layout pagina:** link categoria → box riepilogo (`excerpt` come array di paragrafi) → data/durata + `Written by:` → grafica → **In poche parole** in fondo.
+6. **Firma autori** in metadata (non nel PNG): persone + `LeanMe.Agent.*` come richiesto.
+7. **GEO:** 4 paragrafi `inPocheParole` sull’articolo.
+8. Homepage LeanLab: tab **ALL** (default) include tutti gli articoli in ordine cronologico inverso; anteprime con `object-top`.

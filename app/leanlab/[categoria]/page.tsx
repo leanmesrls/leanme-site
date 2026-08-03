@@ -1,11 +1,11 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { PAGE_INTRO_SECTION_CLASS } from "@/components/layout/HighlightCard";
 import { PageHero } from "@/components/layout/PageHero";
 import { PageHighlightBlock } from "@/components/layout/PageHighlightBlock";
 import { PageSection } from "@/components/layout/PageSection";
 import { VisibleBreadcrumb } from "@/components/layout/VisibleBreadcrumb";
 import { ArticleCard } from "@/components/leanlab/ArticleCard";
+import { FadeIn } from "@/components/motion/FadeIn";
 import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
 import {
   getAllLeanLabCategorySlugs,
@@ -69,23 +69,29 @@ export default async function LeanLabCategoryPage({ params }: PageProps) {
         title={category.title}
         subtitle="Dal LeanLab"
       />
-      <PageSection className={PAGE_INTRO_SECTION_CLASS}>
-        <PageHighlightBlock paragraphs={category.description} />
-      </PageSection>
-      <PageSection className="pt-0 md:pt-0">
-        <Link
-          href="/leanlab"
-          className="mb-8 inline-block text-xs font-semibold uppercase tracking-[0.1em] text-leanme-purple transition hover:text-white"
-        >
-          ← Torna al LeanLab
-        </Link>
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {articles.map((article, index) => (
-            <RevealOnScroll key={article.slug} delay={index * 0.05}>
-              <ArticleCard article={article} />
-            </RevealOnScroll>
-          ))}
-        </div>
+      <PageSection className="pt-8 pb-20 md:pt-10 md:pb-28 lg:pb-32">
+        <FadeIn>
+          <Link
+            href="/leanlab"
+            className="mb-6 inline-block text-xs font-semibold uppercase tracking-[0.1em] text-leanme-purple transition hover:text-white"
+          >
+            ← Torna al LeanLab
+          </Link>
+          <PageHighlightBlock paragraphs={category.description} />
+          {articles.length > 0 ? (
+            <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {articles.map((article, index) => (
+                <RevealOnScroll key={article.slug} delay={index * 0.05}>
+                  <ArticleCard article={article} />
+                </RevealOnScroll>
+              ))}
+            </div>
+          ) : (
+            <p className="mt-10 text-sm text-white/45">
+              Nessun articolo in questa categoria al momento.
+            </p>
+          )}
+        </FadeIn>
       </PageSection>
     </>
   );

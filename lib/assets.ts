@@ -13,6 +13,9 @@ export const ASSETS = {
     bannerAmbient: "/assets/official/banner_ambient.png",
     leanAcademy: "/assets/official/lean-academy-sfondo.png",
   },
+  leanlab: {
+    newsletterEpisodio00: "/assets/leanlab/newsletter-episodio-00.png",
+  },
   agents: {
     leonardo: "/assets/official/leonardo.png",
     vespucci: "/assets/official/vespucci.png",

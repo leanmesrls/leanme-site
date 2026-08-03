@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowIcon } from "@/components/homepage/Icons";
+import { PageHero } from "@/components/layout/PageHero";
+import { PageHighlightBlock } from "@/components/layout/PageHighlightBlock";
 import { PageSection } from "@/components/layout/PageSection";
 import { VisibleBreadcrumb } from "@/components/layout/VisibleBreadcrumb";
 import { FadeIn } from "@/components/motion/FadeIn";
@@ -66,7 +68,12 @@ export default async function AcademyResourcePage({ params }: PageProps) {
     <>
       <JsonLd data={breadcrumbSchema(breadcrumbItems)} />
       <VisibleBreadcrumb items={breadcrumbItems} />
-      <PageSection>
+      <PageHero
+        id="academy-resource-heading"
+        title={resource.title}
+        subtitle={resource.type}
+      />
+      <PageSection className="pt-8 pb-20 md:pt-10 md:pb-28 lg:pb-32">
         <FadeIn>
           <Link
             href="/lean-academy"
@@ -74,19 +81,13 @@ export default async function AcademyResourcePage({ params }: PageProps) {
           >
             ← Lean Academy
           </Link>
-          <span className="inline-block rounded-full border border-leanme-purple/40 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-leanme-purple">
-            {resource.type}
-          </span>
-          <h1 className="mt-4 text-3xl font-bold text-white md:text-4xl">
-            {resource.title}
-          </h1>
-          <p className="mt-6 max-w-3xl text-lg text-white/65">{resource.description}</p>
+          <PageHighlightBlock paragraphs={resource.description} />
           <div className="relative mt-10 aspect-[21/9] overflow-hidden rounded-xl border border-white/10">
             <Image
               src={ASSETS.decorative.bannerAmbient}
               alt={resource.title}
               fill
-              className="object-cover"
+              className="object-cover object-top"
               sizes="100vw"
             />
           </div>
