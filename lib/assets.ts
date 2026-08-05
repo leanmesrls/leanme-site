@@ -6,6 +6,8 @@ export const ASSETS = {
     pinkWhite: "/assets/official/logo-official_pink-white.png",
   },
   pittogramma: "/assets/official/pittogramma.png",
+  pittogrammaWhite: "/assets/official/pittogramma_bianco.png",
+  pittogrammaBlack: "/assets/official/pittogramma_nero.png",
   hero: {
     reception: "/assets/official/reception-render.png",
   },

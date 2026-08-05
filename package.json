@@ -7,6 +7,8 @@
     "trim:agents": "node scripts/trim-agent-hp-images.mjs",
     "enhance:agents": "node scripts/enhance-agent-hp-images.mjs",
     "logo:transparent": "node scripts/logo-transparent-png.mjs",
+    "logo:import-def": "node scripts/import-logo-def-nero-rosa.mjs",
+    "logo:import-masters": "node scripts/import-official-logo-masters.mjs",
     "leanlab:sync-newsletter": "node scripts/sync-leanlab-newsletter.mjs",
     "prebuild": "npm run sync:partners",
     "dev": "node scripts/run-dev.mjs",
