@@ -21,6 +21,58 @@ if (!src) {
   process.exit(1);
 }
 
+/** Rimuove fringe scuro dopo la punta e colonne artefatto quasi-nere. */
+async function cleanPittogrammaBuffer(inputPath) {
+  const { data, info } = await sharp(inputPath)
+    .ensureAlpha()
+    .raw()
+    .toBuffer({ resolveWithObject: true });
+
+  const pixels = Buffer.from(data);
+  const { width, height } = info;
+
+  let solidMaxX = 0;
+  for (let x = 0; x < width; x++) {
+    let solid = 0;
+    for (let y = 0; y < height; y++) {
+      const i = (y * width + x) * 4;
+      const r = pixels[i];
+      const g = pixels[i + 1];
+      const b = pixels[i + 2];
+      const a = pixels[i + 3];
+      if (a < 20) continue;
+      const max = Math.max(r, g, b);
+      const sat = max - Math.min(r, g, b);
+      if (sat > 40 && max > 60) solid++;
+    }
+    if (solid >= 18) solidMaxX = x;
+  }
+
+  const clear = (i) => {
+    pixels[i] = 0;
+    pixels[i + 1] = 0;
+    pixels[i + 2] = 0;
+    pixels[i + 3] = 0;
+  };
+
+  for (let x = solidMaxX + 1; x < width; x++) {
+    for (let y = 0; y < height; y++) clear((y * width + x) * 4);
+  }
+
+  for (let y = 0; y < height; y++) {
+    const i = (y * width + solidMaxX) * 4;
+    if (pixels[i + 3] < 20) continue;
+    const max = Math.max(pixels[i], pixels[i + 1], pixels[i + 2]);
+    const sat = max - Math.min(pixels[i], pixels[i + 1], pixels[i + 2]);
+    if (max < 50 && sat < 50) clear(i);
+  }
+
+  return sharp(pixels, { raw: { width, height, channels: 4 } })
+    .trim({ threshold: 0 })
+    .png()
+    .toBuffer();
+}
+
 async function squarePng(input, size, output) {
   await sharp(input)
     .resize(size, size, {
@@ -34,6 +86,7 @@ async function squarePng(input, size, output) {
   console.log(`${path.basename(output)} → ${meta.width}x${meta.height}`);
 }
 
-await squarePng(src, 512, appIcon);
-await squarePng(src, 180, appAppleIcon);
-console.log("Favicon synced from", path.relative(root, src));
+const cleaned = await cleanPittogrammaBuffer(src);
+await squarePng(cleaned, 512, appIcon);
+await squarePng(cleaned, 180, appAppleIcon);
+console.log("Favicon synced from", path.relative(root, src), "(tip fringe cleaned)");
