@@ -147,6 +147,7 @@ export function SegreteriaCompanyBlock({
               actions={actions}
               feedbackMessage={feedbackMessage}
               className="gap-2.5"
+              sectionId={section.id}
             />
           </FadeIn>
         </div>

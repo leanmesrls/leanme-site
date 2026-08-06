@@ -10,7 +10,6 @@ import {
   mapsHrefFromOperationalAddress,
   toMailtoHref,
   toTelHref,
-  toWhatsAppHref,
 } from "@/lib/segreteria/vcard";
 import { SITE_URL } from "@/lib/metadata";
 
@@ -18,60 +17,54 @@ export function getCompanyActions(
   data: SegreteriaData,
   contacts: ContactData
 ): SegreteriaAction[] {
-  const { labels, links, companyVcard } = data;
-  const actions: SegreteriaAction[] = [];
+  const { labels, companyVcard } = data;
+  const actions: SegreteriaAction[] = [
+    {
+      id: "save",
+      label: labels.saveToContacts,
+      href: `/vcards/vcard/${companyVcard.slug}`,
+      variant: "primary",
+      download: true,
+    },
+    {
+      id: "email",
+      label: labels.email,
+      href: contacts.email.href || toMailtoHref(contacts.email.value),
+      variant: "secondary",
+    },
+  ];
 
   if (isUsablePhone(contacts.phone.value)) {
     actions.push({
       id: "call",
-      label: labels.call,
+      label: labels.callOffice,
       href: contacts.phone.href || toTelHref(contacts.phone.value),
       variant: "secondary",
     });
   }
 
-  actions.push({
-    id: "email",
-    label: labels.email,
-    href: contacts.email.href || toMailtoHref(contacts.email.value),
-    variant: "secondary",
-  });
-
-  actions.push({
-    id: "maps",
-    label: labels.maps,
-    href: mapsHrefFromOperationalAddress(contacts.operationalAddress.lines),
-    variant: "secondary",
-    external: true,
-  });
-
-  actions.push({
-    id: "visitSite",
-    label: labels.visitSite,
-    href: SITE_URL,
-    variant: "secondary",
-    external: true,
-  });
-
-  actions.push({
-    id: "save",
-    label: labels.saveToContacts,
-    href: `/segreteria/vcard/${companyVcard.slug}`,
-    variant: "primary",
-    download: true,
-  });
-
-  actions.push({
-    id: "contactOffice",
-    label: labels.contactOffice,
-    href: links.contatti,
-    variant: "secondary",
-  });
+  actions.push(
+    {
+      id: "maps",
+      label: labels.maps,
+      href: mapsHrefFromOperationalAddress(contacts.operationalAddress.lines),
+      variant: "secondary",
+      external: true,
+    },
+    {
+      id: "visitSite",
+      label: labels.visitSite,
+      href: SITE_URL,
+      variant: "secondary",
+      external: true,
+    }
+  );
 
   return actions;
 }
 
-export function getPersonActions(
+/** Actions for hub rows (Luana / Alessandro). */
+export function getPersonHubActions(
   data: SegreteriaData,
   person: SegreteriaResolvedPerson
 ): SegreteriaAction[] {
@@ -89,19 +82,10 @@ export function getPersonActions(
       id: "download",
       label: labels.downloadDigitalCard,
       href: person.vcardPath,
-      variant: "secondary",
+      variant: "primary",
       download: true,
     },
   ];
-
-  if (hasPersonContact(contacts, "phone") && isUsablePhone(contacts.phone)) {
-    actions.push({
-      id: "call",
-      label: labels.call,
-      href: toTelHref(contacts.phone!),
-      variant: "secondary",
-    });
-  }
 
   if (hasPersonContact(contacts, "email")) {
     actions.push({
@@ -112,58 +96,28 @@ export function getPersonActions(
     });
   }
 
-  if (hasPersonContact(contacts, "whatsapp")) {
+  if (hasPersonContact(contacts, "phone") && isUsablePhone(contacts.phone)) {
     actions.push({
-      id: "whatsapp",
-      label: labels.whatsapp,
-      href: toWhatsAppHref(contacts.whatsapp!),
+      id: "call",
+      label: labels.call,
+      href: toTelHref(contacts.phone!),
       variant: "secondary",
-      external: true,
     });
   }
 
-  if (hasPersonContact(contacts, "linkedin")) {
-    actions.push({
-      id: "linkedin",
-      label: labels.linkedin,
-      href: contacts.linkedin!,
-      variant: "secondary",
-      external: true,
-    });
-  }
-
-  actions.push(
-    {
-      id: "bookConsultation",
-      label: labels.bookConsultation,
-      href: links.prenotaConsulenza,
-      variant: "secondary",
-    },
-    {
-      id: "visitSite",
-      label: labels.visitSite,
-      href: links.home,
-      variant: "ghost",
-    },
-    {
-      id: "contactForm",
-      label: labels.contactForm,
-      href: links.contatti,
-      variant: "ghost",
-    },
-    {
-      id: "contactSegreteria",
-      label: labels.contactSegreteria,
-      href: links.segreteria,
-      variant: "ghost",
-    },
-    {
-      id: "backToSegreteria",
-      label: labels.backToSegreteria,
-      href: links.segreteria,
-      variant: "ghost",
-    }
-  );
+  actions.push({
+    id: "bookConsultation",
+    label: labels.bookConsultation,
+    href: links.prenotaConsulenza,
+    variant: "secondary",
+  });
 
   return actions;
+}
+
+export function getPersonActions(
+  data: SegreteriaData,
+  person: SegreteriaResolvedPerson
+): SegreteriaAction[] {
+  return getPersonHubActions(data, person);
 }

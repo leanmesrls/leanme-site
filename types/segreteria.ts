@@ -31,6 +31,20 @@ export interface SegreteriaData {
       src: string;
       alt: string;
     };
+    guide: {
+      title: string;
+      step1Question: string;
+      step2Question: string;
+      step3Question: string;
+      confirmLabel: string;
+      restartLabel: string;
+      backLabel: string;
+      companyLabel: string;
+      staffLabel: string;
+      staffActionId: string;
+      confirmPrefix: string;
+      doneMessage: string;
+    };
   };
   team: {
     id: string;
@@ -50,6 +64,10 @@ export interface SegreteriaData {
     description: string;
     ctaLabel: string;
     href: string;
+    image: {
+      src: string;
+      alt: string;
+    };
   };
   links: {
     home: string;
@@ -62,6 +80,7 @@ export interface SegreteriaData {
     saveToContacts: string;
     downloadDigitalCard: string;
     call: string;
+    callOffice: string;
     email: string;
     whatsapp: string;
     linkedin: string;
@@ -95,7 +114,8 @@ export type SegreteriaActionId =
   | "contactForm"
   | "contactOffice"
   | "contactSegreteria"
-  | "backToSegreteria";
+  | "backToSegreteria"
+  | "discover";
 
 export interface SegreteriaAction {
   id: SegreteriaActionId;

@@ -6,6 +6,8 @@ import {
 } from "@/lib/content";
 import type { SegreteriaResolvedPerson } from "@/types/segreteria";
 
+const HUB_PATH = "/vcards";
+
 export function getSegreteriaPersonSlugs(): string[] {
   return getSegreteriaData().team.members.map((member) => member.personSlug);
 }
@@ -31,8 +33,8 @@ export function resolveSegreteriaPerson(
     imageAlt: `${person.name} — ${person.role}`,
     contacts,
     profilePath: `/chi-siamo/${person.slug}`,
-    segreteriaPath: `/segreteria/${person.slug}`,
-    vcardPath: `/segreteria/vcard/${person.slug}`,
+    segreteriaPath: `${HUB_PATH}/${person.slug}`,
+    vcardPath: `${HUB_PATH}/vcard/${person.slug}`,
   };
 }
 
@@ -48,4 +50,8 @@ export function getSegreteriaCompanyContext() {
     contacts: getContattiData(),
     site: getSiteConfig(),
   };
+}
+
+export function getVcardsHubPath(): string {
+  return HUB_PATH;
 }

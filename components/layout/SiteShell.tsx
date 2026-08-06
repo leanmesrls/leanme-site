@@ -4,7 +4,12 @@ import { usePathname } from "next/navigation";
 
 function isKioskPath(pathname: string | null): boolean {
   if (!pathname) return false;
-  return pathname === "/segreteria" || pathname.startsWith("/segreteria/");
+  return (
+    pathname === "/vcards" ||
+    pathname.startsWith("/vcards/") ||
+    pathname === "/segreteria" ||
+    pathname.startsWith("/segreteria/")
+  );
 }
 
 interface SiteShellProps {

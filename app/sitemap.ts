@@ -78,15 +78,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   };
 
-  const segreteriaRoute = {
-    url: `${baseUrl}/segreteria`,
+  const vcardsRoute = {
+    url: `${baseUrl}/vcards`,
     lastModified: new Date(),
     changeFrequency: "monthly" as const,
     priority: 0.8,
   };
 
-  const segreteriaPersonRoutes = getSegreteriaPersonSlugs().map((slug) => ({
-    url: `${baseUrl}/segreteria/${slug}`,
+  const vcardsPersonRoutes = getSegreteriaPersonSlugs().map((slug) => ({
+    url: `${baseUrl}/vcards/${slug}`,
     lastModified: new Date(),
     changeFrequency: "monthly" as const,
     priority: 0.7,
@@ -111,8 +111,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...staticRoutes,
     newsletterRoute,
     prenotaConsulenzaRoute,
-    segreteriaRoute,
-    ...segreteriaPersonRoutes,
+    vcardsRoute,
+    ...vcardsPersonRoutes,
     ...legalRoutes,
     ...percorsoRoutes,
     ...chiSiamoProfileRoutes,

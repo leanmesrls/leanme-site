@@ -57,6 +57,39 @@
     text-wrap: balance;
   }
 
+  @keyframes leonardo-pulse {
+    0%,
+    100% {
+      transform: scale(1);
+      box-shadow:
+        0 0 0 3px rgba(255, 255, 255, 0.95),
+        0 0 0 8px rgba(230, 0, 126, 0.55),
+        0 0 36px rgba(230, 0, 126, 0.65);
+    }
+    50% {
+      transform: scale(1.06);
+      box-shadow:
+        0 0 0 5px rgba(255, 255, 255, 1),
+        0 0 0 14px rgba(230, 0, 126, 0.35),
+        0 0 48px rgba(230, 0, 126, 0.8);
+    }
+  }
+
+  .leonardo-action[data-leonardo-highlight="true"] {
+    position: relative;
+    z-index: 5;
+    animation: leonardo-pulse 1s ease-in-out infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .leonardo-action[data-leonardo-highlight="true"] {
+      animation: none;
+      outline: 3px solid #fff;
+      outline-offset: 4px;
+      box-shadow: 0 0 0 8px rgba(230, 0, 126, 0.55);
+    }
+  }
+
   .section-padding {
     @apply px-5 py-16 md:px-10 md:py-20 lg:px-16 lg:py-24;
   }

@@ -2,10 +2,10 @@
   "meta": {
     "title": "Segreteria Digitale LeanMe",
     "description": "Salva i contatti LeanMe e del team nella tua rubrica. Biglietto da visita digitale guidato da Lean.Agent.Leonardo.",
-    "path": "/segreteria"
+    "path": "/vcards"
   },
   "welcome": {
-    "eyebrow": "Segreteria Digitale",
+    "eyebrow": "vCards",
     "title": "Benvenuto in LeanMe",
     "leonardoName": "Lean.Agent.Leonardo",
     "leonardoRole": "Assistente di segreteria",
@@ -22,6 +22,20 @@
     "image": {
       "src": "/assets/official/homepage/leonardo-hp.png",
       "alt": "Lean.Agent.Leonardo — assistente di segreteria LeanMe"
+    },
+    "guide": {
+      "title": "Ti guido io",
+      "step1Question": "Chi stai cercando?",
+      "step2Question": "Cosa vuoi fare?",
+      "step3Question": "Confermi?",
+      "confirmLabel": "Portami all'azione",
+      "restartLabel": "Ricomincia",
+      "backLabel": "Indietro",
+      "companyLabel": "LeanMe — contatti generali",
+      "staffLabel": "Staff Ibrido",
+      "staffActionId": "discover",
+      "confirmPrefix": "Perfetto. Ti porto qui:",
+      "doneMessage": "Ho evidenziato l'azione giusta. Toccala quando sei pronto."
     }
   },
   "team": {
@@ -31,11 +45,11 @@
     "members": [
       {
         "personSlug": "luana",
-        "ctaLabel": "Aggiungi contatto"
+        "ctaLabel": "Aggiungi in rubrica"
       },
       {
         "personSlug": "alessandro",
-        "ctaLabel": "Aggiungi contatto"
+        "ctaLabel": "Aggiungi in rubrica"
       }
     ]
   },
@@ -50,30 +64,35 @@
     "title": "Staff Ibrido",
     "description": "Persone e Lean.Agent AI che lavorano insieme in LeanMe.",
     "ctaLabel": "Scopri lo Staff Ibrido",
-    "href": "/staff-ibrido"
+    "href": "/staff-ibrido",
+    "image": {
+      "src": "/assets/official/vcards/staff-ibrido-banner.png",
+      "alt": "I 7 Lean.Agent — Staff Ibrido LeanMe"
+    }
   },
   "links": {
     "home": "/",
     "contatti": "/contatti",
     "prenotaConsulenza": "/prenota-consulenza",
     "staffIbrido": "/staff-ibrido",
-    "segreteria": "/segreteria"
+    "segreteria": "/vcards"
   },
   "labels": {
-    "saveToContacts": "Aggiungi contatto",
-    "downloadDigitalCard": "Scarica il biglietto digitale",
+    "saveToContacts": "Aggiungi in rubrica",
+    "downloadDigitalCard": "Scarica biglietto digitale",
     "call": "Chiama",
+    "callOffice": "Chiamaci",
     "email": "Scrivi una mail",
     "whatsapp": "Apri WhatsApp",
     "linkedin": "Visita LinkedIn",
     "maps": "Apri in Google Maps",
-    "visitSite": "Visita il sito LeanMe",
+    "visitSite": "Visita il sito",
     "bookConsultation": "Prenota una consulenza",
     "contactForm": "Compila il modulo di contatto",
     "contactOffice": "Contatta l'ufficio",
     "contactSegreteria": "Contatta la Segreteria LeanMe",
     "backToSegreteria": "Torna alla Segreteria Digitale",
-    "openProfile": "Aggiungi contatto"
+    "openProfile": "Aggiungi in rubrica"
   },
   "peopleContacts": {
     "luana": {

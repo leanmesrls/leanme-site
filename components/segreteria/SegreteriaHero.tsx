@@ -1,12 +1,23 @@
 import Image from "next/image";
 import { FadeIn } from "@/components/motion/FadeIn";
-import type { SegreteriaData } from "@/types/segreteria";
+import { LeonardoGuide } from "@/components/segreteria/LeonardoGuide";
+import type { SegreteriaAction, SegreteriaData } from "@/types/segreteria";
 
 interface SegreteriaHeroProps {
   data: SegreteriaData;
+  companyActions: SegreteriaAction[];
+  people: Array<{
+    slug: string;
+    name: string;
+    actions: SegreteriaAction[];
+  }>;
 }
 
-export function SegreteriaHero({ data }: SegreteriaHeroProps) {
+export function SegreteriaHero({
+  data,
+  companyActions,
+  people,
+}: SegreteriaHeroProps) {
   const { welcome, leonardo } = data;
 
   return (
@@ -55,6 +66,20 @@ export function SegreteriaHero({ data }: SegreteriaHeroProps) {
                   </p>
                 ))}
               </div>
+
+              <LeonardoGuide
+                guide={leonardo.guide}
+                companySectionId={data.company.id}
+                companyLabel={leonardo.guide.companyLabel}
+                companyActions={companyActions}
+                people={people}
+                staff={{
+                  sectionId: data.agents.id,
+                  label: leonardo.guide.staffLabel,
+                  actionLabel: data.agents.ctaLabel,
+                  actionId: leonardo.guide.staffActionId,
+                }}
+              />
             </div>
           </div>
         </FadeIn>

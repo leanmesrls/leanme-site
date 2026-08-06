@@ -8,6 +8,7 @@ interface SegreteriaSaveContactButtonProps {
   label: string;
   feedbackMessage: string;
   variant?: "primary" | "secondary" | "ghost";
+  actionId?: string;
 }
 
 const variantClasses = {
@@ -23,6 +24,7 @@ export function SegreteriaSaveContactButton({
   label,
   feedbackMessage,
   variant = "primary",
+  actionId,
 }: SegreteriaSaveContactButtonProps) {
   const [showFeedback, setShowFeedback] = useState(false);
 
@@ -31,9 +33,10 @@ export function SegreteriaSaveContactButton({
       <a
         href={href}
         download
+        data-leonardo-action={actionId}
         onClick={() => setShowFeedback(true)}
         className={cn(
-          "inline-flex min-h-11 w-full items-center justify-center rounded-full px-5 py-2.5 text-sm font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-leanme-fuchsia focus-visible:ring-offset-2 focus-visible:ring-offset-black",
+          "leonardo-action inline-flex min-h-11 w-full items-center justify-center rounded-full px-5 py-2.5 text-sm font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-leanme-fuchsia focus-visible:ring-offset-2 focus-visible:ring-offset-black",
           variantClasses[variant]
         )}
       >
