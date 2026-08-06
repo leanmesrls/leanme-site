@@ -1,5 +1,31 @@
 [
   {
+    "slug": "leanme-rebuild-episodio-01",
+    "category": "vita-in-leanme",
+    "title": "LeanMe // Rebuild // Episodio 01",
+    "excerpt": [
+      "Siamo tornati. E da oggi entri nel cantiere.",
+      "Per le prossime settimane non ti racconteremo semplicemente cosa stiamo facendo: ti chiederemo di scoprirlo. Ogni episodio sblocca un indizio."
+    ],
+    "date": "2026-08-06",
+    "readTime": "4 min",
+    "image": {
+      "src": "/assets/leanlab/newsletter-episodio-01.png",
+      "alt": "Newsletter LeanMe Rebuild Episodio 01 — Siamo tornati. E da oggi entri nel cantiere.",
+      "replaceHint": ""
+    },
+    "author": "Luana, Alessandro, LeanMe.Agent.Vespucci, LeanMe.Agent.Marconi, LeanMe.Agent.Olivetti",
+    "tags": ["Newsletter"],
+    "bodyTemplate": "newsletter-episodio-01",
+    "hideDefaultImage": true,
+    "inPocheParole": [
+      "Episodio 01 di LeanMe Rebuild apre il cantiere: LeanMe è tornata e invita chi legge a entrare nel progetto, non solo a seguirlo da fuori.",
+      "Ogni episodio segue la stessa regola: demolire convinzioni e abitudini obsolete, costruire nuove idee, modi di lavorare e strumenti.",
+      "Il primo indizio è un quiz («Se tu dovessi ricostruire qualcosa, da dove inizieresti?») per sbloccare il contenuto della giornata.",
+      "Rebuild è una serie a episodi: Human + AI, trasparente e progressiva — il progetto è in corso e si scopre pezzo dopo pezzo."
+    ]
+  },
+  {
     "slug": "leanme-rebuild-episodio-00",
     "category": "vita-in-leanme",
     "title": "LeanMe // Rebuild // Episodio 00",

@@ -151,7 +151,9 @@ export interface LeanLabCategory {
   description: string;
 }
 
-export type LeanLabArticleBodyTemplate = "newsletter-episodio-00";
+export type LeanLabArticleBodyTemplate =
+  | "newsletter-episodio-00"
+  | "newsletter-episodio-01";
 
 export interface LeanLabArticle {
   slug: string;
