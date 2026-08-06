@@ -20,6 +20,7 @@ import creditsData from "@/data/credits.json";
 import seoContentData from "@/data/seo-content.json";
 import suiteData from "@/data/suite.json";
 import terminiIaData from "@/data/termini-ia.json";
+import segreteriaData from "@/data/segreteria.json";
 
 import type {
   AcademyData,
@@ -40,6 +41,7 @@ import type {
   SuiteData,
   Testimonial,
 } from "@/types/content";
+import type { SegreteriaData } from "@/types/segreteria";
 import type { HomepageData } from "@/types/homepage";
 import type { PartnerLogo } from "@/lib/companies";
 import { getPartnerLogos as readPartnerLogos } from "@/lib/companies";
@@ -140,6 +142,10 @@ export function getAcademyData(): AcademyData {
 
 export function getContattiData(): ContactData {
   return contattiData as ContactData;
+}
+
+export function getSegreteriaData(): SegreteriaData {
+  return segreteriaData as SegreteriaData;
 }
 
 export function getNewsletterData(): NewsletterData {

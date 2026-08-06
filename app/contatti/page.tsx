@@ -105,6 +105,19 @@ export default function ContattiPage() {
                 </div>
               </div>
 
+              {data.openingHours && data.openingHours.lines.length > 0 && (
+                <div>
+                  <h3 className="text-xs font-semibold uppercase tracking-[0.12em] text-white/50">
+                    {data.openingHours.label}
+                  </h3>
+                  <ul className="mt-2 space-y-1 text-white/75">
+                    {data.openingHours.lines.map((line) => (
+                      <li key={line}>{line}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
               <div>
                 <h3 className="text-xs font-semibold uppercase tracking-[0.12em] text-white/50">
                   Social

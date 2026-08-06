@@ -9,6 +9,7 @@ import { PageSection } from "@/components/layout/PageSection";
 import { InPocheParoleBox } from "@/components/seo/InPocheParoleBox";
 import { JsonLd } from "@/components/seo/JsonLd";
 import {
+  getContattiData,
   getHomepageData,
   getLeanLabArticles,
   getPartnerLogos,
@@ -36,6 +37,7 @@ export default function HomePage() {
   const testimonials = getTestimonials();
   const partnerLogos = getPartnerLogos();
   const summary = getSeoInPocheParole("/");
+  const openingHoursLine = getContattiData().openingHours?.lines?.[0];
 
   const structuredData = homepageSchema({
     description: homepageDescription,
@@ -71,7 +73,10 @@ export default function HomePage() {
             <InPocheParoleBox paragraphs={summary} />
           </PageSection>
         ) : null}
-        <ContactBanner data={homepage.contactBanner} consultationCta={consultationCta} />
+        <ContactBanner
+          data={homepage.contactBanner}
+          openingHoursLine={openingHoursLine}
+        />
       </div>
     </>
   );

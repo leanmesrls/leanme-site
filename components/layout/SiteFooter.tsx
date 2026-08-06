@@ -181,6 +181,18 @@ export function SiteFooter() {
               <a href={contatti.phone.href} className="block transition hover:text-white">
                 {contatti.phone.value}
               </a>
+              {contatti.openingHours?.lines?.length ? (
+                <div>
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-white/45">
+                    {contatti.openingHours.label}
+                  </p>
+                  {contatti.openingHours.lines.map((line) => (
+                    <span key={line} className="block">
+                      {line}
+                    </span>
+                  ))}
+                </div>
+              ) : null}
             </address>
           </div>
         </div>

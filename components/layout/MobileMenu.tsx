@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
-import Link from "next/link";
+import { ConnectCtaButton } from "@/components/layout/ConnectCtaButton";
 import { Navigation } from "@/components/layout/Navigation";
 import { Icon } from "@/components/ui/Icon";
 import { cn } from "@/lib/utils";
@@ -10,7 +10,7 @@ import type { NavItem } from "@/types/content";
 
 interface MobileMenuProps {
   items: NavItem[];
-  cta?: { label: string; href: string };
+  cta?: { label: string; href: string; subtitle?: string };
   variant?: "light" | "dark";
 }
 
@@ -76,13 +76,14 @@ export function MobileMenu({ items, cta, variant = "light" }: MobileMenuProps) {
         />
         {cta ? (
           <div className="mt-8">
-            <Link
+            <ConnectCtaButton
               href={cta.href}
+              label={cta.label}
+              openingHours={cta.subtitle}
+              fullWidth
               onClick={() => setOpen(false)}
-              className="inline-flex w-full items-center justify-center rounded-full bg-leanme-fuchsia px-6 py-3 text-xs font-semibold uppercase tracking-[0.08em] text-white"
-            >
-              {cta.label}
-            </Link>
+              className="px-6 py-3"
+            />
           </div>
         ) : null}
       </div>

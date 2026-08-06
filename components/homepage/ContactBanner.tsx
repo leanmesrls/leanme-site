@@ -1,17 +1,16 @@
 "use client";
 
 import { ChatIcon } from "@/components/homepage/Icons";
-import { PercorsoConsultationCta } from "@/components/percorsi/PercorsoConsultationCta";
+import { ConnectCtaButton } from "@/components/layout/ConnectCtaButton";
 import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
-import type { PercorsiConsultationCta } from "@/types/content";
 import type { HomepageData } from "@/types/homepage";
 
 interface ContactBannerProps {
   data: HomepageData["contactBanner"];
-  consultationCta: PercorsiConsultationCta;
+  openingHoursLine?: string;
 }
 
-export function ContactBanner({ data, consultationCta }: ContactBannerProps) {
+export function ContactBanner({ data, openingHoursLine }: ContactBannerProps) {
   return (
     <RevealOnScroll>
       <section
@@ -37,11 +36,11 @@ export function ContactBanner({ data, consultationCta }: ContactBannerProps) {
               </p>
             </div>
           </div>
-          <PercorsoConsultationCta
-            href={consultationCta.href}
-            label={consultationCta.label}
-            variant="banner"
-            className="max-w-md shrink-0 md:max-w-lg"
+          <ConnectCtaButton
+            href={data.cta.href}
+            label={data.cta.label}
+            openingHours={openingHoursLine}
+            className="max-w-md shrink-0 px-6 py-3 md:max-w-lg"
           />
         </div>
       </section>

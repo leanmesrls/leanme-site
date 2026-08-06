@@ -1,16 +1,18 @@
 import Image from "next/image";
 import Link from "next/link";
+import { ConnectCtaButton } from "@/components/layout/ConnectCtaButton";
 import { MobileMenu } from "@/components/layout/MobileMenu";
 import { Navigation } from "@/components/layout/Navigation";
 import { ScrollHeader } from "@/components/layout/ScrollHeader";
-import { getHomepageData, getPercorsiData } from "@/lib/content";
+import { getContattiData, getHomepageData, getPercorsiData } from "@/lib/content";
 import { buildHeaderNavigation } from "@/lib/navigation";
 import { ASSETS } from "@/lib/assets";
 
 export function Header() {
   const homepage = getHomepageData();
-  const { consultationCta, percorsi } = getPercorsiData();
+  const { percorsi } = getPercorsiData();
   const navigation = buildHeaderNavigation(homepage.headerNavigation, percorsi);
+  const openingHours = getContattiData().openingHours?.lines?.[0];
 
   return (
     <ScrollHeader>
@@ -35,18 +37,22 @@ export function Header() {
         </div>
 
         <div className="hidden items-center justify-end xl:flex">
-          <Link
+          <ConnectCtaButton
             href={homepage.headerCta.href}
-            className="inline-flex items-center justify-center rounded-full bg-leanme-fuchsia px-5 py-2.5 text-[10px] font-semibold uppercase tracking-[0.1em] text-white transition hover:bg-leanme-fuchsia-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leanme-fuchsia"
-          >
-            {homepage.headerCta.label}
-          </Link>
+            label={homepage.headerCta.label}
+            openingHours={openingHours}
+            className="min-h-[40px] px-5 py-1.5"
+          />
         </div>
 
         <div className="col-start-3 flex justify-end xl:hidden">
           <MobileMenu
             items={navigation}
-            cta={{ label: "CONSULENZA", href: consultationCta.href }}
+            cta={{
+              label: "CONNETTITI",
+              href: homepage.headerCta.href,
+              subtitle: openingHours,
+            }}
             variant="dark"
           />
         </div>

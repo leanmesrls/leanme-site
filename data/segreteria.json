@@ -1,0 +1,93 @@
+{
+  "meta": {
+    "title": "Segreteria Digitale LeanMe",
+    "description": "Salva i contatti LeanMe e del team nella tua rubrica. Biglietto da visita digitale guidato da Lean.Agent.Leonardo.",
+    "path": "/segreteria"
+  },
+  "welcome": {
+    "eyebrow": "Segreteria Digitale",
+    "title": "Benvenuto in LeanMe",
+    "leonardoName": "Lean.Agent.Leonardo",
+    "leonardoRole": "Assistente di segreteria",
+    "introParagraphs": [
+      "Grazie per averci dedicato qualche minuto.",
+      "Sono Lean.Agent.Leonardo, l'assistente di segreteria di LeanMe.",
+      "Il mio compito è aiutarti a trovare rapidamente il referente giusto, salvare i suoi contatti nella tua rubrica e accedere ai principali riferimenti e servizi dell'azienda, in modo semplice e immediato."
+    ]
+  },
+  "leonardo": {
+    "agentSlug": "leonardo",
+    "personAssistCopy": "Posso aiutarti a salvare questo contatto o a metterti in comunicazione con questa persona.",
+    "vcardFeedback": "Ho preparato il contatto. Il tuo dispositivo ti chiederà ora di salvarlo nella rubrica.",
+    "image": {
+      "src": "/assets/official/homepage/leonardo-hp.png",
+      "alt": "Lean.Agent.Leonardo — assistente di segreteria LeanMe"
+    }
+  },
+  "team": {
+    "id": "team",
+    "title": "Contatti diretti",
+    "subtitle": "Scegli chi vuoi contattare",
+    "members": [
+      {
+        "personSlug": "luana",
+        "ctaLabel": "Aggiungi contatto"
+      },
+      {
+        "personSlug": "alessandro",
+        "ctaLabel": "Aggiungi contatto"
+      }
+    ]
+  },
+  "company": {
+    "id": "ufficio",
+    "title": "Contatti generali",
+    "subtitle": "Ufficio e riferimenti ufficiali",
+    "openingHours": ["Lun–Ven 08.30–17.30"]
+  },
+  "agents": {
+    "id": "agenti-ai",
+    "title": "Staff Ibrido",
+    "description": "Persone e Lean.Agent AI che lavorano insieme in LeanMe.",
+    "ctaLabel": "Scopri lo Staff Ibrido",
+    "href": "/staff-ibrido"
+  },
+  "links": {
+    "home": "/",
+    "contatti": "/contatti",
+    "prenotaConsulenza": "/prenota-consulenza",
+    "staffIbrido": "/staff-ibrido",
+    "segreteria": "/segreteria"
+  },
+  "labels": {
+    "saveToContacts": "Aggiungi contatto",
+    "downloadDigitalCard": "Scarica il biglietto digitale",
+    "call": "Chiama",
+    "email": "Scrivi una mail",
+    "whatsapp": "Apri WhatsApp",
+    "linkedin": "Visita LinkedIn",
+    "maps": "Apri in Google Maps",
+    "visitSite": "Visita il sito LeanMe",
+    "bookConsultation": "Prenota una consulenza",
+    "contactForm": "Compila il modulo di contatto",
+    "contactOffice": "Contatta l'ufficio",
+    "contactSegreteria": "Contatta la Segreteria LeanMe",
+    "backToSegreteria": "Torna alla Segreteria Digitale",
+    "openProfile": "Aggiungi contatto"
+  },
+  "peopleContacts": {
+    "luana": {
+      "email": "luana.martuzzi@leanme.it",
+      "phone": "+39 339 5318662"
+    },
+    "alessandro": {
+      "email": "alessandro.lupinetti@leanme.it",
+      "phone": "+39 339 5608781"
+    }
+  },
+  "companyVcard": {
+    "slug": "leanme",
+    "displayName": "LeanMe",
+    "organization": "LeanMe S.r.l.s."
+  }
+}

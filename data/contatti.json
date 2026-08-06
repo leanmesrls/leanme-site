@@ -35,6 +35,10 @@
     "value": "info@leanme.it",
     "href": "mailto:info@leanme.it"
   },
+  "openingHours": {
+    "label": "Orari",
+    "lines": ["Lun–Ven 08.30–17.30"]
+  },
   "piva": {
     "label": "P. IVA",
     "value": "03887091209"

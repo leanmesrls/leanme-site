@@ -240,6 +240,10 @@ export interface ContactData {
     value: string;
     href: string;
   };
+  openingHours?: {
+    label: string;
+    lines: string[];
+  };
   social: SocialLink[];
   map: {
     embedUrl: string;

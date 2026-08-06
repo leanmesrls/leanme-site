@@ -90,6 +90,30 @@
         "Non è una vendita aggressiva: è un confronto professionale con founder e team, orientato a capire se e come possiamo creare valore.",
         "LeanMe offre questo spazio perché crediamo che le migliori collaborazioni nascano da comprensione reciproca, non da proposte preconfezionate."
       ]
+    },
+    "/segreteria": {
+      "inPocheParole": [
+        "La Segreteria Digitale LeanMe è l'ingresso unico, pensato per QR code, per conoscere il team e salvare i contatti ufficiali.",
+        "Chi incontra LeanMe ha bisogno di riferimenti chiari e azioni immediate, senza chat libere o passaggi inutili.",
+        "Leonardo, assistente di segreteria, guida verso schede personali, vCard, email, consulenza e pagine del sito già pubbliche.",
+        "È un pezzo dell'Azienda Ibrida: organizzazione umana e AI al servizio di contatti concreti, non di conversazioni da gestire."
+      ]
+    },
+    "/segreteria/luana": {
+      "inPocheParole": [
+        "Scheda digitale di Dr. Luana Martuzzi, Founder LeanMe, raggiungibile dalla Segreteria Digitale.",
+        "Serve a chi vuole salvare il contatto o avviare una collaborazione senza cercare riferimenti sparsi.",
+        "Da questa pagina puoi scaricare la vCard, prenotare una consulenza o usare i canali ufficiali LeanMe disponibili.",
+        "I dati mostrati sono quelli già pubblici sul sito: nessuna informazione privata aggiuntiva."
+      ]
+    },
+    "/segreteria/alessandro": {
+      "inPocheParole": [
+        "Scheda digitale di Ing. Alessandro Lupinetti, CTO LeanMe, raggiungibile dalla Segreteria Digitale.",
+        "Serve a chi vuole salvare il contatto tecnico o avviare un confronto su architetture, sviluppo e cybersecurity.",
+        "Da questa pagina puoi scaricare la vCard, prenotare una consulenza o usare i canali ufficiali LeanMe disponibili.",
+        "I dati mostrati sono quelli già pubblici sul sito: nessuna informazione privata aggiuntiva."
+      ]
     }
   }
 }

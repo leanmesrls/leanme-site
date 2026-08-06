@@ -9,6 +9,7 @@ import {
   getAllPercorsoSlugs,
   getSiteConfig,
 } from "@/lib/content";
+import { getSegreteriaPersonSlugs } from "@/lib/segreteria/resolve";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const site = getSiteConfig();
@@ -77,6 +78,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   };
 
+  const segreteriaRoute = {
+    url: `${baseUrl}/segreteria`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+  };
+
+  const segreteriaPersonRoutes = getSegreteriaPersonSlugs().map((slug) => ({
+    url: `${baseUrl}/segreteria/${slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
   const legalRoutes = [
     "/privacy",
     "/privacy-newsletter",
@@ -96,6 +111,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...staticRoutes,
     newsletterRoute,
     prenotaConsulenzaRoute,
+    segreteriaRoute,
+    ...segreteriaPersonRoutes,
     ...legalRoutes,
     ...percorsoRoutes,
     ...chiSiamoProfileRoutes,
