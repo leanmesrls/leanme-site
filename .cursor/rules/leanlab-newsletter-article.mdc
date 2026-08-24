@@ -18,3 +18,4 @@ Quando pubblichi una nuova newsletter come articolo blog:
 6. **Firma autori** in metadata (non nel PNG): persone + `LeanMe.Agent.*` come richiesto.
 7. **GEO:** 4 paragrafi `inPocheParole` sull’articolo.
 8. Homepage LeanLab: tab **ALL** (default) include tutti gli articoli in ordine cronologico inverso; anteprime con `object-top`.
+9. **CTA opzionale** (`cta.href` + `cta.label` in `articles.json`): se la newsletter ha un form/quiz, l’immagine articolo diventa cliccabile e le anteprime LeanLab mostrano il link. Sul sito **non** usare merge tag email (`{{ contact.EMAIL }}`) — solo l’URL pubblico del form.

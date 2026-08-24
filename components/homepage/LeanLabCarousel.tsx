@@ -31,40 +31,55 @@ const categoryLabels: Record<string, string> = {
 
 function ArticleCard({ article }: { article: LeanLabArticle }) {
   const imageSrc = article.image?.src ?? ASSETS.decorative.bannerAmbient;
+  const articleHref = `/leanlab/articolo/${article.slug}`;
 
   return (
-    <Link
-      href={`/leanlab/articolo/${article.slug}`}
-      className="group block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leanme-fuchsia"
+    <FuchsiaGlowCard
+      variant="card"
+      className="leanlab-article-card flex flex-col rounded-lg border border-white/[0.08] bg-leanme-card"
+      contentClassName="flex flex-col"
     >
-      <FuchsiaGlowCard
-        variant="card"
-        className="leanlab-article-card flex flex-col rounded-lg border border-white/[0.08] bg-leanme-card"
-        contentClassName="flex flex-col"
+      <Link
+        href={articleHref}
+        className="group block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leanme-fuchsia"
       >
-      <div className="relative aspect-[4/3] overflow-hidden">
-        <div className="leanlab-article-card-media absolute inset-0">
-          <Image
-            src={imageSrc}
-            alt={article.title}
-            fill
-            className="object-cover object-top"
-            sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 25vw"
-          />
+        <div className="relative aspect-[4/3] overflow-hidden">
+          <div className="leanlab-article-card-media absolute inset-0">
+            <Image
+              src={imageSrc}
+              alt={article.title}
+              fill
+              className="object-cover object-top"
+              sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 25vw"
+            />
+          </div>
+          <div className="leanlab-article-card-overlay pointer-events-none absolute inset-0 z-[1]" />
         </div>
-        <div className="leanlab-article-card-overlay pointer-events-none absolute inset-0 z-[1]" />
-      </div>
-      <div className="flex flex-1 flex-col space-y-2 p-4">
-        <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-leanme-fuchsia">
-          {categoryLabels[article.category] ?? "ARTICOLO"}
-        </span>
-        <h3 className="min-h-[2.75rem] flex-1 text-sm font-semibold leading-snug text-white">
-          {article.title}
-        </h3>
-        <p className="text-xs text-white/45">{article.readTime} di lettura</p>
-      </div>
-      </FuchsiaGlowCard>
-    </Link>
+        <div className="flex flex-1 flex-col space-y-2 p-4 pb-0">
+          <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-leanme-fuchsia">
+            {categoryLabels[article.category] ?? "ARTICOLO"}
+          </span>
+          <h3 className="min-h-[2.75rem] flex-1 text-sm font-semibold leading-snug text-white">
+            {article.title}
+          </h3>
+          <p className="text-xs text-white/45">{article.readTime} di lettura</p>
+        </div>
+      </Link>
+      {article.cta ? (
+        <div className="px-4 pb-4 pt-2">
+          <a
+            href={article.cta.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex min-h-10 items-center text-xs font-semibold uppercase tracking-[0.1em] text-leanme-fuchsia transition hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leanme-fuchsia"
+          >
+            {article.cta.label} →
+          </a>
+        </div>
+      ) : (
+        <div className="pb-4" aria-hidden />
+      )}
+    </FuchsiaGlowCard>
   );
 }
 

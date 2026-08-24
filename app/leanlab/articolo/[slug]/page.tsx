@@ -124,7 +124,10 @@ export default async function LeanLabArticlePage({ params }: PageProps) {
           ) : null}
           <div className={article.bodyTemplate ? "mt-10" : "mt-10 max-w-3xl"}>
             {article.bodyTemplate ? (
-              <LeanLabArticleBody template={article.bodyTemplate} />
+              <LeanLabArticleBody
+                template={article.bodyTemplate}
+                cta={article.cta}
+              />
             ) : (
               <p className="leading-relaxed text-white/65">
                 Contenuto completo dell&apos;articolo LeanLab in arrivo. Ogni

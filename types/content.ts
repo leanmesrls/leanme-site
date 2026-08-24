@@ -155,6 +155,13 @@ export type LeanLabArticleBodyTemplate =
   | "newsletter-episodio-00"
   | "newsletter-episodio-01";
 
+export interface LeanLabArticleCta {
+  /** URL azione (quiz, form, risorsa esterna). */
+  href: string;
+  /** Etichetta visibile su articolo e anteprime. */
+  label: string;
+}
+
 export interface LeanLabArticle {
   slug: string;
   category: string;
@@ -170,6 +177,8 @@ export interface LeanLabArticle {
   bodyTemplate?: LeanLabArticleBodyTemplate;
   /** Nasconde immagine hero standard quando il corpo include grafica completa. */
   hideDefaultImage?: boolean;
+  /** CTA opzionale (es. quiz newsletter) — articolo + anteprime LeanLab. */
+  cta?: LeanLabArticleCta;
   /** Riassunto GEO in fondo alla pagina articolo. */
   inPocheParole?: string[];
 }

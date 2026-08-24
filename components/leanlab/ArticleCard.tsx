@@ -21,16 +21,17 @@ export function ArticleCard({ article }: ArticleCardProps) {
   const imageSrc = article.image.src.startsWith("/assets/")
     ? article.image.src
     : ASSETS.decorative.bannerAmbient;
+  const articleHref = `/leanlab/articolo/${article.slug}`;
 
   return (
-    <Link
-      href={`/leanlab/articolo/${article.slug}`}
-      className="group block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leanme-fuchsia"
+    <FuchsiaGlowCard
+      variant="card"
+      className="flex flex-col rounded-xl border border-white/10 bg-[#111111]"
+      contentClassName="flex flex-col"
     >
-      <FuchsiaGlowCard
-        variant="card"
-        className="flex flex-col rounded-xl border border-white/10 bg-[#111111]"
-        contentClassName="flex flex-col"
+      <Link
+        href={articleHref}
+        className="group block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leanme-fuchsia"
       >
         <div className="relative aspect-[4/3] overflow-hidden rounded-t-xl">
           <Image
@@ -42,7 +43,7 @@ export function ArticleCard({ article }: ArticleCardProps) {
           />
           <div className="pointer-events-none absolute inset-0 z-[1] bg-transparent transition-colors duration-300 group-hover:bg-leanme-fuchsia/20" />
         </div>
-        <div className="space-y-3 p-4">
+        <div className="space-y-3 p-4 pb-0">
           <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-leanme-purple">
             {categoryLabels[article.category] ?? article.category}
           </span>
@@ -51,7 +52,21 @@ export function ArticleCard({ article }: ArticleCardProps) {
           </h3>
           <p className="text-xs text-white/50">{article.readTime} di lettura</p>
         </div>
-      </FuchsiaGlowCard>
-    </Link>
+      </Link>
+      {article.cta ? (
+        <div className="px-4 pb-4 pt-3">
+          <a
+            href={article.cta.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex min-h-10 items-center text-xs font-semibold uppercase tracking-[0.1em] text-leanme-fuchsia transition hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leanme-fuchsia"
+          >
+            {article.cta.label} →
+          </a>
+        </div>
+      ) : (
+        <div className="pb-4" aria-hidden />
+      )}
+    </FuchsiaGlowCard>
   );
 }
