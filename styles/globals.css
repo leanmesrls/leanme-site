@@ -35,10 +35,11 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    overflow-x: clip;
   }
 
   body {
-    @apply bg-black text-white antialiased;
+    @apply overflow-x-clip bg-black text-white antialiased;
   }
 
   ::selection {

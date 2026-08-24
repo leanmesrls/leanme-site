@@ -49,17 +49,17 @@ export function TestimonialsPartnersSection({
   if (!current) return null;
 
   return (
-    <RevealOnScroll>
+    <RevealOnScroll className="min-w-0">
       <section
         aria-labelledby="testimonials-heading"
-        className="section-padding bg-black"
+        className="section-padding overflow-x-clip bg-black"
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
         onFocus={() => setIsPaused(true)}
         onBlur={() => setIsPaused(false)}
       >
         <div className="mx-auto grid max-w-[1440px] gap-12 lg:grid-cols-2 lg:gap-16">
-          <div>
+          <div className="min-w-0">
             <SectionTitle
               id="testimonials-heading"
               align="left"
@@ -70,14 +70,14 @@ export function TestimonialsPartnersSection({
             <QuoteIcon className="mt-8 h-9 w-9 md:h-10 md:w-10" />
 
             <div
-              className="relative mt-6"
+              className="relative mt-6 min-w-0"
               aria-live="polite"
               aria-atomic="true"
             >
               {testimonials.map((item, itemIndex) => (
                 <blockquote
                   key={item.id}
-                  className={`text-sm leading-relaxed text-white transition-opacity duration-300 ease-out md:text-base ${
+                  className={`max-w-full break-words text-sm leading-relaxed text-white transition-opacity duration-300 ease-out md:text-base ${
                     itemIndex === index
                       ? "relative opacity-100"
                       : "pointer-events-none absolute inset-x-0 top-0 opacity-0"
@@ -90,7 +90,7 @@ export function TestimonialsPartnersSection({
                       <p className="text-sm font-semibold text-white">
                         {item.name}
                       </p>
-                      <p className="text-sm text-white/50">
+                      <p className="break-words text-sm text-white/50">
                         {[item.role, item.company].filter(Boolean).join(", ")}
                       </p>
                     </cite>
@@ -120,11 +120,11 @@ export function TestimonialsPartnersSection({
             </div>
           </div>
 
-          <div>
+          <div className="min-w-0">
             <SectionTitle id="partners-heading" align="left" underline={false}>
               {partnersData.title}
             </SectionTitle>
-            <div className="mt-10">
+            <div className="mt-10 min-w-0 max-w-full">
               <PartnerMarquee logos={partnerLogos} />
             </div>
           </div>

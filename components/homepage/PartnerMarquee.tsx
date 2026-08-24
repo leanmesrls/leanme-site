@@ -17,7 +17,7 @@ export function PartnerMarquee({ logos }: PartnerMarqueeProps) {
 
   return (
     <div
-      className="relative cursor-default overflow-hidden py-2"
+      className="relative min-w-0 max-w-full cursor-default overflow-hidden py-2"
       aria-label="Loghi partner"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
@@ -28,7 +28,7 @@ export function PartnerMarquee({ logos }: PartnerMarqueeProps) {
       <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-gradient-to-l from-black to-transparent md:w-14" />
 
       <div
-        className="partner-marquee-track flex w-max gap-6 md:gap-8"
+        className="partner-marquee-track flex w-max max-w-none gap-6 md:gap-8"
         style={{ animationPlayState: paused ? "paused" : "running" }}
       >
         {track.map((partner, index) => (
