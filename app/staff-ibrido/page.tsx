@@ -132,20 +132,22 @@ export default function StaffIbridoPage() {
           </div>
         </div>
 
-        <div className="mt-16">
-          <h2 className="text-lg font-bold uppercase tracking-[0.1em] text-white">
-            LEAN.AGENT.AI
-          </h2>
-          <p className="mt-4 max-w-3xl text-white/65">
-            Ogni Lean.Agent possiede una pagina dedicata. Non sostituiscono il
-            lavoro umano: lo completano, lo accelerano, lo rendono più efficace.
-          </p>
-          <div className="mt-6 grid grid-cols-2 items-start gap-5 px-2 sm:grid-cols-3 md:grid-cols-4 md:gap-6 xl:grid-cols-7">
-            {staff.leanAgents.map((agent, index) => (
-              <RevealOnScroll key={agent.slug} delay={index * 0.05}>
-                <AgentHomepageCard agent={agent} />
-              </RevealOnScroll>
-            ))}
+        <div className="mt-16 -mx-5 md:-mx-10 lg:-mx-16">
+          <div className="mx-auto max-w-[1440px] px-5 md:px-10 lg:px-16">
+            <h2 className="text-lg font-bold uppercase tracking-[0.1em] text-white">
+              LEAN.AGENT.AI
+            </h2>
+            <p className="mt-4 max-w-3xl text-white/65">
+              Ogni Lean.Agent possiede una pagina dedicata. Non sostituiscono il
+              lavoro umano: lo completano, lo accelerano, lo rendono più efficace.
+            </p>
+            <div className="mt-6 grid grid-cols-2 items-start gap-2 px-1 sm:grid-cols-3 sm:gap-2.5 md:grid-cols-4 md:gap-3 xl:grid-cols-7 xl:gap-3">
+              {staff.leanAgents.map((agent, index) => (
+                <RevealOnScroll key={agent.slug} delay={index * 0.05}>
+                  <AgentHomepageCard agent={agent} />
+                </RevealOnScroll>
+              ))}
+            </div>
           </div>
         </div>
 
