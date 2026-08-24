@@ -31,7 +31,7 @@ export function AgentHomepageCard({ agent }: AgentCardProps) {
           alt={`${agent.name} — ${agent.role}`}
           fill
           className="object-contain object-center transition duration-500 hover:scale-[1.03]"
-          sizes="(max-width: 640px) 124px, 128px"
+          sizes="(max-width: 640px) 45vw, (max-width: 1280px) 22vw, 180px"
         />
       </Link>
     </FuchsiaGlowCard>
