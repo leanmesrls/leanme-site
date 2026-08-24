@@ -228,9 +228,39 @@ const white = await knockoutBlackBackground(masterPath("white"), {
 // Nero+rosa: LeanMe è nero-su-nero nel master → deriva da bianco+rosa
 const blackFromPinkWhite = await recolorLightLogoToBlack(pinkWhite);
 
-const pittogramma = await knockoutColoredMark(masterPath("pittogramma"), {
+const pittogrammaRaw = await knockoutColoredMark(masterPath("pinkWhite"), {
   blackThreshold: 24,
 });
+// Solo pallini colorati (stesso hue del logo header), senza testo bianco
+{
+  const { data, info } = await sharp(pittogrammaRaw)
+    .ensureAlpha()
+    .raw()
+    .toBuffer({ resolveWithObject: true });
+  const pixels = Buffer.from(data);
+  for (let i = 0; i < pixels.length; i += info.channels) {
+    const r = pixels[i];
+    const g = pixels[i + 1];
+    const b = pixels[i + 2];
+    const a = pixels[i + 3];
+    if (a < 12) continue;
+    const max = Math.max(r, g, b);
+    const sat = max - Math.min(r, g, b);
+    if (!(sat > 28 && r >= g && max > 40)) {
+      pixels[i + 3] = 0;
+    }
+  }
+  var pittogramma = await sharp(pixels, {
+    raw: {
+      width: info.width,
+      height: info.height,
+      channels: info.channels,
+    },
+  })
+    .trim({ threshold: 0 })
+    .png()
+    .toBuffer();
+}
 const pittogrammaWhite = await knockoutColoredMark(
   masterPath("pittogrammaWhite"),
   { blackThreshold: 24 }
@@ -247,4 +277,4 @@ await writeToRoots({
   "pittogramma_nero.png": pittogrammaBlack,
 });
 
-console.log("\nFatto. Header/footer usano pink-white; LeanEvent pittogramma colorato.");
+console.log("\nFatto. Header/footer e pittogramma/favicon condividono lo stesso rosa del logo.");

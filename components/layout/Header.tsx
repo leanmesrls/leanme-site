@@ -25,8 +25,8 @@ export function Header() {
           <Image
             src={ASSETS.logo.pinkWhite}
             alt="LeanMe Open Innovation Hub"
-            width={2200}
-            height={590}
+            width={931}
+            height={250}
             className="h-[34px] w-auto object-contain object-left md:h-9 xl:h-[38px]"
             priority
           />
