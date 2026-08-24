@@ -16,7 +16,7 @@ interface TestimonialsPartnersSectionProps {
   partnerLogos: PartnerLogo[];
 }
 
-const SLIDE_INTERVAL_MS = 8000;
+const SLIDE_INTERVAL_MS = 4500;
 
 export function TestimonialsPartnersSection({
   testimonials,
@@ -58,68 +58,78 @@ export function TestimonialsPartnersSection({
         onFocus={() => setIsPaused(true)}
         onBlur={() => setIsPaused(false)}
       >
-      <div className="mx-auto grid max-w-[1440px] gap-12 lg:grid-cols-2 lg:gap-16">
-        <div>
-          <SectionTitle id="testimonials-heading" align="left" underline={false}>
-            {testimonialsData.title}
-          </SectionTitle>
-          <QuoteIcon className="mt-8 h-9 w-9 md:h-10 md:w-10" />
+        <div className="mx-auto grid max-w-[1440px] gap-12 lg:grid-cols-2 lg:gap-16">
+          <div>
+            <SectionTitle
+              id="testimonials-heading"
+              align="left"
+              underline={false}
+            >
+              {testimonialsData.title}
+            </SectionTitle>
+            <QuoteIcon className="mt-8 h-9 w-9 md:h-10 md:w-10" />
 
-          <div className="relative mt-6 min-h-[180px] md:min-h-[200px]">
-            {testimonials.map((item, itemIndex) => (
-              <blockquote
-                key={item.id}
-                className={`absolute inset-0 text-sm leading-relaxed text-white transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] md:text-base ${
-                  itemIndex === index
-                    ? "translate-y-0 opacity-100"
-                    : "pointer-events-none translate-y-4 opacity-0"
-                }`}
-                aria-hidden={itemIndex !== index}
-              >
-                &ldquo;{item.quote}&rdquo;
-                <footer className="mt-6">
-                  <cite className="not-italic">
-                    <p className="text-sm font-semibold text-white">{item.name}</p>
-                    <p className="text-sm text-white/50">
-                      {[item.role, item.company].filter(Boolean).join(", ")}
-                    </p>
-                  </cite>
-                </footer>
-              </blockquote>
-            ))}
+            <div
+              className="relative mt-6"
+              aria-live="polite"
+              aria-atomic="true"
+            >
+              {testimonials.map((item, itemIndex) => (
+                <blockquote
+                  key={item.id}
+                  className={`text-sm leading-relaxed text-white transition-opacity duration-300 ease-out md:text-base ${
+                    itemIndex === index
+                      ? "relative opacity-100"
+                      : "pointer-events-none absolute inset-x-0 top-0 opacity-0"
+                  }`}
+                  aria-hidden={itemIndex !== index}
+                >
+                  &ldquo;{item.quote}&rdquo;
+                  <footer className="mt-6">
+                    <cite className="not-italic">
+                      <p className="text-sm font-semibold text-white">
+                        {item.name}
+                      </p>
+                      <p className="text-sm text-white/50">
+                        {[item.role, item.company].filter(Boolean).join(", ")}
+                      </p>
+                    </cite>
+                  </footer>
+                </blockquote>
+              ))}
+            </div>
+
+            <div
+              className="mt-8 flex gap-2"
+              role="tablist"
+              aria-label="Testimonianze"
+            >
+              {testimonials.map((item, dotIndex) => (
+                <button
+                  key={item.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={index === dotIndex}
+                  aria-label={`Testimonianza ${dotIndex + 1} di ${testimonials.length}`}
+                  onClick={() => goTo(dotIndex)}
+                  className={`h-2.5 w-2.5 rounded-full transition ${
+                    index === dotIndex ? "bg-leanme-fuchsia" : "bg-white/25"
+                  }`}
+                />
+              ))}
+            </div>
           </div>
 
-          <div
-            className="mt-8 flex gap-2"
-            role="tablist"
-            aria-label="Testimonianze"
-          >
-            {testimonials.map((item, dotIndex) => (
-              <button
-                key={item.id}
-                type="button"
-                role="tab"
-                aria-selected={index === dotIndex}
-                aria-label={`Testimonianza ${dotIndex + 1} di ${testimonials.length}`}
-                onClick={() => goTo(dotIndex)}
-                className={`h-2 w-2 rounded-full transition ${
-                  index === dotIndex ? "bg-leanme-fuchsia" : "bg-white/20"
-                }`}
-              />
-            ))}
+          <div>
+            <SectionTitle id="partners-heading" align="left" underline={false}>
+              {partnersData.title}
+            </SectionTitle>
+            <div className="mt-10">
+              <PartnerMarquee logos={partnerLogos} />
+            </div>
           </div>
         </div>
-
-        <div>
-          <SectionTitle id="partners-heading" align="left" underline={false}>
-            {partnersData.title}
-          </SectionTitle>
-          <div className="mt-10">
-            <PartnerMarquee logos={partnerLogos} />
-          </div>
-        </div>
-      </div>
-    </section>
+      </section>
     </RevealOnScroll>
   );
 }

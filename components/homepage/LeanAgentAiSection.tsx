@@ -33,7 +33,7 @@ function AgentCompactCard({
           alt={`${agent.name} — ${agent.role}`}
           fill
           className="object-contain object-center"
-          sizes="(max-width: 640px) 148px, (max-width: 1280px) 156px, 140px"
+          sizes="(max-width: 640px) 124px, 128px"
         />
       </Link>
     </FuchsiaGlowCard>
@@ -65,7 +65,7 @@ export function LeanAgentAiSection({ data }: LeanAgentAiSectionProps) {
           </div>
         </RevealOnScroll>
 
-        <div className="mt-6 grid grid-cols-2 items-start justify-items-center gap-4 px-2 sm:grid-cols-3 sm:gap-5 md:grid-cols-4 xl:grid-cols-7 xl:gap-4">
+        <div className="mt-6 flex flex-wrap items-start justify-center gap-x-1.5 gap-y-3 px-1 sm:gap-x-2 sm:gap-y-4 md:gap-x-2.5">
           {data.agents.map((agent) => (
             <AgentCompactCard key={agent.slug} agent={agent} />
           ))}

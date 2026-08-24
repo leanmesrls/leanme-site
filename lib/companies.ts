@@ -3,6 +3,10 @@ import path from "path";
 
 const PUBLIC_COMPANIES_DIR = path.join(process.cwd(), "public", "assets", "companies");
 
+/** File non-logo finiti per errore nella cartella companies. */
+const EXCLUDED_LOGO_PATTERN =
+  /(^|-)hp\.|ui-chi-siamo|chi-siamo|leonardo|vespucci|marconi|angela|galileo|olivetti|teresa/i;
+
 function slugify(filename: string): string {
   return filename
     .replace(/\.[^.]+$/, "")
@@ -19,7 +23,7 @@ export interface PartnerLogo {
   alt: string;
 }
 
-function mapFiles(files: string[], baseDir: string, urlPrefix: string): PartnerLogo[] {
+function mapFiles(files: string[], urlPrefix: string): PartnerLogo[] {
   return files.sort((a, b) => a.localeCompare(b, "it")).map((file) => {
     const slug = slugify(file);
     const publicName = `${slug}${path.extname(file).toLowerCase()}`;
@@ -33,13 +37,14 @@ function mapFiles(files: string[], baseDir: string, urlPrefix: string): PartnerL
   });
 }
 
-/** Elenco di tutti i loghi ufficiali — legge da public/assets/companies */
+/** Elenco loghi partner ufficiali — legge da public/assets/companies */
 export function getPartnerLogos(): PartnerLogo[] {
   if (!fs.existsSync(PUBLIC_COMPANIES_DIR)) return [];
 
-  const files = fs.readdirSync(PUBLIC_COMPANIES_DIR).filter((file) =>
-    /\.(png|jpe?g|webp|svg)$/i.test(file)
-  );
+  const files = fs
+    .readdirSync(PUBLIC_COMPANIES_DIR)
+    .filter((file) => /\.(png|jpe?g|webp|svg)$/i.test(file))
+    .filter((file) => !EXCLUDED_LOGO_PATTERN.test(file));
 
-  return mapFiles(files, PUBLIC_COMPANIES_DIR, "/assets/companies");
+  return mapFiles(files, "/assets/companies");
 }
