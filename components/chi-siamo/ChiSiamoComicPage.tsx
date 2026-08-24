@@ -72,7 +72,24 @@ export function ChiSiamoComicPage({
           aspectRatio={COMIC_ROW_LAYOUT.row1.aspectRatio}
         />
 
-        <div className="my-6 md:my-8">
+        <div className="mt-5 md:mt-6">
+          <ChiSiamoManifesto manifesto={manifesto} compact />
+        </div>
+
+        <div className="mt-6 md:mt-8">
+          <ChiSiamoTeamGrid team={team} />
+        </div>
+
+        <div className="mt-10 md:mt-14">
+          <ChiSiamoComicRow
+            panels={comic.row3}
+            columns={COMIC_ROW_LAYOUT.row3.columns}
+            aspectRatio={COMIC_ROW_LAYOUT.row3.aspectRatio}
+            sizes="50vw"
+          />
+        </div>
+
+        <div className="mt-6 md:mt-8">
           <RevealOnScroll>
             <HighlightCard
               id="lean-thinking"
@@ -98,25 +115,14 @@ export function ChiSiamoComicPage({
           </RevealOnScroll>
         </div>
 
-        <ChiSiamoTeamGrid team={team} />
-
-        <ChiSiamoComicRow
-          panels={comic.row3}
-          columns={COMIC_ROW_LAYOUT.row3.columns}
-          aspectRatio={COMIC_ROW_LAYOUT.row3.aspectRatio}
-          sizes="50vw"
-        />
-
         {impegno ? (
-          <ChiSiamoComicFullRow
-            panel={impegno}
-            aspectRatio={COMIC_ROW_LAYOUT.row4.aspectRatio}
-          />
+          <div className="mt-6 md:mt-8">
+            <ChiSiamoComicFullRow
+              panel={impegno}
+              aspectRatio={COMIC_ROW_LAYOUT.row4.aspectRatio}
+            />
+          </div>
         ) : null}
-
-        <div className="mt-4 md:mt-6">
-          <ChiSiamoManifesto manifesto={manifesto} />
-        </div>
       </div>
     </section>
   );
