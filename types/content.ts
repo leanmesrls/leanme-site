@@ -386,6 +386,17 @@ export interface ChiSiamoData {
   teaser: {
     text: string;
   };
+  actions: {
+    staff: { label: string; href: string };
+    connect: { label: string; href: string };
+  };
+  comicIntro: {
+    title: string;
+  };
+  leanThinking: {
+    title: string;
+    content: string[];
+  };
   team: {
     members: ChiSiamoTeamMember[];
   };

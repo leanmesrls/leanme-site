@@ -32,6 +32,9 @@ export default function ChiSiamoPage() {
         comic={data.comic}
         team={data.team}
         teaser={data.teaser}
+        actions={data.actions}
+        comicIntro={data.comicIntro}
+        leanThinking={data.leanThinking}
         manifesto={data.manifesto}
       />
       {summary.length > 0 ? (

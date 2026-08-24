@@ -11,6 +11,27 @@
   "teaser": {
     "text": "Se pensi che l'Intelligenza Artificiale sia un chat particolarmente evoluta per fare domande e ottenere risposte... stai per scoprire cosa significa davvero lavorare insieme a un Agente AI."
   },
+  "actions": {
+    "staff": {
+      "label": "Visualizza tutti i membri dello Staff Ibrido",
+      "href": "/staff-ibrido"
+    },
+    "connect": {
+      "label": "Connect",
+      "href": "/contatti"
+    }
+  },
+  "comicIntro": {
+    "title": "Cos'è l'Azienda Ibrida"
+  },
+  "leanThinking": {
+    "title": "Cos'è il Lean Thinking",
+    "content": [
+      "Il Lean Thinking è per noi un principio essenziale di miglioramento continuo.",
+      "Ci chiamiamo LeanMe ispirandoci a questo approccio: ottimizzare i processi con strumenti operativi concreti, partendo dall'eliminazione degli sprechi — di risorse e di tempo — e dalla formazione continua di tutte le persone coinvolte nel flusso aziendale.",
+      "Non è uno slogan. È il metodo con cui progettiamo Aziende Ibride più semplici, efficaci e umane."
+    ]
+  },
   "comic": {
     "row1": [
       {
