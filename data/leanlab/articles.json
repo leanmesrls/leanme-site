@@ -1,5 +1,35 @@
 [
   {
+    "slug": "leanme-rebuild-episodio-02",
+    "category": "vita-in-leanme",
+    "title": "LeanMe // Rebuild // Episodio 02",
+    "excerpt": [
+      "Ricostruiamo un'identità.",
+      "Quando il vecchio vestito diventa troppo stretto, è il momento di cambiare. Ogni episodio demolisce qualcosa e ne costruisce un'altra."
+    ],
+    "date": "2026-08-25",
+    "readTime": "4 min",
+    "image": {
+      "src": "/assets/leanlab/newsletter-episodio-02.jpg",
+      "alt": "Newsletter LeanMe Rebuild Episodio 02 — Ricostruiamo un'identità.",
+      "replaceHint": ""
+    },
+    "author": "Luana, Alessandro, LeanMe.Agent.Vespucci, LeanMe.Agent.Marconi, LeanMe.Agent.Olivetti",
+    "tags": ["Newsletter"],
+    "bodyTemplate": "newsletter-episodio-02",
+    "hideDefaultImage": true,
+    "cta": {
+      "href": "https://leanme-wip-quiz-02.vercel.app/quiz.html",
+      "label": "Rispondi al quiz e sblocca il nuovo logo"
+    },
+    "inPocheParole": [
+      "Episodio 02 di LeanMe Rebuild ricostruisce l'identità: quando il brand cambia logo, non deve perdere ciò che lo rende riconoscibile.",
+      "Ogni episodio segue la stessa regola: demolire un'identità che non rappresenta più LeanMe e costruire un'immagine più nostra e riconoscibile.",
+      "Il secondo indizio è un quiz («Quando un brand cambia logo, cosa non dovrebbe mai perdere?») per sbloccare il nuovo logo LeanMe.",
+      "Il progetto è in corso (34%): dopo l'identità, il prossimo episodio esplorerà cosa sta cambiando nel modo di lavorare."
+    ]
+  },
+  {
     "slug": "leanme-rebuild-episodio-01",
     "category": "vita-in-leanme",
     "title": "LeanMe // Rebuild // Episodio 01",

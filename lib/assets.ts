@@ -18,6 +18,7 @@ export const ASSETS = {
   leanlab: {
     newsletterEpisodio00: "/assets/leanlab/newsletter-episodio-00.png",
     newsletterEpisodio01: "/assets/leanlab/newsletter-episodio-01.png",
+    newsletterEpisodio02: "/assets/leanlab/newsletter-episodio-02.jpg",
   },
   agents: {
     leonardo: "/assets/official/leonardo.png",
