@@ -24,6 +24,10 @@ export function buildHeaderNavigation(
         ...item,
         children: chiSiamoChildren ?? [
           {
+            label: "Chi Siamo",
+            href: "/chi-siamo",
+          },
+          {
             label: "Staff Ibrido Humani+AI",
             href: "/staff-ibrido",
           },

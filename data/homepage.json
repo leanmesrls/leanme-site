@@ -9,6 +9,7 @@
       "label": "CHI SIAMO",
       "href": "/chi-siamo",
       "children": [
+        { "label": "Chi Siamo", "href": "/chi-siamo" },
         { "label": "Staff Ibrido Humani+AI", "href": "/staff-ibrido" },
         { "label": "Dicono di noi", "href": "/dicono-di-noi" }
       ]
@@ -40,7 +41,7 @@
     "headlineAccent": "HUMAN + AI AGENTS",
     "subheadline": "L'intelligenza giusta per far crescere la tua azienda.",
     "paragraphs": [
-      "LeanMe accompagna persone e organizzazioni verso un nuovo modo di lavorare, in cui l'intelligenza umana e quella artificiale collaborano ogni giorno.",
+      "Da OLTRE 16 ANNI LeanMe accompagna persone e organizzazioni verso un nuovo modo di lavorare, in cui l'intelligenza umana e quella artificiale collaborano ogni giorno.",
       "L'innovazione non è aggiungere tecnologia. È togliere complessità."
     ],
     "primaryCta": {
