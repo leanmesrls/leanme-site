@@ -10,6 +10,7 @@
     "logo:import-def": "node scripts/import-logo-def-nero-rosa.mjs",
     "logo:import-masters": "node scripts/import-official-logo-masters.mjs",
     "leanlab:sync-newsletter": "node scripts/sync-leanlab-newsletter.mjs",
+    "sync:agenti-schede": "node scripts/sync-agenti-schede.mjs",
     "prebuild": "npm run sync:partners",
     "dev": "node scripts/run-dev.mjs",
     "build": "node scripts/run-build.mjs",

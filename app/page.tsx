@@ -58,20 +58,32 @@ export default function HomePage() {
       <JsonLd data={structuredData} />
       <div className="homepage-flow">
         <HomeHero data={homepage.hero} />
-        <LeanAgentAiSection data={homepage.leanAgentAi} />
-        <ServicesSection data={homepage.services} consultationCta={consultationCta} />
-        <LeanLabCarousel data={homepage.leanLab} articles={articles} />
-        <LeanAcademySection data={homepage.leanAcademy} />
-        <TestimonialsPartnersSection
-          testimonials={testimonials}
-          testimonialsData={homepage.testimonials}
-          partnersData={homepage.partners}
-          partnerLogos={partnerLogos}
-        />
+        <div className="homepage-band homepage-band-lift">
+          <LeanAgentAiSection data={homepage.leanAgentAi} />
+        </div>
+        <div className="homepage-band homepage-band-deep">
+          <ServicesSection data={homepage.services} consultationCta={consultationCta} />
+        </div>
+        <div className="homepage-band homepage-band-lift">
+          <LeanLabCarousel data={homepage.leanLab} articles={articles} />
+        </div>
+        <div className="homepage-band homepage-band-deep">
+          <LeanAcademySection data={homepage.leanAcademy} />
+        </div>
+        <div className="homepage-band homepage-band-lift">
+          <TestimonialsPartnersSection
+            testimonials={testimonials}
+            testimonialsData={homepage.testimonials}
+            partnersData={homepage.partners}
+            partnerLogos={partnerLogos}
+          />
+        </div>
         {summary.length > 0 ? (
-          <PageSection className="py-12 md:py-16">
-            <InPocheParoleBox paragraphs={summary} />
-          </PageSection>
+          <div className="homepage-band homepage-band-deep">
+            <PageSection className="py-12 md:py-16">
+              <InPocheParoleBox paragraphs={summary} />
+            </PageSection>
+          </div>
         ) : null}
         <ContactBanner
           data={homepage.contactBanner}

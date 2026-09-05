@@ -24,8 +24,8 @@ export function PartnerMarquee({ logos }: PartnerMarqueeProps) {
       onFocus={() => setPaused(true)}
       onBlur={() => setPaused(false)}
     >
-      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-10 bg-gradient-to-r from-black to-transparent md:w-14" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-gradient-to-l from-black to-transparent md:w-14" />
+      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-10 bg-gradient-to-r from-[var(--homepage-band,#000)] to-transparent md:w-14" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-gradient-to-l from-[var(--homepage-band,#000)] to-transparent md:w-14" />
 
       <div
         className="partner-marquee-track flex w-max max-w-none gap-6 md:gap-8"

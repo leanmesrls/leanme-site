@@ -44,7 +44,7 @@
         "replaceHint": ""
       },
       "cardImage": {
-        "src": "/assets/official/homepage/leonardo-hp.png",
+        "src": "/assets/official/agenti-schede/leonardo-portrait.jpg",
         "alt": "Lean.Agent Leonardo",
         "replaceHint": ""
       },
@@ -116,7 +116,7 @@
         "replaceHint": ""
       },
       "cardImage": {
-        "src": "/assets/official/homepage/vespucci-hp.png",
+        "src": "/assets/official/agenti-schede/vespucci-portrait.jpg",
         "alt": "Lean.Agent Vespucci",
         "replaceHint": ""
       },
@@ -184,7 +184,7 @@
         "replaceHint": ""
       },
       "cardImage": {
-        "src": "/assets/official/homepage/marconi-hp.png",
+        "src": "/assets/official/agenti-schede/marconi-portrait.jpg",
         "alt": "Lean.Agent Marconi",
         "replaceHint": ""
       },
@@ -250,7 +250,7 @@
         "replaceHint": ""
       },
       "cardImage": {
-        "src": "/assets/official/homepage/angela-hp.png",
+        "src": "/assets/official/agenti-schede/angela-portrait.jpg",
         "alt": "Lean.Agent Angela",
         "replaceHint": ""
       },
@@ -315,7 +315,7 @@
         "replaceHint": ""
       },
       "cardImage": {
-        "src": "/assets/official/homepage/galileo-hp.png",
+        "src": "/assets/official/agenti-schede/galileo-portrait.jpg",
         "alt": "Lean.Agent Galileo",
         "replaceHint": ""
       },
@@ -381,7 +381,7 @@
         "replaceHint": ""
       },
       "cardImage": {
-        "src": "/assets/official/homepage/olivetti-hp.png",
+        "src": "/assets/official/agenti-schede/olivetti-portrait.jpg",
         "alt": "Lean.Agent Olivetti",
         "replaceHint": ""
       },
@@ -448,7 +448,7 @@
         "replaceHint": ""
       },
       "cardImage": {
-        "src": "/assets/official/homepage/teresa-hp.png",
+        "src": "/assets/official/agenti-schede/teresa-portrait.jpg",
         "alt": "Lean.Agent Teresa",
         "replaceHint": ""
       },

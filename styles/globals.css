@@ -20,6 +20,8 @@
   --color-leanme-gray-800: #27272a;
   --color-leanme-gray-900: #18181b;
   --color-leanme-card: #111111;
+  /* Bande homepage: charcoal visibile, card #111 restano staccate dal bordo */
+  --color-leanme-band: #1c1c1c;
 
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
@@ -123,6 +125,35 @@
 
   .homepage-flow .section-padding {
     @apply px-5 py-0 md:px-10 lg:px-16;
+  }
+
+  /*
+    Ritmo visivo homepage: nero pieno ↔ grigio leggerissimo, con sfumatura
+    alle giunture. Le card restano #111, quindi la banda non le appiattisce.
+  */
+  .homepage-band {
+    --homepage-band: #000000;
+  }
+
+  .homepage-band-lift {
+    --homepage-band: #1c1c1c;
+    background-color: #1c1c1c;
+    background-image: linear-gradient(
+      180deg,
+      #000000 0%,
+      #1c1c1c 6%,
+      #1c1c1c 94%,
+      #000000 100%
+    );
+  }
+
+  .homepage-band-deep {
+    --homepage-band: #000000;
+    background-color: #000000;
+  }
+
+  .homepage-band section {
+    background-color: transparent;
   }
 
   .gradient-fuchsia {

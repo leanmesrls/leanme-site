@@ -181,18 +181,18 @@ export function LeanAgentProfile({
       </section>
 
       <section className="border-b border-white/10 bg-[#0a0a0a]">
-        <div className="mx-auto grid max-w-[1440px] gap-6 px-5 py-10 md:px-10 md:py-12 lg:grid-cols-[minmax(0,240px)_1fr] lg:items-start lg:gap-10 lg:px-12 xl:grid-cols-[minmax(0,260px)_1fr]">
+        <div className="mx-auto grid max-w-[1440px] gap-6 px-5 py-10 md:px-10 md:py-12 lg:grid-cols-[minmax(0,280px)_1fr] lg:items-start lg:gap-10 lg:px-12 xl:grid-cols-[minmax(0,300px)_1fr]">
           <RevealOnScroll>
             <div
-              className={`mx-auto w-full max-w-[200px] rounded-xl border border-white/10 bg-[#111111] sm:max-w-[220px] md:max-w-[240px] lg:mx-0 lg:max-w-[260px] ${agentCardImageClassName}`}
+              className={`mx-auto w-full max-w-[220px] rounded-xl border border-white/10 bg-[#111111] sm:max-w-[240px] md:max-w-[280px] lg:mx-0 lg:max-w-[300px] ${agentCardImageClassName}`}
             >
               <Image
                 src={agentCardImageSrc(agent.slug)}
                 alt={agent.cardImage?.alt ?? agent.name}
                 fill
                 priority
-                className="object-contain object-top"
-                sizes="(max-width: 640px) 200px, 260px"
+                className="object-cover object-top"
+                sizes="(max-width: 640px) 220px, 300px"
               />
             </div>
           </RevealOnScroll>

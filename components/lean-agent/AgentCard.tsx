@@ -56,7 +56,7 @@ export function AgentCard({ agent }: AgentCardProps) {
             src={cardSrc}
             alt={agent.cardImage?.alt ?? `${agent.name} — ${agent.role}`}
             fill
-            className="object-contain object-top transition duration-500 group-hover:scale-[1.04]"
+            className="object-cover object-top transition duration-500 group-hover:scale-[1.04]"
             sizes="(max-width: 1280px) 25vw, 220px"
           />
         </div>

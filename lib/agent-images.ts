@@ -5,12 +5,12 @@ export const AGENT_HOMEPAGE_TILE_ASPECT = "384 / 960" as const;
 export const agentHomepageTileClassName =
   "aspect-[384/960] w-full max-w-full self-start overflow-hidden rounded-sm";
 
-/** Compact card portraits for grids with separate HTML captions. */
-export const AGENT_CARD_IMAGE_ASPECT = "379 / 415" as const;
+/** Compact photorealistic portraits for agent profile pages (not homepage tiles). */
+export const AGENT_CARD_IMAGE_ASPECT = "4 / 5" as const;
 
 export const agentCardImageClassName =
-  "relative aspect-[379/415] w-full overflow-hidden rounded-t-xl";
+  "relative aspect-[4/5] w-full overflow-hidden rounded-t-xl";
 
 export function agentCardImageSrc(slug: string): string {
-  return `/assets/official/agenti-schede/${slug}-card.png`;
+  return `/assets/official/agenti-schede/${slug}-portrait.jpg`;
 }
