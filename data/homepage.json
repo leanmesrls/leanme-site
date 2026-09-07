@@ -37,11 +37,11 @@
   "hero": {
     "claimPrimary": "POWERED BY HUMAN INTELLIGENCE.",
     "claimAccent": "AMPLIFIED BY AI.",
-    "headlinePrefix": "Uno staff ibrido",
+    "headlinePrefix": "L'intelligenza giusta per far crescere la tua azienda.",
     "headlineAccent": "HUMAN + AI AGENTS",
-    "subheadline": "L'intelligenza giusta per far crescere la tua azienda.",
+    "subheadline": "E lo facciamo con uno staff ibrido",
     "paragraphs": [
-      "Da quasi 20 ANNI lo staff di LeanMe accompagna persone e organizzazioni verso nuovi modi di lavorare, e oggi l'intelligenza umana e quella artificiale collaborano quotidianamente.",
+      "Da quasi 20 ANNI lo staff di LeanMe accompagna persone e organizzazioni verso nuovi modi di lavorare: digitalizzazione, automazioni, comunicazione, innovazione ed... effetti wow!",
       "L'innovazione non è aggiungere tecnologia. È togliere complessità."
     ],
     "primaryCta": {
@@ -55,7 +55,7 @@
     "background": "/assets/official/reception-render.png"
   },
   "leanAgentAi": {
-    "title": "LEAN.AGENT.AI",
+    "title": "STAFF IBRIDO HUMAN + LEAN.AGENT.AI",
     "intro": [
       "Ogni Lean.Agent è specializzato in una funzione precisa e opera in autonomia all'interno del proprio ambito.",
       "Lean.Agent.Leonardo coordina l'intero team AI, organizza i flussi di lavoro e mantiene il collegamento con il team umano.",

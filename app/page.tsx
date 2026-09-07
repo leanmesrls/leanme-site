@@ -21,7 +21,7 @@ import { createPageMetadata, SITE_URL } from "@/lib/metadata";
 import { homepageSchema } from "@/lib/structured-data";
 
 const homepageDescription =
-  "LeanMe Srls progetta Aziende Ibride attraverso Intelligenza Artificiale, automazione e trasformazione digitale. Uno staff ibrido Human + AI Agents. Powered by Human Intelligence. Amplified by AI.";
+  "LeanMe Srls progetta Aziende Ibride attraverso Intelligenza Artificiale, automazione e trasformazione digitale. L'intelligenza giusta per far crescere la tua azienda. Staff ibrido Human + AI Agents. Powered by Human Intelligence. Amplified by AI.";
 
 export const metadata = createPageMetadata({
   title: "LeanMe | Aziende Ibride — Open Innovation Hub",
@@ -59,10 +59,10 @@ export default function HomePage() {
       <div className="homepage-flow">
         <HomeHero data={homepage.hero} />
         <div className="homepage-band homepage-band-lift">
-          <LeanAgentAiSection data={homepage.leanAgentAi} />
+          <ServicesSection data={homepage.services} consultationCta={consultationCta} />
         </div>
         <div className="homepage-band homepage-band-deep">
-          <ServicesSection data={homepage.services} consultationCta={consultationCta} />
+          <LeanAgentAiSection data={homepage.leanAgentAi} />
         </div>
         <div className="homepage-band homepage-band-lift">
           <LeanLabCarousel data={homepage.leanLab} articles={articles} />

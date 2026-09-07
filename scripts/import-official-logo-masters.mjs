@@ -19,7 +19,7 @@ const mastersDir = path.join(
 
 const MASTERS = {
   pinkWhite:
-    "c__Users_siyaa_AppData_Roaming_Cursor_User_workspaceStorage_empty-window_images_LOGO_DEF_bianco_e_rosa-d4abedd6-07a6-49cf-8655-ddba4299acf5.png",
+    "c__Users_siyaa_AppData_Roaming_Cursor_User_workspaceStorage_4fff17df49a104b7ead63645546f5dc9_images_LOGO_DEF_bianco_e_rosa-69b51dec-c783-4906-9f75-36782a1964b0.png",
   white:
     "c__Users_siyaa_AppData_Roaming_Cursor_User_workspaceStorage_empty-window_images_logo_bianco-3bb4b34e-e644-4098-8b8f-83fbce8d176e.png",
   blackPink:

@@ -20,8 +20,8 @@
   --color-leanme-gray-800: #27272a;
   --color-leanme-gray-900: #18181b;
   --color-leanme-card: #111111;
-  /* Bande homepage: charcoal visibile, card #111 restano staccate dal bordo */
-  --color-leanme-band: #1c1c1c;
+  /* Bande homepage: charcoal più chiaro, card #111 restano staccate dal bordo */
+  --color-leanme-band: #3a3a3a;
 
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
@@ -136,13 +136,13 @@
   }
 
   .homepage-band-lift {
-    --homepage-band: #1c1c1c;
-    background-color: #1c1c1c;
+    --homepage-band: #3a3a3a;
+    background-color: #3a3a3a;
     background-image: linear-gradient(
       180deg,
       #000000 0%,
-      #1c1c1c 6%,
-      #1c1c1c 94%,
+      #3a3a3a 6%,
+      #3a3a3a 94%,
       #000000 100%
     );
   }

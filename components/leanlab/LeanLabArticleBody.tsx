@@ -6,6 +6,7 @@ import type {
 import { NewsletterEpisodio00 } from "./articles/NewsletterEpisodio00";
 import { NewsletterEpisodio01 } from "./articles/NewsletterEpisodio01";
 import { NewsletterEpisodio02 } from "./articles/NewsletterEpisodio02";
+import { NewsletterEpisodio03 } from "./articles/NewsletterEpisodio03";
 
 interface LeanLabArticleBodyProps {
   template: LeanLabArticleBodyTemplate;
@@ -20,6 +21,8 @@ export function LeanLabArticleBody({ template, cta }: LeanLabArticleBodyProps) {
       return <NewsletterEpisodio01 cta={cta} />;
     case "newsletter-episodio-02":
       return <NewsletterEpisodio02 cta={cta} />;
+    case "newsletter-episodio-03":
+      return <NewsletterEpisodio03 cta={cta} />;
     default:
       return null;
   }

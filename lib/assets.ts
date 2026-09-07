@@ -19,6 +19,7 @@ export const ASSETS = {
     newsletterEpisodio00: "/assets/leanlab/newsletter-episodio-00.png",
     newsletterEpisodio01: "/assets/leanlab/newsletter-episodio-01.png",
     newsletterEpisodio02: "/assets/leanlab/newsletter-episodio-02.jpg",
+    newsletterEpisodio03: "/assets/leanlab/newsletter-episodio-03.png",
   },
   agents: {
     leonardo: "/assets/official/leonardo.png",

@@ -29,6 +29,7 @@ export function Header() {
             height={250}
             className="h-[34px] w-auto object-contain object-left md:h-9 xl:h-[38px]"
             priority
+            unoptimized
           />
         </Link>
 

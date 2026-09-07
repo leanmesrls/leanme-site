@@ -140,7 +140,9 @@ export interface StaffData {
   leanAgents: LeanAgent[];
   network: {
     title: string;
+    areas?: string;
     description: string;
+    image?: ImageAsset;
     specialists: Specialist[];
   };
 }
@@ -154,7 +156,8 @@ export interface LeanLabCategory {
 export type LeanLabArticleBodyTemplate =
   | "newsletter-episodio-00"
   | "newsletter-episodio-01"
-  | "newsletter-episodio-02";
+  | "newsletter-episodio-02"
+  | "newsletter-episodio-03";
 
 export interface LeanLabArticleCta {
   /** URL azione (quiz, form, risorsa esterna). */

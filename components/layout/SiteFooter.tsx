@@ -60,6 +60,7 @@ export function SiteFooter() {
                 width={2200}
                 height={543}
                 className="h-[3.75rem] w-auto max-w-none object-contain object-left object-top md:h-[4.25rem]"
+                unoptimized
               />
             </Link>
             <p className="mt-4 text-sm leading-relaxed text-white/60">

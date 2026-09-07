@@ -48,7 +48,10 @@ export function LeanAgentAiSection({ data }: LeanAgentAiSectionProps) {
     >
       <div className="mx-auto max-w-[1440px]">
         <RevealOnScroll>
-          <SectionTitle id="lean-agent-heading">{data.title}</SectionTitle>
+          <SectionTitle id="lean-agent-heading">
+            <span className="block">STAFF IBRIDO</span>
+            <span className="mt-1 block">HUMAN + LEAN.AGENT.AI</span>
+          </SectionTitle>
           <div className="mt-6 w-full space-y-3 px-2 text-center text-sm leading-relaxed text-white/65 md:text-base">
             {data.intro.map((paragraph) => (
               <p key={paragraph.slice(0, 48)}>{paragraph}</p>

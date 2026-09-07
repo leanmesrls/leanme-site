@@ -290,7 +290,7 @@ export function LeanAgentProfile({
                     name={specialist.name}
                     role={specialist.area}
                     imageAlt={specialist.name}
-                    href={`/staff-ibrido#specialist-${specialist.slug}`}
+                    href="/staff-ibrido#network-di-specialisti"
                     badge="Network di specialisti"
                     initials={specialist.area.slice(0, 2)}
                   />

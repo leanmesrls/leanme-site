@@ -94,7 +94,7 @@ export function homepageSchema({
       },
       speakable: {
         "@type": "SpeakableSpecification",
-        cssSelector: ["#hero-heading", "#lean-agent-heading", "#services-heading"],
+        cssSelector: ["#hero-heading", "#services-heading", "#lean-agent-heading"],
       },
     },
     {

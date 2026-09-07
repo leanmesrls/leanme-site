@@ -59,7 +59,7 @@ Fonte per Lean.Shared.Identity.BrandDNA e per la coerenza dei contenuti prodotti
 
 **Nota homepage reale vs doc**
 
-`docs/content.md` elenca sezioni storiche (Metodo, Case Studies, ecc.). La homepage implementata in `app/page.tsx` è: Hero → Lean.Agent.AI → Servizi → Lean Lab → Lean Academy → Testimonianze/Partner → (In poche parole) → Contact banner.
+`docs/content.md` elenca sezioni storiche (Metodo, Case Studies, ecc.). La homepage implementata in `app/page.tsx` è: Hero → Servizi (Come possiamo aiutarti) → Staff ibrido Human + Lean.Agent.AI → Lean Lab → Lean Academy → Testimonianze/Partner → (In poche parole) → Contact banner.
 
 ---
 

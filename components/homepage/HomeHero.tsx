@@ -38,7 +38,7 @@ export function HomeHero({ data }: HomeHeroProps) {
   return (
     <section
       aria-labelledby="hero-heading"
-      className="relative min-h-[480px] overflow-hidden bg-black md:min-h-[540px] lg:min-h-[580px]"
+      className="relative min-h-[520px] overflow-hidden bg-black md:min-h-[540px] lg:min-h-[580px]"
     >
       <div
         className={cn(
@@ -51,13 +51,13 @@ export function HomeHero({ data }: HomeHeroProps) {
           alt="Reception LeanMe — parete in legno, logo, monitor e illuminazione calda"
           fill
           priority
-          className="object-cover object-center lg:object-[52%_center]"
+          className="object-cover object-[18%_center] md:object-center lg:object-[52%_center]"
           sizes="100vw"
         />
       </div>
 
       <div
-        className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.55)_0%,rgba(0,0,0,0.28)_30%,rgba(0,0,0,0.08)_48%,transparent_62%)]"
+        className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.72)_0%,rgba(0,0,0,0.48)_42%,rgba(0,0,0,0.16)_68%,transparent_86%)] md:bg-[linear-gradient(to_right,rgba(0,0,0,0.55)_0%,rgba(0,0,0,0.28)_30%,rgba(0,0,0,0.08)_48%,transparent_62%)]"
         aria-hidden="true"
       />
       <div
@@ -70,8 +70,9 @@ export function HomeHero({ data }: HomeHeroProps) {
           variants={container}
           initial={reducedMotion ? false : "hidden"}
           animate={reducedMotion ? false : "visible"}
-          className="mx-auto flex min-h-[480px] w-full max-w-[1440px] flex-col items-start justify-center pb-0 pt-10 text-left md:min-h-[540px] md:pt-12 lg:min-h-[580px] lg:pt-14"
+          className="mx-auto flex min-h-[520px] w-full max-w-[1440px] flex-col items-start justify-center pb-8 pt-10 text-left md:min-h-[540px] md:pb-0 md:pt-12 lg:min-h-[580px] lg:pt-14"
         >
+          <div className="w-full max-w-[13.5rem] sm:max-w-[18rem] md:max-w-lg lg:max-w-xl">
           <motion.p
             variants={item}
             className="text-[10px] font-medium uppercase tracking-[0.2em] text-white md:text-[11px]"
@@ -83,22 +84,16 @@ export function HomeHero({ data }: HomeHeroProps) {
           <motion.h1
             id="hero-heading"
             variants={item}
-            className="mt-3 max-w-xl text-[1.75rem] font-bold leading-[1.15] md:mt-4 lg:text-[2.75rem] xl:text-5xl"
+            className="mt-3 text-[1.35rem] font-bold leading-[1.2] text-white sm:text-[1.65rem] md:mt-4 md:text-[2.25rem] lg:text-[2.75rem] xl:text-5xl"
           >
-            <span className="block text-white">{data.headlinePrefix}</span>
-            <span className="mt-1 block text-[1.35rem] text-leanme-fuchsia sm:text-[1.5rem] md:mt-1.5 md:whitespace-nowrap md:text-4xl lg:text-[2.75rem] xl:text-5xl">
-              {data.headlineAccent}
+            <span className="block">L&apos;intelligenza giusta</span>
+            <span className="block">
+              per far <span className="text-leanme-fuchsia">crescere</span>
             </span>
+            <span className="block">la tua azienda</span>
           </motion.h1>
 
-          <motion.p
-            variants={item}
-            className="mt-3 max-w-lg text-base text-white/95 md:mt-4 md:text-lg lg:text-xl"
-          >
-            {data.subheadline}
-          </motion.p>
-
-          <motion.div variants={item} className="mt-4 max-w-lg space-y-2">
+          <motion.div variants={item} className="mt-4 space-y-2">
             {data.paragraphs.map((paragraph) => (
               <p
                 key={paragraph}
@@ -109,24 +104,34 @@ export function HomeHero({ data }: HomeHeroProps) {
             ))}
           </motion.div>
 
+          <motion.div variants={item} className="mt-4">
+            <p className="text-base text-white/95 md:text-lg lg:text-xl">
+              {data.subheadline}
+            </p>
+            <p className="mt-1 text-[1.35rem] font-bold text-leanme-fuchsia sm:text-[1.5rem] md:mt-1.5 md:whitespace-nowrap md:text-4xl lg:text-[2.75rem] xl:text-5xl">
+              {data.headlineAccent}
+            </p>
+          </motion.div>
+
           <motion.div
             variants={item}
             className="mt-6 flex w-full flex-col items-start gap-3 sm:flex-row sm:flex-wrap"
           >
             <Link
               href={data.primaryCta.href}
-              className="animate-cta-glow inline-flex items-center justify-center gap-2 rounded-full bg-leanme-fuchsia px-6 py-3 text-[11px] font-semibold uppercase tracking-[0.08em] text-white transition hover:bg-leanme-fuchsia-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leanme-fuchsia md:text-xs"
+              className="animate-cta-glow inline-flex w-full items-center justify-center gap-2 rounded-full bg-leanme-fuchsia px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.08em] text-white transition hover:bg-leanme-fuchsia-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leanme-fuchsia sm:w-auto sm:px-6 md:text-xs"
             >
               {data.primaryCta.label}
               <ArrowIcon />
             </Link>
             <Link
               href={data.secondaryCta.href}
-              className="inline-flex items-center justify-center rounded-full border border-white/70 bg-black/25 px-6 py-3 text-[11px] font-semibold uppercase tracking-[0.08em] text-white transition hover:border-white hover:bg-black/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white md:text-xs"
+              className="inline-flex w-full items-center justify-center rounded-full border border-white/70 bg-black/25 px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.08em] text-white transition hover:border-white hover:bg-black/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:w-auto sm:px-6 md:text-xs"
             >
               {data.secondaryCta.label}
             </Link>
           </motion.div>
+          </div>
         </motion.div>
       </div>
     </section>

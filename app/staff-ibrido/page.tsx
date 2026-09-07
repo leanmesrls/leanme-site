@@ -57,17 +57,53 @@ export default function StaffIbridoPage() {
         </RevealOnScroll>
       </PageSection>
       <PageSection className="pt-0 md:pt-0">
-        <div className="mt-10 md:mt-14">
-          <h2 className="text-lg font-bold uppercase tracking-[0.1em] text-white">
-            Persone
-          </h2>
-          <div className="mt-6 grid max-w-4xl gap-4 sm:grid-cols-2">
-            {staff.people.map((person, index) => (
-              <RevealOnScroll key={person.slug} delay={index * 0.06}>
-                <Link
-                  href={`/chi-siamo/${person.slug}`}
-                  className="group block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leanme-fuchsia"
-                >
+        <div className="mt-10 grid items-start gap-12 md:mt-14 lg:grid-cols-2 lg:gap-10 xl:gap-14">
+          <section aria-labelledby="humans-heading">
+            <h2
+              id="humans-heading"
+              className="text-lg font-bold uppercase tracking-[0.1em] text-white"
+            >
+              HUMANS
+            </h2>
+            <div className="mt-6 flex flex-col gap-4">
+              {staff.people.map((person, index) => (
+                <RevealOnScroll key={person.slug} delay={index * 0.06}>
+                  <Link
+                    href={`/chi-siamo/${person.slug}`}
+                    className="group block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leanme-fuchsia"
+                  >
+                    <FuchsiaGlowCard
+                      variant="card"
+                      className="rounded-xl border border-white/10 bg-[#111111]"
+                      contentClassName="flex items-start gap-4 p-4"
+                    >
+                      <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-lg border border-white/10">
+                        <Image
+                          src={person.image.src}
+                          alt={person.image.alt}
+                          fill
+                          className="object-cover object-top"
+                          sizes="64px"
+                        />
+                      </div>
+                      <div className="min-w-0">
+                        <h3 className="text-sm font-bold leading-snug text-white group-hover:text-leanme-fuchsia">
+                          {person.name}
+                        </h3>
+                        <p className="mt-1 text-[11px] font-semibold leading-snug text-leanme-fuchsia">
+                          {person.role}
+                        </p>
+                        <p className="mt-2 text-xs leading-relaxed text-white/65">
+                          {person.description}
+                        </p>
+                      </div>
+                    </FuchsiaGlowCard>
+                  </Link>
+                </RevealOnScroll>
+              ))}
+
+              <RevealOnScroll delay={0.12}>
+                <div id="network-di-specialisti" className="scroll-mt-28">
                   <FuchsiaGlowCard
                     variant="card"
                     className="rounded-xl border border-white/10 bg-[#111111]"
@@ -75,80 +111,49 @@ export default function StaffIbridoPage() {
                   >
                     <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-lg border border-white/10">
                       <Image
-                        src={person.image.src}
-                        alt={person.image.alt}
+                        src={staff.network.image?.src ?? "/assets/official/staff/network-specialisti.png"}
+                        alt={staff.network.image?.alt ?? staff.network.title}
                         fill
-                        className="object-cover object-top"
+                        className="object-cover object-left"
                         sizes="64px"
                       />
                     </div>
                     <div className="min-w-0">
-                      <h3 className="text-sm font-bold leading-snug text-white group-hover:text-leanme-fuchsia">
-                        {person.name}
+                      <h3 className="text-sm font-bold leading-snug text-white">
+                        {staff.network.title}
                       </h3>
                       <p className="mt-1 text-[11px] font-semibold leading-snug text-leanme-fuchsia">
-                        {person.role}
+                        {staff.network.areas}
                       </p>
                       <p className="mt-2 text-xs leading-relaxed text-white/65">
-                        {person.description}
+                        {staff.network.description}
                       </p>
                     </div>
                   </FuchsiaGlowCard>
-                </Link>
-              </RevealOnScroll>
-            ))}
-          </div>
-        </div>
-
-        <div className="mt-16" id="network-di-specialisti">
-          <h2 className="text-lg font-bold uppercase tracking-[0.1em] text-white">
-            {staff.network.title}
-          </h2>
-          <p className="mt-4 max-w-3xl text-white/65">{staff.network.description}</p>
-          <div className="mt-8 grid gap-4 md:grid-cols-2">
-            {staff.network.specialists.map((specialist, index) => (
-              <RevealOnScroll key={specialist.slug} delay={index * 0.05}>
-                <div
-                  id={`specialist-${specialist.slug}`}
-                  className="scroll-mt-28"
-                >
-                  <FuchsiaGlowCard
-                    variant="card"
-                    className="rounded-xl border border-white/10 bg-[#111111] p-6"
-                  >
-                    <p className="text-xs font-semibold uppercase tracking-[0.12em] text-leanme-purple">
-                      {specialist.area}
-                    </p>
-                    <h3 className="mt-2 text-lg font-bold text-white">
-                      {specialist.name}
-                    </h3>
-                    <p className="mt-2 text-sm text-white/65">
-                      {specialist.description}
-                    </p>
-                  </FuchsiaGlowCard>
                 </div>
               </RevealOnScroll>
-            ))}
-          </div>
-        </div>
+            </div>
+          </section>
 
-        <div className="mt-16 -mx-5 md:-mx-10 lg:-mx-16">
-          <div className="mx-auto max-w-[1440px] px-5 md:px-10 lg:px-16">
-            <h2 className="text-lg font-bold uppercase tracking-[0.1em] text-white">
+          <section aria-labelledby="lean-agent-heading">
+            <h2
+              id="lean-agent-heading"
+              className="text-lg font-bold uppercase tracking-[0.1em] text-white"
+            >
               LEAN.AGENT.AI
             </h2>
-            <p className="mt-4 max-w-3xl text-white/65">
+            <p className="mt-4 text-sm leading-relaxed text-white/65 md:text-base">
               Ogni Lean.Agent possiede una pagina dedicata. Non sostituiscono il
               lavoro umano: lo completano, lo accelerano, lo rendono più efficace.
             </p>
-            <div className="mt-6 grid grid-cols-2 items-start gap-2 px-1 sm:grid-cols-3 sm:gap-2.5 md:grid-cols-4 md:gap-3 xl:grid-cols-7 xl:gap-3">
+            <div className="mt-6 grid grid-cols-2 items-start gap-2 sm:grid-cols-3 sm:gap-2.5 lg:grid-cols-3 xl:grid-cols-4">
               {staff.leanAgents.map((agent, index) => (
                 <RevealOnScroll key={agent.slug} delay={index * 0.05}>
                   <AgentHomepageCard agent={agent} />
                 </RevealOnScroll>
               ))}
             </div>
-          </div>
+          </section>
         </div>
 
         {summary.length > 0 ? (

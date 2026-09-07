@@ -2,7 +2,7 @@
   "intro": {
     "id": "staff-ibrido",
     "title": "Lo Staff Ibrido",
-    "subtitle": "Persone, Lean.Agent, Network",
+    "subtitle": "Humans + Lean.Agent",
     "description": "Le Aziende Ibride non saranno quelle che utilizzeranno più Intelligenza Artificiale, ma saranno quelle che sapranno progettare la migliore collaborazione possibile tra intelligenza umana e intelligenza artificiale: persone e Agenti AI collaborano in modo strutturato, condividendo processi, obiettivi e responsabilità."
   },
   "people": [
@@ -506,8 +506,14 @@
     }
   ],
   "network": {
-    "title": "Network di Specialisti",
-    "description": "Un network di professionisti selezionati nei diversi ambiti: healthcare, eventi, comunicazione, tecnologia e formazione.",
+    "title": "Network di specialisti",
+    "areas": "healthcare, eventi, comunicazione, tecnologia e formazione",
+    "description": "Un network di professionisti selezionati nei diversi ambiti",
+    "image": {
+      "src": "/assets/official/staff/network-specialisti.png",
+      "alt": "Collaboratori umani — network di specialisti LeanMe",
+      "replaceHint": ""
+    },
     "specialists": [
       {
         "slug": "sanita",

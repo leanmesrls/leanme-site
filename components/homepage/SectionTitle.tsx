@@ -25,7 +25,7 @@ export function SectionTitle({
     <div className={cn(align === "center" && "text-center", className)}>
       <h2
         id={id}
-        className="text-lg font-bold tracking-[0.14em] text-white md:text-xl lg:text-2xl"
+        className="text-lg font-bold leading-snug tracking-[0.1em] text-white md:text-xl md:tracking-[0.14em] lg:text-2xl"
       >
         {children}
       </h2>

@@ -2,7 +2,7 @@
 
 LeanMe lavora attraverso uno Staff Ibrido.
 
-Persone.
+Humans.
 
 Lean.Agent.
 
