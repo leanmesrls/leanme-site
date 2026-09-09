@@ -40,5 +40,6 @@ export const ASSETS = {
     sid: "/assets/companies/singem.png",
     wsph: "/assets/companies/wsph.png",
     aop: "/assets/companies/aop-italia.png",
+    leonardoMedicalCenter: "/assets/companies/leonardo-medical-center.png",
   },
 } as const;

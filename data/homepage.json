@@ -229,6 +229,11 @@
         "name": "AOP Health",
         "logo": "/assets/companies/aop-italia.png",
         "alt": "AOP Health"
+      },
+      {
+        "name": "Leonardo Medical Center",
+        "logo": "/assets/companies/leonardo-medical-center.png",
+        "alt": "Leonardo Medical Center"
       }
     ]
   },

@@ -128,8 +128,8 @@
   }
 
   /*
-    Ritmo visivo homepage: nero pieno ↔ grigio leggerissimo, con sfumatura
-    alle giunture. Le card restano #111, quindi la banda non le appiattisce.
+    Ritmo visivo homepage: nero pieno ↔ charcoal, con fade solo nel padding
+    della banda. I titoli restano nel grigio pieno, non sulla giuntura.
   */
   .homepage-band {
     --homepage-band: #000000;
@@ -137,14 +137,30 @@
 
   .homepage-band-lift {
     --homepage-band: #3a3a3a;
+    --homepage-band-fade: 1.75rem;
+    padding-block: 2.75rem;
     background-color: #3a3a3a;
     background-image: linear-gradient(
       180deg,
       #000000 0%,
-      #3a3a3a 6%,
-      #3a3a3a 94%,
+      #3a3a3a var(--homepage-band-fade),
+      #3a3a3a calc(100% - var(--homepage-band-fade)),
       #000000 100%
     );
+  }
+
+  @media (min-width: 768px) {
+    .homepage-band-lift {
+      --homepage-band-fade: 2rem;
+      padding-block: 3.25rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .homepage-band-lift {
+      --homepage-band-fade: 2.25rem;
+      padding-block: 3.75rem;
+    }
   }
 
   .homepage-band-deep {

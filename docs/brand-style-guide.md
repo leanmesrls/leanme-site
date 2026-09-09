@@ -361,7 +361,7 @@ primary: purple/fuchsia + shadow; secondary: bianco/nero; ghost: testo nero → 
 - Ritratti Lean.Agent (Leonardo, Vespucci, Marconi, Angela, Galileo, Olivetti, Teresa) — tile verticali 384×960 e card 379×415
 - Foto team umano (Luana, Alessandro)
 - Fumetti storytelling Chi siamo
-- Loghi partner (SYNLAB, ANISC, S.I.D., WSPH, AOP)
+- Loghi partner (SYNLAB, ANISC, S.I.D., WSPH, AOP, Leonardo Medical Center)
 - Sfondo Lean Academy, banner ambient, pittogramma, logo ufficiale varianti
 
 **Persone**  

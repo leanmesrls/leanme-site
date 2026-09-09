@@ -6,7 +6,7 @@ const PUBLIC_COMPANIES_DIR = path.join(process.cwd(), "public", "assets", "compa
 
 /** File non-logo / duplicati noti finiti nella cartella companies. */
 const EXCLUDED_LOGO_PATTERN =
-  /(^|-)hp\.|ui-chi-siamo|chi-siamo|leonardo|vespucci|marconi|angela|galileo|olivetti|teresa|world-sympoia-on-pulmonary-hypertension/i;
+  /(^|-)hp\.|ui-chi-siamo|chi-siamo|leonardo-hp|vespucci-hp|marconi-hp|angela-hp|galileo-hp|olivetti-hp|teresa-hp|world-sympoia-on-pulmonary-hypertension/i;
 
 export interface PartnerLogo {
   name: string;
@@ -14,8 +14,13 @@ export interface PartnerLogo {
   alt: string;
 }
 
+const DISPLAY_NAMES: Record<string, string> = {
+  "leonardo-medical-center": "Leonardo Medical Center",
+};
+
 function displayName(filename: string): string {
-  return filename.replace(/\.[^.]+$/, "");
+  const slug = filename.replace(/\.[^.]+$/, "");
+  return DISPLAY_NAMES[slug] ?? slug;
 }
 
 /** Elenco loghi partner ufficiali — legge da public/assets/companies */
