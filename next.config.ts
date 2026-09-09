@@ -29,6 +29,57 @@ const nextConfig: NextConfig = {
         destination: "/vcards/:slug",
         permanent: true,
       },
+      // 301 dal WordPress leanme.it. `/lean-academy` è già identico, nessun redirect.
+      {
+        source: "/contattaci_digital_agency_bologna",
+        destination: "/contatti",
+        permanent: true,
+      },
+      {
+        source: "/comunicazione-e-web-marketing-a-bologna",
+        destination: "/come-possiamo-aiutarti/comunicare-meglio",
+        permanent: true,
+      },
+      {
+        source: "/eventi_formazione_bologna",
+        destination: "/come-possiamo-aiutarti/partner-eventi",
+        permanent: true,
+      },
+      {
+        source: "/servizi_it_bologna",
+        destination: "/come-possiamo-aiutarti",
+        permanent: true,
+      },
+      {
+        source: "/sviluppo_web_bologna",
+        destination: "/come-possiamo-aiutarti",
+        permanent: true,
+      },
+      {
+        source: "/idea_lean_bologna",
+        destination: "/chi-siamo",
+        permanent: true,
+      },
+      {
+        source: "/notizie_dal_web",
+        destination: "/leanlab",
+        permanent: true,
+      },
+      {
+        source: "/cart-2",
+        destination: "/contatti",
+        permanent: true,
+      },
+      {
+        source: "/checkout-2",
+        destination: "/contatti",
+        permanent: true,
+      },
+      {
+        source: "/bacheca",
+        destination: "/",
+        permanent: true,
+      },
     ];
   },
   async headers() {
