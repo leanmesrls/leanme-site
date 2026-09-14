@@ -1,7 +1,10 @@
 import { NextResponse } from "next/server";
 
 import { getLeanHumanSessionFromCookies } from "@/lib/teresa-public/admin-auth";
-import { listTeresaPublicThreads } from "@/lib/teresa-public/storage";
+import {
+  isTeresaInboxThread,
+  listTeresaPublicThreads,
+} from "@/lib/teresa-public/storage";
 
 export const runtime = "nodejs";
 
@@ -11,7 +14,7 @@ export async function GET() {
     return NextResponse.json({ error: "Non autorizzato." }, { status: 401 });
   }
 
-  const threads = await listTeresaPublicThreads();
+  const threads = (await listTeresaPublicThreads()).filter(isTeresaInboxThread);
   return NextResponse.json({
     threads: threads.map((thread) => ({
       id: thread.id,

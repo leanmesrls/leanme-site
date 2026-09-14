@@ -1,4 +1,5 @@
 import { notFound, redirect } from "next/navigation";
+import { getSegreteriaData } from "@/lib/content";
 import {
   getSegreteriaPersonSlugs,
   resolveSegreteriaPerson,
@@ -15,6 +16,15 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps) {
   const { slug } = await params;
+  const companySlug = getSegreteriaData().companyVcard.slug;
+  if (slug === companySlug) {
+    return createPageMetadata({
+      title: "Segreteria Digitale LeanMe",
+      description: getSegreteriaData().meta.description,
+      path: "/vcards",
+    });
+  }
+
   const person = resolveSegreteriaPerson(slug);
 
   if (!person) {
@@ -37,6 +47,11 @@ export async function generateMetadata({ params }: PageProps) {
 /** Deep links land on the hub; client can scroll to the person row. */
 export default async function VcardsPersonRedirectPage({ params }: PageProps) {
   const { slug } = await params;
+  const companySlug = getSegreteriaData().companyVcard.slug;
+  if (slug === companySlug) {
+    redirect("/vcards");
+  }
+
   const person = resolveSegreteriaPerson(slug);
 
   if (!person) {
