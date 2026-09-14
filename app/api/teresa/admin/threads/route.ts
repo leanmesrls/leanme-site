@@ -23,6 +23,7 @@ export async function GET() {
       lead: thread.lead,
       messageCount: thread.messages.length,
       notifiedAt: thread.notifiedAt,
+      notifyError: thread.notifyError ?? null,
       readAt: thread.readAt,
       lastPreview:
         [...thread.messages]

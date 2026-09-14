@@ -10,6 +10,7 @@ import { PageSection } from "@/components/layout/PageSection";
 import { FuchsiaGlowCard } from "@/components/motion/FuchsiaGlowCard";
 import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
 import { PercorsoConsultationCta } from "@/components/percorsi/PercorsoConsultationCta";
+import { PercorsoTitleHighlight } from "@/components/percorsi/PercorsoTitleHighlight";
 import { FaqSection } from "@/components/seo/FaqSection";
 import { InPocheParoleBox } from "@/components/seo/InPocheParoleBox";
 import {
@@ -70,7 +71,10 @@ export default function ComePossiamoAiutartiPage() {
               >
                 <ServiceIconBadge name={percorso.icon} size="md" />
                 <h2 className="mt-5 min-h-[4.5rem] text-sm font-bold leading-snug tracking-[0.06em] text-white">
-                  {percorso.title.toUpperCase()}
+                  <PercorsoTitleHighlight
+                    title={percorso.title.toUpperCase()}
+                    slug={percorso.slug}
+                  />
                 </h2>
                 <p className="mt-3 flex-1 text-sm text-white/60">
                   {percorso.shortDescription}
@@ -96,7 +100,10 @@ export default function ComePossiamoAiutartiPage() {
             >
               <ServiceIconBadge name={percorso.icon} size="sm" />
               <span className="flex-1 text-xs font-bold leading-snug tracking-[0.05em] text-white">
-                {percorso.title.toUpperCase()}
+                <PercorsoTitleHighlight
+                  title={percorso.title.toUpperCase()}
+                  slug={percorso.slug}
+                />
               </span>
               <ArrowIcon className="shrink-0 text-white/40" />
             </Link>

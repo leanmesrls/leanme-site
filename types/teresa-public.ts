@@ -22,5 +22,7 @@ export interface TeresaPublicThread {
   updatedAt: string;
   /** Email di notifica già inviata (solo chat pubblica). */
   notifiedAt: string | null;
+  /** Ultimo errore Brevo, se l'invio è fallito. */
+  notifyError?: string | null;
   readAt: string | null;
 }

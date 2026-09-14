@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowIcon, ServiceIconBadge } from "@/components/homepage/Icons";
 import { SectionTitle } from "@/components/homepage/SectionTitle";
 import { PercorsoConsultationCta } from "@/components/percorsi/PercorsoConsultationCta";
+import { PercorsoTitleHighlight } from "@/components/percorsi/PercorsoTitleHighlight";
 import { FuchsiaGlowCard } from "@/components/motion/FuchsiaGlowCard";
 import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
 import type { PercorsiConsultationCta } from "@/types/content";
@@ -38,7 +39,7 @@ function ServiceCard({
             : "mt-4 text-xs font-bold leading-snug tracking-[0.04em] text-white"
         }
       >
-        {item.title}
+        <PercorsoTitleHighlight title={item.title} slug={item.slug} />
       </h3>
       <p className="mt-3 flex-1 text-sm leading-relaxed text-white/55">
         {item.description}
@@ -100,7 +101,7 @@ export function ServicesSection({ data, consultationCta }: ServicesSectionProps)
               >
                 <ServiceIconBadge name={item.icon} size="sm" />
                 <span className="flex-1 text-[11px] font-bold leading-snug tracking-[0.03em] text-white">
-                  {item.title}
+                  <PercorsoTitleHighlight title={item.title} slug={item.slug} />
                 </span>
                 <ArrowIcon className="shrink-0 text-leanme-fuchsia" />
               </Link>

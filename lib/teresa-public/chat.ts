@@ -178,10 +178,11 @@ export async function sendVisitorMessage(
 
   if (!thread.notifiedAt) {
     const result = await notifyTeresaPublicLead(thread);
+    thread.notifyError = result.sent ? null : (result.reason ?? "unknown");
     if (result.sent) {
       thread.notifiedAt = now;
-      await saveTeresaPublicThread(thread);
     }
+    await saveTeresaPublicThread(thread);
   }
 
   const history = thread.messages

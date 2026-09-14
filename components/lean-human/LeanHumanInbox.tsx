@@ -14,6 +14,7 @@ type ThreadRow = {
   } | null;
   messageCount: number;
   notifiedAt: string | null;
+  notifyError?: string | null;
   readAt: string | null;
   lastPreview: string | null;
 };
@@ -28,6 +29,7 @@ type ThreadDetail = {
     createdAt: string;
   }>;
   notifiedAt: string | null;
+  notifyError?: string | null;
 };
 
 function formatWhen(iso: string): string {
@@ -177,8 +179,10 @@ export function LeanHumanInbox() {
               <p className="mt-1 text-xs text-white/35">
                 Notifica email:{" "}
                 {detail.notifiedAt
-                  ? `inviata ${formatWhen(detail.notifiedAt)}`
-                  : "non inviata / non configurata"}
+                  ? `accettata da Brevo ${formatWhen(detail.notifiedAt)}`
+                  : detail.notifyError
+                    ? `non inviata (${detail.notifyError})`
+                    : "non inviata / non configurata"}
               </p>
             </div>
             <div className="space-y-3">
