@@ -14,7 +14,7 @@ const BLOB_PREFIX = "teresa/threads/";
 
 let warnedEphemeral = false;
 
-function useBlobStore(): boolean {
+function blobStoreEnabled(): boolean {
   return Boolean(
     process.env.BLOB_READ_WRITE_TOKEN?.trim() ||
       process.env.BLOB_STORE_ID?.trim()
@@ -23,7 +23,7 @@ function useBlobStore(): boolean {
 
 function warnIfEphemeralProduction() {
   if (warnedEphemeral) return;
-  if (process.env.VERCEL === "1" && !useBlobStore()) {
+  if (process.env.VERCEL === "1" && !blobStoreEnabled()) {
     warnedEphemeral = true;
     console.warn(
       "[teresa-public] Nessun Vercel Blob configurato: le chat restano in /tmp e non sono visibili in Lean.Human tra una funzione e l'altra."
@@ -158,7 +158,7 @@ async function saveThreadToFs(thread: TeresaPublicThread): Promise<void> {
 
 export async function listTeresaPublicThreads(): Promise<TeresaPublicThread[]> {
   warnIfEphemeralProduction();
-  if (useBlobStore()) {
+  if (blobStoreEnabled()) {
     return listThreadsFromBlob();
   }
   return listThreadsFromFs();
@@ -168,7 +168,7 @@ export async function getTeresaPublicThread(
   id: string
 ): Promise<TeresaPublicThread | null> {
   warnIfEphemeralProduction();
-  if (useBlobStore()) {
+  if (blobStoreEnabled()) {
     return getThreadFromBlob(id);
   }
   return getThreadFromFs(id);
@@ -178,7 +178,7 @@ export async function saveTeresaPublicThread(
   thread: TeresaPublicThread
 ): Promise<void> {
   warnIfEphemeralProduction();
-  if (useBlobStore()) {
+  if (blobStoreEnabled()) {
     await saveThreadToBlob(thread);
     return;
   }
