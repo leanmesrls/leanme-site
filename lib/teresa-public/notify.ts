@@ -11,7 +11,10 @@ export async function notifyTeresaPublicLead(
   thread: TeresaPublicThread
 ): Promise<{ sent: boolean; reason?: string }> {
   const apiKey = process.env.RESEND_API_KEY?.trim();
-  const to = process.env.TERESA_NOTIFY_TO?.trim() || "info@leanme.it";
+  const to = (process.env.TERESA_NOTIFY_TO?.trim() || "info@leanme.it")
+    .split(",")
+    .map((item) => item.trim())
+    .filter(Boolean);
   const from =
     process.env.TERESA_NOTIFY_FROM?.trim() ||
     "LeanMe Teresa <onboarding@resend.dev>";
@@ -19,6 +22,9 @@ export async function notifyTeresaPublicLead(
   if (!apiKey) {
     console.warn("[teresa-public] RESEND_API_KEY mancante: notifica saltata.");
     return { sent: false, reason: "missing_api_key" };
+  }
+  if (!to.length) {
+    return { sent: false, reason: "missing_recipient" };
   }
   if (!thread.lead) {
     return { sent: false, reason: "missing_lead" };
@@ -32,12 +38,12 @@ export async function notifyTeresaPublicLead(
       .find((message) => message.role === "user")
       ?.content.slice(0, 280) ?? "(nessun messaggio ancora)";
 
-  const subject = `Teresa pubblica — nuovo contatto: ${lead.firstName} ${lead.lastName}`;
+  const subject = `Teresa pubblica — nuova conversazione: ${lead.firstName} ${lead.lastName}`;
   const humanUrl = `${SITE_URL}/lean-human`;
 
   const { error } = await resend.emails.send({
     from,
-    to: [to],
+    to,
     subject,
     text: [
       "Nuova conversazione Teresa (sito pubblico)",

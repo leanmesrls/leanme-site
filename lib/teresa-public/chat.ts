@@ -96,7 +96,7 @@ export async function startNewVisitorThread(
   const thread = await createTeresaPublicThread(visitorId);
   if (previous?.lead) {
     thread.lead = { ...previous.lead };
-    thread.notifiedAt = previous.notifiedAt;
+    thread.notifiedAt = null;
     thread.updatedAt = new Date().toISOString();
     await saveTeresaPublicThread(thread);
   }
@@ -136,19 +136,9 @@ export async function saveVisitorLead(
     acceptedAiTermsAt: now,
   };
 
-  const wasComplete = Boolean(thread.lead);
   thread.lead = nextLead;
   thread.updatedAt = now;
   await saveTeresaPublicThread(thread);
-
-  // Notifica email solo alla prima acquisizione lead (chat pubblica).
-  if (!wasComplete && !thread.notifiedAt) {
-    const result = await notifyTeresaPublicLead(thread);
-    if (result.sent) {
-      thread.notifiedAt = now;
-      await saveTeresaPublicThread(thread);
-    }
-  }
 
   return thread;
 }
@@ -185,6 +175,14 @@ export async function sendVisitorMessage(
   thread.updatedAt = now;
   thread.readAt = null;
   await saveTeresaPublicThread(thread);
+
+  if (!thread.notifiedAt) {
+    const result = await notifyTeresaPublicLead(thread);
+    if (result.sent) {
+      thread.notifiedAt = now;
+      await saveTeresaPublicThread(thread);
+    }
+  }
 
   const history = thread.messages
     .filter((message) => message.role === "user" || message.role === "assistant")
