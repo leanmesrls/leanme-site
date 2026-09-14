@@ -157,7 +157,8 @@ export type LeanLabArticleBodyTemplate =
   | "newsletter-episodio-00"
   | "newsletter-episodio-01"
   | "newsletter-episodio-02"
-  | "newsletter-episodio-03";
+  | "newsletter-episodio-03"
+  | "newsletter-episodio-04";
 
 export interface LeanLabArticleCta {
   /** URL azione (quiz, form, risorsa esterna). */
