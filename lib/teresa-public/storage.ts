@@ -84,7 +84,7 @@ async function readJsonBlob(
 ): Promise<TeresaPublicThread | null> {
   try {
     const result = await get(pathname, {
-      access: "public",
+      access: "private",
       useCache: false,
     });
     if (!result?.stream) return null;
@@ -110,7 +110,7 @@ async function getThreadFromBlob(
 
 async function saveThreadToBlob(thread: TeresaPublicThread): Promise<void> {
   await put(blobPath(thread.id), JSON.stringify(thread), {
-    access: "public",
+    access: "private",
     addRandomSuffix: false,
     allowOverwrite: true,
     contentType: "application/json",
