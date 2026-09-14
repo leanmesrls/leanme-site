@@ -1,27 +1,46 @@
-import { Resend } from "resend";
-
 import type { TeresaPublicThread } from "@/types/teresa-public";
 import { SITE_URL } from "@/lib/metadata";
 
+function parseFrom(
+  raw: string
+): { name?: string; email: string } | null {
+  const trimmed = raw.trim();
+  const matched = trimmed.match(/^(.*)<([^>]+)>$/);
+  if (matched) {
+    const name = matched[1].trim().replace(/^"|"$/g, "");
+    const email = matched[2].trim();
+    if (!email.includes("@")) return null;
+    return name ? { name, email } : { email };
+  }
+  if (!trimmed.includes("@")) return null;
+  return { email: trimmed };
+}
+
 /**
- * Notifica email SOLO per Teresa pubblica (leanme-site).
+ * Notifica email SOLO per Teresa pubblica (leanme-site), via Brevo.
  * Non usare da lean-event / tenant.
  */
 export async function notifyTeresaPublicLead(
   thread: TeresaPublicThread
 ): Promise<{ sent: boolean; reason?: string }> {
-  const apiKey = process.env.RESEND_API_KEY?.trim();
+  const apiKey =
+    process.env.BREVO_API_KEY?.trim() ||
+    process.env.SENDINBLUE_API_KEY?.trim();
   const to = (process.env.TERESA_NOTIFY_TO?.trim() || "info@leanme.it")
     .split(",")
     .map((item) => item.trim())
     .filter(Boolean);
-  const from =
+  const from = parseFrom(
     process.env.TERESA_NOTIFY_FROM?.trim() ||
-    "LeanMe Teresa <onboarding@resend.dev>";
+      "LeanMe Teresa <info@leanme.it>"
+  );
 
   if (!apiKey) {
-    console.warn("[teresa-public] RESEND_API_KEY mancante: notifica saltata.");
+    console.warn("[teresa-public] BREVO_API_KEY mancante: notifica saltata.");
     return { sent: false, reason: "missing_api_key" };
+  }
+  if (!from) {
+    return { sent: false, reason: "invalid_from" };
   }
   if (!to.length) {
     return { sent: false, reason: "missing_recipient" };
@@ -30,7 +49,6 @@ export async function notifyTeresaPublicLead(
     return { sent: false, reason: "missing_lead" };
   }
 
-  const resend = new Resend(apiKey);
   const lead = thread.lead;
   const preview =
     [...thread.messages]
@@ -40,29 +58,39 @@ export async function notifyTeresaPublicLead(
 
   const subject = `Teresa pubblica — nuova conversazione: ${lead.firstName} ${lead.lastName}`;
   const humanUrl = `${SITE_URL}/lean-human`;
+  const textContent = [
+    "Nuova conversazione Teresa (sito pubblico)",
+    "",
+    `Nome: ${lead.firstName} ${lead.lastName}`,
+    `Email: ${lead.email}`,
+    `Thread: ${thread.id}`,
+    `Aggiornato: ${thread.updatedAt}`,
+    "",
+    "Anteprima ultimo messaggio utente:",
+    preview,
+    "",
+    `Supervisione: ${humanUrl}`,
+  ].join("\n");
 
-  const { error } = await resend.emails.send({
-    from,
-    to,
-    subject,
-    text: [
-      "Nuova conversazione Teresa (sito pubblico)",
-      "",
-      `Nome: ${lead.firstName} ${lead.lastName}`,
-      `Email: ${lead.email}`,
-      `Thread: ${thread.id}`,
-      `Aggiornato: ${thread.updatedAt}`,
-      "",
-      "Anteprima ultimo messaggio utente:",
-      preview,
-      "",
-      `Supervisione: ${humanUrl}`,
-    ].join("\n"),
+  const response = await fetch("https://api.brevo.com/v3/smtp/email", {
+    method: "POST",
+    headers: {
+      accept: "application/json",
+      "content-type": "application/json",
+      "api-key": apiKey,
+    },
+    body: JSON.stringify({
+      sender: from,
+      to: to.map((email) => ({ email })),
+      subject,
+      textContent,
+    }),
   });
 
-  if (error) {
-    console.error("[teresa-public] Resend error:", error);
-    return { sent: false, reason: error.message };
+  if (!response.ok) {
+    const errorText = await response.text().catch(() => "");
+    console.error("[teresa-public] Brevo error:", response.status, errorText);
+    return { sent: false, reason: `brevo_${response.status}` };
   }
 
   return { sent: true };
