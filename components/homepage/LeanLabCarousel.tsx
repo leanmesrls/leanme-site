@@ -6,6 +6,7 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowIcon } from "@/components/homepage/Icons";
 import { SectionTitle } from "@/components/homepage/SectionTitle";
+import { LeanLabPreviewCtas } from "@/components/leanlab/NewsletterEpisodeActions";
 import { FuchsiaGlowCard } from "@/components/motion/FuchsiaGlowCard";
 import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
@@ -65,20 +66,7 @@ function ArticleCard({ article }: { article: LeanLabArticle }) {
           <p className="text-xs text-white/45">{article.readTime} di lettura</p>
         </div>
       </Link>
-      {article.cta ? (
-        <div className="px-4 pb-4 pt-2">
-          <a
-            href={article.cta.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex min-h-10 items-center text-xs font-semibold uppercase tracking-[0.1em] text-leanme-fuchsia transition hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leanme-fuchsia"
-          >
-            {article.cta.label} →
-          </a>
-        </div>
-      ) : (
-        <div className="pb-4" aria-hidden />
-      )}
+      <LeanLabPreviewCtas cta={article.cta} videoCta={article.videoCta} />
     </FuchsiaGlowCard>
   );
 }

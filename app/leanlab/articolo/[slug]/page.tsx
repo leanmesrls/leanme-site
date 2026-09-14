@@ -127,6 +127,7 @@ export default async function LeanLabArticlePage({ params }: PageProps) {
               <LeanLabArticleBody
                 template={article.bodyTemplate}
                 cta={article.cta}
+                videoCta={article.videoCta}
               />
             ) : (
               <p className="leading-relaxed text-white/65">

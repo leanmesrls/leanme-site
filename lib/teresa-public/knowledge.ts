@@ -53,8 +53,11 @@ function formatLeanLabCatalog(): string {
       const cta = article.cta
         ? ` CTA: ${article.cta.label} → ${article.cta.href}`
         : "";
+      const video = article.videoCta
+        ? ` Video: ${article.videoCta.label} → ${article.videoCta.href}`
+        : "";
       return `- ${article.title} (${article.date}, ${category}) → /leanlab/articolo/${article.slug}
-  ${summary}${cta}`;
+  ${summary}${cta}${video}`;
     })
     .join("\n");
 

@@ -184,6 +184,8 @@ export interface LeanLabArticle {
   hideDefaultImage?: boolean;
   /** CTA opzionale (es. quiz newsletter) — articolo + anteprime LeanLab. */
   cta?: LeanLabArticleCta;
+  /** Link al video sbloccato (campagne newsletter chiuse). */
+  videoCta?: LeanLabArticleCta;
   /** Riassunto GEO in fondo alla pagina articolo. */
   inPocheParole?: string[];
 }

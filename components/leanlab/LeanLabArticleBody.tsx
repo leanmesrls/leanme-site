@@ -12,18 +12,23 @@ import { NewsletterEpisodio04 } from "./articles/NewsletterEpisodio04";
 interface LeanLabArticleBodyProps {
   template: LeanLabArticleBodyTemplate;
   cta?: LeanLabArticleCta;
+  videoCta?: LeanLabArticleCta;
 }
 
-export function LeanLabArticleBody({ template, cta }: LeanLabArticleBodyProps) {
+export function LeanLabArticleBody({
+  template,
+  cta,
+  videoCta,
+}: LeanLabArticleBodyProps) {
   switch (template) {
     case "newsletter-episodio-00":
       return <NewsletterEpisodio00 />;
     case "newsletter-episodio-01":
-      return <NewsletterEpisodio01 cta={cta} />;
+      return <NewsletterEpisodio01 cta={cta} videoCta={videoCta} />;
     case "newsletter-episodio-02":
-      return <NewsletterEpisodio02 cta={cta} />;
+      return <NewsletterEpisodio02 cta={cta} videoCta={videoCta} />;
     case "newsletter-episodio-03":
-      return <NewsletterEpisodio03 cta={cta} />;
+      return <NewsletterEpisodio03 cta={cta} videoCta={videoCta} />;
     case "newsletter-episodio-04":
       return <NewsletterEpisodio04 cta={cta} />;
     default:
