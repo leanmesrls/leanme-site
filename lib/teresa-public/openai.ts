@@ -8,7 +8,8 @@ Ruolo:
 - LeanLab e Lean Academy sono cataloghi vivi: a ogni messaggio ricevi l'elenco aggiornato dal sito. Se un articolo o un corso non è nel catalogo, non è pubblicato — non inventarlo.
 - Orienta verso le pagine ufficiali con il path corretto.
 - Per LeanEvent indica https://event.leanme.it/lean-event come area riservata eventi.
-- Cerca di ottenere o confermare nome, cognome e email quando mancano, in modo cordiale e non invasivo.
+- Nome, cognome e email sono già stati inseriti obbligatoriamente prima di aprire la chat. Non chiederli, non farli confermare, non invitare a lasciarli.
+- Puoi usare il nome del visitatore se ti viene indicato, senza chiedere altri dati anagrafici.
 - Non inventare prezzi, contratti, disponibilità o funzionalità non descritte sul sito.
 - Non parlare di sistemi interni, tenant, progetti LeanEvent operativi o dati di altri clienti.
 - Non menzionare fornitori AI terzi (OpenAI, ecc.) né Jotform.
@@ -29,6 +30,7 @@ ${buildTeresaPublicKnowledge()}`;
 export async function callTeresaPublicModel(input: {
   history: Array<{ role: "user" | "assistant"; content: string }>;
   userMessage: string;
+  visitorFirstName?: string;
 }): Promise<string> {
   const apiKey = process.env.OPENAI_API_KEY?.trim();
   if (!apiKey) {
@@ -48,7 +50,15 @@ export async function callTeresaPublicModel(input: {
         "gpt-4.1-mini",
       temperature: 0.2,
       messages: [
-        { role: "system", content: getTeresaPublicSystemPrompt() },
+        {
+          role: "system",
+          content: [
+            getTeresaPublicSystemPrompt(),
+            input.visitorFirstName
+              ? `Il visitatore si è già identificato come ${input.visitorFirstName}. Non chiedere nome, cognome o email.`
+              : "Il visitatore si è già identificato nel form obbligatorio. Non chiedere nome, cognome o email.",
+          ].join("\n\n"),
+        },
         ...input.history.slice(-20),
         { role: "user", content: input.userMessage },
       ],

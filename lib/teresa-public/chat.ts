@@ -197,6 +197,7 @@ export async function sendVisitorMessage(
   const reply = await callTeresaPublicModel({
     history,
     userMessage: text,
+    visitorFirstName: thread.lead.firstName,
   });
 
   const assistantMessage: TeresaPublicMessage = {
