@@ -4,11 +4,14 @@ import {
   getContattiData,
   getHomepageData,
   getLeanLabArticles,
+  getLeanLabCategories,
+  getLeanLabPageData,
   getPercorsiData,
   getSiteConfig,
   getStaffData,
   getSuiteData,
 } from "@/lib/content";
+import type { AcademyData, LeanLabArticle } from "@/types/content";
 
 function asText(value: string | string[] | undefined): string {
   if (!value) return "";
@@ -17,6 +20,73 @@ function asText(value: string | string[] | undefined): string {
 
 function isPlaceholderPhone(value: string): boolean {
   return /000\s*000/.test(value);
+}
+
+function sortArticlesNewestFirst(articles: LeanLabArticle[]): LeanLabArticle[] {
+  return [...articles].sort(
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+  );
+}
+
+function formatLeanLabCatalog(): string {
+  const page = getLeanLabPageData();
+  const categories = getLeanLabCategories();
+  const articles = sortArticlesNewestFirst(getLeanLabArticles());
+  const categoryTitle = new Map(
+    categories.map((category) => [category.slug, category.title])
+  );
+
+  const categoryLines = categories
+    .map(
+      (category) =>
+        `- ${category.title} (${category.slug}): ${category.description}`
+    )
+    .join("\n");
+
+  const articleLines = articles
+    .map((article) => {
+      const category = categoryTitle.get(article.category) ?? article.category;
+      const excerpt = asText(article.excerpt);
+      const summary = article.inPocheParole?.length
+        ? article.inPocheParole.join(" ")
+        : excerpt;
+      const cta = article.cta
+        ? ` CTA: ${article.cta.label} → ${article.cta.href}`
+        : "";
+      return `- ${article.title} (${article.date}, ${category}) → /leanlab/articolo/${article.slug}
+  ${summary}${cta}`;
+    })
+    .join("\n");
+
+  return `LEANLAB — catalogo completo aggiornato a ogni messaggio (${articles.length} articoli).
+${asText(page.pageIntro.descriptions)}
+Categorie:
+${categoryLines}
+Articoli (dal più recente):
+${articleLines || "- Nessun articolo pubblicato."}`;
+}
+
+function formatAcademyCatalog(academy: AcademyData): string {
+  const live = academy.pageStatus === "live";
+  const resources = academy.publicArea.resources
+    .map((resource) => `- ${resource.title} (${resource.type}): ${resource.description} → ${resource.href}`)
+    .join("\n");
+  const features = academy.reservedArea.features.join("; ");
+
+  if (!live) {
+    return `LEAN ACADEMY — stato pagina /lean-academy: Coming Soon.
+${academy.intro.description}
+Non dire che video, guide, webinar o corsi sono già disponibili. Invita a iscriversi alla newsletter o a tornare su /lean-academy.
+In preparazione: ${academy.publicArea.title} (${academy.publicArea.description}) e ${academy.reservedArea.title} (${academy.reservedArea.description}; ${features}).
+Catalogo risorse previsto (non ancora online):
+${resources}`;
+  }
+
+  return `LEAN ACADEMY — stato pagina /lean-academy: pubblicata.
+${academy.intro.description}
+${academy.publicArea.title}: ${academy.publicArea.description}
+${resources}
+${academy.reservedArea.title}: ${academy.reservedArea.description} (${features})`;
 }
 
 export function buildTeresaPublicKnowledge(): string {
@@ -28,7 +98,6 @@ export function buildTeresaPublicKnowledge(): string {
   const staff = getStaffData();
   const suite = getSuiteData();
   const academy = getAcademyData();
-  const articles = getLeanLabArticles().slice(0, 6);
 
   const legal = contacts.legalAddress.lines.join(", ");
   const operational = contacts.operationalAddress.lines.join(", ");
@@ -71,15 +140,7 @@ export function buildTeresaPublicKnowledge(): string {
     })
     .join("\n");
 
-  const academyResources = academy.publicArea.resources
-    .map((resource) => `- ${resource.title} (${resource.type}): ${resource.description}`)
-    .join("\n");
-
-  const leanlab = articles
-    .map((article) => `- ${article.title} → /leanlab/articolo/${article.slug}`)
-    .join("\n");
-
-  return `CONOSCENZA UFFICIALE DEL SITO (fonte di verità, non contraddire):
+  return `CONOSCENZA UFFICIALE DEL SITO (ricostruita a ogni messaggio dai JSON pubblici, non contraddire):
 
 IDENTITÀ
 - Azienda: ${site.company}. Digital Innovation Company. Claim: ${site.claim}
@@ -96,7 +157,7 @@ PAGINE DA CITARE
 - Staff Ibrido /staff-ibrido
 - Come possiamo aiutarti /come-possiamo-aiutarti — soluzioni pronte e progetti su misura
 - LeanLab /leanlab
-- Lean Academy /lean-academy (contenuti formativi in arrivo; non inventare corsi live)
+- Lean Academy /lean-academy${academy.pageStatus === "coming_soon" ? " (Coming Soon: non inventare corsi live)" : ""}
 - Suite /suite
 - Contatti /contatti — modulo Connect
 - Prenota consulenza /prenota-consulenza — 30 minuti gratuiti
@@ -125,13 +186,9 @@ SUITE
 ${asText(suite.intro.description)}
 ${suiteTools}
 
-LEAN ACADEMY
-${academy.intro.description} Area pubblica prevista: ${academy.publicArea.description}
-${academyResources}
-Area riservata prevista: ${academy.reservedArea.description}
+${formatAcademyCatalog(academy)}
 
-LEANLAB (articoli recenti)
-${leanlab}
+${formatLeanLabCatalog()}
 
 CTA
 - Per un progetto: /contatti o /prenota-consulenza

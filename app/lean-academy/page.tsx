@@ -69,9 +69,11 @@ export default function LeanAcademyPage() {
                 <p className="mt-4 flex-1 text-sm leading-relaxed text-white/65 md:text-base">
                   {area.description}
                 </p>
-                <p className="mt-8 text-center text-sm font-semibold uppercase tracking-[0.14em] text-leanme-fuchsia md:text-base">
-                  Coming Soon
-                </p>
+                {data.pageStatus === "coming_soon" ? (
+                  <p className="mt-8 text-center text-sm font-semibold uppercase tracking-[0.14em] text-leanme-fuchsia md:text-base">
+                    Coming Soon
+                  </p>
+                ) : null}
               </FuchsiaGlowCard>
             </RevealOnScroll>
           ))}

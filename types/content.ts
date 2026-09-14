@@ -220,6 +220,8 @@ export interface AcademyResource {
 
 export interface AcademyData {
   intro: SectionBase;
+  /** Stato pagina pubblica: Teresa e /lean-academy lo leggono dallo stesso campo. */
+  pageStatus: "coming_soon" | "live";
   publicArea: {
     title: string;
     description: string;

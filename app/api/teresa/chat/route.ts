@@ -11,6 +11,7 @@ import {
 import { getOrSetVisitorId } from "@/lib/teresa-public/visitor";
 
 export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
 function chatPayload(
   thread: Awaited<ReturnType<typeof getOrCreateVisitorThread>>,
