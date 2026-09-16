@@ -2,6 +2,7 @@
 
 import { useState, type ReactNode } from "react";
 import Image from "next/image";
+import { ExternalLinkIcon } from "@/components/homepage/Icons";
 import type { PartnerLogo } from "@/lib/companies";
 
 interface PartnerMarqueeProps {
@@ -16,7 +17,7 @@ function PartnerLogoCard({
   children: ReactNode;
 }) {
   const className =
-    "flex h-14 w-[148px] shrink-0 items-center justify-center rounded-md bg-white/95 px-3 py-2 transition md:h-16 md:w-[168px]";
+    "relative flex h-14 w-[148px] shrink-0 items-center justify-center rounded-md bg-white/95 px-3 py-2 transition md:h-16 md:w-[168px]";
 
   if (!partner.url) {
     return <div className={className}>{children}</div>;
@@ -28,9 +29,12 @@ function PartnerLogoCard({
       target="_blank"
       rel="noopener noreferrer"
       aria-label={`Sito di ${partner.name}`}
-      className={`${className} hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leanme-fuchsia`}
+      className={`${className} hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_8px_18px_rgba(230,0,126,0.18)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leanme-fuchsia`}
     >
       {children}
+      <span className="absolute right-1 top-1 flex h-4 w-4 items-center justify-center rounded-[3px] bg-leanme-fuchsia text-white">
+        <ExternalLinkIcon className="h-2.5 w-2.5" />
+      </span>
     </a>
   );
 }

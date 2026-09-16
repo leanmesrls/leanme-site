@@ -266,6 +266,25 @@ export function QuoteIcon({ className }: { className?: string }) {
   );
 }
 
+export function ExternalLinkIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 16 16"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.75"
+      aria-hidden="true"
+      className={cn("h-3.5 w-3.5 shrink-0", className)}
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M4.5 11.5 11.5 4.5M7 4.5h4.5V9"
+      />
+    </svg>
+  );
+}
+
 export function ChatIcon({ className }: { className?: string }) {
   return (
     <svg

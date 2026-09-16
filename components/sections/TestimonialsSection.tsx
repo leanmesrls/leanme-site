@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ExternalLinkIcon } from "@/components/homepage/Icons";
 import { Container } from "@/components/ui/Container";
 import { PlaceholderImage } from "@/components/ui/PlaceholderImage";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -44,9 +45,11 @@ export function TestimonialsSection({
                           href={item.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="transition-colors hover:text-leanme-purple focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leanme-purple"
+                          aria-label={`Sito di ${item.name}`}
+                          className="inline-flex items-center gap-1.5 text-leanme-fuchsia underline decoration-leanme-fuchsia/55 underline-offset-4 transition-colors hover:text-leanme-purple hover:decoration-leanme-purple focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leanme-fuchsia"
                         >
                           {item.name}
+                          <ExternalLinkIcon className="h-3.5 w-3.5" />
                         </a>
                       ) : (
                         item.name

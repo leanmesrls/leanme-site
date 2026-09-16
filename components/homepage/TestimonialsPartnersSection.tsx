@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { QuoteIcon } from "@/components/homepage/Icons";
+import { ExternalLinkIcon, QuoteIcon } from "@/components/homepage/Icons";
 import { PartnerMarquee } from "@/components/homepage/PartnerMarquee";
 import { SectionTitle } from "@/components/homepage/SectionTitle";
 import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
@@ -94,9 +94,11 @@ export function TestimonialsPartnersSection({
                             target="_blank"
                             rel="noopener noreferrer"
                             tabIndex={itemIndex === index ? 0 : -1}
-                            className="transition hover:text-leanme-fuchsia focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leanme-fuchsia"
+                            aria-label={`Sito di ${item.name}`}
+                            className="inline-flex items-center gap-1.5 text-leanme-fuchsia underline decoration-leanme-fuchsia/55 underline-offset-4 transition hover:text-white hover:decoration-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leanme-fuchsia"
                           >
                             {item.name}
+                            <ExternalLinkIcon className="h-3.5 w-3.5" />
                           </a>
                         ) : (
                           item.name
