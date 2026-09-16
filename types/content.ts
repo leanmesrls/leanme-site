@@ -209,6 +209,7 @@ export interface Testimonial {
   role: string;
   company: string;
   quote: string;
+  url?: string;
   image?: ImageAsset;
 }
 

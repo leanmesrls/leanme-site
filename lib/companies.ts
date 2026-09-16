@@ -1,6 +1,7 @@
 import crypto from "crypto";
 import fs from "fs";
 import path from "path";
+import partnerLinks from "@/data/partner-links.json";
 
 const PUBLIC_COMPANIES_DIR = path.join(process.cwd(), "public", "assets", "companies");
 
@@ -8,19 +9,23 @@ const PUBLIC_COMPANIES_DIR = path.join(process.cwd(), "public", "assets", "compa
 const EXCLUDED_LOGO_PATTERN =
   /(^|-)hp\.|ui-chi-siamo|chi-siamo|leonardo-hp|vespucci-hp|marconi-hp|angela-hp|galileo-hp|olivetti-hp|teresa-hp|world-sympoia-on-pulmonary-hypertension/i;
 
+interface PartnerLinkMeta {
+  name?: string;
+  url?: string;
+  alt?: string;
+}
+
+const PARTNER_LINKS = partnerLinks as Record<string, PartnerLinkMeta>;
+
 export interface PartnerLogo {
   name: string;
   logo: string;
   alt: string;
+  url?: string;
 }
 
-const DISPLAY_NAMES: Record<string, string> = {
-  "leonardo-medical-center": "Leonardo Medical Center",
-};
-
-function displayName(filename: string): string {
-  const slug = filename.replace(/\.[^.]+$/, "");
-  return DISPLAY_NAMES[slug] ?? slug;
+function displayName(slug: string): string {
+  return PARTNER_LINKS[slug]?.name ?? slug;
 }
 
 /** Elenco loghi partner ufficiali — legge da public/assets/companies */
@@ -46,11 +51,14 @@ export function getPartnerLogos(): PartnerLogo[] {
     if (seenHashes.has(hash)) continue;
     seenHashes.add(hash);
 
-    const name = displayName(file);
+    const slug = file.replace(/\.[^.]+$/, "");
+    const meta = PARTNER_LINKS[slug];
+    const name = displayName(slug);
     logos.push({
       name,
       logo: `/assets/companies/${file}`,
-      alt: name,
+      alt: meta?.alt ?? name,
+      url: meta?.url,
     });
   }
 

@@ -88,7 +88,19 @@ export function TestimonialsPartnersSection({
                   <footer className="mt-6">
                     <cite className="not-italic">
                       <p className="text-sm font-semibold text-white">
-                        {item.name}
+                        {item.url ? (
+                          <a
+                            href={item.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            tabIndex={itemIndex === index ? 0 : -1}
+                            className="transition hover:text-leanme-fuchsia focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leanme-fuchsia"
+                          >
+                            {item.name}
+                          </a>
+                        ) : (
+                          item.name
+                        )}
                       </p>
                       <p className="break-words text-sm text-white/50">
                         {[item.role, item.company].filter(Boolean).join(", ")}

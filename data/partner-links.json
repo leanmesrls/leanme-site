@@ -1,0 +1,110 @@
+{
+  "anisc": {
+    "name": "ANISC",
+    "url": "https://www.anisc.org/"
+  },
+  "aop-italia": {
+    "name": "AOP Health",
+    "url": "https://www.aop-health.com/it_it/"
+  },
+  "centro-diagnostico-cavour-a-bologna-synlab-modificata": {
+    "name": "Centro Diagnostico Cavour",
+    "url": "https://www.centrocavour.it/"
+  },
+  "centro-medico-san-michele": {
+    "name": "Centro Medico San Michele",
+    "url": "https://emiliaromagna.synlab.it/sedi/sanmichele"
+  },
+  "centro-san-petronio-synlab": {
+    "name": "Centro San Petronio",
+    "url": "https://emiliaromagna.synlab.it/sedi/sanpetronio"
+  },
+  "chiropratic-synlab": {
+    "name": "Chiropratic",
+    "url": "https://www.chiropratic.it/"
+  },
+  "ctr": {
+    "name": "Poliambulatorio CTR",
+    "url": "https://emiliaromagna.synlab.it/sedi/ctr"
+  },
+  "descovich": {
+    "name": "Poliambulatorio Descovich",
+    "url": "https://descovich.it/"
+  },
+  "etic": {
+    "name": "ETIC",
+    "url": "https://eticsrl.it/"
+  },
+  "federazione-nazionale-dei-cavalieri-del-lavoro": {
+    "name": "Cavalieri del Lavoro",
+    "url": "https://www.cavalieridellavoro.it/"
+  },
+  "i-c-congressi": {
+    "name": "I&C s.r.l.",
+    "url": "https://www.iec-srl.it/"
+  },
+  "laboratorio-delle-idee": {
+    "name": "Laboratorio delle Idee",
+    "url": "https://labidee.it/"
+  },
+  "leonardo-medical-center": {
+    "name": "Leonardo Medical Center",
+    "url": "https://www.leonardomedicalcenter.com/"
+  },
+  "masseria-19": {
+    "name": "Masseria 19",
+    "url": "https://masseria19.it/"
+  },
+  "meeting-consultants": {
+    "name": "Meeting Consultants",
+    "url": "https://www.meetingconsultants.it/"
+  },
+  "officina-del-paziente": {
+    "name": "Officina del Paziente",
+    "url": "https://officinadelpaziente.it/"
+  },
+  "parco-dei-cedri": {
+    "name": "Parco dei Cedri",
+    "url": "https://emiliaromagna.synlab.it/sedi/parcodeicedri"
+  },
+  "pasteur": {
+    "name": "Diagnostica Pasteur",
+    "url": "https://www.diagnosticapasteur.it/"
+  },
+  "polimbulatorio-riva-reno": {
+    "name": "Poliambulatorio Riva Reno",
+    "url": "https://synlab.it/news/nuove-aperture/bcp-viareno.html"
+  },
+  "radiocitta-fujiko": {
+    "name": "Radio Città Fujiko",
+    "url": "https://www.radiocittafujiko.it/"
+  },
+  "san-biagio": {
+    "name": "Centro di Terapia San Biagio",
+    "url": "https://emiliaromagna.synlab.it/sedi/sanbiagio"
+  },
+  "sid": {
+    "name": "I&C s.r.l.",
+    "url": "https://www.iec-srl.it/"
+  },
+  "sibrilla": {
+    "name": "SiBrilla",
+    "url": "https://www.sibrilla.it/"
+  },
+  "singem": {
+    "name": "SINGEM",
+    "url": "https://www.singem.it/"
+  },
+  "synlab-centro-calvart": {
+    "name": "SYNLAB Centro Calvart",
+    "url": "https://emiliaromagna.synlab.it/sedi/calvart"
+  },
+  "synlab-centro-la-salute": {
+    "name": "SYNLAB Centro La Salute",
+    "url": "https://emiliaromagna.synlab.it/sedi/lasalute"
+  },
+  "wsph": {
+    "name": "WSPH Association",
+    "url": "https://www.wsphassociation.org/"
+  }
+}

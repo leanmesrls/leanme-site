@@ -38,7 +38,20 @@ export function TestimonialsSection({
                     />
                   )}
                   <div>
-                    <p className="font-semibold">{item.name}</p>
+                    <p className="font-semibold">
+                      {item.url ? (
+                        <a
+                          href={item.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="transition-colors hover:text-leanme-purple focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leanme-purple"
+                        >
+                          {item.name}
+                        </a>
+                      ) : (
+                        item.name
+                      )}
+                    </p>
                     <p className="text-sm text-leanme-gray-500">
                       {[item.role, item.company].filter(Boolean).join(", ")}
                     </p>

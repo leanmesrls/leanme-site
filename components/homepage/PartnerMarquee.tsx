@@ -1,11 +1,38 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import Image from "next/image";
 import type { PartnerLogo } from "@/lib/companies";
 
 interface PartnerMarqueeProps {
   logos: PartnerLogo[];
+}
+
+function PartnerLogoCard({
+  partner,
+  children,
+}: {
+  partner: PartnerLogo;
+  children: ReactNode;
+}) {
+  const className =
+    "flex h-14 w-[148px] shrink-0 items-center justify-center rounded-md bg-white/95 px-3 py-2 transition md:h-16 md:w-[168px]";
+
+  if (!partner.url) {
+    return <div className={className}>{children}</div>;
+  }
+
+  return (
+    <a
+      href={partner.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={`Sito di ${partner.name}`}
+      className={`${className} hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leanme-fuchsia`}
+    >
+      {children}
+    </a>
+  );
 }
 
 export function PartnerMarquee({ logos }: PartnerMarqueeProps) {
@@ -17,7 +44,7 @@ export function PartnerMarquee({ logos }: PartnerMarqueeProps) {
 
   return (
     <div
-      className="relative min-w-0 max-w-full cursor-default overflow-hidden py-2"
+      className="relative min-w-0 max-w-full overflow-hidden py-2"
       aria-label="Loghi partner"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
@@ -32,10 +59,7 @@ export function PartnerMarquee({ logos }: PartnerMarqueeProps) {
         style={{ animationPlayState: paused ? "paused" : "running" }}
       >
         {track.map((partner, index) => (
-          <div
-            key={`${partner.name}-${index}`}
-            className="flex h-14 w-[148px] shrink-0 items-center justify-center rounded-md bg-white/95 px-3 py-2 md:h-16 md:w-[168px]"
-          >
+          <PartnerLogoCard key={`${partner.name}-${index}`} partner={partner}>
             <Image
               src={partner.logo}
               alt={partner.alt}
@@ -43,7 +67,7 @@ export function PartnerMarquee({ logos }: PartnerMarqueeProps) {
               height={64}
               className="max-h-9 w-auto max-w-full object-contain md:max-h-11"
             />
-          </div>
+          </PartnerLogoCard>
         ))}
       </div>
     </div>
