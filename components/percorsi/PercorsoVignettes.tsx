@@ -11,6 +11,16 @@ interface PercorsoVignettesProps {
 
 const ARROW_COLUMN_WEIGHT = 0.4;
 
+/** Coppie pari: nero con velatura fucsia. Coppie dispari: charcoal più chiaro, sfumato ai bordi. */
+const PAIR_BAND_EVEN =
+  "bg-[linear-gradient(180deg,#240814_0%,#000000_22%,#000000_78%,#14060c_100%)]";
+const PAIR_BAND_ODD =
+  "bg-[linear-gradient(180deg,#1f1f1f_0%,#3a3a3a_18%,#3a3a3a_82%,#1f1f1f_100%)]";
+
+function getPairBandClass(index: number) {
+  return index % 2 === 0 ? PAIR_BAND_EVEN : PAIR_BAND_ODD;
+}
+
 function getAspectRatio(vignette: PercorsoVignette) {
   const width = vignette.width ?? 1672;
   const height = vignette.height ?? 941;
@@ -140,13 +150,13 @@ function VignetteArrowBadge({
     <div
       aria-hidden="true"
       className={cn(
-        "flex shrink-0 items-center justify-center bg-black",
+        "flex shrink-0 items-center justify-center bg-transparent",
         direction === "right"
           ? "self-center px-3 md:px-5"
-          : "py-5"
+          : "py-6"
       )}
     >
-      <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-leanme-fuchsia shadow-[0_0_24px_rgba(255,0,255,0.25)] md:h-14 md:w-14">
+      <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-leanme-fuchsia shadow-[0_0_28px_rgba(230,0,126,0.45)] md:h-14 md:w-14">
         <ArrowIcon
           className={cn(
             "h-6 w-6 text-white md:h-7 md:w-7",
@@ -207,63 +217,26 @@ function DesktopVignetteRow({
   );
 }
 
-function DesktopVignetteGrid({
-  rows,
+function MobileVignettePair({
+  left,
+  right,
   showArrowBetweenColumns,
 }: {
-  rows: PercorsoVignette[][];
-  showArrowBetweenColumns: boolean;
-}) {
-  const columnVisual = computeGlobalColumnVisual(rows);
-
-  return (
-    <div
-      className={cn(
-        "hidden w-full flex-col leading-none md:flex",
-        showArrowBetweenColumns ? "gap-y-3" : "gap-y-0"
-      )}
-    >
-      {rows.map(([left, right]) => (
-        <DesktopVignetteRow
-          key={left.id}
-          left={left}
-          right={right}
-          columnVisual={columnVisual}
-          showArrowBetweenColumns={showArrowBetweenColumns}
-        />
-      ))}
-    </div>
-  );
-}
-
-function MobileVignetteStack({
-  rows,
-  showArrowBetweenColumns,
-}: {
-  rows: PercorsoVignette[][];
+  left: PercorsoVignette;
+  right?: PercorsoVignette;
   showArrowBetweenColumns: boolean;
 }) {
   return (
-    <div className="flex flex-col md:hidden">
-      {rows.map(([left, right], index) => (
-        <div
-          key={left.id}
-          className={cn(
-            "flex flex-col gap-0 leading-none",
-            showArrowBetweenColumns && index < rows.length - 1 && "mb-10"
-          )}
-        >
-          <VignetteBlock vignette={left} sizes="100vw" />
-          {right ? (
-            <>
-              {showArrowBetweenColumns ? (
-                <VignetteArrowBadge direction="down" />
-              ) : null}
-              <VignetteBlock vignette={right} sizes="100vw" />
-            </>
+    <div className="flex flex-col gap-0 leading-none md:hidden">
+      <VignetteBlock vignette={left} sizes="100vw" />
+      {right ? (
+        <>
+          {showArrowBetweenColumns ? (
+            <VignetteArrowBadge direction="down" />
           ) : null}
-        </div>
-      ))}
+          <VignetteBlock vignette={right} sizes="100vw" />
+        </>
+      ) : null}
     </div>
   );
 }
@@ -281,21 +254,30 @@ export function PercorsoVignettes({
     rows.push(vignettes.slice(index, index + 2));
   }
 
+  const columnVisual = computeGlobalColumnVisual(rows);
+
   return (
     <section
       aria-label="Soluzioni"
       className="bg-black pb-16 pt-6 md:pb-20 md:pt-8"
     >
-      <div className="mx-auto w-full max-w-[1440px] px-5 md:px-10 lg:px-12">
-        <DesktopVignetteGrid
-          rows={rows}
-          showArrowBetweenColumns={showArrowBetweenColumns}
-        />
-        <MobileVignetteStack
-          rows={rows}
-          showArrowBetweenColumns={showArrowBetweenColumns}
-        />
-      </div>
+      {rows.map(([left, right], index) => (
+        <div key={left.id} className={cn("relative", getPairBandClass(index))}>
+          <div className="mx-auto w-full max-w-[1440px] px-5 py-8 md:px-10 md:py-4 lg:px-12">
+            <DesktopVignetteRow
+              left={left}
+              right={right}
+              columnVisual={columnVisual}
+              showArrowBetweenColumns={showArrowBetweenColumns}
+            />
+            <MobileVignettePair
+              left={left}
+              right={right}
+              showArrowBetweenColumns={showArrowBetweenColumns}
+            />
+          </div>
+        </div>
+      ))}
     </section>
   );
 }
