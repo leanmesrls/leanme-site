@@ -8,6 +8,7 @@ import { NewsletterEpisodio01 } from "./articles/NewsletterEpisodio01";
 import { NewsletterEpisodio02 } from "./articles/NewsletterEpisodio02";
 import { NewsletterEpisodio03 } from "./articles/NewsletterEpisodio03";
 import { NewsletterEpisodio04 } from "./articles/NewsletterEpisodio04";
+import { NewsletterEpisodio05 } from "./articles/NewsletterEpisodio05";
 
 interface LeanLabArticleBodyProps {
   template: LeanLabArticleBodyTemplate;
@@ -30,7 +31,9 @@ export function LeanLabArticleBody({
     case "newsletter-episodio-03":
       return <NewsletterEpisodio03 cta={cta} videoCta={videoCta} />;
     case "newsletter-episodio-04":
-      return <NewsletterEpisodio04 cta={cta} />;
+      return <NewsletterEpisodio04 cta={cta} videoCta={videoCta} />;
+    case "newsletter-episodio-05":
+      return <NewsletterEpisodio05 cta={cta} videoCta={videoCta} />;
     default:
       return null;
   }

@@ -1,5 +1,35 @@
 [
   {
+    "slug": "leanme-rebuild-episodio-05",
+    "category": "vita-in-leanme",
+    "title": "LeanMe // Rebuild // Episodio 05",
+    "excerpt": [
+      "Dopo la casa digitale, la casa reale.",
+      "La nuova casa digitale di LeanMe è online. Ora manca l'ultimo tassello: la nostra nuova sede, che sta prendendo forma."
+    ],
+    "date": "2026-09-21",
+    "readTime": "4 min",
+    "image": {
+      "src": "/assets/leanlab/newsletter-episodio-05.jpg",
+      "alt": "Newsletter LeanMe Rebuild Episodio 05 — Dopo la casa digitale, la casa reale.",
+      "replaceHint": ""
+    },
+    "author": "Luana, Alessandro, LeanMe.Agent.Vespucci, LeanMe.Agent.Marconi, LeanMe.Agent.Olivetti",
+    "tags": ["Newsletter"],
+    "bodyTemplate": "newsletter-episodio-05",
+    "hideDefaultImage": true,
+    "cta": {
+      "href": "https://leanme-wip-quiz-05.vercel.app/quiz",
+      "label": "Rispondi al quiz e fai la differenza"
+    },
+    "inPocheParole": [
+      "Episodio 05 di LeanMe Rebuild passa dalla casa digitale alla casa reale: la nuova sede sta prendendo forma, come luogo dove le idee diventano incontri, progetti, formazione e opportunità.",
+      "Dopo il lancio di leanme.it manca l'ultimo tassello fisico: uno spazio più di un ufficio, pensato per persone, idee, tecnologia, formazione e collaborazione.",
+      "Il quinto indizio è un quiz («Cosa ti piacerebbe trovare nella nuova sede?»): chi risponde entra nel Rebuild Pass Contributor, con invito all'Open Day, status Contributor e gadget riservato.",
+      "Il progetto è quasi completo (90%): il prossimo episodio arriva a Rebuild 100%, quando le porte della nuova sede si apriranno dal vivo."
+    ]
+  },
+  {
     "slug": "leanme-rebuild-episodio-04",
     "category": "vita-in-leanme",
     "title": "LeanMe // Rebuild // Episodio 04",
@@ -20,12 +50,16 @@
     "hideDefaultImage": true,
     "cta": {
       "href": "https://leanme-wip-quiz-04.vercel.app/quiz",
-      "label": "Rispondi al quiz e metti alla prova la tua memoria"
+      "label": "Visualizza il quiz"
+    },
+    "videoCta": {
+      "href": "https://leanme-wip-quiz-04.vercel.app/assets/teaser-sito.mp4",
+      "label": "Video sbloccato"
     },
     "inPocheParole": [
       "Episodio 04 di LeanMe Rebuild apre le porte della nuova casa digitale: leanme.it è online e racconta chi siamo, come lavoriamo e dove stiamo andando.",
       "Ogni episodio segue la stessa regola Rebuild: demolire un sito che raccontava male LeanMe, servizi sparsi e un'identità superata; costruire un ecosistema unico di persone, servizi e Lean.Agent.",
-      "Il quarto indizio è un quiz: abbinare ogni screenshot del nuovo sito alla sezione giusta, per mettere alla prova la memoria su Chi siamo, LeanLab, reception e percorsi.",
+      "Il quarto indizio è un quiz: abbinare ogni screenshot del nuovo sito alla sezione giusta; il video sbloccato del nuovo leanme.it è ora visibile dall'articolo.",
       "Il progetto è in corso (68%): il prossimo episodio chiederà cosa si vedrà nella nuova casa digitale."
     ]
   },

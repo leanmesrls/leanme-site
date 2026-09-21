@@ -4,20 +4,20 @@ import { NewsletterEpisodeActions } from "@/components/leanlab/NewsletterEpisode
 import { ASSETS } from "@/lib/assets";
 import type { LeanLabArticleCta } from "@/types/content";
 
-interface NewsletterEpisodio04Props {
+interface NewsletterEpisodio05Props {
   cta?: LeanLabArticleCta;
   videoCta?: LeanLabArticleCta;
 }
 
 /**
- * Newsletter «LeanMe // Rebuild // Episodio 04» — grafica ufficiale, senza modifiche.
- * Se presente, l'intera grafica apre il quiz; sotto: quiz + video sbloccato.
+ * Newsletter «LeanMe // Rebuild // Episodio 05» — grafica ufficiale, senza modifiche.
+ * Se presente, l'intera grafica e un CTA testuale aprono il quiz/form.
  */
-export function NewsletterEpisodio04({ cta, videoCta }: NewsletterEpisodio04Props) {
+export function NewsletterEpisodio05({ cta, videoCta }: NewsletterEpisodio05Props) {
   const image = (
     <Image
-      src={ASSETS.leanlab.newsletterEpisodio04}
-      alt="Newsletter LeanMe Rebuild Episodio 04 — Le porte sono aperte."
+      src={ASSETS.leanlab.newsletterEpisodio05}
+      alt="Newsletter LeanMe Rebuild Episodio 05 — Dopo la casa digitale, la casa reale."
       width={682}
       height={1024}
       className="h-auto w-full"
