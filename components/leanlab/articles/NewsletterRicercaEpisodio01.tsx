@@ -45,11 +45,11 @@ export function NewsletterRicercaEpisodio01({
       ) : null}
       <figure className="mx-auto max-w-[860px]">
         <Image
-          src={ASSETS.leanlab.newsletterRicercaEpisodio01Hero}
+          src={ASSETS.leanlab.newsletterRicercaEpisodio01}
           alt="Newsletter LeanMe Ricerca e Innovazione Episodio 01 — Te lo spiego io. Google non è più l'unico che deve trovare il tuo sito."
-          width={1022}
-          height={716}
-          className="h-auto w-full rounded-xl"
+          width={2048}
+          height={3072}
+          className="h-auto w-full"
           sizes="(max-width: 768px) 100vw, 860px"
           priority
         />
