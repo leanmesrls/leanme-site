@@ -44,15 +44,33 @@ export function NewsletterRicercaEpisodio01({
         </Link>
       ) : null}
       <figure className="mx-auto max-w-[860px]">
-        <Image
-          src={ASSETS.leanlab.newsletterRicercaEpisodio01}
-          alt="Newsletter LeanMe Ricerca e Innovazione Episodio 01 — Te lo spiego io. Google non è più l'unico che deve trovare il tuo sito."
-          width={2048}
-          height={3072}
-          className="h-auto w-full"
-          sizes="(max-width: 768px) 100vw, 860px"
-          priority
-        />
+        {videoCta ? (
+          <Link
+            href={videoCta.href}
+            aria-label={videoCta.label}
+            className="block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-leanme-fuchsia"
+          >
+            <Image
+              src={ASSETS.leanlab.newsletterRicercaEpisodio01}
+              alt="Newsletter LeanMe Ricerca e Innovazione Episodio 01 — Te lo spiego io. Google non è più l'unico che deve trovare il tuo sito."
+              width={2048}
+              height={3072}
+              className="h-auto w-full"
+              sizes="(max-width: 768px) 100vw, 860px"
+              priority
+            />
+          </Link>
+        ) : (
+          <Image
+            src={ASSETS.leanlab.newsletterRicercaEpisodio01}
+            alt="Newsletter LeanMe Ricerca e Innovazione Episodio 01 — Te lo spiego io. Google non è più l'unico che deve trovare il tuo sito."
+            width={2048}
+            height={3072}
+            className="h-auto w-full"
+            sizes="(max-width: 768px) 100vw, 860px"
+            priority
+          />
+        )}
         <figcaption className="mt-6 flex justify-center">
           <Link
             href="/prenota-consulenza"
