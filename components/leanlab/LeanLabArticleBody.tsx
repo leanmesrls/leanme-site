@@ -36,7 +36,7 @@ export function LeanLabArticleBody({
     case "newsletter-episodio-05":
       return <NewsletterEpisodio05 cta={cta} videoCta={videoCta} />;
     case "newsletter-ricerca-episodio-01":
-      return <NewsletterRicercaEpisodio01 />;
+      return <NewsletterRicercaEpisodio01 videoCta={videoCta} />;
     default:
       return null;
   }

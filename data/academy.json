@@ -11,7 +11,27 @@
     "description": "Accessibile a tutti. Video introduttivi, guide, articoli, tutorial, webinar gratuiti e risorse scaricabili.",
     "resources": [
       {
+        "slug": "ricerca-e-innovazione-episodio-01",
+        "title": "Te lo spiego io — Episodio 01",
+        "type": "Video",
+        "tag": "Ricerca & Innovazione",
+        "description": "Google non è più l'unico che deve trovare il tuo sito. Ora deve trovarlo anche l'AI. Una cosa complicata, spiegata semplice, con Lean.Agent.Olivetti.",
+        "published": true,
+        "image": {
+          "src": "/assets/leanlab/ricerca-episodio-01-cover.jpg",
+          "alt": "Te lo spiego io. Episodio 01 di Ricerca e Innovazione: SEO, AEO e GEO.",
+          "replaceHint": ""
+        },
+        "video": {
+          "src": "/assets/leanlab/ricerca-e-innovazione-episodio-01.mp4",
+          "poster": "/assets/leanlab/ricerca-episodio-01-cover.jpg"
+        },
+        "href": "/lean-academy/ricerca-e-innovazione-episodio-01",
+        "articleHref": "/leanlab/articolo/leanme-ricerca-e-innovazione-episodio-01"
+      },
+      {
         "slug": "intro-azienda-ibrida",
+        "published": false,
         "title": "Introduzione all'Azienda Ibrida",
         "type": "Video",
         "description": "Video introduttivo sul concetto di Azienda Ibrida e sul metodo LeanMe.",
@@ -24,6 +44,7 @@
       },
       {
         "slug": "guida-automazione",
+        "published": false,
         "title": "Guida all'automazione dei processi",
         "type": "Guida",
         "description": "Guida pratica per identificare e automatizzare i processi aziendali.",
@@ -36,6 +57,7 @@
       },
       {
         "slug": "webinar-lean-thinking",
+        "published": false,
         "title": "Webinar: Lean Thinking e AI",
         "type": "Webinar",
         "description": "Webinar gratuito sul connubio tra Lean Thinking e Intelligenza Artificiale.",
@@ -48,6 +70,7 @@
       },
       {
         "slug": "tutorial-primo-agente",
+        "published": false,
         "title": "Tutorial: Il tuo primo Lean.Agent",
         "type": "Tutorial",
         "description": "Tutorial passo-passo per comprendere come funziona un agente AI specializzato.",

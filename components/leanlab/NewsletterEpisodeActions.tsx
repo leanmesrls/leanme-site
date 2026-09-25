@@ -1,4 +1,31 @@
+import type { ReactNode } from "react";
+import Link from "next/link";
+
 import type { LeanLabArticleCta } from "@/types/content";
+
+function CtaAnchor({
+  href,
+  className,
+  children,
+}: {
+  href: string;
+  className: string;
+  children: ReactNode;
+}) {
+  if (href.startsWith("/")) {
+    return (
+      <Link href={href} className={className}>
+        {children}
+      </Link>
+    );
+  }
+
+  return (
+    <a href={href} target="_blank" rel="noopener noreferrer" className={className}>
+      {children}
+    </a>
+  );
+}
 
 const quizClassName =
   "inline-flex min-h-11 items-center justify-center rounded-full bg-leanme-fuchsia px-6 text-sm font-semibold uppercase tracking-[0.08em] text-white transition hover:brightness-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leanme-fuchsia";
@@ -18,24 +45,14 @@ export function NewsletterEpisodeActions({
   return (
     <figcaption className="mt-6 flex flex-wrap items-center justify-center gap-3">
       {cta ? (
-        <a
-          href={cta.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={quizClassName}
-        >
+        <CtaAnchor href={cta.href} className={quizClassName}>
           {cta.label}
-        </a>
+        </CtaAnchor>
       ) : null}
       {videoCta ? (
-        <a
-          href={videoCta.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={videoClassName}
-        >
+        <CtaAnchor href={videoCta.href} className={videoClassName}>
           {videoCta.label}
-        </a>
+        </CtaAnchor>
       ) : null}
     </figcaption>
   );
@@ -55,24 +72,20 @@ export function LeanLabPreviewCtas({
   return (
     <div className="flex flex-col gap-2 px-4 pb-4 pt-3">
       {cta ? (
-        <a
+        <CtaAnchor
           href={cta.href}
-          target="_blank"
-          rel="noopener noreferrer"
           className="inline-flex min-h-10 items-center text-xs font-semibold uppercase tracking-[0.1em] text-leanme-fuchsia transition hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leanme-fuchsia"
         >
           {cta.label} →
-        </a>
+        </CtaAnchor>
       ) : null}
       {videoCta ? (
-        <a
+        <CtaAnchor
           href={videoCta.href}
-          target="_blank"
-          rel="noopener noreferrer"
           className="inline-flex min-h-10 items-center text-xs font-semibold uppercase tracking-[0.1em] text-white/70 transition hover:text-leanme-fuchsia focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leanme-fuchsia"
         >
           {videoCta.label} →
-        </a>
+        </CtaAnchor>
       ) : null}
     </div>
   );

@@ -25,7 +25,8 @@ ${link(base, "/come-possiamo-aiutarti", "Come possiamo aiutarti", "Hub percorsi 
 ${link(base, "/chi-siamo", "Chi siamo", "Visione LeanMe, Azienda Ibrida, team founder")}
 ${link(base, "/staff-ibrido", "Lo Staff Ibrido", "Persone, Lean.Agent AI e network di specialisti")}
 ${link(base, "/leanlab", "Dal LeanLab", "Blog e approfondimenti su innovazione")}
-${link(base, "/lean-academy", "Lean Academy", "Formazione su digitale, IA e team ibridi")}
+${link(base, "/lean-academy", "Lean Academy", "Area pubblica con la prima puntata Ricerca e Innovazione; area riservata in arrivo")}
+${link(base, "/lean-academy/ricerca-e-innovazione-episodio-01", "Te lo spiego io — Episodio 01", "Video Lean Academy su SEO, AEO e GEO, con Lean.Agent.Olivetti")}
 ${link(base, "/contatti", "Contatti", "Sede Bologna, email, modulo Connect")}
 ${link(base, "/prenota-consulenza", "Prenota consulenza", "Consulenza gratuita di 30 minuti")}
 ${link(base, "/dicono-di-noi", "Dicono di noi", "Testimonianze clienti e partner")}

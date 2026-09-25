@@ -206,8 +206,12 @@ export function getAllLeanLabArticleSlugs(): string[] {
   return getLeanLabArticles().map((a) => a.slug);
 }
 
+export function getPublishedAcademyResources() {
+  return getAcademyData().publicArea.resources.filter((resource) => resource.published);
+}
+
 export function getAllAcademyResourceSlugs(): string[] {
-  return getAcademyData().publicArea.resources.map((r) => r.slug);
+  return getPublishedAcademyResources().map((resource) => resource.slug);
 }
 
 type SeoContentData = {

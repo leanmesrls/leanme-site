@@ -224,6 +224,15 @@ export interface AcademyResource {
   description: string;
   image: ImageAsset;
   href: string;
+  /** Visibile nell'area pubblica. Le risorse senza flag restano in catalogo, non online. */
+  published?: boolean;
+  tag?: string;
+  video?: {
+    src: string;
+    poster: string;
+  };
+  /** Articolo LeanLab collegato, se la puntata nasce da una newsletter. */
+  articleHref?: string;
 }
 
 export interface AcademyData {

@@ -19,6 +19,10 @@
     "tags": ["Newsletter"],
     "bodyTemplate": "newsletter-ricerca-episodio-01",
     "hideDefaultImage": true,
+    "videoCta": {
+      "href": "/lean-academy/ricerca-e-innovazione-episodio-01",
+      "label": "Guarda la puntata in Lean Academy"
+    },
     "faq": [
       {
         "question": "Cos'è la SEO?",
@@ -46,7 +50,7 @@
       }
     ],
     "inPocheParole": [
-      "Episodio 01 di Ricerca & Innovazione, «Te lo spiego io», è un video con Lean.Agent.Olivetti: una cosa complicata, spiegata semplice.",
+      "Episodio 01 di Ricerca & Innovazione, «Te lo spiego io», è la puntata con Lean.Agent.Olivetti: una cosa complicata, spiegata semplice. Il video si guarda nell'area pubblica di Lean Academy.",
       "Google non è più l'unico che deve trovare un sito. Ora deve trovarlo anche l'AI.",
       "LeanMe distingue tre livelli: SEO per farsi trovare nei motori di ricerca, AEO per diventare una risposta, GEO per essere compresi e citati dalle AI.",
       "Le risposte delle AI si basano su fonti chiare, aggiornate e autorevoli. Un sito organizzato in modo semplice e ottimizzato per la GEO può generare più visibilità, traffico qualificato e nuove opportunità di contatto: è il modo in cui un'Azienda Ibrida si fa trovare, Powered by Human Intelligence. Amplified by AI."

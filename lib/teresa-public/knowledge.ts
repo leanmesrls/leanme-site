@@ -70,26 +70,24 @@ ${articleLines || "- Nessun articolo pubblicato."}`;
 }
 
 function formatAcademyCatalog(academy: AcademyData): string {
-  const live = academy.pageStatus === "live";
-  const resources = academy.publicArea.resources
-    .map((resource) => `- ${resource.title} (${resource.type}): ${resource.description} → ${resource.href}`)
+  const published = academy.publicArea.resources.filter((resource) => resource.published);
+  const upcoming = academy.publicArea.resources.filter((resource) => !resource.published);
+  const publishedLines = published
+    .map((resource) => `- ${resource.title} (${resource.tag ?? resource.type}): ${resource.description} → ${resource.href}`)
+    .join("\n");
+  const upcomingLines = upcoming
+    .map((resource) => `- ${resource.title} (${resource.type})`)
     .join("\n");
   const features = academy.reservedArea.features.join("; ");
 
-  if (!live) {
-    return `LEAN ACADEMY — stato pagina /lean-academy: Coming Soon.
-${academy.intro.description}
-Non dire che video, guide, webinar o corsi sono già disponibili. Invita a iscriversi alla newsletter o a tornare su /lean-academy.
-In preparazione: ${academy.publicArea.title} (${academy.publicArea.description}) e ${academy.reservedArea.title} (${academy.reservedArea.description}; ${features}).
-Catalogo risorse previsto (non ancora online):
-${resources}`;
-  }
-
-  return `LEAN ACADEMY — stato pagina /lean-academy: pubblicata.
+  return `LEAN ACADEMY — area pubblica aperta, area riservata Coming Soon.
 ${academy.intro.description}
 ${academy.publicArea.title}: ${academy.publicArea.description}
-${resources}
-${academy.reservedArea.title}: ${academy.reservedArea.description} (${features})`;
+Video già online:
+${publishedLines || "- nessuno"}
+${academy.reservedArea.title}: Coming Soon. ${academy.reservedArea.description} (${features}). Non dire che corsi premium, quiz o attestati sono già accessibili.
+Non ancora online:
+${upcomingLines}`;
 }
 
 export function buildTeresaPublicKnowledge(): string {
@@ -160,7 +158,7 @@ PAGINE DA CITARE
 - Staff Ibrido /staff-ibrido
 - Come possiamo aiutarti /come-possiamo-aiutarti — soluzioni pronte e progetti su misura
 - LeanLab /leanlab
-- Lean Academy /lean-academy${academy.pageStatus === "coming_soon" ? " (Coming Soon: non inventare corsi live)" : ""}
+- Lean Academy /lean-academy — area pubblica con la puntata Ricerca & Innovazione Episodio 01; area riservata Coming Soon
 - Suite /suite
 - Contatti /contatti — modulo Connect
 - Prenota consulenza /prenota-consulenza — 30 minuti gratuiti
