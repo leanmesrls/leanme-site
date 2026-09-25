@@ -82,7 +82,7 @@ export function LeanLabPreviewCtas({
       {videoCta ? (
         <CtaAnchor
           href={videoCta.href}
-          className="inline-flex min-h-10 items-center text-xs font-semibold uppercase tracking-[0.1em] text-white/70 transition hover:text-leanme-fuchsia focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leanme-fuchsia"
+          className="inline-flex min-h-10 items-center text-xs font-semibold uppercase tracking-[0.1em] text-leanme-fuchsia transition hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leanme-fuchsia"
         >
           {videoCta.label} →
         </CtaAnchor>
