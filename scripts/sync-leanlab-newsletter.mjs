@@ -16,7 +16,7 @@ if (!existsSync(srcDir)) {
 mkdirSync(destDir, { recursive: true });
 
 const files = readdirSync(srcDir).filter((name) =>
-  /^newsletter-episodio-\d+\.(png|jpe?g|webp)$/i.test(name)
+  /^newsletter-.+\.(png|jpe?g|webp)$/i.test(name)
 );
 
 if (!files.length) {

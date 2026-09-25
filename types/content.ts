@@ -159,7 +159,8 @@ export type LeanLabArticleBodyTemplate =
   | "newsletter-episodio-02"
   | "newsletter-episodio-03"
   | "newsletter-episodio-04"
-  | "newsletter-episodio-05";
+  | "newsletter-episodio-05"
+  | "newsletter-ricerca-episodio-01";
 
 export interface LeanLabArticleCta {
   /** URL azione (quiz, form, risorsa esterna). */
@@ -189,6 +190,8 @@ export interface LeanLabArticle {
   videoCta?: LeanLabArticleCta;
   /** Riassunto GEO in fondo alla pagina articolo. */
   inPocheParole?: string[];
+  /** Domande frequenti, dopo la grafica e prima di In poche parole. */
+  faq?: FaqItem[];
 }
 
 export interface LeanLabPageData {

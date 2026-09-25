@@ -7,6 +7,7 @@ import { PageSection } from "@/components/layout/PageSection";
 import { VisibleBreadcrumb } from "@/components/layout/VisibleBreadcrumb";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { LeanLabArticleBody } from "@/components/leanlab/LeanLabArticleBody";
+import { FaqSection } from "@/components/seo/FaqSection";
 import { InPocheParoleBox } from "@/components/seo/InPocheParoleBox";
 import {
   getAllLeanLabArticleSlugs,
@@ -15,7 +16,7 @@ import {
 } from "@/lib/content";
 import { createPageMetadata } from "@/lib/metadata";
 import { formatDate } from "@/lib/utils";
-import { articleSchema, breadcrumbSchema } from "@/lib/structured-data";
+import { articleSchema, breadcrumbSchema, faqPageSchema } from "@/lib/structured-data";
 import { JsonLd } from "@/components/seo/JsonLd";
 
 interface PageProps {
@@ -87,6 +88,7 @@ export default async function LeanLabArticlePage({ params }: PageProps) {
             author: article.author,
             image: article.image.src,
           }),
+          ...(article.faq?.length ? [faqPageSchema(article.faq, path)] : []),
         ]}
       />
       <VisibleBreadcrumb items={breadcrumbItems} />
@@ -137,6 +139,11 @@ export default async function LeanLabArticlePage({ params }: PageProps) {
               </p>
             )}
           </div>
+          {article.faq?.length ? (
+            <div className="mt-14 md:mt-16">
+              <FaqSection items={article.faq} />
+            </div>
+          ) : null}
           {article.inPocheParole?.length ? (
             <div className="mt-14 md:mt-16">
               <InPocheParoleBox paragraphs={article.inPocheParole} />

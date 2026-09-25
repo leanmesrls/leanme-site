@@ -1,5 +1,58 @@
 [
   {
+    "slug": "leanme-ricerca-e-innovazione-episodio-01",
+    "category": "ricerca-e-innovazione",
+    "title": "LeanMe // Ricerca & Innovazione // Episodio 01",
+    "excerpt": [
+      "Te lo spiego io. Una cosa complicata, spiegata semplice. Oggi con Lean.Agent.Olivetti.",
+      "Google non è più l'unico che deve trovare il tuo sito. Ora deve trovarlo anche l'AI.",
+      "SEO: farsi trovare nei motori di ricerca. AEO: diventare una risposta. GEO: essere compresi e citati dalle AI."
+    ],
+    "date": "2026-09-25",
+    "readTime": "3 min",
+    "image": {
+      "src": "/assets/leanlab/newsletter-ricerca-episodio-01.png",
+      "alt": "Newsletter LeanMe Ricerca e Innovazione Episodio 01 — Te lo spiego io.",
+      "replaceHint": ""
+    },
+    "author": "LeanMe.Agent.Olivetti",
+    "tags": ["Newsletter"],
+    "bodyTemplate": "newsletter-ricerca-episodio-01",
+    "hideDefaultImage": true,
+    "faq": [
+      {
+        "question": "Cos'è la SEO?",
+        "answer": "Farsi trovare nei motori di ricerca."
+      },
+      {
+        "question": "Cos'è l'AEO?",
+        "answer": "Diventare una risposta."
+      },
+      {
+        "question": "Cos'è la GEO?",
+        "answer": "Essere compresi e citati dalle AI."
+      },
+      {
+        "question": "Su cosa si basano le risposte delle AI?",
+        "answer": "Le risposte delle AI si basano su fonti chiare, aggiornate e autorevoli."
+      },
+      {
+        "question": "Come si aiuta un'AI a capire un'attività?",
+        "answer": "Organizzare i contenuti in modo semplice aiuta le AI a capire la tua attività."
+      },
+      {
+        "question": "Cosa può generare un sito ottimizzato per la GEO?",
+        "answer": "Un sito ottimizzato per la GEO può generare più visibilità, traffico qualificato e nuove opportunità di contatto."
+      }
+    ],
+    "inPocheParole": [
+      "Episodio 01 di Ricerca & Innovazione, «Te lo spiego io», è un video con Lean.Agent.Olivetti: una cosa complicata, spiegata semplice.",
+      "Google non è più l'unico che deve trovare un sito. Ora deve trovarlo anche l'AI.",
+      "LeanMe distingue tre livelli: SEO per farsi trovare nei motori di ricerca, AEO per diventare una risposta, GEO per essere compresi e citati dalle AI.",
+      "Le risposte delle AI si basano su fonti chiare, aggiornate e autorevoli. Un sito organizzato in modo semplice e ottimizzato per la GEO può generare più visibilità, traffico qualificato e nuove opportunità di contatto: è il modo in cui un'Azienda Ibrida si fa trovare, Powered by Human Intelligence. Amplified by AI."
+    ]
+  },
+  {
     "slug": "leanme-rebuild-episodio-05",
     "category": "vita-in-leanme",
     "title": "LeanMe // Rebuild // Episodio 05",
