@@ -67,6 +67,11 @@
       "label": "Facebook",
       "href": "https://facebook.com/leanme",
       "platform": "facebook"
+    },
+    {
+      "label": "YouTube",
+      "href": "https://www.youtube.com/@leanmesrls1688",
+      "platform": "youtube"
     }
   ],
   "map": {

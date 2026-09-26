@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Icon } from "@/components/ui/Icon";
+import { SocialIcon } from "@/components/ui/SocialIcon";
 import { ContattiIntro } from "@/components/contatti/ContattiIntro";
 import { ContactFormEmbed } from "@/components/contatti/ContactFormEmbed";
 import { PageHero } from "@/components/layout/PageHero";
@@ -129,9 +129,22 @@ export default function ContattiPage() {
                         href={social.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-white/75 transition hover:text-leanme-fuchsia"
+                        className="inline-flex items-center gap-2 text-white/75 transition hover:text-white"
                       >
-                        <Icon name={social.platform} className="h-4 w-4" />
+                        <SocialIcon
+                          name={social.platform}
+                          className={
+                            social.platform === "linkedin"
+                              ? "h-4 w-4 text-[#0A66C2]"
+                              : social.platform === "instagram"
+                                ? "h-4 w-4 text-[#E4405F]"
+                                : social.platform === "facebook"
+                                  ? "h-4 w-4 text-[#1877F2]"
+                                  : social.platform === "youtube"
+                                    ? "h-4 w-4 text-[#FF0000]"
+                                    : "h-4 w-4 text-leanme-fuchsia"
+                          }
+                        />
                         {social.label}
                       </a>
                     </li>

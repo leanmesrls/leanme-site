@@ -34,6 +34,11 @@
         "platform": "instagram"
       },
       {
+        "label": "YouTube",
+        "href": "https://www.youtube.com/@leanmesrls1688",
+        "platform": "youtube"
+      },
+      {
         "label": "Email",
         "href": "mailto:info@leanme.it",
         "platform": "email"
