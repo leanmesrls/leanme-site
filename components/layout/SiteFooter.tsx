@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { SocialIcon } from "@/components/ui/SocialIcon";
+import { SocialIcon, socialBrandClass } from "@/components/ui/SocialIcon";
 import {
   getContattiData,
   getHomepageData,
@@ -75,9 +75,12 @@ export function SiteFooter() {
                     ? { target: "_blank", rel: "noopener noreferrer" }
                     : {})}
                   aria-label={social.label}
-                  className="flex h-9 w-9 items-center justify-center rounded-full border border-white/20 text-white transition hover:border-leanme-fuchsia hover:text-leanme-fuchsia"
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-white/20 transition hover:border-white"
                 >
-                  <SocialIcon name={social.platform} className="h-4 w-4" />
+                  <SocialIcon
+                    name={social.platform}
+                    className={`h-4 w-4 ${socialBrandClass(social.platform)}`}
+                  />
                 </a>
               ))}
             </div>
@@ -92,7 +95,7 @@ export function SiteFooter() {
                 <li key={item.href}>
                   <FooterNavLink
                     href={item.href}
-                    className="text-sm text-white/70 transition hover:text-white"
+                    className="text-sm font-semibold text-leanme-fuchsia transition hover:text-white"
                   >
                     {item.label}
                   </FooterNavLink>

@@ -77,6 +77,23 @@ const icons: Record<string, IconDef> = {
   },
 };
 
+export function socialBrandClass(name: string) {
+  switch (name) {
+    case "linkedin":
+      return "text-[#0A66C2]";
+    case "instagram":
+      return "text-[#E4405F]";
+    case "facebook":
+      return "text-[#1877F2]";
+    case "youtube":
+      return "text-[#FF0000]";
+    case "email":
+      return "text-leanme-fuchsia";
+    default:
+      return "text-white";
+  }
+}
+
 interface SocialIconProps {
   name: string;
   className?: string;

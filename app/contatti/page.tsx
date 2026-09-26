@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { SocialIcon } from "@/components/ui/SocialIcon";
+import { SocialIcon, socialBrandClass } from "@/components/ui/SocialIcon";
 import { ContattiIntro } from "@/components/contatti/ContattiIntro";
 import { ContactFormEmbed } from "@/components/contatti/ContactFormEmbed";
 import { PageHero } from "@/components/layout/PageHero";
@@ -55,7 +55,7 @@ export default function ContattiPage() {
           <FadeIn delay={0.1}>
             <div className="space-y-8">
               <div>
-                <h2 className="text-sm font-bold uppercase tracking-[0.1em] text-white">
+                <h2 className="text-sm font-bold uppercase tracking-[0.1em] text-leanme-fuchsia">
                   {data.legalAddress.label}
                 </h2>
                 <address className="mt-3 not-italic text-white/65">
@@ -68,7 +68,7 @@ export default function ContattiPage() {
               </div>
 
               <div>
-                <h2 className="text-sm font-bold uppercase tracking-[0.1em] text-white">
+                <h2 className="text-sm font-bold uppercase tracking-[0.1em] text-leanme-fuchsia">
                   {data.operationalAddress.label}
                 </h2>
                 <address className="mt-3 not-italic text-white/65">
@@ -82,7 +82,7 @@ export default function ContattiPage() {
 
               <div className="grid gap-4 sm:grid-cols-2">
                 <div>
-                  <h3 className="text-xs font-semibold uppercase tracking-[0.12em] text-white/50">
+                  <h3 className="text-xs font-semibold uppercase tracking-[0.12em] text-leanme-fuchsia">
                     {data.phone.label}
                   </h3>
                   <a
@@ -93,7 +93,7 @@ export default function ContattiPage() {
                   </a>
                 </div>
                 <div>
-                  <h3 className="text-xs font-semibold uppercase tracking-[0.12em] text-white/50">
+                  <h3 className="text-xs font-semibold uppercase tracking-[0.12em] text-leanme-fuchsia">
                     {data.email.label}
                   </h3>
                   <a
@@ -107,7 +107,7 @@ export default function ContattiPage() {
 
               {data.openingHours && data.openingHours.lines.length > 0 && (
                 <div>
-                  <h3 className="text-xs font-semibold uppercase tracking-[0.12em] text-white/50">
+                  <h3 className="text-xs font-semibold uppercase tracking-[0.12em] text-leanme-fuchsia">
                     {data.openingHours.label}
                   </h3>
                   <ul className="mt-2 space-y-1 text-white/75">
@@ -119,7 +119,7 @@ export default function ContattiPage() {
               )}
 
               <div>
-                <h3 className="text-xs font-semibold uppercase tracking-[0.12em] text-white/50">
+                <h3 className="text-xs font-semibold uppercase tracking-[0.12em] text-leanme-fuchsia">
                   Social
                 </h3>
                 <ul className="mt-3 space-y-2">
@@ -133,17 +133,7 @@ export default function ContattiPage() {
                       >
                         <SocialIcon
                           name={social.platform}
-                          className={
-                            social.platform === "linkedin"
-                              ? "h-4 w-4 text-[#0A66C2]"
-                              : social.platform === "instagram"
-                                ? "h-4 w-4 text-[#E4405F]"
-                                : social.platform === "facebook"
-                                  ? "h-4 w-4 text-[#1877F2]"
-                                  : social.platform === "youtube"
-                                    ? "h-4 w-4 text-[#FF0000]"
-                                    : "h-4 w-4 text-leanme-fuchsia"
-                          }
+                          className={`h-4 w-4 ${socialBrandClass(social.platform)}`}
                         />
                         {social.label}
                       </a>
