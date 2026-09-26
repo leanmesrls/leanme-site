@@ -53,8 +53,8 @@ export function NewsletterRicercaEpisodio01({
             <Image
               src={ASSETS.leanlab.newsletterRicercaEpisodio01}
               alt="Newsletter LeanMe Ricerca e Innovazione Episodio 01 — Te lo spiego io. Google non è più l'unico che deve trovare il tuo sito."
-              width={2048}
-              height={3072}
+              width={1024}
+              height={1460}
               className="h-auto w-full"
               sizes="(max-width: 768px) 100vw, 860px"
               priority
@@ -64,8 +64,8 @@ export function NewsletterRicercaEpisodio01({
           <Image
             src={ASSETS.leanlab.newsletterRicercaEpisodio01}
             alt="Newsletter LeanMe Ricerca e Innovazione Episodio 01 — Te lo spiego io. Google non è più l'unico che deve trovare il tuo sito."
-            width={2048}
-            height={3072}
+            width={1024}
+            height={1460}
             className="h-auto w-full"
             sizes="(max-width: 768px) 100vw, 860px"
             priority
