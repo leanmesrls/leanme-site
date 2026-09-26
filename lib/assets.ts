@@ -26,7 +26,7 @@ export const ASSETS = {
     newsletterRicercaEpisodio01Hero:
       "/assets/leanlab/newsletter-ricerca-episodio-01-hero.jpg",
     newsletterRicercaEpisodio01Video:
-      "/assets/leanlab/ricerca-e-innovazione-episodio-01.mp4",
+      "/assets/leanlab/ricerca-e-innovazione-episodio-01.mp4?v=2",
     newsletterRicercaEpisodio01Cover:
       "/assets/leanlab/ricerca-episodio-01-cover.jpg",
   },
