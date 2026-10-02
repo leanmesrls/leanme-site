@@ -55,7 +55,14 @@ export function ArticleCard({ article }: ArticleCardProps) {
           <p className="text-xs text-white/50">{article.readTime} di lettura</p>
         </div>
       </Link>
-      <LeanLabPreviewCtas cta={article.cta} videoCta={article.videoCta} />
+      <LeanLabPreviewCtas
+        cta={
+          article.slug === "poliambulatorio-privato-san-lazzaro"
+            ? { href: articleHref, label: "Leggi l'articolo" }
+            : article.cta
+        }
+        videoCta={article.videoCta}
+      />
     </FuchsiaGlowCard>
   );
 }

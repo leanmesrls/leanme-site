@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
 
 const ASSET = "/assets/leanlab/progetti-san-lazzaro";
@@ -206,6 +207,17 @@ const NUMBERS = [
 export function ProgettiSanLazzaro() {
   return (
     <article>
+      <figure className="mx-auto mb-10 max-w-[860px]">
+        <Image
+          src={`${ASSET}/newsletter.jpg`}
+          alt="Behind the Lab. Quattro competenze, un solo progetto. Come abbiamo costruito il nuovo ecosistema digitale del Poliambulatorio Privato San Lazzaro."
+          width={1024}
+          height={1024}
+          className="h-auto w-full rounded-xl"
+          sizes="(max-width: 768px) 100vw, 860px"
+          priority
+        />
+      </figure>
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
         {PEOPLE.map((person) => (
           <figure key={person.name} className="text-sm">

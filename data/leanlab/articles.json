@@ -10,15 +10,14 @@
     "date": "2026-10-02",
     "readTime": "4 min",
     "image": {
-      "src": "/assets/leanlab/progetti-san-lazzaro/dopo.jpg",
-      "alt": "Homepage nuova del Poliambulatorio Privato San Lazzaro.",
+      "src": "/assets/leanlab/progetti-san-lazzaro/newsletter.jpg",
+      "alt": "Behind the Lab. Quattro competenze, un solo progetto. Poliambulatorio Privato San Lazzaro.",
       "replaceHint": ""
     },
     "author": "LeanMe",
     "tags": ["Progetti"],
     "bodyTemplate": "progetti-san-lazzaro",
     "hideDefaultImage": true,
-    "listed": false,
     "relatedAcademySlugs": ["ricerca-e-innovazione-episodio-01"],
     "cta": {
       "href": "/prenota-consulenza",
