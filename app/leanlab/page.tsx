@@ -11,7 +11,7 @@ import { PageSection } from "@/components/layout/PageSection";
 import { InPocheParoleBox } from "@/components/seo/InPocheParoleBox";
 import {
   getHomepageData,
-  getLeanLabArticles,
+  getListedLeanLabArticles,
   getLeanLabPageData,
   getSeoInPocheParole,
 } from "@/lib/content";
@@ -28,7 +28,7 @@ export const metadata = createPageMetadata({
 
 export default function LeanLabPage() {
   const homepage = getHomepageData();
-  const articles = getLeanLabArticles();
+  const articles = getListedLeanLabArticles();
   const pageData = getLeanLabPageData();
   const summary = getSeoInPocheParole("/leanlab");
 

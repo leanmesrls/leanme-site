@@ -4,7 +4,7 @@ import {
   getAllAcademyResourceSlugs,
   getAllChiSiamoPersonSlugs,
   getAllLeanAgentSlugs,
-  getAllLeanLabArticleSlugs,
+  getListedLeanLabArticleSlugs,
   getAllLeanLabCategorySlugs,
   getAllPercorsoSlugs,
   getSiteConfig,
@@ -50,7 +50,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  const articleRoutes = getAllLeanLabArticleSlugs().map((slug) => ({
+  const articleRoutes = getListedLeanLabArticleSlugs().map((slug) => ({
     url: `${baseUrl}/leanlab/articolo/${slug}`,
     lastModified: new Date(),
     changeFrequency: "monthly" as const,

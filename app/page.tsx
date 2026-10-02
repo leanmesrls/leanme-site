@@ -11,7 +11,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import {
   getContattiData,
   getHomepageData,
-  getLeanLabArticles,
+  getListedLeanLabArticles,
   getPartnerLogos,
   getPercorsiData,
   getSeoInPocheParole,
@@ -33,7 +33,7 @@ export const metadata = createPageMetadata({
 export default function HomePage() {
   const homepage = getHomepageData();
   const { consultationCta } = getPercorsiData();
-  const articles = getLeanLabArticles();
+  const articles = getListedLeanLabArticles();
   const testimonials = getTestimonials();
   const partnerLogos = getPartnerLogos();
   const summary = getSeoInPocheParole("/");

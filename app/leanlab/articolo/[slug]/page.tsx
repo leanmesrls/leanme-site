@@ -7,6 +7,8 @@ import { PageSection } from "@/components/layout/PageSection";
 import { VisibleBreadcrumb } from "@/components/layout/VisibleBreadcrumb";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { LeanLabArticleBody } from "@/components/leanlab/LeanLabArticleBody";
+import { LeanLabRelatedAside } from "@/components/leanlab/LeanLabRelatedAside";
+import { ProgettiSanLazzaro } from "@/components/leanlab/articles/ProgettiSanLazzaro";
 import { FaqSection } from "@/components/seo/FaqSection";
 import { InPocheParoleBox } from "@/components/seo/InPocheParoleBox";
 import {
@@ -49,6 +51,7 @@ export async function generateMetadata({ params }: PageProps) {
     description,
     path: `/leanlab/articolo/${slug}`,
     image: article.image.src,
+    noIndex: article.listed === false,
   });
 }
 
@@ -75,22 +78,53 @@ export default async function LeanLabArticlePage({ params }: PageProps) {
     { name: article.title, path },
   ];
 
+  const jsonLd = (
+    <JsonLd
+      data={[
+        breadcrumbSchema(breadcrumbItems),
+        articleSchema({
+          title: article.title,
+          description,
+          path,
+          datePublished: article.date,
+          author: article.author,
+          image: article.image.src,
+        }),
+        ...(article.faq?.length ? [faqPageSchema(article.faq, path)] : []),
+      ]}
+    />
+  );
+
+  if (article.bodyTemplate === "progetti-san-lazzaro") {
+    return (
+      <>
+        {jsonLd}
+        <VisibleBreadcrumb items={breadcrumbItems} />
+        <section className="bg-[#141418] px-5 py-10 md:px-10 md:py-14 lg:px-16">
+          <div className="mx-auto grid max-w-[1440px] items-start gap-10 lg:grid-cols-[minmax(0,1fr)_18.5rem] lg:gap-12">
+            <div>
+              <p className="mb-6 text-sm text-white/50">
+                <Link
+                  href={`/leanlab/${article.category}`}
+                  className="font-semibold uppercase tracking-[0.12em] text-[#c4b5fd] transition hover:text-white"
+                >
+                  {category?.title ?? article.category}
+                </Link>
+                {" · "}
+                {formatDate(article.date)} · {article.readTime} di lettura
+              </p>
+              <ProgettiSanLazzaro />
+            </div>
+            <LeanLabRelatedAside />
+          </div>
+        </section>
+      </>
+    );
+  }
+
   return (
     <>
-      <JsonLd
-        data={[
-          breadcrumbSchema(breadcrumbItems),
-          articleSchema({
-            title: article.title,
-            description,
-            path,
-            datePublished: article.date,
-            author: article.author,
-            image: article.image.src,
-          }),
-          ...(article.faq?.length ? [faqPageSchema(article.faq, path)] : []),
-        ]}
-      />
+      {jsonLd}
       <VisibleBreadcrumb items={breadcrumbItems} />
       <PageHero
         id="leanlab-article-heading"

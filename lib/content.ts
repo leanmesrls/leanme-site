@@ -112,16 +112,24 @@ export function getLeanLabArticles(): LeanLabArticle[] {
   return leanLabArticles as LeanLabArticle[];
 }
 
+export function isLeanLabArticleListed(article: LeanLabArticle): boolean {
+  return article.listed !== false;
+}
+
+export function getListedLeanLabArticles(): LeanLabArticle[] {
+  return getLeanLabArticles().filter(isLeanLabArticleListed);
+}
+
 export function getLeanLabPageData(): LeanLabPageData {
   return leanLabPageData as LeanLabPageData;
 }
 
 export function getLeanLabArticlesByCategory(categorySlug: string): LeanLabArticle[] {
-  return getLeanLabArticles().filter((a) => a.category === categorySlug);
+  return getListedLeanLabArticles().filter((a) => a.category === categorySlug);
 }
 
 export function getLeanLabArticlesByTag(tag: string): LeanLabArticle[] {
-  return getLeanLabArticles().filter((a) => a.tags?.includes(tag));
+  return getListedLeanLabArticles().filter((a) => a.tags?.includes(tag));
 }
 
 export function getLeanLabArticle(slug: string): LeanLabArticle | undefined {
@@ -204,6 +212,10 @@ export function getAllLeanLabCategorySlugs(): string[] {
 
 export function getAllLeanLabArticleSlugs(): string[] {
   return getLeanLabArticles().map((a) => a.slug);
+}
+
+export function getListedLeanLabArticleSlugs(): string[] {
+  return getListedLeanLabArticles().map((a) => a.slug);
 }
 
 export function getPublishedAcademyResources() {

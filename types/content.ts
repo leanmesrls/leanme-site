@@ -160,7 +160,8 @@ export type LeanLabArticleBodyTemplate =
   | "newsletter-episodio-03"
   | "newsletter-episodio-04"
   | "newsletter-episodio-05"
-  | "newsletter-ricerca-episodio-01";
+  | "newsletter-ricerca-episodio-01"
+  | "progetti-san-lazzaro";
 
 export interface LeanLabArticleCta {
   /** URL azione (quiz, form, risorsa esterna). */
@@ -184,6 +185,8 @@ export interface LeanLabArticle {
   bodyTemplate?: LeanLabArticleBodyTemplate;
   /** Nasconde immagine hero standard quando il corpo include grafica completa. */
   hideDefaultImage?: boolean;
+  /** Se false, l'URL diretto funziona ma l'articolo non compare in liste, sitemap e catalogo. */
+  listed?: boolean;
   /** CTA opzionale (es. quiz newsletter) — articolo + anteprime LeanLab. */
   cta?: LeanLabArticleCta;
   /** Link al video sbloccato (campagne newsletter chiuse). */

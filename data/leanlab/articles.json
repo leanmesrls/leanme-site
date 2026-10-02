@@ -1,5 +1,23 @@
 [
   {
+    "slug": "poliambulatorio-privato-san-lazzaro",
+    "category": "progetti-conclusi",
+    "title": "Quattro competenze. Un solo progetto.",
+    "excerpt": "Per il rifacimento del sito del Poliambulatorio Privato San Lazzaro quattro competenze hanno lavorato sullo stesso progetto, con una regia LeanMe unica.",
+    "date": "2026-10-02",
+    "readTime": "4 min",
+    "image": {
+      "src": "/assets/leanlab/progetti-san-lazzaro/dopo.jpg",
+      "alt": "Homepage nuova del Poliambulatorio Privato San Lazzaro.",
+      "replaceHint": ""
+    },
+    "author": "LeanMe",
+    "tags": ["Progetti"],
+    "bodyTemplate": "progetti-san-lazzaro",
+    "hideDefaultImage": true,
+    "listed": false
+  },
+  {
     "slug": "leanme-ricerca-e-innovazione-episodio-01",
     "category": "ricerca-e-innovazione",
     "title": "LeanMe // Ricerca & Innovazione // Episodio 01",

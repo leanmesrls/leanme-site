@@ -3,7 +3,7 @@ import {
   getChiSiamoData,
   getContattiData,
   getHomepageData,
-  getLeanLabArticles,
+  getListedLeanLabArticles,
   getLeanLabCategories,
   getLeanLabPageData,
   getPercorsiData,
@@ -31,7 +31,7 @@ function sortArticlesNewestFirst(articles: LeanLabArticle[]): LeanLabArticle[] {
 function formatLeanLabCatalog(): string {
   const page = getLeanLabPageData();
   const categories = getLeanLabCategories();
-  const articles = sortArticlesNewestFirst(getLeanLabArticles());
+  const articles = sortArticlesNewestFirst(getListedLeanLabArticles());
   const categoryTitle = new Map(
     categories.map((category) => [category.slug, category.title])
   );

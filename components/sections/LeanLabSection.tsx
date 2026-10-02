@@ -3,7 +3,7 @@ import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ArticleCard } from "@/components/leanlab/ArticleCard";
 import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
-import { getLeanLabArticles } from "@/lib/content";
+import { getListedLeanLabArticles } from "@/lib/content";
 import type { HomepageData } from "@/types/content";
 
 interface LeanLabSectionProps {
@@ -11,7 +11,7 @@ interface LeanLabSectionProps {
 }
 
 export function LeanLabSection({ data }: LeanLabSectionProps) {
-  const articles = getLeanLabArticles().slice(0, 3);
+  const articles = getListedLeanLabArticles().slice(0, 3);
 
   return (
     <section id={data.id} className="section-padding">
