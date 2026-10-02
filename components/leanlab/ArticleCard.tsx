@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ASSETS } from "@/lib/assets";
 import { LeanLabPreviewCtas } from "@/components/leanlab/NewsletterEpisodeActions";
 import { FuchsiaGlowCard } from "@/components/motion/FuchsiaGlowCard";
+import { categoryBadgeClass } from "@/lib/leanlab-category";
 import type { LeanLabArticle } from "@/types/content";
 
 interface ArticleCardProps {
@@ -13,7 +14,7 @@ interface ArticleCardProps {
 
 const categoryLabels: Record<string, string> = {
   "progetti-conclusi": "PROGETTI",
-  "ricerca-e-innovazione": "RICERCA",
+  "ricerca-e-innovazione": "RICERCA & INNOVAZIONE",
   "vita-in-leanme": "VITA IN LEANME",
   tutorial: "ACADEMY",
 };
@@ -45,7 +46,7 @@ export function ArticleCard({ article }: ArticleCardProps) {
           <div className="pointer-events-none absolute inset-0 z-[1] bg-transparent transition-colors duration-300 group-hover:bg-leanme-fuchsia/20" />
         </div>
         <div className="space-y-3 p-4 pb-0">
-          <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-leanme-purple">
+          <span className={categoryBadgeClass(article.category)}>
             {categoryLabels[article.category] ?? article.category}
           </span>
           <h3 className="min-h-[3rem] text-sm font-semibold leading-snug text-white">

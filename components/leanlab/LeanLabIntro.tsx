@@ -1,5 +1,6 @@
 import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
 import { ChiSiamoHighlightCard } from "@/components/chi-siamo/ChiSiamoHighlightCard";
+import { categoryBadgeFromLabel } from "@/lib/leanlab-category";
 import type { LeanLabPageData } from "@/types/content";
 
 interface LeanLabIntroProps {
@@ -13,8 +14,8 @@ export function LeanLabIntro({ intro }: LeanLabIntroProps) {
         <div className="space-y-6">
           {intro.sections.map((section) => (
             <div key={section.title}>
-              <h2 className="text-base font-bold tracking-[0.03em] text-leanme-fuchsia md:text-lg">
-                {section.title}
+              <h2 className="text-base md:text-lg">
+                <span className={categoryBadgeFromLabel(section.title)}>{section.title}</span>
               </h2>
               <div className="mt-3 space-y-3">
                 {section.content.map((paragraph) => (

@@ -13,6 +13,7 @@ interface PageHeroProps {
   background?: string;
   imageAlt?: string;
   variant?: "reception" | "lean-academy";
+  subtitleClassName?: string;
 }
 
 export function PageHero({
@@ -22,6 +23,7 @@ export function PageHero({
   background = PAGE_HERO_DEFAULT.background,
   imageAlt = PAGE_HERO_DEFAULT.imageAlt,
   variant = "reception",
+  subtitleClassName,
 }: PageHeroProps) {
   const isLeanAcademy = variant === "lean-academy";
 
@@ -89,8 +91,15 @@ export function PageHero({
             {title}
           </h1>
           {subtitle && (
-            <p className="mt-3 text-base font-semibold tracking-[0.04em] text-leanme-fuchsia md:text-lg">
-              {subtitle}
+            <p className="mt-3">
+              <span
+                className={
+                  subtitleClassName ??
+                  "text-base font-semibold tracking-[0.04em] text-leanme-fuchsia md:text-lg"
+                }
+              >
+                {subtitle}
+              </span>
             </p>
           )}
           <div className="mt-5 h-[2px] w-12 bg-leanme-fuchsia" aria-hidden="true" />

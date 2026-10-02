@@ -14,6 +14,7 @@ import {
   getAllAcademyResourceSlugs,
 } from "@/lib/content";
 import { buildAcademyResourceAside } from "@/lib/leanlab-aside";
+import { categoryBadgeFromLabel } from "@/lib/leanlab-category";
 import { createPageMetadata } from "@/lib/metadata";
 import { breadcrumbSchema, faqPageSchema } from "@/lib/structured-data";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -81,6 +82,7 @@ export default async function AcademyResourcePage({ params }: PageProps) {
         id="academy-resource-heading"
         title={resource.title}
         subtitle={resource.tag ?? resource.type}
+        subtitleClassName={categoryBadgeFromLabel(resource.tag ?? resource.type)}
       />
       <PageSection className="pt-8 pb-20 md:pt-10 md:pb-28 lg:pb-32">
         <div

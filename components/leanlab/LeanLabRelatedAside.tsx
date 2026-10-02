@@ -5,6 +5,7 @@ import type {
   LeanLabArticleAsideModel,
   LeanLabAsideAction,
 } from "@/lib/leanlab-aside";
+import { categoryBadgeClass, categoryBadgeFromLabel } from "@/lib/leanlab-category";
 
 function AsideLink({
   action,
@@ -78,7 +79,13 @@ export function LeanLabArticleAside({
                       {item.title}
                     </span>
                     {item.kicker ? (
-                      <span className="mt-2 block text-xs font-semibold uppercase tracking-[0.08em] text-leanme-fuchsia">
+                      <span
+                        className={`mt-2 ${
+                          item.category
+                            ? categoryBadgeClass(item.category)
+                            : categoryBadgeFromLabel(item.kicker)
+                        }`}
+                      >
                         {item.kicker}
                       </span>
                     ) : null}

@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { ASSETS } from "@/lib/assets";
+import { categoryBadgeClass } from "@/lib/leanlab-category";
 import type { LeanLabArticleCta } from "@/types/content";
 
 /**
@@ -30,8 +31,13 @@ export function NewsletterRicercaEpisodio01({
             aria-hidden="true"
             className="pointer-events-none absolute right-16 top-4 h-16 w-16 rounded-full bg-leanme-fuchsia/15"
           />
-          <span className="relative block text-[11px] font-semibold uppercase tracking-[0.16em] text-leanme-fuchsia">
-            Lean Academy · Ricerca & Innovazione
+          <span className="relative flex flex-wrap items-center gap-2">
+            <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-white/70">
+              Lean Academy
+            </span>
+            <span className={categoryBadgeClass("ricerca-e-innovazione")}>
+              Ricerca & Innovazione
+            </span>
           </span>
           <span className="relative mt-3 block max-w-xl text-2xl font-bold leading-tight text-white md:text-4xl">
             {videoCta.label}

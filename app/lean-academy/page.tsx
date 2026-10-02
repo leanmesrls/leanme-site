@@ -7,6 +7,7 @@ import { PageSection } from "@/components/layout/PageSection";
 import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
 import { InPocheParoleBox } from "@/components/seo/InPocheParoleBox";
 import { getAcademyData, getPublishedAcademyResources, getSeoInPocheParole } from "@/lib/content";
+import { categoryBadgeFromLabel } from "@/lib/leanlab-category";
 import { ASSETS } from "@/lib/assets";
 import { createPageMetadata } from "@/lib/metadata";
 import { breadcrumbSchema } from "@/lib/structured-data";
@@ -81,38 +82,30 @@ export default function LeanAcademyPage() {
           </p>
         </RevealOnScroll>
 
-        <div className="mt-10 space-y-8">
+        <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-4 lg:gap-5">
           {published.map((resource) => (
             <RevealOnScroll key={resource.slug}>
-              <article className="overflow-hidden rounded-2xl border border-white/10 bg-[#111111]">
+              <article className="overflow-hidden rounded-lg border border-white/[0.08] bg-leanme-card">
                 <Link
                   href={resource.href}
-                  className="group block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-leanme-fuchsia"
+                  className="group block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leanme-fuchsia"
                 >
-                  <div className="relative aspect-[1024/433] overflow-hidden">
+                  <div className="relative aspect-[4/3] overflow-hidden">
                     <Image
                       src={resource.image.src}
                       alt={resource.image.alt}
                       fill
-                      className="object-cover object-center"
-                      sizes="(max-width: 1280px) 100vw, 1152px"
+                      className="object-cover object-top transition group-hover:opacity-90"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 25vw"
                     />
                   </div>
-                  <div className="p-6 md:p-8">
+                  <div className="space-y-2 p-4">
                     {resource.tag ? (
-                      <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-leanme-fuchsia">
-                        {resource.tag}
-                      </p>
+                      <span className={categoryBadgeFromLabel(resource.tag)}>{resource.tag}</span>
                     ) : null}
-                    <h3 className="mt-2 text-xl font-semibold text-white group-hover:text-leanme-fuchsia md:text-2xl">
+                    <h3 className="min-h-[2.75rem] text-sm font-semibold leading-snug text-white group-hover:text-leanme-fuchsia">
                       {resource.title}
                     </h3>
-                    <p className="mt-3 max-w-3xl text-sm leading-relaxed text-white/65 md:text-base">
-                      {resource.description}
-                    </p>
-                    <p className="mt-5 text-xs font-semibold uppercase tracking-[0.1em] text-leanme-fuchsia">
-                      Guarda la puntata →
-                    </p>
                   </div>
                 </Link>
               </article>

@@ -21,6 +21,7 @@ export interface LeanLabAsideRelated {
   imageSrc?: string;
   imageAlt?: string;
   kicker?: string;
+  category?: string;
 }
 
 export interface LeanLabArticleAsideModel {
@@ -34,13 +35,20 @@ function action(cta: LeanLabArticleCta | undefined): LeanLabAsideAction[] {
   return [{ href: cta.href, label: cta.label }];
 }
 
-function articleCard(article: LeanLabArticle, kicker?: string): LeanLabAsideRelated {
+const categoryKickers: Record<string, string> = {
+  "progetti-conclusi": "Progetti",
+  "ricerca-e-innovazione": "Ricerca & Innovazione",
+  "vita-in-leanme": "Vita in LeanMe",
+};
+
+function articleCard(article: LeanLabArticle): LeanLabAsideRelated {
   return {
     href: `/leanlab/articolo/${article.slug}`,
     title: article.title,
     imageSrc: article.image.src,
     imageAlt: article.image.alt,
-    kicker,
+    kicker: categoryKickers[article.category] ?? "Lean Lab",
+    category: article.category,
   };
 }
 
@@ -50,7 +58,10 @@ function academyCard(resource: AcademyResource): LeanLabAsideRelated {
     title: resource.title,
     imageSrc: resource.image.src,
     imageAlt: resource.image.alt,
-    kicker: "Lean Academy",
+    kicker: resource.tag ?? "Lean Academy",
+    category: resource.tag?.toLowerCase().includes("ricerca")
+      ? "ricerca-e-innovazione"
+      : undefined,
   };
 }
 
@@ -58,7 +69,7 @@ function sameCategoryArticles(article: LeanLabArticle): LeanLabAsideRelated[] {
   return getListedLeanLabArticles()
     .filter((item) => item.slug !== article.slug && item.category === article.category)
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-    .map((item) => articleCard(item, "Lean Lab"));
+    .map((item) => articleCard(item));
 }
 
 function linkedAcademy(article: LeanLabArticle): LeanLabAsideRelated[] {
@@ -113,7 +124,7 @@ export function buildAcademyResourceAside(
     const slug = resource.articleHref.split("/").pop();
     const article = slug ? getLeanLabArticle(slug) : undefined;
     if (article && article.listed !== false) {
-      related.push(articleCard(article, "Lean Lab"));
+      related.push(articleCard(article));
     }
   }
 

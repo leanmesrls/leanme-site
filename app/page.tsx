@@ -65,7 +65,7 @@ export default function HomePage() {
           <LeanAgentAiSection data={homepage.leanAgentAi} />
         </div>
         <div className="homepage-band homepage-band-lift">
-          <LeanLabCarousel data={homepage.leanLab} articles={articles} colorLabels />
+          <LeanLabCarousel data={homepage.leanLab} articles={articles} />
         </div>
         <div className="homepage-band homepage-band-deep">
           <LeanAcademySection data={homepage.leanAcademy} />

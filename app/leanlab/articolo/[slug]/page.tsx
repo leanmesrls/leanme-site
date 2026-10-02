@@ -16,6 +16,7 @@ import {
   getLeanLabCategory,
 } from "@/lib/content";
 import { buildLeanLabArticleAside } from "@/lib/leanlab-aside";
+import { categoryBadgeClass } from "@/lib/leanlab-category";
 import { createPageMetadata } from "@/lib/metadata";
 import { formatDate } from "@/lib/utils";
 import { articleSchema, breadcrumbSchema, faqPageSchema } from "@/lib/structured-data";
@@ -105,6 +106,7 @@ export default async function LeanLabArticlePage({ params }: PageProps) {
         id="leanlab-article-heading"
         title={article.title}
         subtitle={category?.title ?? article.category}
+        subtitleClassName={categoryBadgeClass(article.category, "text-xs md:text-sm")}
       />
       <PageSection className="pt-8 pb-20 md:pt-10 md:pb-28 lg:pb-32">
         <div
@@ -117,7 +119,7 @@ export default async function LeanLabArticlePage({ params }: PageProps) {
           <FadeIn>
             <Link
               href={`/leanlab/${article.category}`}
-              className="mb-6 inline-block text-xs font-semibold uppercase tracking-[0.1em] text-leanme-fuchsia transition hover:text-white"
+              className={`mb-6 ${categoryBadgeClass(article.category)} transition hover:brightness-125`}
             >
               ← {category?.title ?? article.category}
             </Link>
