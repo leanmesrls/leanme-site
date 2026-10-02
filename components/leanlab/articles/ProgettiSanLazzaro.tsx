@@ -207,15 +207,14 @@ const NUMBERS = [
 export function ProgettiSanLazzaro() {
   return (
     <article>
-      <figure className="mx-auto mb-10 max-w-[860px]">
+      <figure className="mb-8 max-w-[260px]">
         <Image
           src={`${ASSET}/newsletter.jpg`}
           alt="Behind the Lab. Quattro competenze, un solo progetto. Come abbiamo costruito il nuovo ecosistema digitale del Poliambulatorio Privato San Lazzaro."
           width={1024}
           height={1024}
-          className="h-auto w-full rounded-xl"
-          sizes="(max-width: 768px) 100vw, 860px"
-          priority
+          className="h-auto w-full rounded-xl border border-white/10"
+          sizes="260px"
         />
       </figure>
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
