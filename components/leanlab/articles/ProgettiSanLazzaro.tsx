@@ -207,16 +207,6 @@ const NUMBERS = [
 export function ProgettiSanLazzaro() {
   return (
     <article>
-      <figure className="mb-8 max-w-[260px]">
-        <Image
-          src={`${ASSET}/newsletter.jpg`}
-          alt="Behind the Lab. Quattro competenze, un solo progetto. Come abbiamo costruito il nuovo ecosistema digitale del Poliambulatorio Privato San Lazzaro."
-          width={1024}
-          height={1024}
-          className="h-auto w-full rounded-xl border border-white/10"
-          sizes="260px"
-        />
-      </figure>
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
         {PEOPLE.map((person) => (
           <figure key={person.name} className="text-sm">
@@ -383,6 +373,16 @@ export function ProgettiSanLazzaro() {
           di ricerca.
         </p>
       </section>
+      <figure className="mx-auto mt-14 max-w-[640px] md:mt-16">
+        <Image
+          src={`${ASSET}/newsletter.jpg`}
+          alt="Behind the Lab. Quattro competenze, un solo progetto. Come abbiamo costruito il nuovo ecosistema digitale del Poliambulatorio Privato San Lazzaro."
+          width={1024}
+          height={1024}
+          className="h-auto w-full rounded-xl border border-white/10"
+          sizes="(max-width: 768px) 100vw, 640px"
+        />
+      </figure>
     </article>
   );
 }
