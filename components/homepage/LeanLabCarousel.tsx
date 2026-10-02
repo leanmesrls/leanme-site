@@ -156,7 +156,7 @@ export function LeanLabCarousel({
           <div
             role="tablist"
             aria-label="Categorie LeanLab"
-            className="mt-8 flex gap-5 overflow-x-auto border-b border-white/[0.08] pb-0 [-ms-overflow-style:none] [scrollbar-width:none] md:gap-8 [&::-webkit-scrollbar]:hidden"
+            className="mt-8 flex gap-5 overflow-x-auto border-b border-white/[0.08] px-0.5 pb-0 pt-2 [-ms-overflow-style:none] [scrollbar-width:none] md:gap-8 [&::-webkit-scrollbar]:hidden"
           >
             {data.tabs.map((tab) => {
               const isActive = activeTab === tab.id;
@@ -173,7 +173,7 @@ export function LeanLabCarousel({
                   <span
                     className={
                       badge
-                        ? `${badge.chip} inline-flex rounded-full px-2.5 py-1`
+                        ? `${badge.chip} inline-flex items-center rounded-full px-2.5 py-1.5 leading-normal`
                         : isActive
                           ? "text-white"
                           : "text-white/45 hover:text-white/75"

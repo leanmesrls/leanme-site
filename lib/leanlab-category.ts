@@ -18,7 +18,7 @@ export const leanLabCategoryBadge: Record<
 };
 
 const chipClass =
-  "inline-flex items-center rounded-full px-2.5 py-1 font-semibold uppercase tracking-[0.12em]";
+  "inline-flex items-center rounded-full px-2.5 py-1.5 leading-normal font-semibold uppercase tracking-[0.12em]";
 
 export function categoryBadgeClass(
   category: string | undefined,
