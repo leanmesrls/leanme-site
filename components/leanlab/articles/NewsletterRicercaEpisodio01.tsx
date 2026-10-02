@@ -71,14 +71,6 @@ export function NewsletterRicercaEpisodio01({
             priority
           />
         )}
-        <figcaption className="mt-6 flex justify-center">
-          <Link
-            href="/prenota-consulenza"
-            className="inline-flex min-h-11 items-center justify-center rounded-full bg-leanme-fuchsia px-6 text-center text-sm font-semibold uppercase tracking-[0.08em] text-white transition hover:brightness-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leanme-fuchsia"
-          >
-            Ripensiamo insieme il tuo nuovo sito internet!
-          </Link>
-        </figcaption>
       </figure>
     </div>
   );

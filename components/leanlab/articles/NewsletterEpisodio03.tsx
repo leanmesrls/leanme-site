@@ -1,19 +1,17 @@
 import Image from "next/image";
 
-import { NewsletterEpisodeActions } from "@/components/leanlab/NewsletterEpisodeActions";
 import { ASSETS } from "@/lib/assets";
 import type { LeanLabArticleCta } from "@/types/content";
 
 interface NewsletterEpisodio03Props {
   cta?: LeanLabArticleCta;
-  videoCta?: LeanLabArticleCta;
 }
 
 /**
  * Newsletter «LeanMe // Rebuild // Episodio 03» — grafica ufficiale, senza modifiche.
- * Se presente, l'intera grafica apre il quiz; sotto: quiz + video sbloccato.
+ * Se presente, l'intera grafica apre il quiz. Quiz e video stanno nella colonna destra.
  */
-export function NewsletterEpisodio03({ cta, videoCta }: NewsletterEpisodio03Props) {
+export function NewsletterEpisodio03({ cta }: NewsletterEpisodio03Props) {
   const image = (
     <Image
       src={ASSETS.leanlab.newsletterEpisodio03}
@@ -41,7 +39,6 @@ export function NewsletterEpisodio03({ cta, videoCta }: NewsletterEpisodio03Prop
       ) : (
         image
       )}
-      <NewsletterEpisodeActions cta={cta} videoCta={videoCta} />
     </figure>
   );
 }

@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const ASSET = "/assets/leanlab/progetti-san-lazzaro";
@@ -207,19 +206,7 @@ const NUMBERS = [
 export function ProgettiSanLazzaro() {
   return (
     <article>
-      <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#c4b5fd]">
-        Progetti · Behind the Lab
-      </p>
-      <h1 className="mt-2 text-3xl font-extrabold tracking-tight text-white md:text-5xl">
-        Quattro competenze. Un solo progetto.
-      </h1>
-      <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/75 md:text-lg">
-        Per il rifacimento del sito del Poliambulatorio Privato San Lazzaro
-        abbiamo fatto entrare quattro prospettive complementari. LeanMe le ha
-        fatte lavorare insieme.
-      </p>
-
-      <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-4">
+      <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
         {PEOPLE.map((person) => (
           <figure key={person.name} className="text-sm">
             <Portrait src={person.src} alt={person.alt} crop={"crop" in person} />
@@ -280,7 +267,7 @@ export function ProgettiSanLazzaro() {
 
       <section
         aria-label="La regia LeanMe"
-        className="mt-8 rounded-2xl border border-[#7c4dff]/50 bg-[#121218] p-5 md:p-7"
+        className="mt-8 rounded-2xl border border-[#7c4dff]/50 bg-[#222228] p-5 md:p-7"
       >
         <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#c4b5fd]">
           La regia LeanMe
@@ -322,7 +309,7 @@ export function ProgettiSanLazzaro() {
         </div>
       </section>
 
-      <section className="mt-4 rounded-2xl border border-white/10 bg-[#1c1c22] p-5 md:p-7">
+      <section className="mt-4 rounded-2xl border border-white/10 bg-[#222228] p-5 md:p-7">
         <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#c4b5fd]">
           E l’AI?
         </p>
@@ -383,14 +370,6 @@ export function ProgettiSanLazzaro() {
           redirect a proteggere il resto. Canonical, NAP coerente e dati
           strutturati rendono il sito più comprensibile anche per i nuovi sistemi
           di ricerca.
-        </p>
-        <p className="mt-6">
-          <Link
-            href="/prenota-consulenza"
-            className="inline-flex min-h-11 items-center justify-center rounded-full bg-[#7c4dff] px-6 text-center text-sm font-semibold text-white transition hover:brightness-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#7c4dff]"
-          >
-            Ripensa il tuo sito. Contattaci
-          </Link>
         </p>
       </section>
     </article>

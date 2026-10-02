@@ -27,15 +27,15 @@ export function LeanLabArticleBody({
     case "newsletter-episodio-00":
       return <NewsletterEpisodio00 />;
     case "newsletter-episodio-01":
-      return <NewsletterEpisodio01 cta={cta} videoCta={videoCta} />;
+      return <NewsletterEpisodio01 cta={cta} />;
     case "newsletter-episodio-02":
-      return <NewsletterEpisodio02 cta={cta} videoCta={videoCta} />;
+      return <NewsletterEpisodio02 cta={cta} />;
     case "newsletter-episodio-03":
-      return <NewsletterEpisodio03 cta={cta} videoCta={videoCta} />;
+      return <NewsletterEpisodio03 cta={cta} />;
     case "newsletter-episodio-04":
-      return <NewsletterEpisodio04 cta={cta} videoCta={videoCta} />;
+      return <NewsletterEpisodio04 cta={cta} />;
     case "newsletter-episodio-05":
-      return <NewsletterEpisodio05 cta={cta} videoCta={videoCta} />;
+      return <NewsletterEpisodio05 cta={cta} />;
     case "newsletter-ricerca-episodio-01":
       return <NewsletterRicercaEpisodio01 videoCta={videoCta} />;
     case "progetti-san-lazzaro":

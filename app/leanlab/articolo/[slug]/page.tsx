@@ -7,8 +7,7 @@ import { PageSection } from "@/components/layout/PageSection";
 import { VisibleBreadcrumb } from "@/components/layout/VisibleBreadcrumb";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { LeanLabArticleBody } from "@/components/leanlab/LeanLabArticleBody";
-import { LeanLabRelatedAside } from "@/components/leanlab/LeanLabRelatedAside";
-import { ProgettiSanLazzaro } from "@/components/leanlab/articles/ProgettiSanLazzaro";
+import { LeanLabArticleAside } from "@/components/leanlab/LeanLabRelatedAside";
 import { FaqSection } from "@/components/seo/FaqSection";
 import { InPocheParoleBox } from "@/components/seo/InPocheParoleBox";
 import {
@@ -16,6 +15,7 @@ import {
   getLeanLabArticle,
   getLeanLabCategory,
 } from "@/lib/content";
+import { buildLeanLabArticleAside } from "@/lib/leanlab-aside";
 import { createPageMetadata } from "@/lib/metadata";
 import { formatDate } from "@/lib/utils";
 import { articleSchema, breadcrumbSchema, faqPageSchema } from "@/lib/structured-data";
@@ -95,32 +95,7 @@ export default async function LeanLabArticlePage({ params }: PageProps) {
     />
   );
 
-  if (article.bodyTemplate === "progetti-san-lazzaro") {
-    return (
-      <>
-        {jsonLd}
-        <VisibleBreadcrumb items={breadcrumbItems} />
-        <section className="bg-[#141418] px-5 py-10 md:px-10 md:py-14 lg:px-16">
-          <div className="mx-auto grid max-w-[1440px] items-start gap-10 lg:grid-cols-[minmax(0,1fr)_18.5rem] lg:gap-12">
-            <div>
-              <p className="mb-6 text-sm text-white/50">
-                <Link
-                  href={`/leanlab/${article.category}`}
-                  className="font-semibold uppercase tracking-[0.12em] text-[#c4b5fd] transition hover:text-white"
-                >
-                  {category?.title ?? article.category}
-                </Link>
-                {" · "}
-                {formatDate(article.date)} · {article.readTime} di lettura
-              </p>
-              <ProgettiSanLazzaro />
-            </div>
-            <LeanLabRelatedAside />
-          </div>
-        </section>
-      </>
-    );
-  }
+  const aside = buildLeanLabArticleAside(article);
 
   return (
     <>
@@ -132,58 +107,67 @@ export default async function LeanLabArticlePage({ params }: PageProps) {
         subtitle={category?.title ?? article.category}
       />
       <PageSection className="pt-8 pb-20 md:pt-10 md:pb-28 lg:pb-32">
-        <FadeIn>
-          <Link
-            href={`/leanlab/${article.category}`}
-            className="mb-6 inline-block text-xs font-semibold uppercase tracking-[0.1em] text-leanme-purple transition hover:text-white"
-          >
-            ← {category?.title ?? article.category}
-          </Link>
-          <PageHighlightBlock paragraphs={article.excerpt} />
-          <div className="mt-8 space-y-1 text-sm text-white/50">
-            <p>
-              {formatDate(article.date)} · {article.readTime} di lettura
-            </p>
-            <p>Written by: {article.author}</p>
-          </div>
-          {!article.hideDefaultImage ? (
-            <div className="relative mt-10 aspect-[21/9] overflow-hidden rounded-xl border border-white/10">
-              <Image
-                src={article.image.src}
-                alt={article.image.alt}
-                fill
-                className="object-cover object-top"
-                sizes="100vw"
-                priority
-              />
-            </div>
-          ) : null}
-          <div className={article.bodyTemplate ? "mt-10" : "mt-10 max-w-3xl"}>
-            {article.bodyTemplate ? (
-              <LeanLabArticleBody
-                template={article.bodyTemplate}
-                cta={article.cta}
-                videoCta={article.videoCta}
-              />
-            ) : (
-              <p className="leading-relaxed text-white/65">
-                Contenuto completo dell&apos;articolo LeanLab in arrivo. Ogni
-                articolo genererà condivisione su Newsletter, LinkedIn, Facebook e
-                Instagram.
+        <div
+          className={
+            aside
+              ? "lg:grid lg:grid-cols-[minmax(0,1fr)_18.5rem] lg:items-start lg:gap-12"
+              : undefined
+          }
+        >
+          <FadeIn>
+            <Link
+              href={`/leanlab/${article.category}`}
+              className="mb-6 inline-block text-xs font-semibold uppercase tracking-[0.1em] text-leanme-fuchsia transition hover:text-white"
+            >
+              ← {category?.title ?? article.category}
+            </Link>
+            <PageHighlightBlock paragraphs={article.excerpt} />
+            <div className="mt-8 space-y-1 text-sm text-white/50">
+              <p>
+                {formatDate(article.date)} · {article.readTime} di lettura
               </p>
-            )}
-          </div>
-          {article.faq?.length ? (
-            <div className="mt-14 md:mt-16">
-              <FaqSection items={article.faq} />
+              <p>Written by: {article.author}</p>
             </div>
-          ) : null}
-          {article.inPocheParole?.length ? (
-            <div className="mt-14 md:mt-16">
-              <InPocheParoleBox paragraphs={article.inPocheParole} />
+            {!article.hideDefaultImage ? (
+              <div className="relative mt-10 aspect-[21/9] overflow-hidden rounded-xl border border-white/10">
+                <Image
+                  src={article.image.src}
+                  alt={article.image.alt}
+                  fill
+                  className="object-cover object-top"
+                  sizes="100vw"
+                  priority
+                />
+              </div>
+            ) : null}
+            <div className={article.bodyTemplate ? "mt-10" : "mt-10 max-w-3xl"}>
+              {article.bodyTemplate ? (
+                <LeanLabArticleBody
+                  template={article.bodyTemplate}
+                  cta={article.cta}
+                  videoCta={article.videoCta}
+                />
+              ) : (
+                <p className="leading-relaxed text-white/65">
+                  Contenuto completo dell&apos;articolo LeanLab in arrivo. Ogni
+                  articolo genererà condivisione su Newsletter, LinkedIn, Facebook e
+                  Instagram.
+                </p>
+              )}
             </div>
-          ) : null}
-        </FadeIn>
+            {article.faq?.length ? (
+              <div className="mt-14 md:mt-16">
+                <FaqSection items={article.faq} />
+              </div>
+            ) : null}
+            {article.inPocheParole?.length ? (
+              <div className="mt-14 md:mt-16">
+                <InPocheParoleBox paragraphs={article.inPocheParole} />
+              </div>
+            ) : null}
+          </FadeIn>
+          {aside ? <LeanLabArticleAside {...aside} /> : null}
+        </div>
       </PageSection>
     </>
   );
