@@ -19,10 +19,31 @@
     "bodyTemplate": "progetti-san-lazzaro",
     "hideDefaultImage": true,
     "listed": false,
+    "relatedAcademySlugs": ["ricerca-e-innovazione-episodio-01"],
     "cta": {
       "href": "/prenota-consulenza",
       "label": "Ripensa il tuo sito. Contattaci"
-    }
+    },
+    "faq": [
+      {
+        "question": "Chi ha lavorato al sito del Poliambulatorio Privato San Lazzaro?",
+        "answer": "Quattro competenze: marketing e comunicazione, IT e sviluppo, workflow e dati, e la conoscenza concreta del centro medico. LeanMe è la regia che le ha messe in relazione in un unico sistema digitale."
+      },
+      {
+        "question": "L'AI ha deciso come costruire il sito?",
+        "answer": "No. L'AI ha amplificato il processo, accelerando analisi e sviluppo. Non è un quinto interlocutore, non è un reparto separato e non è solo uno strumento di sviluppo."
+      },
+      {
+        "question": "Cosa è stato preservato per Google?",
+        "answer": "15 slug di specialità già noti a Google, con i redirect a proteggere il resto. Canonical, NAP coerente e dati strutturati rendono il sito più comprensibile anche per i nuovi sistemi di ricerca."
+      }
+    ],
+    "inPocheParole": [
+      "Il rifacimento del sito del Poliambulatorio Privato San Lazzaro nasce da quattro competenze messe in relazione da una regia LeanMe.",
+      "Marketing, IT, workflow e dati, e la conoscenza del centro medico confluiscono in un unico sistema digitale.",
+      "L'AI ha amplificato analisi e sviluppo, senza sostituire la regia, le decisioni e la supervisione umana.",
+      "15 slug di specialità già noti a Google sono stati preservati, con redirect, canonical, NAP coerente e dati strutturati."
+    ]
   },
   {
     "slug": "leanme-ricerca-e-innovazione-episodio-01",
@@ -104,6 +125,16 @@
       "href": "https://leanme-wip-quiz-05.vercel.app/quiz",
       "label": "Rispondi al quiz e fai la differenza"
     },
+    "faq": [
+      {
+        "question": "Di cosa parla l'episodio 05?",
+        "answer": "Passa dalla casa digitale alla casa reale: la nuova sede sta prendendo forma, come luogo dove le idee diventano incontri, progetti, formazione e opportunità."
+      },
+      {
+        "question": "Cosa sblocca il quiz?",
+        "answer": "Chi risponde a «Cosa ti piacerebbe trovare nella nuova sede?» entra nel Rebuild Pass Contributor, con invito all'Open Day, status Contributor e gadget riservato."
+      }
+    ],
     "inPocheParole": [
       "Episodio 05 di LeanMe Rebuild passa dalla casa digitale alla casa reale: la nuova sede sta prendendo forma, come luogo dove le idee diventano incontri, progetti, formazione e opportunità.",
       "Dopo il lancio di leanme.it manca l'ultimo tassello fisico: uno spazio più di un ufficio, pensato per persone, idee, tecnologia, formazione e collaborazione.",
@@ -138,6 +169,16 @@
       "href": "https://leanme-wip-quiz-04.vercel.app/assets/teaser-sito.mp4",
       "label": "Video sbloccato"
     },
+    "faq": [
+      {
+        "question": "Cosa è online con l'episodio 04?",
+        "answer": "La nuova casa digitale di LeanMe: leanme.it racconta chi siamo, come lavoriamo e dove stiamo andando."
+      },
+      {
+        "question": "Qual è il quarto indizio?",
+        "answer": "Un quiz per abbinare ogni screenshot del nuovo sito alla sezione giusta. Il video sbloccato del nuovo leanme.it è visibile dall'articolo."
+      }
+    ],
     "inPocheParole": [
       "Episodio 04 di LeanMe Rebuild apre le porte della nuova casa digitale: leanme.it è online e racconta chi siamo, come lavoriamo e dove stiamo andando.",
       "Ogni episodio segue la stessa regola Rebuild: demolire un sito che raccontava male LeanMe, servizi sparsi e un'identità superata; costruire un ecosistema unico di persone, servizi e Lean.Agent.",
@@ -172,6 +213,16 @@
       "href": "https://leanme-wip-quiz-03.vercel.app/assets/teaser-episodio-03.mp4",
       "label": "Video sbloccato"
     },
+    "faq": [
+      {
+        "question": "Cosa ricostruisce l'episodio 03?",
+        "answer": "Il modo di lavorare: non basta usare l'AI come strumento, serve affidarle un ruolo con obiettivi, regole e autonomia."
+      },
+      {
+        "question": "Qual è il terzo indizio?",
+        "answer": "Un quiz («Qual è un vero esempio di Agente AI?»). Il video sbloccato, con Leonardo.Agent.AI, è visibile dall'articolo."
+      }
+    ],
     "inPocheParole": [
       "Episodio 03 di LeanMe Rebuild ricostruisce il modo di lavorare: non basta usare l'AI come strumento, serve affidarle un ruolo con obiettivi, regole e autonomia.",
       "Ogni episodio segue la stessa regola: demolire l'idea dell'AI che aspetta un prompt e costruire Agenti AI integrati nei processi.",
@@ -206,6 +257,16 @@
       "href": "https://leanme-wip-quiz-02.vercel.app/assets/teaser-episodio-02.mp4",
       "label": "Video sbloccato"
     },
+    "faq": [
+      {
+        "question": "Cosa ricostruisce l'episodio 02?",
+        "answer": "L'identità: quando il brand cambia logo, non deve perdere ciò che lo rende riconoscibile."
+      },
+      {
+        "question": "Qual è il secondo indizio?",
+        "answer": "Un quiz («Quando un brand cambia logo, cosa non dovrebbe mai perdere?»). Il video sbloccato del nuovo logo è visibile dall'articolo."
+      }
+    ],
     "inPocheParole": [
       "Episodio 02 di LeanMe Rebuild ricostruisce l'identità: quando il brand cambia logo, non deve perdere ciò che lo rende riconoscibile.",
       "Ogni episodio segue la stessa regola: demolire un'identità che non rappresenta più LeanMe e costruire un'immagine più nostra e riconoscibile.",
@@ -240,6 +301,16 @@
       "href": "https://leanme-wip-quiz.vercel.app/assets/teaser-episodio-01.mp4",
       "label": "Video sbloccato"
     },
+    "faq": [
+      {
+        "question": "Cosa apre l'episodio 01?",
+        "answer": "Il cantiere Rebuild: LeanMe è tornata e invita chi legge a entrare nel progetto, non solo a seguirlo da fuori."
+      },
+      {
+        "question": "Qual è il primo indizio?",
+        "answer": "Un quiz («Se tu dovessi ricostruire qualcosa, da dove inizieresti?»). Il video sbloccato è visibile dall'articolo."
+      }
+    ],
     "inPocheParole": [
       "Episodio 01 di LeanMe Rebuild apre il cantiere: LeanMe è tornata e invita chi legge a entrare nel progetto, non solo a seguirlo da fuori.",
       "Ogni episodio segue la stessa regola: demolire convinzioni e abitudini obsolete, costruire nuove idee, modi di lavorare e strumenti.",
@@ -266,6 +337,16 @@
     "tags": ["Newsletter"],
     "bodyTemplate": "newsletter-episodio-00",
     "hideDefaultImage": true,
+    "faq": [
+      {
+        "question": "Cosa annuncia l'episodio 00?",
+        "answer": "Che LeanMe sta trasformando spazi, strumenti e modo di lavorare: sta nascendo qualcosa di nuovo, non solo un restyling."
+      },
+      {
+        "question": "Quando si scopre il progetto?",
+        "answer": "Dopo la chiusura estiva, dal 27 luglio al 22 agosto, LeanMe torna con un progetto ancora riservato, costruito insieme a persone e Lean.Agent AI."
+      }
+    ],
     "inPocheParole": [
       "Episodio 00 di LeanMe Rebuild annuncia che LeanMe sta trasformando spazi, strumenti e modo di lavorare: sta nascendo qualcosa di nuovo.",
       "Non è solo un restyling: negli ultimi mesi il team ha rivisto scelte, processi e organizzazione, fino a rendere inutile fermarsi a metà strada.",

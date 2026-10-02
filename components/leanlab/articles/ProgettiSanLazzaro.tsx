@@ -84,7 +84,7 @@ function BeforeAfter() {
             alt="Prima: homepage precedente, interno della palestra."
             className="w-full rounded-xl object-cover object-top"
           />
-          <figcaption className="mt-2 text-xs font-extrabold uppercase tracking-[0.08em] text-[#c4b5fd]">
+          <figcaption className="mt-2 text-xs font-extrabold uppercase tracking-[0.08em] text-leanme-fuchsia">
             Prima
           </figcaption>
         </figure>
@@ -94,7 +94,7 @@ function BeforeAfter() {
             alt="Dopo: homepage nuova, edificio su strada."
             className="w-full rounded-xl object-cover object-top"
           />
-          <figcaption className="mt-2 text-xs font-extrabold uppercase tracking-[0.08em] text-[#c4b5fd]">
+          <figcaption className="mt-2 text-xs font-extrabold uppercase tracking-[0.08em] text-leanme-fuchsia">
             Dopo
           </figcaption>
         </figure>
@@ -129,10 +129,10 @@ function BeforeAfter() {
         </span>
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-y-0 w-1 -translate-x-1/2 bg-[#7c4dff]"
+          className="pointer-events-none absolute inset-y-0 w-1 -translate-x-1/2 bg-leanme-fuchsia"
           style={{ left: `${position}%` }}
         >
-          <span className="absolute left-1/2 top-1/2 flex h-9 w-9 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#7c4dff] text-sm font-bold text-white">
+          <span className="absolute left-1/2 top-1/2 flex h-9 w-9 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-leanme-fuchsia text-sm font-bold text-white">
             ↔
           </span>
         </div>
@@ -237,7 +237,7 @@ export function ProgettiSanLazzaro() {
           >
             <Portrait src={card.src} alt="" crop={"crop" in card} />
             <div>
-              <p className="text-xs font-bold uppercase tracking-[0.08em] text-[#c4b5fd]">
+              <p className="text-xs font-bold uppercase tracking-[0.08em] text-leanme-fuchsia">
                 {"href" in card ? (
                   <a href={card.href} className="hover:underline">
                     {card.who}
@@ -267,9 +267,9 @@ export function ProgettiSanLazzaro() {
 
       <section
         aria-label="La regia LeanMe"
-        className="mt-8 rounded-2xl border border-[#7c4dff]/50 bg-[#222228] p-5 md:p-7"
+        className="mt-8 rounded-2xl border border-leanme-fuchsia/50 bg-[#222228] p-5 md:p-7"
       >
-        <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#c4b5fd]">
+        <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-leanme-fuchsia">
           La regia LeanMe
         </p>
         <h2 className="mt-2 text-2xl font-extrabold tracking-tight text-white md:text-3xl">
@@ -283,12 +283,12 @@ export function ProgettiSanLazzaro() {
           </div>
           <div
             aria-hidden
-            className="flex items-center justify-center text-xl font-bold text-[#7c4dff]"
+            className="flex items-center justify-center text-xl font-bold text-leanme-fuchsia"
           >
             <span className="md:hidden">↓</span>
             <span className="hidden md:inline">→</span>
           </div>
-          <div className="flex flex-1 flex-col items-center justify-center rounded-xl bg-[#7c4dff] px-4 py-5 text-center text-white">
+          <div className="flex flex-1 flex-col items-center justify-center rounded-xl bg-leanme-fuchsia px-4 py-5 text-center text-white">
             <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-white/80">
               Regia
             </p>
@@ -296,12 +296,12 @@ export function ProgettiSanLazzaro() {
           </div>
           <div
             aria-hidden
-            className="flex items-center justify-center text-xl font-bold text-[#7c4dff]"
+            className="flex items-center justify-center text-xl font-bold text-leanme-fuchsia"
           >
             <span className="md:hidden">↓</span>
             <span className="hidden md:inline">→</span>
           </div>
-          <div className="flex flex-1 items-center justify-center rounded-xl border border-[#7c4dff] px-4 py-5 text-center">
+          <div className="flex flex-1 items-center justify-center rounded-xl border border-leanme-fuchsia px-4 py-5 text-center">
             <p className="text-sm font-semibold text-white">
               Un unico sistema digitale
             </p>
@@ -310,7 +310,7 @@ export function ProgettiSanLazzaro() {
       </section>
 
       <section className="mt-4 rounded-2xl border border-white/10 bg-[#222228] p-5 md:p-7">
-        <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#c4b5fd]">
+        <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-leanme-fuchsia">
           E l’AI?
         </p>
         <h2 className="mt-2 text-2xl font-extrabold tracking-tight text-white md:text-3xl">
@@ -324,9 +324,9 @@ export function ProgettiSanLazzaro() {
         <ol className="mt-5 flex flex-wrap items-center gap-x-2 gap-y-2 text-xs font-bold uppercase tracking-[0.06em] text-white">
           {STEPS.map((step, index) => (
             <li key={step} className="flex items-center gap-2">
-              <span className="rounded-full bg-[#7c4dff]/20 px-2.5 py-1">{step}</span>
+              <span className="rounded-full bg-leanme-fuchsia/20 px-2.5 py-1">{step}</span>
               {index < STEPS.length - 1 ? (
-                <span aria-hidden className="text-[#7c4dff]">
+                <span aria-hidden className="text-leanme-fuchsia">
                   →
                 </span>
               ) : null}
@@ -344,7 +344,7 @@ export function ProgettiSanLazzaro() {
       </section>
 
       <section className="mt-8">
-        <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#c4b5fd]">
+        <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-leanme-fuchsia">
           Il caso
         </p>
         <h2 className="mt-2 text-2xl font-extrabold tracking-tight text-white md:text-3xl">
@@ -352,7 +352,7 @@ export function ProgettiSanLazzaro() {
         </h2>
         <p className="mt-3 text-sm leading-relaxed text-white/75 md:text-base">
           L’evoluzione del sito, gestita dal team insieme ad Antonio Pizzano.
-          Trascina la barra viola: a sinistra com’era, a destra com’è.
+          Trascina la barra: a sinistra com’era, a destra com’è.
         </p>
         <div className="mt-5">
           <BeforeAfter />

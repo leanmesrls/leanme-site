@@ -191,6 +191,8 @@ export interface LeanLabArticle {
   cta?: LeanLabArticleCta;
   /** Link al video sbloccato (campagne newsletter chiuse). */
   videoCta?: LeanLabArticleCta;
+  /** Puntate Lean Academy da mostrare tra i contenuti attinenti. */
+  relatedAcademySlugs?: string[];
   /** Riassunto GEO in fondo alla pagina articolo. */
   inPocheParole?: string[];
   /** Domande frequenti, dopo la grafica e prima di In poche parole. */
@@ -236,6 +238,10 @@ export interface AcademyResource {
   };
   /** Articolo LeanLab collegato, se la puntata nasce da una newsletter. */
   articleHref?: string;
+  /** Riassunto in fondo alla pagina. */
+  inPocheParole?: string[];
+  /** Domande frequenti, prima del riassunto. */
+  faq?: FaqItem[];
 }
 
 export interface AcademyData {

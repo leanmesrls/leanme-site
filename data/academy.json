@@ -27,7 +27,26 @@
           "poster": "/assets/leanlab/ricerca-episodio-01-cover.jpg"
         },
         "href": "/lean-academy/ricerca-e-innovazione-episodio-01",
-        "articleHref": "/leanlab/articolo/leanme-ricerca-e-innovazione-episodio-01"
+        "articleHref": "/leanlab/articolo/leanme-ricerca-e-innovazione-episodio-01",
+        "faq": [
+          {
+            "question": "Cos'è la SEO?",
+            "answer": "Farsi trovare nei motori di ricerca."
+          },
+          {
+            "question": "Cos'è l'AEO?",
+            "answer": "Diventare una risposta."
+          },
+          {
+            "question": "Cos'è la GEO?",
+            "answer": "Essere compresi e citati dalle AI."
+          }
+        ],
+        "inPocheParole": [
+          "Te lo spiego io, con Lean.Agent.Olivetti: una cosa complicata, spiegata semplice.",
+          "Google non è più l'unico che deve trovare un sito. Ora deve trovarlo anche l'AI.",
+          "SEO è farsi trovare nei motori di ricerca. AEO è diventare una risposta. GEO è essere compresi e citati dalle AI."
+        ]
       },
       {
         "slug": "intro-azienda-ibrida",

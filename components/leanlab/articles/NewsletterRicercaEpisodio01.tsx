@@ -13,12 +13,10 @@ export function NewsletterRicercaEpisodio01({
 }: {
   videoCta?: LeanLabArticleCta;
 }) {
-  return (
-    <div>
-      {videoCta ? (
+  const puntata = videoCta ? (
         <Link
           href={videoCta.href}
-          className="group relative mb-10 block overflow-hidden rounded-2xl border border-leanme-fuchsia/40 bg-[#14040c] px-6 py-8 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-leanme-fuchsia md:px-10 md:py-12"
+          className="group relative mt-10 block overflow-hidden rounded-2xl border border-leanme-fuchsia/40 bg-[#14040c] px-6 py-8 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-leanme-fuchsia md:px-10 md:py-12"
         >
           <span
             aria-hidden="true"
@@ -42,7 +40,10 @@ export function NewsletterRicercaEpisodio01({
             Guarda la puntata →
           </span>
         </Link>
-      ) : null}
+  ) : null;
+
+  return (
+    <div>
       <figure className="mx-auto max-w-[860px]">
         {videoCta ? (
           <Link
@@ -72,6 +73,7 @@ export function NewsletterRicercaEpisodio01({
           />
         )}
       </figure>
+      {puntata}
     </div>
   );
 }

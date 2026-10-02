@@ -157,7 +157,7 @@ export default async function LeanLabArticlePage({ params }: PageProps) {
             </div>
             {article.faq?.length ? (
               <div className="mt-14 md:mt-16">
-                <FaqSection items={article.faq} />
+                <FaqSection items={article.faq} framed />
               </div>
             ) : null}
             {article.inPocheParole?.length ? (

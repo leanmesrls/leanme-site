@@ -12,7 +12,7 @@ interface ArticleCardProps {
 }
 
 const categoryLabels: Record<string, string> = {
-  "progetti-conclusi": "PROGETTO",
+  "progetti-conclusi": "PROGETTI",
   "ricerca-e-innovazione": "RICERCA",
   "vita-in-leanme": "VITA IN LEANME",
   tutorial: "ACADEMY",

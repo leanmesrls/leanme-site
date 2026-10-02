@@ -6,12 +6,16 @@ import { PageHighlightBlock } from "@/components/layout/PageHighlightBlock";
 import { PageSection } from "@/components/layout/PageSection";
 import { VisibleBreadcrumb } from "@/components/layout/VisibleBreadcrumb";
 import { FadeIn } from "@/components/motion/FadeIn";
+import { LeanLabArticleAside } from "@/components/leanlab/LeanLabRelatedAside";
+import { FaqSection } from "@/components/seo/FaqSection";
+import { InPocheParoleBox } from "@/components/seo/InPocheParoleBox";
 import {
   getAcademyData,
   getAllAcademyResourceSlugs,
 } from "@/lib/content";
+import { buildAcademyResourceAside } from "@/lib/leanlab-aside";
 import { createPageMetadata } from "@/lib/metadata";
-import { breadcrumbSchema } from "@/lib/structured-data";
+import { breadcrumbSchema, faqPageSchema } from "@/lib/structured-data";
 import { JsonLd } from "@/components/seo/JsonLd";
 
 interface PageProps {
@@ -62,47 +66,60 @@ export default async function AcademyResourcePage({ params }: PageProps) {
     { name: resource.title, path },
   ];
 
+  const aside = buildAcademyResourceAside(resource);
+
   return (
     <>
-      <JsonLd data={breadcrumbSchema(breadcrumbItems)} />
+      <JsonLd
+        data={[
+          breadcrumbSchema(breadcrumbItems),
+          ...(resource.faq?.length ? [faqPageSchema(resource.faq, path)] : []),
+        ]}
+      />
       <VisibleBreadcrumb items={breadcrumbItems} />
       <PageHero
         id="academy-resource-heading"
         title={resource.title}
-        subtitle={resource.type}
+        subtitle={resource.tag ?? resource.type}
       />
       <PageSection className="pt-8 pb-20 md:pt-10 md:pb-28 lg:pb-32">
-        <FadeIn>
-          <Link
-            href="/lean-academy"
-            className="mb-6 inline-block text-xs font-semibold uppercase tracking-[0.1em] text-leanme-purple transition hover:text-white"
-          >
-            ← Lean Academy
-          </Link>
-          {resource.tag ? (
-            <p className="mb-6 text-[10px] font-semibold uppercase tracking-[0.14em] text-leanme-fuchsia">
-              {resource.tag}
-            </p>
-          ) : null}
-          <PageHighlightBlock paragraphs={resource.description} />
-          {resource.video ? (
-            <div className="mt-10">
-              <AcademyVideoPlayer
-                src={resource.video.src}
-                poster={resource.video.poster}
-                label={resource.title}
-              />
-            </div>
-          ) : null}
-          {resource.articleHref ? (
+        <div
+          className={
+            aside
+              ? "lg:grid lg:grid-cols-[minmax(0,1fr)_18.5rem] lg:items-start lg:gap-12"
+              : undefined
+          }
+        >
+          <FadeIn>
             <Link
-              href={resource.articleHref}
-              className="mt-8 inline-flex min-h-11 items-center text-xs font-semibold uppercase tracking-[0.1em] text-leanme-fuchsia transition hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leanme-fuchsia"
+              href="/lean-academy"
+              className="mb-6 inline-block text-xs font-semibold uppercase tracking-[0.1em] text-leanme-fuchsia transition hover:text-white"
             >
-              Leggi la newsletter →
+              ← Lean Academy
             </Link>
-          ) : null}
-        </FadeIn>
+            <PageHighlightBlock paragraphs={resource.description} />
+            {resource.video ? (
+              <div className="mt-10">
+                <AcademyVideoPlayer
+                  src={resource.video.src}
+                  poster={resource.video.poster}
+                  label={resource.title}
+                />
+              </div>
+            ) : null}
+            {resource.faq?.length ? (
+              <div className="mt-14 md:mt-16">
+                <FaqSection items={resource.faq} framed />
+              </div>
+            ) : null}
+            {resource.inPocheParole?.length ? (
+              <div className="mt-8">
+                <InPocheParoleBox paragraphs={resource.inPocheParole} />
+              </div>
+            ) : null}
+          </FadeIn>
+          {aside ? <LeanLabArticleAside {...aside} /> : null}
+        </div>
       </PageSection>
     </>
   );

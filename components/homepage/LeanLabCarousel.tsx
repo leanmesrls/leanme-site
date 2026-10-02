@@ -20,17 +20,42 @@ interface LeanLabCarouselProps {
   articles: LeanLabArticle[];
   compactTop?: boolean;
   showNewsletterCta?: boolean;
+  /** Colora le etichette di categoria. Solo in homepage. */
+  colorLabels?: boolean;
   className?: string;
 }
 
 const categoryLabels: Record<string, string> = {
-  "progetti-conclusi": "PROGETTO",
-  "ricerca-e-innovazione": "RICERCA",
+  "progetti-conclusi": "PROGETTI",
+  "ricerca-e-innovazione": "RICERCA & INNOVAZIONE",
   "vita-in-leanme": "VITA IN LEANME",
-  tutorial: "ACADEMY",
 };
 
-function ArticleCard({ article }: { article: LeanLabArticle }) {
+const categoryLabelClass: Record<string, string> = {
+  "progetti-conclusi": "text-[#7c4dff]",
+  "ricerca-e-innovazione": "text-[#3ec6ff]",
+  "vita-in-leanme": "text-leanme-fuchsia",
+};
+
+const tabLabelClass: Record<string, string> = {
+  progetti: "text-[#7c4dff]",
+  ricerca: "text-[#3ec6ff]",
+  vita: "text-leanme-fuchsia",
+};
+
+const tabBarClass: Record<string, string> = {
+  progetti: "bg-[#7c4dff]",
+  ricerca: "bg-[#3ec6ff]",
+  vita: "bg-leanme-fuchsia",
+};
+
+function ArticleCard({
+  article,
+  colorLabels,
+}: {
+  article: LeanLabArticle;
+  colorLabels: boolean;
+}) {
   const imageSrc = article.image?.src ?? ASSETS.decorative.bannerAmbient;
   const articleHref = `/leanlab/articolo/${article.slug}`;
 
@@ -57,7 +82,14 @@ function ArticleCard({ article }: { article: LeanLabArticle }) {
           <div className="leanlab-article-card-overlay pointer-events-none absolute inset-0 z-[1]" />
         </div>
         <div className="flex flex-1 flex-col space-y-2 p-4 pb-0">
-          <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-leanme-fuchsia">
+          <span
+            className={cn(
+              "text-[10px] font-semibold uppercase tracking-[0.14em]",
+              colorLabels
+                ? (categoryLabelClass[article.category] ?? "text-white")
+                : "text-leanme-fuchsia"
+            )}
+          >
             {categoryLabels[article.category] ?? "ARTICOLO"}
           </span>
           <h3 className="min-h-[2.75rem] flex-1 text-sm font-semibold leading-snug text-white">
@@ -88,6 +120,7 @@ export function LeanLabCarousel({
   articles,
   compactTop = false,
   showNewsletterCta = true,
+  colorLabels = false,
   className,
 }: LeanLabCarouselProps) {
   const reducedMotion = useReducedMotion();
@@ -169,20 +202,34 @@ export function LeanLabCarousel({
                   onClick={() => selectTab(tab.id)}
                   className={cn(
                     "relative shrink-0 pb-3 text-[10px] font-semibold uppercase tracking-[0.1em] transition-colors duration-300 md:text-[11px]",
-                    isActive ? "text-white" : "text-white/45 hover:text-white/75"
+                    colorLabels && tabLabelClass[tab.id]
+                      ? cn(tabLabelClass[tab.id], !isActive && "opacity-55 hover:opacity-100")
+                      : isActive
+                        ? "text-white"
+                        : "text-white/45 hover:text-white/75"
                   )}
                 >
                   {tab.label}
                   {isActive &&
                     (reducedMotion ? (
                       <span
-                        className="absolute inset-x-0 bottom-0 h-1 rounded-full bg-leanme-fuchsia"
+                        className={cn(
+                          "absolute inset-x-0 bottom-0 h-1 rounded-full",
+                          colorLabels && tabBarClass[tab.id]
+                            ? tabBarClass[tab.id]
+                            : "bg-leanme-fuchsia"
+                        )}
                         aria-hidden="true"
                       />
                     ) : (
                       <motion.span
                         layoutId="leanlab-tab-underline"
-                        className="absolute inset-x-0 bottom-0 h-1 rounded-full bg-leanme-fuchsia"
+                        className={cn(
+                          "absolute inset-x-0 bottom-0 h-1 rounded-full",
+                          colorLabels && tabBarClass[tab.id]
+                            ? tabBarClass[tab.id]
+                            : "bg-leanme-fuchsia"
+                        )}
                         transition={{ type: "spring", stiffness: 420, damping: 30 }}
                       />
                     ))}
@@ -205,7 +252,7 @@ export function LeanLabCarousel({
               {visible.length > 0 ? (
                 visible.map((article, index) => (
                   <RevealOnScroll key={article.slug} delay={index * 0.06}>
-                    <ArticleCard article={article} />
+                    <ArticleCard article={article} colorLabels={colorLabels} />
                   </RevealOnScroll>
                 ))
               ) : (
@@ -226,7 +273,7 @@ export function LeanLabCarousel({
               className="md:hidden"
             >
               {visible[0] ? (
-                <ArticleCard article={visible[0]} />
+                <ArticleCard article={visible[0]} colorLabels={colorLabels} />
               ) : (
                 <p className="text-sm text-white/45">
                   Nessun articolo in questa categoria al momento.

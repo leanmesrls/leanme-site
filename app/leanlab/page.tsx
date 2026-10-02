@@ -22,7 +22,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 export const metadata = createPageMetadata({
   title: "Dal LeanLab",
   description:
-    "Il blog ufficiale LeanMe. Progetti conclusi, ricerca, vita in LeanMe e tutorial dal laboratorio di innovazione.",
+    "Il blog ufficiale LeanMe. Progetti, ricerca e innovazione, vita in LeanMe.",
   path: "/leanlab",
 });
 

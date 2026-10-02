@@ -4,22 +4,35 @@ import type { FaqItem } from "@/types/content";
 interface FaqSectionProps {
   items: FaqItem[];
   title?: string;
+  framed?: boolean;
 }
 
 export function FaqSection({
   items,
   title = "Domande frequenti",
+  framed = false,
 }: FaqSectionProps) {
   if (items.length === 0) {
     return null;
   }
 
   return (
-    <section aria-labelledby="faq-heading" className="border-t border-white/10 pt-12 md:pt-16">
+    <section
+      aria-labelledby="faq-heading"
+      className={
+        framed
+          ? "rounded-xl border border-leanme-fuchsia/25 bg-gradient-to-br from-leanme-fuchsia/[0.08] to-black p-6 md:p-8"
+          : "border-t border-white/10 pt-12 md:pt-16"
+      }
+    >
       <FadeIn>
         <h2
           id="faq-heading"
-          className="text-sm font-bold uppercase tracking-[0.1em] text-white"
+          className={
+            framed
+              ? "text-xs font-bold uppercase tracking-[0.12em] text-leanme-fuchsia"
+              : "text-sm font-bold uppercase tracking-[0.1em] text-white"
+          }
         >
           {title}
         </h2>
