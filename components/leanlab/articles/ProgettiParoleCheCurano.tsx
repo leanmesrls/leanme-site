@@ -12,8 +12,18 @@ const HERO_SRC = `${ASSET}/sala.jpg`;
 const REGIA_SRC = `${ASSET}/regia.jpg`;
 
 const PARTNERS = [
-  { name: "Officina del Paziente", role: "Organizzatore", src: "" },
-  { name: "Parole Ostili", role: "Partner", src: "" },
+  {
+    name: "Officina del Paziente",
+    role: "Organizzatore",
+    href: "https://officinadelpaziente.it/",
+    src: "",
+  },
+  {
+    name: "Parole O_Stili",
+    role: "Partner",
+    href: "https://www.paroleostili.it/",
+    src: "",
+  },
 ] as const;
 
 const SERVICES = [
@@ -164,7 +174,7 @@ const SHOTS: Shot[] = [
     id: "protagoniste",
     chapter: "le-persone",
     title: "Le protagoniste",
-    alt: "Due protagoniste dell'iniziativa davanti allo schermo di Le parole che curano, con i loghi di Officina del Paziente e Parole Ostili.",
+    alt: "Due protagoniste dell'iniziativa davanti allo schermo di Le parole che curano, con i loghi di Officina del Paziente e Parole O_Stili.",
     layout: "tall",
     src: `${ASSET}/protagoniste.jpg`,
     tone: 0,
@@ -200,7 +210,7 @@ const SHOTS: Shot[] = [
     id: "tutti",
     chapter: "il-confronto",
     title: "Tutti e tutte",
-    alt: "Slide della giornata, Tutti e tutte, con il marchio Parole Ostili e la sala in collegamento.",
+    alt: "Slide della giornata, Tutti e tutte, con il marchio Parole O_Stili e la sala in collegamento.",
     layout: "wide",
     src: `${ASSET}/slide-tutti.jpg`,
     tone: 4,
@@ -724,21 +734,25 @@ export function ProgettiParoleCheCurano() {
               <p className="mt-4 text-sm font-semibold text-white">Roma · 10 ottobre 2026</p>
               <ul className="mt-6 flex flex-col gap-3 sm:flex-row">
                 {PARTNERS.map((partner) => (
-                  <li
-                    key={partner.name}
-                    className="flex items-center gap-3 rounded-2xl border border-white/15 bg-black/55 px-4 py-3 backdrop-blur-sm"
-                  >
-                    {partner.src ? (
-                      <img src={partner.src} alt="" className="h-8 w-auto" />
-                    ) : null}
-                    <span>
-                      <span className="block text-[10px] font-bold uppercase tracking-[0.14em] text-[#c4b5fd]">
-                        {partner.role}
+                  <li key={partner.name}>
+                    <a
+                      href={partner.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-3 rounded-2xl border border-white/15 bg-black/55 px-4 py-3 backdrop-blur-sm transition hover:border-[#c4b5fd] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c4b5fd]"
+                    >
+                      {partner.src ? (
+                        <img src={partner.src} alt="" className="h-8 w-auto" />
+                      ) : null}
+                      <span>
+                        <span className="block text-[10px] font-bold uppercase tracking-[0.14em] text-[#c4b5fd]">
+                          {partner.role}
+                        </span>
+                        <span className="mt-1 block text-sm font-extrabold text-white underline-offset-4 hover:underline">
+                          {partner.name}
+                        </span>
                       </span>
-                      <span className="mt-1 block text-sm font-extrabold text-white">
-                        {partner.name}
-                      </span>
-                    </span>
+                    </a>
                   </li>
                 ))}
               </ul>
