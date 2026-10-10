@@ -149,6 +149,7 @@ type Shot = {
   layout: ShotLayout;
   src: string;
   tone: number;
+  fit?: string;
 };
 
 const CHAPTERS = [
@@ -241,6 +242,36 @@ const SHOTS: Shot[] = [
     layout: "wide",
     src: `${ASSET}/slide-media.jpg`,
     tone: 1,
+  },
+  {
+    id: "parole",
+    chapter: "il-confronto",
+    title: "Scegliete parole",
+    alt: "Slide della giornata: scegliete parole che vi assomigliano, cercate la persona oltre la malattia e lasciate spazio all'ascolto.",
+    layout: "wide",
+    src: `${ASSET}/slide-parole.jpg`,
+    tone: 4,
+    fit: "object-contain",
+  },
+  {
+    id: "puntino",
+    chapter: "il-confronto",
+    title: "Questo puntino sei tu",
+    alt: "Slide di Parole O_Stili: questo puntino sei tu, con la tua rete e la famiglia che hai costruito, perché nelle relazioni batte il cuore di tutto.",
+    layout: "wide",
+    src: `${ASSET}/slide-puntino.jpg`,
+    tone: 5,
+    fit: "object-contain",
+  },
+  {
+    id: "maya",
+    chapter: "il-confronto",
+    title: "Come li hai fatte sentire",
+    alt: "Slide con il ritratto di Maya Angelou e la frase: la gente dimenticherà ciò che hai detto e ciò che hai fatto, ma non come li hai fatte sentire.",
+    layout: "wide",
+    src: `${ASSET}/slide-maya.jpg`,
+    tone: 2,
+    fit: "object-contain",
   },
   {
     id: "regia-foto",
@@ -576,6 +607,7 @@ function PhotoStory() {
                       alt=""
                       tone={item.tone}
                       className={LAYOUT_CLASS[item.layout]}
+                      imgClassName={item.fit}
                     >
                       <span className="absolute inset-x-0 bottom-0 p-4">
                         <span className="block text-[10px] font-bold uppercase tracking-[0.14em] text-[#c4b5fd]">
@@ -608,7 +640,13 @@ function PhotoStory() {
             className="relative w-full max-w-5xl"
             onClick={(event) => event.stopPropagation()}
           >
-            <Frame src={shot.src} alt={shot.alt} tone={shot.tone} className="aspect-[16/10] rounded-2xl">
+            <Frame
+              src={shot.src}
+              alt={shot.alt}
+              tone={shot.tone}
+              className="aspect-[16/10] rounded-2xl"
+              imgClassName={shot.fit}
+            >
               {!shot.src ? (
                 <span className="absolute left-4 top-4 rounded-full bg-black/70 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.12em] text-white">
                   Fotografia in arrivo
