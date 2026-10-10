@@ -161,7 +161,8 @@ export type LeanLabArticleBodyTemplate =
   | "newsletter-episodio-04"
   | "newsletter-episodio-05"
   | "newsletter-ricerca-episodio-01"
-  | "progetti-san-lazzaro";
+  | "progetti-san-lazzaro"
+  | "progetti-parole-che-curano";
 
 export interface LeanLabArticleCta {
   /** URL azione (quiz, form, risorsa esterna). */

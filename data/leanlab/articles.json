@@ -1,5 +1,54 @@
 [
   {
+    "slug": "le-parole-che-curano",
+    "category": "progetti-conclusi",
+    "title": "Le parole che curano. La tecnologia che dà voce alle persone.",
+    "excerpt": [
+      "Behind the Lab, episodio 02. Una giornata a Roma dedicata a pazienti, caregiver e associazioni.",
+      "LeanMe ha trasformato l'evento ibrido in un'esperienza di ascolto, confronto e partecipazione."
+    ],
+    "date": "2026-10-10",
+    "readTime": "6 min",
+    "image": {
+      "src": "/assets/leanlab/progetti-parole-che-curano/cover.svg",
+      "alt": "Behind the Lab, episodio 02. Le parole che curano. La tecnologia al servizio delle parole.",
+      "replaceHint": "Sostituire con la grafica newsletter quando il file è disponibile."
+    },
+    "author": "LeanMe",
+    "tags": ["Progetti"],
+    "bodyTemplate": "progetti-parole-che-curano",
+    "hideDefaultImage": true,
+    "listed": false,
+    "cta": {
+      "href": "/prenota-consulenza",
+      "label": "Parliamo del tuo evento"
+    },
+    "faq": [
+      {
+        "question": "Che cos'è Le parole che curano?",
+        "answer": "Una giornata partecipativa a Roma, il 10 ottobre 2026, dedicata a pazienti, caregiver e associazioni per riflettere su comunicazione, stigma e inclusione."
+      },
+      {
+        "question": "Qual era la sfida dell'evento ibrido?",
+        "answer": "Non bastava trasmettere la plenaria. I partecipanti, in sala o online, dovevano ascoltare, lavorare in gruppo e restituire le riflessioni in plenaria."
+      },
+      {
+        "question": "Che cosa ha realizzato LeanMe?",
+        "answer": "Sito e iscrizioni, regia integrata, interazione ibrida, sale parallele fisiche e virtuali, riprese e interviste in 4K, montaggio e post-produzione del video storytelling."
+      },
+      {
+        "question": "Il video della giornata è già online?",
+        "answer": "La pagina è predisposta per il video emozionale. Le riprese e le interviste sono in 4K; montaggio e post-produzione sono il passaggio successivo."
+      }
+    ],
+    "inPocheParole": [
+      "Le parole che curano è una giornata partecipativa sul linguaggio, lo stigma e l'inclusione, per pazienti, caregiver e associazioni.",
+      "La sfida era un evento ibrido davvero partecipativo: plenaria condivisa, gruppi in sale fisiche e virtuali, restituzione in plenaria.",
+      "LeanMe ha seguito il progetto dall'iscrizione all'ultimo ciak, con sito, regia, streaming, sale parallele e produzione audiovisiva.",
+      "La tecnologia non sostituisce le relazioni: le rende possibili, anche a distanza."
+    ]
+  },
+  {
     "slug": "poliambulatorio-privato-san-lazzaro",
     "category": "progetti-conclusi",
     "title": "Poliambulatorio Privato San Lazzaro: quattro competenze, un solo progetto.",
