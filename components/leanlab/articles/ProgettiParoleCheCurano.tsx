@@ -30,69 +30,32 @@ const SERVICES = [
   {
     title: "Sito web e iscrizioni",
     body: "Realizzazione del sito dedicato all'evento e gestione delle registrazioni dei partecipanti.",
-    href: "#prima-dell-evento",
     icon: "web",
   },
   {
     title: "Regia integrata",
     body: "Coordinamento tecnico della giornata, gestione della sala fisica e dello streaming.",
-    href: "#regia",
     icon: "regia",
   },
   {
     title: "Interazione ibrida",
     body: "Gestione della partecipazione e del confronto tra pubblico presente e collegato online.",
-    href: "#durante-la-plenaria",
     icon: "talk",
   },
   {
     title: "Sale parallele",
     body: "Organizzazione dei lavori di gruppo in ambienti fisici e virtuali, con successiva restituzione in plenaria.",
-    href: "#durante-i-gruppi",
     icon: "rooms",
   },
   {
     title: "Riprese e interviste 4K",
     body: "Riprese video della giornata e interviste ai protagonisti dell'iniziativa.",
-    href: "#dietro-le-quinte",
     icon: "camera",
   },
   {
     title: "Video storytelling",
     body: "Produzione di un video emozionale attraverso montaggio e post-produzione del materiale audiovisivo.",
-    href: "#video",
     icon: "film",
-  },
-] as const;
-
-const MOMENTS = [
-  {
-    id: "prima-dell-evento",
-    n: "01",
-    title: "Prima dell'evento",
-    kicker: "Preparare la partecipazione",
-    body: "Il sito web, le iscrizioni, la configurazione degli ambienti digitali e la preparazione della regia.",
-  },
-  {
-    id: "durante-la-plenaria",
-    n: "02",
-    title: "Durante la plenaria",
-    kicker: "Connettere le persone",
-    body: "La gestione delle immagini, dell'audio, dei collegamenti e dello streaming, coordinando la partecipazione in presenza e online.",
-  },
-  {
-    id: "durante-i-gruppi",
-    n: "03",
-    title: "Durante i gruppi",
-    kicker: "Moltiplicare gli spazi di confronto",
-    body: "La gestione delle sale parallele fisiche e virtuali, consentendo ai partecipanti di confrontarsi in gruppi più piccoli.",
-  },
-  {
-    id: "ritorno-in-plenaria",
-    n: "04",
-    title: "Il ritorno in plenaria",
-    kicker: "Riunire le voci",
-    body: "Il coordinamento della restituzione dei lavori, con un referente per ciascun gruppo incaricato di condividere le riflessioni emerse.",
   },
 ] as const;
 
@@ -978,52 +941,22 @@ export function ProgettiParoleCheCurano() {
         </p>
         <ul className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {SERVICES.map((service) => (
-            <li key={service.title}>
-              <a
-                href={service.href}
-                className="flex h-full flex-col rounded-2xl border border-white/10 bg-black/40 p-5 transition hover:border-leanme-fuchsia/70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leanme-fuchsia"
-              >
-                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-leanme-fuchsia/15 text-leanme-fuchsia">
-                  <Icon name={service.icon} />
-                </span>
-                <span className="mt-4 text-lg font-extrabold tracking-tight text-white">
-                  {service.title}
-                </span>
-                <span className="mt-2 flex-1 text-sm leading-relaxed text-white/70">
-                  {service.body}
-                </span>
-                <span className="mt-4 text-[11px] font-bold uppercase tracking-[0.12em] text-leanme-fuchsia">
-                  Approfondisci →
-                </span>
-              </a>
+            <li key={service.title} className="flex h-full flex-col rounded-2xl border border-white/10 bg-black/40 p-5">
+              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-leanme-fuchsia/15 text-leanme-fuchsia">
+                <Icon name={service.icon} />
+              </span>
+              <span className="mt-4 text-lg font-extrabold tracking-tight text-white">
+                {service.title}
+              </span>
+              <span className="mt-2 flex-1 text-sm leading-relaxed text-white/70">
+                {service.body}
+              </span>
             </li>
           ))}
         </ul>
 
-        <div id="regia" className="mt-10 scroll-mt-28 border-t border-white/10 pt-8">
-        <Kicker>Tech behind the lab</Kicker>
-        <h2
-          id="regia-title"
-          className="mt-2 max-w-3xl text-2xl font-extrabold tracking-tight text-white md:text-3xl"
-        >
-          Dietro ogni evento partecipativo c&apos;è una regia che connette.
-        </h2>
-        <ol className="mt-6 grid gap-3 md:grid-cols-2">
-          {MOMENTS.map((moment) => (
-            <li
-              key={moment.id}
-              id={moment.id}
-              className="scroll-mt-28 rounded-2xl border border-white/10 bg-black/40 p-5"
-            >
-              <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-leanme-fuchsia">
-                {moment.n} / {moment.title}
-              </p>
-              <h3 className="mt-2 text-xl font-extrabold text-white">{moment.kicker}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-white/70">{moment.body}</p>
-            </li>
-          ))}
-        </ol>
-        <RegiaDesk />
+        <div id="regia" className="scroll-mt-28">
+          <RegiaDesk />
         </div>
       </section>
 
