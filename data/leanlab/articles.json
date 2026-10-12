@@ -151,6 +151,50 @@
     ]
   },
   {
+    "slug": "leanme-rebuild-episodio-06",
+    "category": "vita-in-leanme",
+    "title": "LeanMe // Rebuild // Episodio 06",
+    "excerpt": [
+      "Le idee hanno trovato casa.",
+      "L'ultimo episodio della campagna Rebuild. Domenica 8 novembre 2026 la sede è aperta per il LeanMe Open Lab & Brunch."
+    ],
+    "date": "2026-10-12",
+    "readTime": "3 min",
+    "image": {
+      "src": "/assets/leanlab/newsletter-episodio-06.jpg",
+      "alt": "Newsletter LeanMe Open Lab e Brunch — Le idee hanno trovato casa.",
+      "replaceHint": ""
+    },
+    "author": "Luana, Alessandro e tutto il team di LeanMe",
+    "tags": ["Newsletter"],
+    "bodyTemplate": "newsletter-episodio-06",
+    "hideDefaultImage": true,
+    "cta": {
+      "href": "https://leanme-wip-quiz-06.vercel.app/quiz",
+      "label": "Conferma la tua partecipazione"
+    },
+    "faq": [
+      {
+        "question": "Quando è il LeanMe Open Lab & Brunch?",
+        "answer": "Domenica 8 novembre 2026, dalle 11:00 alle 13:00. Si passa quando si vuole."
+      },
+      {
+        "question": "Dove si svolge?",
+        "answer": "Nella sede LeanMe, in Via Porrettana 148/2 a Bologna."
+      },
+      {
+        "question": "Come si conferma la partecipazione?",
+        "answer": "Dal pulsante Conferma la tua partecipazione, oppure toccando la grafica della newsletter."
+      }
+    ],
+    "inPocheParole": [
+      "Episodio 06 chiude LeanMe Rebuild al 100%: le idee hanno trovato casa e la sede apre per il LeanMe Open Lab & Brunch.",
+      "L'appuntamento è domenica 8 novembre 2026, dalle 11:00 alle 13:00, in Via Porrettana 148/2 a Bologna. Si passa quando si vuole.",
+      "La partecipazione si conferma dal link dell'articolo: nome, cognome, email e, se servono, gli accompagnatori.",
+      "Un anno fa LeanMe era in radio su innovazione sociale, digitale e tecnologica. Quest'anno torna on air: di cosa parlerà, presto si scopre."
+    ]
+  },
+  {
     "slug": "leanme-rebuild-episodio-05",
     "category": "vita-in-leanme",
     "title": "LeanMe // Rebuild // Episodio 05",

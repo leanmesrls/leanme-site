@@ -22,6 +22,7 @@ export const ASSETS = {
     newsletterEpisodio03: "/assets/leanlab/newsletter-episodio-03.png",
     newsletterEpisodio04: "/assets/leanlab/newsletter-episodio-04.jpg",
     newsletterEpisodio05: "/assets/leanlab/newsletter-episodio-05.jpg",
+    newsletterEpisodio06: "/assets/leanlab/newsletter-episodio-06.jpg",
     newsletterRicercaEpisodio01: "/assets/leanlab/newsletter-ricerca-episodio-01-v2.png",
     newsletterRicercaEpisodio01Hero:
       "/assets/leanlab/newsletter-ricerca-episodio-01-hero.jpg",

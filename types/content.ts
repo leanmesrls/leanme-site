@@ -160,6 +160,7 @@ export type LeanLabArticleBodyTemplate =
   | "newsletter-episodio-03"
   | "newsletter-episodio-04"
   | "newsletter-episodio-05"
+  | "newsletter-episodio-06"
   | "newsletter-ricerca-episodio-01"
   | "progetti-san-lazzaro"
   | "progetti-parole-che-curano";
