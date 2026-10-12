@@ -9,7 +9,6 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
  */
 const ASSET = "/assets/leanlab/progetti-parole-che-curano";
 const HERO_SRC = `${ASSET}/sala.jpg`;
-const REGIA_SRC = `${ASSET}/regia.jpg`;
 
 const PARTNERS = [
   {
@@ -416,18 +415,6 @@ function HybridFlow() {
   );
 }
 
-function RegiaDesk() {
-  return (
-    <div className="mt-8 overflow-hidden rounded-2xl border border-white/10">
-      <img
-        src={REGIA_SRC}
-        alt="Panoramica della regia LeanMe durante Le parole che curano."
-        className="aspect-video w-full object-cover object-center"
-      />
-    </div>
-  );
-}
-
 function PhotoStory() {
   const [index, setIndex] = useState<number | null>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
@@ -471,12 +458,12 @@ function PhotoStory() {
       <p className="mt-3 max-w-3xl text-sm leading-relaxed text-white/70 md:text-base">
         Immagini, slide e momenti della giornata.
       </p>
-      <div className="mt-8 columns-1 gap-3 sm:columns-2 lg:columns-3">
+      <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {SHOTS.map((item, itemIndex) => (
           <button
             key={item.id}
             type="button"
-            className="mb-3 block w-full break-inside-avoid overflow-hidden rounded-2xl text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leanme-fuchsia"
+            className="block w-full overflow-hidden rounded-2xl text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leanme-fuchsia"
             onClick={() => setIndex(itemIndex)}
             aria-label={`Apri ${item.title}. ${item.alt}`}
           >
@@ -535,7 +522,7 @@ function PhotoStory() {
                 className="mt-2 inline-flex items-center gap-1.5 text-sm font-extrabold text-leanme-fuchsia underline-offset-4 hover:underline"
               >
                 paroleostili.it
-                <span aria-hidden="true">→</span>
+                <span aria-hidden="true">↗</span>
               </a>
             ) : null}
             <div className="mt-4 flex items-center justify-between gap-3">
@@ -672,7 +659,7 @@ export function ProgettiParoleCheCurano() {
                         </span>
                         <span className="mt-1 flex items-center gap-1.5 text-sm font-extrabold text-leanme-fuchsia">
                           {partner.name}
-                          <span aria-hidden="true">→</span>
+                          <span aria-hidden="true">↗</span>
                         </span>
                       </span>
                     </a>
@@ -843,10 +830,6 @@ export function ProgettiParoleCheCurano() {
             </li>
           ))}
         </ul>
-
-        <div id="regia" className="scroll-mt-28">
-          <RegiaDesk />
-        </div>
       </section>
 
       <PhotoStory />
