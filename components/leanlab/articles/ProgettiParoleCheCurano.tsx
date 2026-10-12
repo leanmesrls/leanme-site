@@ -320,6 +320,39 @@ const LAYOUT_CLASS: Record<ShotLayout, string> = {
   square: "aspect-square",
 };
 
+function EditorialFigure({
+  src,
+  alt,
+  caption,
+  href,
+}: {
+  src: string;
+  alt: string;
+  caption: string;
+  href?: string;
+}) {
+  const image = <img src={src} alt={alt} className="h-auto w-full rounded-2xl" />;
+  return (
+    <figure>
+      {href ? (
+        <a
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block rounded-2xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leanme-fuchsia"
+        >
+          {image}
+        </a>
+      ) : (
+        image
+      )}
+      <figcaption className="mt-3 max-w-3xl text-sm leading-relaxed text-white/60">
+        {caption}
+      </figcaption>
+    </figure>
+  );
+}
+
 function Kicker({ children, onLight = false }: { children: string; onLight?: boolean }) {
   return (
     <p
@@ -848,12 +881,26 @@ export function ProgettiParoleCheCurano() {
             pazienti, professionisti sanitari e associazioni.
           </p>
         </div>
-        <blockquote className="mt-8 border-l-4 border-[#7c4dff] pl-5">
-          <p className="text-2xl font-extrabold leading-snug tracking-tight text-white md:text-3xl">
-            Le parole al centro della comunicazione. Le persone al centro
-            dell&apos;esperienza.
-          </p>
-        </blockquote>
+        <div className="mt-8">
+          <EditorialFigure
+            src={`${ASSET}/etichette.jpg`}
+            alt="Quattro ritratti. Ogni persona tiene un foglio con un codice a barre e un'etichetta: Superficiale, Criminale, Una facile, Sfigato."
+            caption="Le etichette che il linguaggio appiccica alle persone, prima ancora di incontrarle."
+          />
+        </div>
+        <div className="mt-8 grid items-center gap-6 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
+          <blockquote className="border-l-4 border-[#7c4dff] pl-5">
+            <p className="text-2xl font-extrabold leading-snug tracking-tight text-white md:text-3xl">
+              Le parole al centro della comunicazione. Le persone al centro
+              dell&apos;esperienza.
+            </p>
+          </blockquote>
+          <EditorialFigure
+            src={`${ASSET}/microaggressioni.jpg`}
+            alt="Due schede affiancate. Gli insulti: un'espressione irrispettosa, sprezzante, umiliante o degradante. Le microaggressioni: un atto in apparenza non eclatante, che può rivelare una mentalità discriminatoria, volontaria o involontaria."
+            caption="Un insulto si riconosce. Una microaggressione, molto meno."
+          />
+        </div>
       </section>
 
       <section aria-labelledby="sfida-title" className="rounded-3xl border border-white/10 bg-[#222228] p-5 md:p-8">
@@ -964,6 +1011,13 @@ export function ProgettiParoleCheCurano() {
 
       <PhotoStory />
       <VideoSlot />
+
+      <EditorialFigure
+        src={`${ASSET}/manifesto.jpg`}
+        alt="Il Manifesto della comunicazione non ostile di Parole O_Stili, dieci principi su sfondo giallo."
+        caption="Il riferimento della giornata: il Manifesto della comunicazione non ostile."
+        href="https://www.paroleostili.it/"
+      />
 
       <section className="rounded-3xl bg-[#f4efff] px-6 py-12 text-[#1c1230] md:px-10 md:py-16">
         <Kicker onLight>Il valore del progetto</Kicker>
