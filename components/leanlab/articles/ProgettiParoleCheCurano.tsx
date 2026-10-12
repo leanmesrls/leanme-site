@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useId, useRef, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 
 /**
  * Asset in public/assets/leanlab/progetti-parole-che-curano/
@@ -59,84 +59,23 @@ const SERVICES = [
   },
 ] as const;
 
-const PINS = [
-  {
-    id: "audio",
-    n: "01",
-    label: "Audio",
-    x: "63%",
-    y: "68%",
-    body: "Microfoni, ritorni e voce dei relatori in un mix unico, per chi è in platea e per chi è collegato.",
-  },
-  {
-    id: "video",
-    n: "02",
-    label: "Video",
-    x: "32%",
-    y: "82%",
-    body: "Inquadrature della plenaria e dei relatori, pronte per lo streaming e per il racconto video della giornata.",
-  },
-  {
-    id: "streaming",
-    n: "03",
-    label: "Streaming",
-    x: "24%",
-    y: "42%",
-    body: "La diretta che porta la sessione plenaria a chi partecipa da remoto, nella stessa sala condivisa.",
-  },
-  {
-    id: "sale",
-    n: "04",
-    label: "Sale virtuali",
-    x: "38%",
-    y: "16%",
-    body: "Stanze online parallele alle sale fisiche, così i gruppi a distanza lavorano nello stesso momento.",
-  },
-  {
-    id: "coord",
-    n: "05",
-    label: "Coordinamento",
-    x: "52%",
-    y: "58%",
-    body: "La regia tiene insieme tempi, sale, referenti di gruppo e il ritorno delle voci in plenaria.",
-  },
-] as const;
-
 type ShotLayout = "wide" | "tall" | "square";
 
 type Shot = {
   id: string;
-  chapter: string;
   title: string;
   alt: string;
   layout: ShotLayout;
   src: string;
   tone: number;
   fit?: string;
+  href?: string;
+  bare?: boolean;
 };
-
-const CHAPTERS = [
-  {
-    id: "le-persone",
-    title: "Le persone",
-    body: "La plenaria, i relatori, i partecipanti e i momenti di ascolto.",
-  },
-  {
-    id: "il-confronto",
-    title: "Il confronto",
-    body: "I lavori di gruppo, i tavoli, le attività collaborative e la restituzione in plenaria.",
-  },
-  {
-    id: "dietro-le-quinte",
-    title: "Dietro le quinte",
-    body: "La regia, le telecamere, le postazioni streaming e la produzione delle interviste.",
-  },
-] as const;
 
 const SHOTS: Shot[] = [
   {
     id: "protagoniste",
-    chapter: "le-persone",
     title: "Le protagoniste",
     alt: "Due protagoniste dell'iniziativa davanti allo schermo di Le parole che curano, con i loghi di Officina del Paziente e Parole O_Stili.",
     layout: "tall",
@@ -145,7 +84,6 @@ const SHOTS: Shot[] = [
   },
   {
     id: "relatori",
-    chapter: "le-persone",
     title: "In plenaria",
     alt: "Relatrice con microfono durante la plenaria, accanto a una partecipante seduta.",
     layout: "tall",
@@ -154,7 +92,6 @@ const SHOTS: Shot[] = [
   },
   {
     id: "dialogo",
-    chapter: "le-persone",
     title: "Il dialogo",
     alt: "Due relatrici in dialogo nella sala, una in piedi con il microfono e una seduta in poltrona.",
     layout: "tall",
@@ -163,7 +100,6 @@ const SHOTS: Shot[] = [
   },
   {
     id: "tavoli",
-    chapter: "il-confronto",
     title: "I tavoli",
     alt: "Partecipanti ai tavoli durante il confronto, con lo schermo della sessione e una relatrice in piedi.",
     layout: "tall",
@@ -172,7 +108,6 @@ const SHOTS: Shot[] = [
   },
   {
     id: "tutti",
-    chapter: "il-confronto",
     title: "Tutti e tutte",
     alt: "Slide della giornata, Tutti e tutte, con il marchio Parole O_Stili e la sala in collegamento.",
     layout: "wide",
@@ -181,7 +116,6 @@ const SHOTS: Shot[] = [
   },
   {
     id: "stereotipi",
-    chapter: "il-confronto",
     title: "Le parole e i pregiudizi",
     alt: "Slide su stereotipo, pregiudizio e discriminazione, proiettata durante la plenaria.",
     layout: "wide",
@@ -190,7 +124,6 @@ const SHOTS: Shot[] = [
   },
   {
     id: "icare",
-    chapter: "il-confronto",
     title: "I care",
     alt: "Slide I care, con il testo scritto a mano mostrato durante l'incontro.",
     layout: "wide",
@@ -199,7 +132,6 @@ const SHOTS: Shot[] = [
   },
   {
     id: "media",
-    chapter: "il-confronto",
     title: "Chi ascolta",
     alt: "Slide sul consumo dei media tra generazioni, mostrata durante la giornata.",
     layout: "wide",
@@ -208,7 +140,6 @@ const SHOTS: Shot[] = [
   },
   {
     id: "parole",
-    chapter: "il-confronto",
     title: "Scegliete parole",
     alt: "Slide della giornata: scegliete parole che vi assomigliano, cercate la persona oltre la malattia e lasciate spazio all'ascolto.",
     layout: "wide",
@@ -218,7 +149,6 @@ const SHOTS: Shot[] = [
   },
   {
     id: "puntino",
-    chapter: "il-confronto",
     title: "Questo puntino sei tu",
     alt: "Slide di Parole O_Stili: questo puntino sei tu, con la tua rete e la famiglia che hai costruito, perché nelle relazioni batte il cuore di tutto.",
     layout: "wide",
@@ -228,7 +158,6 @@ const SHOTS: Shot[] = [
   },
   {
     id: "maya",
-    chapter: "il-confronto",
     title: "Come li hai fatte sentire",
     alt: "Slide con il ritratto di Maya Angelou e la frase: la gente dimenticherà ciò che hai detto e ciò che hai fatto, ma non come li hai fatte sentire.",
     layout: "wide",
@@ -237,8 +166,18 @@ const SHOTS: Shot[] = [
     fit: "object-contain",
   },
   {
+    id: "manifesto",
+    title: "Il Manifesto",
+    alt: "Il Manifesto della comunicazione non ostile di Parole O_Stili, dieci principi su sfondo giallo.",
+    layout: "wide",
+    src: `${ASSET}/manifesto.jpg`,
+    tone: 4,
+    fit: "object-contain",
+    href: "https://www.paroleostili.it/",
+    bare: true,
+  },
+  {
     id: "regia-foto",
-    chapter: "dietro-le-quinte",
     title: "La regia",
     alt: "Postazione di regia LeanMe: monitor con la regia, mixer audio, telecamera e rack.",
     layout: "wide",
@@ -247,7 +186,6 @@ const SHOTS: Shot[] = [
   },
   {
     id: "camere",
-    chapter: "dietro-le-quinte",
     title: "La telecamera",
     alt: "Telecamera sulla postazione di regia, accanto a tastiera e cavi.",
     layout: "wide",
@@ -256,7 +194,6 @@ const SHOTS: Shot[] = [
   },
   {
     id: "audio-foto",
-    chapter: "dietro-le-quinte",
     title: "Audio e rack",
     alt: "Mixer audio e rack della regia LeanMe durante l'evento.",
     layout: "wide",
@@ -391,6 +328,7 @@ function Frame({
   tone,
   className,
   imgClassName = "object-cover",
+  bare = false,
   children,
 }: {
   src: string;
@@ -398,6 +336,7 @@ function Frame({
   tone: number;
   className?: string;
   imgClassName?: string;
+  bare?: boolean;
   children?: ReactNode;
 }) {
   return (
@@ -411,10 +350,12 @@ function Frame({
       ) : (
         <span aria-hidden className={`absolute inset-0 ${TONES[tone] ?? TONES[0]}`} />
       )}
-      <span
-        aria-hidden
-        className="absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.72)_0%,rgba(0,0,0,0.12)_48%,rgba(0,0,0,0.28)_100%)]"
-      />
+      {bare ? null : (
+        <span
+          aria-hidden
+          className="absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.72)_0%,rgba(0,0,0,0.12)_48%,rgba(0,0,0,0.28)_100%)]"
+        />
+      )}
       {children}
     </div>
   );
@@ -476,61 +417,13 @@ function HybridFlow() {
 }
 
 function RegiaDesk() {
-  const [active, setActive] = useState<(typeof PINS)[number]["id"]>("coord");
-  const pin = PINS.find((item) => item.id === active) ?? PINS[0];
-  const detailId = useId();
-
   return (
-    <div className="mt-8">
-      <div className="relative aspect-video overflow-hidden rounded-2xl border border-white/10 bg-black">
-        {REGIA_SRC ? (
-          <img
-            src={REGIA_SRC}
-            alt="Panoramica della regia LeanMe durante Le parole che curano."
-            className="absolute inset-0 h-full w-full object-cover object-center"
-          />
-        ) : (
-          <div aria-hidden className="absolute inset-0">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_20%,#2a1844_0%,#07040c_62%)]" />
-            <div className="absolute inset-x-[8%] bottom-[18%] h-[28%] rounded-t-3xl border border-white/15 bg-[#14141c]" />
-            <div className="absolute left-[14%] top-[22%] h-[34%] w-[18%] rounded-md border border-[#c4b5fd]/40 bg-[#1c1230]" />
-            <div className="absolute left-[36%] top-[16%] h-[38%] w-[22%] rounded-md border border-white/20 bg-[#221428]" />
-            <div className="absolute right-[14%] top-[20%] h-[34%] w-[20%] rounded-md border border-leanme-fuchsia/40 bg-[#2a1020]" />
-          </div>
-        )}
-        <span className="absolute inset-0 bg-black/25" aria-hidden />
-        {PINS.map((item) => {
-          const selected = item.id === active;
-          return (
-            <button
-              key={item.id}
-              type="button"
-              className={`absolute z-10 flex h-9 w-9 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full text-[11px] font-extrabold transition ${
-                selected
-                  ? "bg-leanme-fuchsia text-white shadow-[0_0_0_6px_rgba(230,0,126,0.28)]"
-                  : "bg-black/80 text-white ring-1 ring-white/40 hover:bg-leanme-fuchsia"
-              }`}
-              style={{ left: item.x, top: item.y }}
-              aria-pressed={selected}
-              aria-controls={detailId}
-              onClick={() => setActive(item.id)}
-            >
-              <span className="sr-only">{item.label}. </span>
-              {item.n}
-            </button>
-          );
-        })}
-      </div>
-      <div
-        id={detailId}
-        className="mt-3 rounded-2xl border border-white/10 bg-[#222228] px-4 py-4"
-        aria-live="polite"
-      >
-        <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-leanme-fuchsia">
-          {pin.n} · {pin.label}
-        </p>
-        <p className="mt-2 text-sm leading-relaxed text-white/80">{pin.body}</p>
-      </div>
+    <div className="mt-8 overflow-hidden rounded-2xl border border-white/10">
+      <img
+        src={REGIA_SRC}
+        alt="Panoramica della regia LeanMe durante Le parole che curano."
+        className="aspect-video w-full object-cover object-center"
+      />
     </div>
   );
 }
@@ -576,50 +469,33 @@ function PhotoStory() {
         Le parole, le persone, le connessioni.
       </h2>
       <p className="mt-3 max-w-3xl text-sm leading-relaxed text-white/70 md:text-base">
-        Tre momenti della giornata: le persone, il confronto e il lavoro dietro le quinte.
+        Immagini, slide e momenti della giornata.
       </p>
-      <div className="mt-8 space-y-10">
-        {CHAPTERS.map((chapter) => {
-          const items = SHOTS.map((item, itemIndex) => ({ item, itemIndex })).filter(
-            ({ item }) => item.chapter === chapter.id
-          );
-          return (
-            <div key={chapter.id} id={chapter.id} className="scroll-mt-28">
-              <h3 className="text-xs font-bold uppercase tracking-[0.16em] text-leanme-fuchsia">
-                {chapter.title}
-              </h3>
-              <p className="mt-2 max-w-2xl text-sm text-white/65">{chapter.body}</p>
-              <div className="mt-4 columns-1 gap-3 sm:columns-2 lg:columns-3">
-                {items.map(({ item, itemIndex }) => (
-                  <button
-                    key={item.id}
-                    type="button"
-                    className="mb-3 block w-full break-inside-avoid overflow-hidden rounded-2xl text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leanme-fuchsia"
-                    onClick={() => setIndex(itemIndex)}
-                    aria-label={`Apri ${item.title}. ${item.alt}`}
-                  >
-                    <Frame
-                      src={item.src}
-                      alt=""
-                      tone={item.tone}
-                      className={LAYOUT_CLASS[item.layout]}
-                      imgClassName={item.fit}
-                    >
-                      <span className="absolute inset-x-0 bottom-0 p-4">
-                        <span className="block text-[10px] font-bold uppercase tracking-[0.14em] text-[#c4b5fd]">
-                          {chapter.title}
-                        </span>
-                        <span className="mt-1 block text-lg font-extrabold text-white">
-                          {item.title}
-                        </span>
-                      </span>
-                    </Frame>
-                  </button>
-                ))}
-              </div>
-            </div>
-          );
-        })}
+      <div className="mt-8 columns-1 gap-3 sm:columns-2 lg:columns-3">
+        {SHOTS.map((item, itemIndex) => (
+          <button
+            key={item.id}
+            type="button"
+            className="mb-3 block w-full break-inside-avoid overflow-hidden rounded-2xl text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leanme-fuchsia"
+            onClick={() => setIndex(itemIndex)}
+            aria-label={`Apri ${item.title}. ${item.alt}`}
+          >
+            <Frame
+              src={item.src}
+              alt=""
+              tone={item.tone}
+              className={LAYOUT_CLASS[item.layout]}
+              imgClassName={item.fit}
+              bare={item.bare}
+            >
+              {item.bare ? null : (
+                <span className="absolute inset-x-0 bottom-0 p-4">
+                  <span className="block text-lg font-extrabold text-white">{item.title}</span>
+                </span>
+              )}
+            </Frame>
+          </button>
+        ))}
       </div>
 
       {shot ? (
@@ -642,6 +518,7 @@ function PhotoStory() {
               tone={shot.tone}
               className="aspect-[16/10] rounded-2xl"
               imgClassName={shot.fit}
+              bare={shot.bare}
             >
               {!shot.src ? (
                 <span className="absolute left-4 top-4 rounded-full bg-black/70 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.12em] text-white">
@@ -650,6 +527,17 @@ function PhotoStory() {
               ) : null}
             </Frame>
             <p className="mt-3 text-sm text-white/80">{shot.alt}</p>
+            {shot.href ? (
+              <a
+                href={shot.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-2 inline-flex items-center gap-1.5 text-sm font-extrabold text-leanme-fuchsia underline-offset-4 hover:underline"
+              >
+                paroleostili.it
+                <span aria-hidden="true">→</span>
+              </a>
+            ) : null}
             <div className="mt-4 flex items-center justify-between gap-3">
               <button
                 type="button"
@@ -782,8 +670,9 @@ export function ProgettiParoleCheCurano() {
                         <span className="block text-[10px] font-bold uppercase tracking-[0.14em] text-[#c4b5fd]">
                           {partner.role}
                         </span>
-                        <span className="mt-1 block text-sm font-extrabold text-white underline-offset-4 hover:underline">
+                        <span className="mt-1 flex items-center gap-1.5 text-sm font-extrabold text-leanme-fuchsia">
                           {partner.name}
+                          <span aria-hidden="true">→</span>
                         </span>
                       </span>
                     </a>
@@ -962,13 +851,6 @@ export function ProgettiParoleCheCurano() {
 
       <PhotoStory />
       <VideoSlot />
-
-      <EditorialFigure
-        src={`${ASSET}/manifesto.jpg`}
-        alt="Il Manifesto della comunicazione non ostile di Parole O_Stili, dieci principi su sfondo giallo."
-        caption="Il riferimento della giornata: il Manifesto della comunicazione non ostile."
-        href="https://www.paroleostili.it/"
-      />
 
       <section className="rounded-3xl border border-leanme-fuchsia/50 bg-black px-6 py-12 md:px-10 md:py-16">
         <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-leanme-fuchsia">
