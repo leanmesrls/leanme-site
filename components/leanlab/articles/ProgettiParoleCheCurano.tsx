@@ -8,19 +8,13 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
  * Lasciare la stringa vuota finché il file non c'è: il layout resta pronto.
  */
 const ASSET = "/assets/leanlab/progetti-parole-che-curano";
-const HERO_SRC = `${ASSET}/sala.jpg`;
+const HERO_SRC = `${ASSET}/hero-sala.jpg`;
 
 const PARTNERS = [
   {
     name: "Officina del Paziente",
     role: "Organizzatore",
     href: "https://officinadelpaziente.it/",
-    src: "",
-  },
-  {
-    name: "Parole O_Stili",
-    role: "Partner",
-    href: "https://www.paroleostili.it/",
     src: "",
   },
 ] as const;
@@ -74,127 +68,27 @@ type Shot = {
 
 const SHOTS: Shot[] = [
   {
-    id: "protagoniste",
-    title: "Le protagoniste",
-    alt: "Due protagoniste dell'iniziativa davanti allo schermo di Le parole che curano, con i loghi di Officina del Paziente e Parole O_Stili.",
-    layout: "tall",
-    src: `${ASSET}/protagoniste.jpg`,
-    tone: 0,
-  },
-  {
-    id: "relatori",
-    title: "In plenaria",
-    alt: "Relatrice con microfono durante la plenaria, accanto a una partecipante seduta.",
-    layout: "tall",
-    src: `${ASSET}/relatrice.jpg`,
-    tone: 1,
-  },
-  {
-    id: "dialogo",
-    title: "Il dialogo",
-    alt: "Due relatrici in dialogo nella sala, una in piedi con il microfono e una seduta in poltrona.",
-    layout: "tall",
-    src: `${ASSET}/dialogo.jpg`,
-    tone: 2,
-  },
-  {
-    id: "tavoli",
-    title: "I tavoli",
-    alt: "Partecipanti ai tavoli durante il confronto, con lo schermo della sessione e una relatrice in piedi.",
-    layout: "tall",
-    src: `${ASSET}/tavoli.jpg`,
-    tone: 3,
-  },
-  {
-    id: "tutti",
-    title: "Tutti e tutte",
-    alt: "Slide della giornata, Tutti e tutte, con il marchio Parole O_Stili e la sala in collegamento.",
+    id: "flusso",
+    title: "Il flusso",
+    alt: "Schema esplicativo: dalla plenaria ai gruppi in sala e online, poi la restituzione.",
     layout: "wide",
-    src: `${ASSET}/slide-tutti.jpg`,
-    tone: 4,
-  },
-  {
-    id: "stereotipi",
-    title: "Le parole e i pregiudizi",
-    alt: "Slide su stereotipo, pregiudizio e discriminazione, proiettata durante la plenaria.",
-    layout: "wide",
-    src: `${ASSET}/slide-stereotipi.jpg`,
-    tone: 5,
-  },
-  {
-    id: "icare",
-    title: "I care",
-    alt: "Slide I care, con il testo scritto a mano mostrato durante l'incontro.",
-    layout: "wide",
-    src: `${ASSET}/slide-icare.jpg`,
-    tone: 2,
-  },
-  {
-    id: "media",
-    title: "Chi ascolta",
-    alt: "Slide sul consumo dei media tra generazioni, mostrata durante la giornata.",
-    layout: "wide",
-    src: `${ASSET}/slide-media.jpg`,
-    tone: 1,
-  },
-  {
-    id: "parole",
-    title: "Scegliete parole",
-    alt: "Slide della giornata: scegliete parole che vi assomigliano, cercate la persona oltre la malattia e lasciate spazio all'ascolto.",
-    layout: "wide",
-    src: `${ASSET}/slide-parole.jpg`,
+    src: `${ASSET}/schema-flusso.jpg`,
     tone: 4,
     fit: "object-contain",
-  },
-  {
-    id: "puntino",
-    title: "Questo puntino sei tu",
-    alt: "Slide di Parole O_Stili: questo puntino sei tu, con la tua rete e la famiglia che hai costruito, perché nelle relazioni batte il cuore di tutto.",
-    layout: "wide",
-    src: `${ASSET}/slide-puntino.jpg`,
-    tone: 5,
-    fit: "object-contain",
-  },
-  {
-    id: "maya",
-    title: "Come li hai fatte sentire",
-    alt: "Slide con il ritratto di Maya Angelou e la frase: la gente dimenticherà ciò che hai detto e ciò che hai fatto, ma non come li hai fatte sentire.",
-    layout: "wide",
-    src: `${ASSET}/slide-maya.jpg`,
-    tone: 2,
-    fit: "object-contain",
-  },
-  {
-    id: "manifesto",
-    title: "Il Manifesto",
-    alt: "Il Manifesto della comunicazione non ostile di Parole O_Stili, dieci principi su sfondo giallo.",
-    layout: "wide",
-    src: `${ASSET}/manifesto.jpg`,
-    tone: 4,
-    fit: "object-contain",
-    href: "https://www.paroleostili.it/",
     bare: true,
   },
   {
-    id: "regia-foto",
+    id: "regia-schema",
     title: "La regia",
-    alt: "Postazione di regia LeanMe: monitor con la regia, mixer audio, telecamera e rack.",
+    alt: "Immagine esplicativa di una regia: monitor, mixer audio e telecamera.",
     layout: "wide",
-    src: `${ASSET}/regia.jpg`,
+    src: `${ASSET}/schema-regia.jpg`,
     tone: 6,
-  },
-  {
-    id: "camere",
-    title: "La telecamera",
-    alt: "Telecamera sulla postazione di regia, accanto a tastiera e cavi.",
-    layout: "wide",
-    src: `${ASSET}/regia-camera.jpg`,
-    tone: 7,
   },
   {
     id: "audio-foto",
     title: "Audio e rack",
-    alt: "Mixer audio e rack della regia LeanMe durante l'evento.",
+    alt: "Mixer audio e rack della regia LeanMe durante l'evento per Officina del Paziente.",
     layout: "wide",
     src: `${ASSET}/regia-audio.jpg`,
     tone: 8,
@@ -456,7 +350,7 @@ function PhotoStory() {
         Le parole, le persone, le connessioni.
       </h2>
       <p className="mt-3 max-w-3xl text-sm leading-relaxed text-white/70 md:text-base">
-        Immagini, slide e momenti della giornata.
+        Immagini esplicative della regia e del flusso della giornata.
       </p>
       <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {SHOTS.map((item, itemIndex) => (
@@ -514,17 +408,6 @@ function PhotoStory() {
               ) : null}
             </Frame>
             <p className="mt-3 text-sm text-white/80">{shot.alt}</p>
-            {shot.href ? (
-              <a
-                href={shot.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-2 inline-flex items-center gap-1.5 text-sm font-extrabold text-leanme-fuchsia underline-offset-4 hover:underline"
-              >
-                paroleostili.it
-                <span aria-hidden="true">↗</span>
-              </a>
-            ) : null}
             <div className="mt-4 flex items-center justify-between gap-3">
               <button
                 type="button"
@@ -621,7 +504,7 @@ export function ProgettiParoleCheCurano() {
       <section aria-label="Il progetto in primo piano">
         <Frame
           src={HERO_SRC}
-          alt="Sala durante Le parole che curano a Roma: platea ai tavoli, schermo e relatrice con microfono."
+          alt="Immagine esplicativa di una plenaria: platea vista da dietro e schermo, senza relatori riconoscibili."
           tone={0}
           imgClassName="object-cover object-[center_40%]"
           className="min-h-[560px] rounded-3xl md:min-h-[640px]"
@@ -636,9 +519,9 @@ export function ProgettiParoleCheCurano() {
                 <span className="mt-2 block">La tecnologia che dà voce alle persone.</span>
               </p>
               <p className="mt-5 max-w-2xl text-sm leading-relaxed text-white/85 md:text-base">
-                Come abbiamo trasformato un evento ibrido in un&apos;esperienza di ascolto,
-                confronto e partecipazione, attraverso una regia integrata, sale parallele
-                fisiche e virtuali e strumenti digitali progettati per connettere le persone.
+                Come abbiamo realizzato un evento ibrido interattivo per Officina del
+                Paziente: regia integrata, sale parallele fisiche e virtuali, strumenti
+                digitali per far partecipare chi è in sala e chi è online.
               </p>
               <p className="mt-4 text-sm font-semibold text-white">Roma · 10 ottobre 2026</p>
               <ul className="mt-6 flex flex-col gap-3 sm:flex-row">
@@ -681,10 +564,10 @@ export function ProgettiParoleCheCurano() {
         </h2>
         <div className="mt-6 grid gap-3 sm:grid-cols-2">
           <Frame
-            src={`${ASSET}/protagoniste.jpg`}
-            alt="Le due speaker di Le parole che curano, abbracciate davanti allo schermo dell'evento."
+            src={`${ASSET}/hero-sala.jpg`}
+            alt="Immagine esplicativa della plenaria, vista dalla platea."
             tone={1}
-            imgClassName="object-cover object-[center_36%]"
+            imgClassName="object-cover object-center"
             className="aspect-[4/3] rounded-2xl"
           >
             <span className="absolute inset-x-0 bottom-0 p-4 text-sm font-extrabold text-white">
@@ -692,54 +575,35 @@ export function ProgettiParoleCheCurano() {
             </span>
           </Frame>
           <Frame
-            src={`${ASSET}/tavoli.jpg`}
-            alt="Partecipanti ai tavoli durante i lavori di gruppo."
+            src={`${ASSET}/schema-flusso.jpg`}
+            alt="Schema: plenaria, gruppi in sala e online, restituzione."
             tone={3}
-            imgClassName="object-cover object-[center_42%]"
+            imgClassName="object-contain"
+            bare
             className="aspect-[4/3] rounded-2xl"
-          >
-            <span className="absolute inset-x-0 bottom-0 p-4 text-sm font-extrabold text-white">
-              I lavori di gruppo
-            </span>
-          </Frame>
+          />
         </div>
         <div className="mt-6 max-w-3xl space-y-4 text-sm leading-relaxed text-white/75 md:text-base">
-          <p>Le parole possono ferire. Ma possono anche curare.</p>
           <p>
-            Il linguaggio influenza le relazioni, costruisce percezioni e può contribuire
-            a creare o abbattere barriere.
+            Le parole che curano è la giornata del 10 ottobre 2026 a Roma, realizzata per
+            Officina del Paziente.
           </p>
           <p>
-            Da questa consapevolezza nasce Le parole che curano, una giornata partecipativa
-            dedicata a pazienti, caregiver e associazioni, per riflettere sul rapporto tra
-            comunicazione, stigma e inclusione.
+            Un evento ibrido dedicato a pazienti, caregiver, associazioni e professionisti
+            sanitari, per mettere le parole al centro della comunicazione e dare spazio a
+            ogni voce, in sala e online.
           </p>
           <p>
-            Un&apos;occasione per riconoscere le parole che feriscono e costruire insieme un
-            linguaggio più consapevole, rispettoso e capace di favorire il dialogo tra
-            pazienti, professionisti sanitari e associazioni.
+            LeanMe ha curato l&apos;ecosistema digitale, la regia e la produzione audiovisiva:
+            dall&apos;iscrizione all&apos;ultimo ciak.
           </p>
         </div>
-        <div className="mt-8">
-          <EditorialFigure
-            src={`${ASSET}/etichette.jpg`}
-            alt="Quattro ritratti. Ogni persona tiene un foglio con un codice a barre e un'etichetta: Superficiale, Criminale, Una facile, Sfigato."
-            caption="Le etichette che il linguaggio appiccica alle persone, prima ancora di incontrarle."
-          />
-        </div>
-        <div className="mt-8 grid items-center gap-6 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
-          <blockquote className="border-l-4 border-[#7c4dff] pl-5">
-            <p className="text-2xl font-extrabold leading-snug tracking-tight text-white md:text-3xl">
-              Le parole al centro della comunicazione. Le persone al centro
-              dell&apos;esperienza.
-            </p>
-          </blockquote>
-          <EditorialFigure
-            src={`${ASSET}/microaggressioni.jpg`}
-            alt="Due schede affiancate. Gli insulti: un'espressione irrispettosa, sprezzante, umiliante o degradante. Le microaggressioni: un atto in apparenza non eclatante, che può rivelare una mentalità discriminatoria, volontaria o involontaria."
-            caption="Un insulto si riconosce. Una microaggressione, molto meno."
-          />
-        </div>
+        <blockquote className="mt-8 border-l-4 border-[#7c4dff] pl-5">
+          <p className="text-2xl font-extrabold leading-snug tracking-tight text-white md:text-3xl">
+            Le parole al centro della comunicazione. Le persone al centro
+            dell&apos;esperienza.
+          </p>
+        </blockquote>
       </section>
 
       <section aria-labelledby="sfida-title" className="rounded-3xl border border-white/10 bg-[#222228] p-5 md:p-8">
@@ -834,6 +698,14 @@ export function ProgettiParoleCheCurano() {
 
       <PhotoStory />
       <VideoSlot />
+
+      <figure>
+        <img
+          src={`${ASSET}/newsletter.jpg`}
+          alt="Newsletter Behind the Lab, episodio 02. Le parole che curano, un evento ibrido per Officina del Paziente."
+          className="h-auto w-full rounded-2xl"
+        />
+      </figure>
 
       <section className="rounded-3xl border border-leanme-fuchsia/50 bg-black px-6 py-12 md:px-10 md:py-16">
         <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-leanme-fuchsia">

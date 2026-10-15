@@ -4,15 +4,15 @@
     "category": "progetti-conclusi",
     "title": "Le parole che curano. La tecnologia che dà voce alle persone.",
     "excerpt": [
-      "Behind the Lab, episodio 02. Una giornata a Roma dedicata a pazienti, caregiver e associazioni.",
-      "LeanMe ha trasformato l'evento ibrido in un'esperienza di ascolto, confronto e partecipazione."
+      "Behind the Lab, episodio 02. Un evento ibrido a Roma per Officina del Paziente.",
+      "LeanMe ha curato sito, regia, sale parallele e produzione audiovisiva."
     ],
     "date": "2026-10-10",
     "readTime": "6 min",
     "image": {
-      "src": "/assets/leanlab/progetti-parole-che-curano/cover.svg",
-      "alt": "Behind the Lab, episodio 02. Le parole che curano. La tecnologia al servizio delle parole.",
-      "replaceHint": "Sostituire con la grafica newsletter quando il file è disponibile."
+      "src": "/assets/leanlab/progetti-parole-che-curano/newsletter.jpg",
+      "alt": "Behind the Lab, episodio 02. Le parole che curano, un evento ibrido per Officina del Paziente.",
+      "replaceHint": ""
     },
     "author": "LeanMe",
     "tags": ["Progetti"],
@@ -26,7 +26,7 @@
     "faq": [
       {
         "question": "Che cos'è Le parole che curano?",
-        "answer": "Una giornata partecipativa a Roma, il 10 ottobre 2026, dedicata a pazienti, caregiver e associazioni per riflettere su comunicazione, stigma e inclusione."
+        "answer": "La giornata ibrida del 10 ottobre 2026 a Roma, realizzata per Officina del Paziente. Al centro, la comunicazione tra pazienti, caregiver, associazioni e professionisti sanitari."
       },
       {
         "question": "Qual era la sfida dell'evento ibrido?",
@@ -42,8 +42,8 @@
       }
     ],
     "inPocheParole": [
-      "Le parole che curano è una giornata partecipativa sul linguaggio, lo stigma e l'inclusione, per pazienti, caregiver e associazioni.",
-      "La sfida era un evento ibrido davvero partecipativo: plenaria condivisa, gruppi in sale fisiche e virtuali, restituzione in plenaria.",
+      "Le parole che curano è un evento ibrido del 10 ottobre 2026 a Roma, seguito da LeanMe per Officina del Paziente.",
+      "La sfida era far partecipare chi era in sala e chi era online: plenaria condivisa, gruppi, restituzione.",
       "LeanMe ha seguito il progetto dall'iscrizione all'ultimo ciak, con sito, regia, streaming, sale parallele e produzione audiovisiva.",
       "La tecnologia non sostituisce le relazioni: le rende possibili, anche a distanza."
     ]
