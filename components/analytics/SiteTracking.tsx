@@ -29,8 +29,8 @@ export function GoogleAnalytics() {
     document.head.appendChild(script);
 
     w.dataLayer = w.dataLayer || [];
-    w.gtag = function gtag() {
-      w.dataLayer?.push(arguments);
+    w.gtag = (...args: unknown[]) => {
+      w.dataLayer?.push(args);
     };
     w.gtag("js", new Date());
     w.gtag("config", GA_MEASUREMENT_ID);
