@@ -32,7 +32,7 @@ const PART_CLASS: Record<PartKind, string> = {
   verifica: "text-white/80",
 };
 
-type Phase = "loading" | "closed" | "gate" | "idea" | "who" | "focus" | "skip" | "result";
+type Phase = "loading" | "closed" | "gate" | "idea" | "focus" | "skip" | "result";
 
 interface ResultPayload {
   runId: string;
@@ -94,8 +94,6 @@ export function PromptLab() {
   const [privacy, setPrivacy] = useState(false);
   const [marketing, setMarketing] = useState(false);
   const [idea, setIdea] = useState("");
-  const [contact, setContact] = useState("");
-  const [afterWho, setAfterWho] = useState<"focus" | "skip">("focus");
   const [questions, setQuestions] = useState<LabQuestion[]>([]);
   const [questionIndex, setQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<string, string>>({});
@@ -115,7 +113,6 @@ export function PromptLab() {
       .then((response) => response.json())
       .then((payload: { open?: boolean; expiresLabel?: string; name?: string | null }) => {
         if (payload.expiresLabel) setExpiresLabel(payload.expiresLabel);
-        if (payload.name) setContact(payload.name);
         if (!payload.open) {
           setPhase("closed");
           return;
@@ -193,34 +190,10 @@ export function PromptLab() {
           payload.angela ||
             "Obiettivo, contesto e forma ci sono già. Si può scrivere il prompt."
         );
-        setAfterWho("skip");
+        setPhase("skip");
       } else {
-        setAfterWho("focus");
+        setPhase("focus");
       }
-      setPhase("who");
-    } catch {
-      setError("Connessione interrotta. Riprova.");
-    } finally {
-      setBusy(false);
-    }
-  }
-
-  async function saveWho(event: React.FormEvent) {
-    event.preventDefault();
-    setBusy(true);
-    setError(null);
-    try {
-      const response = await fetch("/api/prompt-builder/who", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ contact }),
-      });
-      const payload = (await response.json()) as { error?: string };
-      if (!response.ok) {
-        setError(payload.error ?? "Inserisci il tuo nome o la tua email.");
-        return;
-      }
-      setPhase(afterWho);
     } catch {
       setError("Connessione interrotta. Riprova.");
     } finally {
@@ -480,37 +453,6 @@ export function PromptLab() {
             className="mt-5 inline-flex min-h-12 items-center rounded-full bg-leanme-fuchsia px-5 text-sm font-semibold text-white disabled:opacity-60"
           >
             {busy ? "Scelgo le domande…" : "Metti a fuoco"}
-          </button>
-          {error ? <p className="mt-3 text-sm text-[#ff8abe]">{error}</p> : null}
-        </form>
-      ) : null}
-
-      {phase === "who" ? (
-        <form onSubmit={saveWho} className="mt-8">
-          <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#8adfff]">
-            Prima domanda · obbligatoria
-          </p>
-          <h2 className="mt-2 text-2xl font-extrabold text-white">
-            Inserisci il tuo nome o la tua email
-          </h2>
-          <p className="mt-3 text-sm text-white/70">
-            Ci serve per sapere chi usa il laboratorio. Basta uno dei due.
-          </p>
-          <input
-            value={contact}
-            onChange={(event) => setContact(event.target.value)}
-            required
-            minLength={2}
-            maxLength={254}
-            autoComplete="username"
-            className="mt-4 w-full rounded-2xl border border-white/15 bg-[#16161a] px-4 py-3 text-base text-white outline-none focus:border-leanme-fuchsia"
-          />
-          <button
-            type="submit"
-            disabled={busy}
-            className="mt-5 inline-flex min-h-12 items-center rounded-full bg-leanme-fuchsia px-5 text-sm font-semibold text-white disabled:opacity-60"
-          >
-            {busy ? "Salvo…" : "Continua"}
           </button>
           {error ? <p className="mt-3 text-sm text-[#ff8abe]">{error}</p> : null}
         </form>

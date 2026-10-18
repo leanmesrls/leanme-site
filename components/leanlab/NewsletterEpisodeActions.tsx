@@ -61,11 +61,13 @@ export function NewsletterEpisodeActions({
 export function LeanLabPreviewCtas({
   cta,
   videoCta,
+  builder,
 }: {
   cta?: LeanLabArticleCta;
   videoCta?: LeanLabArticleCta;
+  builder?: LeanLabArticleCta;
 }) {
-  if (!cta && !videoCta) {
+  if (!cta && !videoCta && !builder) {
     return <div className="pb-4" aria-hidden />;
   }
 
@@ -85,6 +87,14 @@ export function LeanLabPreviewCtas({
           className="inline-flex min-h-10 items-center text-xs font-semibold uppercase tracking-[0.1em] text-leanme-fuchsia transition hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leanme-fuchsia"
         >
           {videoCta.label} →
+        </CtaAnchor>
+      ) : null}
+      {builder ? (
+        <CtaAnchor
+          href={builder.href}
+          className="inline-flex min-h-10 items-center text-xs font-semibold uppercase tracking-[0.1em] text-leanme-fuchsia transition hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leanme-fuchsia"
+        >
+          {builder.label} →
         </CtaAnchor>
       ) : null}
     </div>

@@ -18,12 +18,12 @@ Se non servono domande, questions è [] e ready è true. angela spiega in una fr
 
 const COMPOSE_SYSTEM = `Sei il progettista del Lean Prompt Builder di LeanMe.
 Scrivi un prompt in italiano che la persona possa copiare in uno strumento AI gratuito.
-Non svolgere il compito. Non inventare fatti che la persona non ha detto: se manca un dato, la riga di verifica deve chiedere di domandarlo prima di procedere.
+Non svolgere il compito. Non inventare fatti che la persona non ha detto: se manca un dato, chiedi nel testo di domandarlo prima di procedere.
 
-Il prompt contiene, in sequenza, frasi distinguibili:
-ruolo, obiettivo, contesto, formato, verifica.
+Il prompt è un testo discorsivo, di due o quattro frasi collegate, come lo diresti a una persona. Fonde l'idea e le risposte in un'unica istruzione naturale.
+Non è uno schema. Non usare etichette (Ruolo, Obiettivo, Contesto, Formato, Verifica), elenchi puntati, due punti da titolo, né la forma domanda e risposta. Non ripetere le domande una per una.
 
-parts: per ogni pezzo, text è una sottostringa esatta del campo prompt.
+Dentro quel testo continuo devono comunque esserci, come frasi normali, il ruolo, l'obiettivo, il contesto, il formato del risultato e una verifica. parts.text è una sottostringa esatta del campo prompt, non un titolo.
 why: una frase breve per ciascun kind, dice a cosa serve quel pezzo.
 tool.id deve essere uno degli id del catalogo. because è una frase sul caso specifico, senza dire che quello strumento è il migliore in assoluto.
 alternatives: uno o due altri id del catalogo.
@@ -159,8 +159,8 @@ export async function composePrompt(input: {
       `Idea iniziale:\n${input.idea}`,
       `Categoria: ${input.category}`,
       input.answers.length
-        ? `Risposte:\n${input.answers
-            .map((answer) => `- ${answer.question}: ${answer.value}`)
+        ? `Dettagli emersi, da fondere nel testo e non da ripetere come elenco:\n${input.answers
+            .map((answer) => `${answer.question} → ${answer.value}`)
             .join("\n")}`
         : "Nessuna domanda aggiuntiva: l'idea era già abbastanza chiara.",
     ].join("\n\n")

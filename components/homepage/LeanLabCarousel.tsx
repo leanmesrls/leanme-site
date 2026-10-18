@@ -67,7 +67,14 @@ function ArticleCard({ article }: { article: LeanLabArticle }) {
           <p className="text-xs text-white/45">{article.readTime} di lettura</p>
         </div>
       </Link>
-      <LeanLabPreviewCtas {...leanLabPreviewCtas(article)} />
+      <LeanLabPreviewCtas
+        {...leanLabPreviewCtas(article)}
+        builder={
+          article.cta?.href === "/prompt-builder"
+            ? { href: "/prompt-builder", label: "Prova il Prompt Builder v.1" }
+            : undefined
+        }
+      />
     </FuchsiaGlowCard>
   );
 }

@@ -154,24 +154,40 @@ export function buildLeanLabArticleAside(
 export function buildAcademyResourceAside(
   resource: AcademyResource
 ): LeanLabArticleAsideModel | null {
-  const actions: LeanLabAsideAction[] = [];
-  const related: LeanLabAsideRelated[] = [];
+  const slug = resource.articleHref?.split("/").filter(Boolean).pop();
+  const article = slug ? getLeanLabArticle(slug) : undefined;
+  const currentArticleHref = article ? `/leanlab/articolo/${article.slug}` : undefined;
+  const hidden = new Set<string>([resource.href]);
+  if (currentArticleHref) hidden.add(currentArticleHref);
 
-  if (resource.articleHref) {
-    actions.push({
-      href: resource.articleHref,
-      label: "Leggi nel Lean Lab",
-    });
-    const slug = resource.articleHref.split("/").pop();
-    const article = slug ? getLeanLabArticle(slug) : undefined;
-    if (article && article.listed !== false) {
-      related.push(articleCard(article));
+  const actions: LeanLabAsideAction[] = [];
+  if (currentArticleHref) {
+    pushAction(actions, currentArticleHref, "Leggi l'articolo nel Lean Lab");
+  }
+  if (article) {
+    for (const item of articleActions(article)) {
+      if (hidden.has(item.href)) continue;
+      pushAction(actions, item.href, item.label);
     }
   }
 
-  for (const other of getPublishedAcademyResources()) {
-    if (other.slug === resource.slug) continue;
-    related.push(academyCard(other));
+  const related: LeanLabAsideRelated[] = [];
+  const seen = new Set<string>(hidden);
+  const fromArticle =
+    article && article.listed !== false ? buildLeanLabArticleAside(article)?.related ?? [] : [];
+  for (const item of fromArticle) {
+    if (seen.has(item.href)) continue;
+    seen.add(item.href);
+    related.push(item);
+  }
+
+  if (!article) {
+    for (const other of getPublishedAcademyResources()) {
+      if (other.slug === resource.slug || seen.has(other.href)) continue;
+      if (resource.tag && other.tag && other.tag !== resource.tag) continue;
+      seen.add(other.href);
+      related.push(academyCard(other));
+    }
   }
 
   if (actions.length === 0 && related.length === 0) return null;
