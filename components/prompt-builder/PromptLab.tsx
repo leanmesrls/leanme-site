@@ -614,7 +614,7 @@ export function PromptLab() {
           ) : null}
 
           <div className="rounded-3xl bg-[#16161a] p-5">
-            <p className="text-sm font-semibold text-white">Hai provato questo prompt?</p>
+            <p className="text-sm font-semibold text-white">Se hai provato questo prompt, lasciaci il tuo feedback!</p>
             <div className="mt-3 flex flex-wrap gap-2">
               <button
                 type="button"
