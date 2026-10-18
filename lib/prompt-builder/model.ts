@@ -232,7 +232,7 @@ export async function composePrompt(input: {
     `${input.idea} ${input.answers.map((answer) => `${answer.question} ${answer.value}`).join(" ")}`,
     input.category
   );
-  const toolId = signal ?? modelId || "chatgpt";
+  const toolId = signal ?? (modelId || "chatgpt");
   const alternatives = [
     ...(modelId && modelId !== toolId ? [modelId] : []),
     ...(Array.isArray(record?.alternatives) ? record.alternatives : []),
