@@ -4,6 +4,7 @@ import { Header } from "@/components/layout/Header";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteShell } from "@/components/layout/SiteShell";
 import { TeresaPublicChat } from "@/components/integrations/TeresaPublicChat";
+import { GoogleAnalytics, MetaAnalytics } from "@/components/analytics/SiteTracking";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { organizationSchema, websiteSchema } from "@/lib/structured-data";
 import { getDefaultMetadata } from "@/lib/metadata";
@@ -21,6 +22,10 @@ export default function RootLayout({
       lang="it"
       className={`${GeistSans.variable} ${GeistMono.variable}`}
     >
+      <head>
+        <GoogleAnalytics />
+        <MetaAnalytics />
+      </head>
       <body className="min-h-screen bg-black font-sans text-white antialiased">
         <JsonLd data={[organizationSchema(), websiteSchema()]} />
         <SiteShell

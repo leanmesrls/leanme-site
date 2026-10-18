@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 type ThreadRow = {
@@ -108,6 +109,18 @@ export function LeanHumanInbox() {
               Lean.Human
             </p>
             <h1 className="text-lg font-semibold text-white">Teresa pubblica</h1>
+            <Link
+              href="/lean-human/prompt-builder"
+              className="mt-1 block text-[11px] font-semibold uppercase tracking-[0.08em] text-white/45 hover:text-white"
+            >
+              Prompt Builder
+            </Link>
+            <Link
+              href="/lean-human/interesse"
+              className="mt-1 block text-[11px] font-semibold uppercase tracking-[0.08em] text-white/45 hover:text-white"
+            >
+              Interesse articoli
+            </Link>
           </div>
           <button
             type="button"

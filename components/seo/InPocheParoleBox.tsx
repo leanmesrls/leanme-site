@@ -3,11 +3,13 @@ import { FadeIn } from "@/components/motion/FadeIn";
 interface InPocheParoleBoxProps {
   paragraphs: string[];
   title?: string;
+  compact?: boolean;
 }
 
 export function InPocheParoleBox({
   paragraphs,
   title = "In poche parole",
+  compact = false,
 }: InPocheParoleBoxProps) {
   if (paragraphs.length === 0) {
     return null;
@@ -16,7 +18,11 @@ export function InPocheParoleBox({
   return (
     <aside
       aria-labelledby="in-poche-parole-heading"
-      className="rounded-xl border border-leanme-fuchsia/25 bg-gradient-to-br from-leanme-fuchsia/[0.08] to-black p-6 md:p-8"
+      className={
+        compact
+          ? "rounded-xl border border-leanme-fuchsia/25 bg-gradient-to-br from-leanme-fuchsia/[0.08] to-black p-4"
+          : "rounded-xl border border-leanme-fuchsia/25 bg-gradient-to-br from-leanme-fuchsia/[0.08] to-black p-6 md:p-8"
+      }
     >
       <FadeIn>
         <h2
@@ -25,11 +31,15 @@ export function InPocheParoleBox({
         >
           {title}
         </h2>
-        <div className="mt-4 space-y-3">
+        <div className={compact ? "mt-2 space-y-2" : "mt-4 space-y-3"}>
           {paragraphs.map((paragraph) => (
             <p
               key={paragraph.slice(0, 48)}
-              className="text-sm leading-relaxed text-white/75"
+              className={
+                compact
+                  ? "text-xs leading-relaxed text-white/70"
+                  : "text-sm leading-relaxed text-white/75"
+              }
             >
               {paragraph}
             </p>

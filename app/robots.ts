@@ -6,7 +6,19 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: ["/lean-human", "/api/teresa"],
+      disallow: [
+        "/lean-human",
+        "/api/teresa",
+        "/wp-admin",
+        "/wp-includes",
+        "/wp-content",
+        "/wp-json",
+        "/xmlrpc.php",
+        "/wp-login.php",
+        "/*.php$",
+        "/.env",
+        "/@fs/",
+      ],
     },
     sitemap: `${SITE_URL}/sitemap.xml`,
   };

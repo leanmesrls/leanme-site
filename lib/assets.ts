@@ -30,6 +30,10 @@ export const ASSETS = {
       "/assets/leanlab/ricerca-e-innovazione-episodio-01.mp4?v=2",
     newsletterRicercaEpisodio01Cover:
       "/assets/leanlab/ricerca-episodio-01-cover.jpg",
+    newsletterRicercaEpisodio02Video:
+      "/assets/leanlab/ricerca-e-innovazione-episodio-02.mp4",
+    newsletterRicercaEpisodio02Cover:
+      "/assets/leanlab/ricerca-episodio-02-cover.jpg",
   },
   agents: {
     leonardo: "/assets/official/leonardo.png",

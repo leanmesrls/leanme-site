@@ -38,6 +38,8 @@ yarn-error.log*
 
 # Teresa pubblica — thread locali (dev)
 .teresa-data/
+.prompt-builder-data/
+.leanlab-data/
 
 # vercel
 .vercel

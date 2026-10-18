@@ -11,6 +11,7 @@ import { NewsletterEpisodio04 } from "./articles/NewsletterEpisodio04";
 import { NewsletterEpisodio05 } from "./articles/NewsletterEpisodio05";
 import { NewsletterEpisodio06 } from "./articles/NewsletterEpisodio06";
 import { NewsletterRicercaEpisodio01 } from "./articles/NewsletterRicercaEpisodio01";
+import { NewsletterRicercaEpisodio02 } from "./articles/NewsletterRicercaEpisodio02";
 import { ProgettiParoleCheCurano } from "./articles/ProgettiParoleCheCurano";
 import { ProgettiSanLazzaro } from "./articles/ProgettiSanLazzaro";
 
@@ -42,6 +43,8 @@ export function LeanLabArticleBody({
       return <NewsletterEpisodio06 cta={cta} />;
     case "newsletter-ricerca-episodio-01":
       return <NewsletterRicercaEpisodio01 videoCta={videoCta} />;
+    case "newsletter-ricerca-episodio-02":
+      return <NewsletterRicercaEpisodio02 />;
     case "progetti-san-lazzaro":
       return <ProgettiSanLazzaro />;
     case "progetti-parole-che-curano":

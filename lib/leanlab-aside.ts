@@ -22,6 +22,7 @@ export interface LeanLabAsideRelated {
   imageAlt?: string;
   kicker?: string;
   category?: string;
+  action?: LeanLabAsideAction;
 }
 
 export interface LeanLabArticleAsideModel {
@@ -81,7 +82,19 @@ function linkedAcademy(article: LeanLabArticle): LeanLabAsideRelated[] {
       (resource) =>
         explicit.has(resource.slug) || resource.articleHref === articlePath
     )
-    .map(academyCard);
+    .map((resource) => {
+      const card = academyCard(resource);
+      if (
+        article.cta?.href === "/prompt-builder" &&
+        resource.articleHref === articlePath
+      ) {
+        card.action = {
+          href: "/prompt-builder",
+          label: "Prompt Builder · versione beta",
+        };
+      }
+      return card;
+    });
 }
 
 export function buildLeanLabArticleAside(

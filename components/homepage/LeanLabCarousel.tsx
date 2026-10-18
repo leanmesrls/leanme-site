@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ArrowIcon } from "@/components/homepage/Icons";
 import { SectionTitle } from "@/components/homepage/SectionTitle";
 import { LeanLabPreviewCtas } from "@/components/leanlab/NewsletterEpisodeActions";
+import { leanLabPreviewCtas } from "@/lib/leanlab-preview";
 import { FuchsiaGlowCard } from "@/components/motion/FuchsiaGlowCard";
 import { RevealOnScroll } from "@/components/motion/RevealOnScroll";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
@@ -66,14 +67,7 @@ function ArticleCard({ article }: { article: LeanLabArticle }) {
           <p className="text-xs text-white/45">{article.readTime} di lettura</p>
         </div>
       </Link>
-      <LeanLabPreviewCtas
-        cta={
-          article.slug === "poliambulatorio-privato-san-lazzaro"
-            ? { href: articleHref, label: "Leggi l'articolo" }
-            : article.cta
-        }
-        videoCta={article.videoCta}
-      />
+      <LeanLabPreviewCtas {...leanLabPreviewCtas(article)} />
     </FuchsiaGlowCard>
   );
 }

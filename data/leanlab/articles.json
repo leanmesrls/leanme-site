@@ -1,5 +1,67 @@
 [
   {
+    "slug": "come-scrivere-prompt-migliori",
+    "category": "ricerca-e-innovazione",
+    "title": "L'AI non ti capisce? Forse devi cambiare domanda.",
+    "excerpt": [
+      "Te lo spiego io. Episodio 02, con Lean.Agent.Angela.",
+      "3 tecniche pratiche per scrivere prompt migliori e ottenere risposte più utili dall'intelligenza artificiale.",
+      "L'intelligenza artificiale amplifica la qualità delle nostre istruzioni, non sostituisce la nostra capacità di pensare."
+    ],
+    "date": "2026-10-19",
+    "readTime": "6 min",
+    "image": {
+      "src": "/assets/leanlab/newsletter-ricerca-episodio-02.jpg",
+      "alt": "Te lo spiego io. Episodio 02: l'AI non ti capisce? Forse devi cambiare domanda.",
+      "replaceHint": ""
+    },
+    "author": "Lean.Agent.Angela",
+    "tags": ["Newsletter"],
+    "bodyTemplate": "newsletter-ricerca-episodio-02",
+    "hideDefaultImage": true,
+    "relatedAcademySlugs": ["ricerca-e-innovazione-episodio-01"],
+    "cta": {
+      "href": "/prompt-builder",
+      "label": "Ti interessa questo argomento?"
+    },
+    "videoCta": {
+      "href": "/lean-academy/ricerca-e-innovazione-episodio-02",
+      "label": "Guarda la puntata in Lean Academy"
+    },
+    "faq": [
+      {
+        "question": "Perché l'AI risponde una cosa diversa da quella che avevo in mente?",
+        "answer": "Perché non legge nel pensiero. Più la richiesta è generica, più spazio lasci all'interpretazione."
+      },
+      {
+        "question": "Qual è il primo trucco?",
+        "answer": "Non chiedere subito la soluzione. Chiedi all'AI di farti delle domande per capire meglio cosa vuoi ottenere."
+      },
+      {
+        "question": "Qual è il secondo trucco?",
+        "answer": "Non accontentarti della prima risposta. Chiedi tre alternative, una professionale, una creativa e una fuori dagli schemi, e poi un confronto."
+      },
+      {
+        "question": "Qual è il terzo trucco?",
+        "answer": "Chiedi tre punti deboli della proposta e come migliorarli. La verifica finale resta tua: anche l'AI può sbagliare quando controlla sé stessa."
+      },
+      {
+        "question": "Che cos'è il Lean Prompt Builder v1.0?",
+        "answer": "È il premio per chi dice che questo argomento gli interessa. Con un clic si ricevono gli aggiornamenti sulla prossima formazione in questo ambito e si accede al laboratorio: idea, al massimo tre domande, prompt da copiare. È gratuito fino al 19 novembre 2026."
+      },
+      {
+        "question": "Come si accede al Prompt Builder?",
+        "answer": "Dalla pagina della puntata. Chi dice che l'argomento gli interessa riceve gli aggiornamenti sui prossimi corsi a pagamento e, con lo stesso passaggio, accede al Builder fino al 19 novembre 2026."
+      }
+    ],
+    "inPocheParole": [
+      "Episodio 02 di Ricerca e Innovazione, «Te lo spiego io», è la puntata con Lean.Agent.Angela: l'AI non ti capisce se la domanda resta generica.",
+      "Tre tecniche pratiche: farsi fare le domande prima della soluzione, chiedere alternative a confronto, mettere in discussione la risposta e verificarla.",
+      "L'intelligenza artificiale amplifica la qualità delle nostre istruzioni, non sostituisce la nostra capacità di pensare.",
+      "Il Lean Prompt Builder v1.0 è il premio per chi è interessato all'argomento: un clic aggiorna sulla prossima formazione in questo ambito e sblocca il laboratorio, gratuito fino al 19 novembre 2026."
+    ]
+  },
+  {
     "slug": "le-parole-che-curano",
     "category": "progetti-conclusi",
     "title": "Le parole che curano. La tecnologia che dà voce alle persone.",
@@ -94,7 +156,7 @@
     ]
   },
   {
-    "slug": "leanme-ricerca-e-innovazione-episodio-01",
+    "slug": "seo-aeo-e-geo",
     "category": "ricerca-e-innovazione",
     "title": "Te lo spiego io. SEO, AEO e GEO",
     "excerpt": [

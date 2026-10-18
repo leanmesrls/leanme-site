@@ -5,12 +5,14 @@ interface FaqSectionProps {
   items: FaqItem[];
   title?: string;
   framed?: boolean;
+  compact?: boolean;
 }
 
 export function FaqSection({
   items,
   title = "Domande frequenti",
   framed = false,
+  compact = false,
 }: FaqSectionProps) {
   if (items.length === 0) {
     return null;
@@ -21,7 +23,9 @@ export function FaqSection({
       aria-labelledby="faq-heading"
       className={
         framed
-          ? "rounded-xl border border-leanme-fuchsia/25 bg-gradient-to-br from-leanme-fuchsia/[0.08] to-black p-6 md:p-8"
+          ? compact
+            ? "rounded-xl border border-leanme-fuchsia/25 bg-gradient-to-br from-leanme-fuchsia/[0.08] to-black p-4"
+            : "rounded-xl border border-leanme-fuchsia/25 bg-gradient-to-br from-leanme-fuchsia/[0.08] to-black p-6 md:p-8"
           : "border-t border-white/10 pt-12 md:pt-16"
       }
     >
@@ -37,22 +41,32 @@ export function FaqSection({
           {title}
         </h2>
       </FadeIn>
-      <div className="mt-8 divide-y divide-white/10">
+      <div className={compact ? "mt-3 divide-y divide-white/10" : "mt-8 divide-y divide-white/10"}>
         {items.map((item, index) => (
           <FadeIn key={item.question} delay={index * 0.04}>
-            <details className="group py-5">
-              <summary className="cursor-pointer list-none text-base font-semibold leading-snug text-white transition hover:text-leanme-fuchsia [&::-webkit-details-marker]:hidden">
+            <details className={compact ? "group py-2.5" : "group py-5"}>
+              <summary
+                className={`cursor-pointer list-none font-semibold leading-snug text-white transition hover:text-leanme-fuchsia [&::-webkit-details-marker]:hidden ${
+                  compact ? "text-sm" : "text-base"
+                }`}
+              >
                 <span className="flex items-start justify-between gap-4">
                   {item.question}
                   <span
                     aria-hidden="true"
-                    className="mt-0.5 shrink-0 text-lg text-white/40 transition group-open:rotate-45"
+                    className={`mt-0.5 shrink-0 text-white/40 transition group-open:rotate-45 ${
+                      compact ? "text-base" : "text-lg"
+                    }`}
                   >
                     +
                   </span>
                 </span>
               </summary>
-              <p className="mt-4 max-w-3xl text-sm leading-relaxed text-white/70">
+              <p
+                className={`max-w-3xl leading-relaxed text-white/70 ${
+                  compact ? "mt-2 text-xs" : "mt-4 text-sm"
+                }`}
+              >
                 {item.answer}
               </p>
             </details>

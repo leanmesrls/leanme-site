@@ -14,6 +14,17 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      // Articoli LeanLab: lo slug dice il tema. La serie Rebuild resta sull'URL di campagna.
+      {
+        source: "/leanlab/articolo/leanme-ricerca-e-innovazione-episodio-01",
+        destination: "/leanlab/articolo/seo-aeo-e-geo",
+        permanent: true,
+      },
+      {
+        source: "/leanlab/articolo/leanme-ricerca-e-innovazione-episodio-02",
+        destination: "/leanlab/articolo/come-scrivere-prompt-migliori",
+        permanent: true,
+      },
       {
         source: "/segreteria",
         destination: "/vcards",

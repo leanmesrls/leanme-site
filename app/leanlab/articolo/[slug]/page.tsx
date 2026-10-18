@@ -7,6 +7,7 @@ import { PageSection } from "@/components/layout/PageSection";
 import { VisibleBreadcrumb } from "@/components/layout/VisibleBreadcrumb";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { LeanLabArticleBody } from "@/components/leanlab/LeanLabArticleBody";
+import { ArticleInterestStars } from "@/components/leanlab/ArticleInterestStars";
 import { LeanLabArticleAside } from "@/components/leanlab/LeanLabRelatedAside";
 import { FaqSection } from "@/components/seo/FaqSection";
 import { InPocheParoleBox } from "@/components/seo/InPocheParoleBox";
@@ -109,13 +110,7 @@ export default async function LeanLabArticlePage({ params }: PageProps) {
         subtitleClassName={categoryBadgeClass(article.category, "text-xs md:text-sm")}
       />
       <PageSection className="pt-8 pb-20 md:pt-10 md:pb-28 lg:pb-32">
-        <div
-          className={
-            aside
-              ? "lg:grid lg:grid-cols-[minmax(0,1fr)_18.5rem] lg:items-start lg:gap-12"
-              : undefined
-          }
-        >
+        <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_18.5rem] lg:items-start lg:gap-12">
           <FadeIn>
             <Link
               href={`/leanlab/${article.category}`}
@@ -157,18 +152,26 @@ export default async function LeanLabArticlePage({ params }: PageProps) {
                 </p>
               )}
             </div>
+            <div className="mt-14 max-w-xl md:mt-16">
+              <ArticleInterestStars slug={article.slug} />
+            </div>
             {article.faq?.length ? (
-              <div className="mt-14 md:mt-16">
-                <FaqSection items={article.faq} framed />
+              <div className="mt-8">
+                <FaqSection items={article.faq} framed compact />
               </div>
             ) : null}
             {article.inPocheParole?.length ? (
-              <div className="mt-14 md:mt-16">
-                <InPocheParoleBox paragraphs={article.inPocheParole} />
+              <div className="mt-4">
+                <InPocheParoleBox paragraphs={article.inPocheParole} compact />
               </div>
             ) : null}
           </FadeIn>
-          {aside ? <LeanLabArticleAside {...aside} /> : null}
+          <LeanLabArticleAside
+            slug={article.slug}
+            actions={aside?.actions ?? []}
+            related={aside?.related ?? []}
+            relatedFooter={aside?.relatedFooter}
+          />
         </div>
       </PageSection>
     </>

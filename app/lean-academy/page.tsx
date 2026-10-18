@@ -16,7 +16,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 export const metadata = createPageMetadata({
   title: "Lean Academy",
   description:
-    "Area pubblica Lean Academy: la prima puntata di Ricerca e Innovazione, Te lo spiego io. L'area riservata è in arrivo.",
+    "Area pubblica Lean Academy: le puntate di Ricerca e Innovazione, Te lo spiego io. L'area riservata è in arrivo.",
   path: "/lean-academy",
 });
 

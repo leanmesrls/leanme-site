@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ASSETS } from "@/lib/assets";
 import { LeanLabPreviewCtas } from "@/components/leanlab/NewsletterEpisodeActions";
+import { leanLabPreviewCtas } from "@/lib/leanlab-preview";
 import { FuchsiaGlowCard } from "@/components/motion/FuchsiaGlowCard";
 import { categoryBadgeClass } from "@/lib/leanlab-category";
 import type { LeanLabArticle } from "@/types/content";
@@ -55,14 +56,7 @@ export function ArticleCard({ article }: ArticleCardProps) {
           <p className="text-xs text-white/50">{article.readTime} di lettura</p>
         </div>
       </Link>
-      <LeanLabPreviewCtas
-        cta={
-          article.slug === "poliambulatorio-privato-san-lazzaro"
-            ? { href: articleHref, label: "Leggi l'articolo" }
-            : article.cta
-        }
-        videoCta={article.videoCta}
-      />
+      <LeanLabPreviewCtas {...leanLabPreviewCtas(article)} />
     </FuchsiaGlowCard>
   );
 }

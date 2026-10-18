@@ -11,6 +11,48 @@
     "description": "Accessibile a tutti. Video introduttivi, guide, articoli, tutorial, webinar gratuiti e risorse scaricabili.",
     "resources": [
       {
+        "slug": "ricerca-e-innovazione-episodio-02",
+        "title": "Te lo spiego io. Come scrivere prompt migliori",
+        "type": "Video",
+        "tag": "Ricerca & Innovazione",
+        "description": "Tre tecniche pratiche per scrivere prompt migliori e ottenere risposte più utili dall'intelligenza artificiale. Una cosa complicata, spiegata semplice, con Lean.Agent.Angela.",
+        "published": true,
+        "image": {
+          "src": "/assets/leanlab/ricerca-episodio-02-cover.jpg",
+          "alt": "Te lo spiego io. Episodio 02 di Ricerca e Innovazione: come scrivere prompt migliori.",
+          "replaceHint": ""
+        },
+        "video": {
+          "src": "/assets/leanlab/ricerca-e-innovazione-episodio-02.mp4",
+          "poster": "/assets/leanlab/ricerca-episodio-02-cover.jpg"
+        },
+        "href": "/lean-academy/ricerca-e-innovazione-episodio-02",
+        "articleHref": "/leanlab/articolo/come-scrivere-prompt-migliori",
+        "faq": [
+          {
+            "question": "Perché l'AI risponde una cosa diversa da quella che avevo in mente?",
+            "answer": "Perché non legge nel pensiero. Più la richiesta è generica, più spazio lasci all'interpretazione."
+          },
+          {
+            "question": "Qual è il primo trucco?",
+            "answer": "Non chiedere subito la soluzione. Chiedi all'AI di farti delle domande per capire meglio cosa vuoi ottenere."
+          },
+          {
+            "question": "Qual è il secondo trucco?",
+            "answer": "Non accontentarti della prima risposta. Chiedi tre alternative, una professionale, una creativa e una fuori dagli schemi, e poi un confronto."
+          },
+          {
+            "question": "Qual è il terzo trucco?",
+            "answer": "Chiedi tre punti deboli della proposta e come migliorarli. La verifica finale resta tua: anche l'AI può sbagliare quando controlla sé stessa."
+          }
+        ],
+        "inPocheParole": [
+          "Te lo spiego io, con Lean.Agent.Angela: l'AI non ti capisce se la domanda resta generica.",
+          "Tre tecniche: farsi fare le domande prima della soluzione, chiedere alternative a confronto, mettere in discussione la risposta e verificarla.",
+          "L'intelligenza artificiale amplifica la qualità delle nostre istruzioni, non sostituisce la nostra capacità di pensare."
+        ]
+      },
+      {
         "slug": "ricerca-e-innovazione-episodio-01",
         "title": "Te lo spiego io. SEO, AEO e GEO",
         "type": "Video",
@@ -27,7 +69,7 @@
           "poster": "/assets/leanlab/ricerca-episodio-01-cover.jpg"
         },
         "href": "/lean-academy/ricerca-e-innovazione-episodio-01",
-        "articleHref": "/leanlab/articolo/leanme-ricerca-e-innovazione-episodio-01",
+        "articleHref": "/leanlab/articolo/seo-aeo-e-geo",
         "faq": [
           {
             "question": "Cos'è la SEO?",

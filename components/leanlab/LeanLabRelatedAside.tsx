@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { ArticleInterestStars } from "@/components/leanlab/ArticleInterestStars";
 import type {
   LeanLabArticleAsideModel,
   LeanLabAsideAction,
@@ -33,16 +34,24 @@ function AsideLink({
   );
 }
 
+function isInterestCta(action: LeanLabAsideAction): boolean {
+  return /ti interessa questo argomento/i.test(action.label);
+}
+
 export function LeanLabArticleAside({
+  slug,
   actions,
   related,
   relatedFooter,
-}: LeanLabArticleAsideModel) {
+}: LeanLabArticleAsideModel & { slug?: string }) {
+  const visibleActions = actions.filter((item) => !isInterestCta(item));
+
   return (
     <aside aria-label="Contenuti utili" className="lg:sticky lg:top-24">
-      {actions.length > 0 ? (
-        <div className="flex flex-col gap-3">
-          {actions.map((item, index) => (
+      {slug ? <ArticleInterestStars slug={slug} /> : null}
+      {visibleActions.length > 0 ? (
+        <div className={slug ? "mt-4 flex flex-col gap-3" : "flex flex-col gap-3"}>
+          {visibleActions.map((item, index) => (
             <AsideLink key={item.href + item.label} action={item} primary={index === 0} />
           ))}
         </div>
@@ -50,7 +59,7 @@ export function LeanLabArticleAside({
       {related.length > 0 ? (
         <div
           className={
-            actions.length > 0
+            slug || visibleActions.length > 0
               ? "mt-4 rounded-2xl border border-white/10 bg-white/[0.04] p-4"
               : "rounded-2xl border border-white/10 bg-white/[0.04] p-4"
           }
@@ -60,11 +69,11 @@ export function LeanLabArticleAside({
           </p>
           <ul className="mt-3 space-y-3">
             {related.map((item) => (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  className="block overflow-hidden rounded-xl border border-white/10 transition hover:border-leanme-fuchsia"
-                >
+              <li
+                key={item.href}
+                className="overflow-hidden rounded-xl border border-white/10 transition hover:border-leanme-fuchsia"
+              >
+                <Link href={item.href} className="block">
                   {item.imageSrc ? (
                     <Image
                       src={item.imageSrc}
@@ -91,6 +100,11 @@ export function LeanLabArticleAside({
                     ) : null}
                   </span>
                 </Link>
+                {item.action ? (
+                  <div className="px-3 pb-3">
+                    <AsideLink action={item.action} primary />
+                  </div>
+                ) : null}
               </li>
             ))}
           </ul>

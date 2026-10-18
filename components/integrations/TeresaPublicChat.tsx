@@ -424,7 +424,10 @@ export function TeresaPublicChat() {
     }
   }
 
-  if (pathname?.startsWith("/lean-human")) {
+  if (
+    pathname?.startsWith("/lean-human") ||
+    pathname?.startsWith("/prompt-builder")
+  ) {
     return null;
   }
 
