@@ -24,14 +24,6 @@ const PART_LABEL: Record<PartKind, string> = {
   verifica: "Verifica",
 };
 
-const PART_CLASS: Record<PartKind, string> = {
-  ruolo: "text-leanme-fuchsia",
-  obiettivo: "text-[#8adfff]",
-  contesto: "text-[#c4b5fd]",
-  formato: "text-[#ff8abe]",
-  verifica: "text-white/80",
-};
-
 type Phase = "loading" | "closed" | "gate" | "idea" | "focus" | "skip" | "result";
 
 interface ResultPayload {
@@ -535,12 +527,12 @@ export function PromptLab() {
           <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-leanme-fuchsia">
             3 · Il tuo prompt
           </p>
-          <div className="rounded-3xl bg-[#16161a] p-5">
-            <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-white/40">
+          <div className="rounded-3xl bg-leanme-fuchsia p-5 text-white">
+            <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-white/70">
               Prima
             </p>
-            <p className="mt-1 text-sm text-white/50">{result.idea}</p>
-            <p className="mt-5 text-[11px] font-bold uppercase tracking-[0.14em] text-leanme-fuchsia">
+            <p className="mt-1 text-sm text-white/80">{result.idea}</p>
+            <p className="mt-5 text-[11px] font-bold uppercase tracking-[0.14em] text-white">
               Dopo
             </p>
             <p className="mt-2 whitespace-pre-line text-base leading-relaxed text-white">
@@ -548,7 +540,7 @@ export function PromptLab() {
                 typeof node === "string" ? (
                   <span key={`t-${index}`}>{node}</span>
                 ) : (
-                  <span key={node.key} className={`font-semibold ${PART_CLASS[node.kind]}`}>
+                  <span key={node.key} className="font-extrabold text-white">
                     {node.text}
                   </span>
                 )
@@ -561,14 +553,14 @@ export function PromptLab() {
               <button
                 type="button"
                 onClick={() => void copyPrompt()}
-                className="inline-flex min-h-11 items-center rounded-full bg-leanme-fuchsia px-5 text-sm font-semibold text-white"
+                className="inline-flex min-h-11 items-center rounded-full bg-black px-5 text-sm font-semibold text-white transition hover:bg-white hover:text-black"
               >
                 {copied ? "Prompt copiato" : "Copia il prompt"}
               </button>
               <button
                 type="button"
                 onClick={() => setWhyOpen((open) => !open)}
-                className="inline-flex min-h-11 items-center text-sm font-semibold text-[#8adfff]"
+                className="inline-flex min-h-11 items-center text-sm font-semibold text-white underline-offset-4 hover:underline"
               >
                 {whyOpen ? "Chiudi la spiegazione" : "Perché questo prompt funziona?"}
               </button>
@@ -582,8 +574,8 @@ export function PromptLab() {
                       meaning: "Rende l'istruzione più precisa.",
                     }))
                 ).map((item) => (
-                  <li key={item.kind} className="rounded-xl bg-black/40 px-3 py-2 text-xs text-white/75">
-                    <span className={`font-bold ${PART_CLASS[item.kind]}`}>
+                  <li key={item.kind} className="rounded-xl bg-black/25 px-3 py-2 text-xs text-white">
+                    <span className="font-bold text-white">
                       {PART_LABEL[item.kind]}.{" "}
                     </span>
                     {item.meaning}
@@ -594,28 +586,28 @@ export function PromptLab() {
           </div>
 
           {tool ? (
-            <div className="rounded-3xl border border-white/10 p-5">
-              <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#8adfff]">
+            <div className="rounded-3xl bg-white p-5 text-neutral-900">
+              <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-leanme-fuchsia">
                 Dove usare questo prompt
               </p>
-              <h2 className="mt-2 text-xl font-extrabold text-white">
+              <h2 className="mt-2 text-xl font-extrabold text-black">
                 Consigliato per questo caso: {tool.name}
               </h2>
-              <p className="mt-2 text-sm text-white/75">{result.toolBecause}</p>
+              <p className="mt-2 text-sm text-neutral-700">{result.toolBecause}</p>
               <a
                 href={tool.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-4 inline-flex min-h-11 items-center rounded-full border border-white/20 px-5 text-sm font-semibold text-white"
+                className="mt-4 inline-flex min-h-11 items-center rounded-full bg-black px-5 text-sm font-semibold text-white transition hover:bg-leanme-fuchsia"
               >
                 Apri {tool.name}
               </a>
               {alternatives.length ? (
-                <p className="mt-3 text-sm text-white/50">
+                <p className="mt-3 text-sm text-neutral-600">
                   Alternative da valutare: {alternatives.join(", ")}.
                 </p>
               ) : null}
-              <p className="mt-2 text-xs text-white/40">
+              <p className="mt-2 text-xs text-neutral-500">
                 Il prompt si copia e si incolla lì. Il laboratorio non parla con quello strumento.
               </p>
             </div>

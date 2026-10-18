@@ -25,14 +25,20 @@ Non è uno schema. Non usare etichette (Ruolo, Obiettivo, Contesto, Formato, Ver
 
 Dentro quel testo continuo devono comunque esserci, come frasi normali, il ruolo, l'obiettivo, il contesto, il formato del risultato e una verifica. parts.text è una sottostringa esatta del campo prompt, non un titolo.
 why: una frase breve per ciascun kind, dice a cosa serve quel pezzo.
-tool.id deve essere uno degli id del catalogo. because è una frase sul caso specifico, senza dire che quello strumento è il migliore in assoluto.
-alternatives: uno o due altri id del catalogo.
+Scegli tool.id dal catalogo in base a questo caso, non per abitudine e non copiando sempre la stessa coppia.
+- claude: prototipo, progetto, specifica, interfaccia, prodotto, flusso, analisi o testo lungo.
+- gemini: immagine, illustrazione, contenuto visivo, documento da guardare.
+- perplexity: ricerca in cui servono fonti da controllare.
+- chatgpt: bozza breve, idea o testo da sistemare in una conversazione.
+Un prototipo funzionale o un lavoro da progettista va su claude, non su chatgpt.
+because è una frase sul caso specifico, senza dire che quello strumento è il migliore in assoluto.
+alternatives: uno o due id diversi, adatti come seconda scelta, non sempre gli stessi.
 
 Catalogo:
 ${catalogForModel()}
 
 Rispondi solo con JSON:
-{"prompt":"...","parts":[{"kind":"ruolo|obiettivo|contesto|formato|verifica","text":"..."}],"why":[{"kind":"ruolo","meaning":"..."}],"tool":{"id":"chatgpt","because":"..."},"alternatives":["gemini"]}`;
+{"prompt":"...","parts":[{"kind":"ruolo|obiettivo|contesto|formato|verifica","text":"..."}],"why":[{"kind":"ruolo","meaning":"..."}],"tool":{"id":"<id del catalogo adatto a questo caso>","because":"..."},"alternatives":["<altro id>"]}`;
 
 function modelName(): string {
   return (
@@ -142,6 +148,34 @@ export interface ComposedPrompt {
   alternatives: string[];
 }
 
+function preferredTool(text: string, category: string): string | null {
+  const blob = `${text} ${category}`.toLowerCase();
+  const image = /immagin|foto|illustr|visual|locandina|disegno/.test(blob);
+  const prototype =
+    /prototip|progett|specifica|interfaccia|funzionale|designer|ux\b|ui\b|architett|prodotto|flusso|schermat/.test(
+      blob
+    );
+  if (prototype && !image) return "claude";
+  if (/font[ie]|citaz|notizi|aggiornat|ricerca sul web|fonti da/.test(blob)) return "perplexity";
+  if (image || category === "immagine") return "gemini";
+  if (category === "studio") return "perplexity";
+  if (category === "dati" || prototype) return "claude";
+  return null;
+}
+
+function becauseFor(id: string): string {
+  if (id === "claude") {
+    return "Qui serve un ragionamento lungo, una struttura o una specifica. Claude regge meglio questo tipo di lavoro.";
+  }
+  if (id === "gemini") {
+    return "Il caso ha una parte visiva o un documento da guardare. Gemini è più adatto di una chat solo testuale.";
+  }
+  if (id === "perplexity") {
+    return "Servono fonti da controllare. Perplexity le mostra, e restano da verificare.";
+  }
+  return "È una bozza o un testo da raffinare in conversazione. ChatGPT basta per partire.";
+}
+
 function asKind(value: unknown): PartKind | null {
   return typeof value === "string" && PART_KINDS.includes(value as PartKind)
     ? (value as PartKind)
@@ -193,21 +227,29 @@ export async function composePrompt(input: {
 
   const tool = asRecord(record?.tool);
   const requested = typeof tool?.id === "string" ? tool.id : "";
-  const toolId = toolById(requested)?.id ?? "chatgpt";
-  const alternatives = (Array.isArray(record?.alternatives) ? record.alternatives : [])
+  const modelId = toolById(requested)?.id ?? "";
+  const signal = preferredTool(
+    `${input.idea} ${input.answers.map((answer) => `${answer.question} ${answer.value}`).join(" ")}`,
+    input.category
+  );
+  const toolId = signal ?? modelId || "chatgpt";
+  const alternatives = [
+    ...(modelId && modelId !== toolId ? [modelId] : []),
+    ...(Array.isArray(record?.alternatives) ? record.alternatives : []),
+  ]
     .filter((id): id is string => typeof id === "string" && Boolean(toolById(id)))
     .filter((id) => id !== toolId)
+    .filter((id, index, list) => list.indexOf(id) === index)
     .slice(0, 2);
+  const modelBecause =
+    typeof tool?.because === "string" ? tool.because : "Adatto a questo tipo di richiesta.";
 
   return {
     prompt: prompt.slice(0, 4000),
     parts,
     why,
     toolId,
-    toolBecause: clip(
-      typeof tool?.because === "string" ? tool.because : "Adatto a questo tipo di richiesta.",
-      220
-    ),
+    toolBecause: clip(signal && signal !== modelId ? becauseFor(signal) : modelBecause, 220),
     alternatives,
   };
 }

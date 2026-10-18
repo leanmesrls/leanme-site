@@ -11,19 +11,19 @@ export const FREE_TOOLS: FreeTool[] = [
     id: "chatgpt",
     name: "ChatGPT",
     href: "https://chatgpt.com",
-    fits: "Testi, idee e istruzioni da raffinare in una conversazione.",
+    fits: "Bozze brevi, idee e testi da raffinare in una conversazione.",
   },
   {
     id: "gemini",
     name: "Gemini",
     href: "https://gemini.google.com",
-    fits: "Ricerche, documenti lunghi e immagini nel piano gratuito.",
+    fits: "Immagini, contenuti visivi e documenti da guardare.",
   },
   {
     id: "claude",
     name: "Claude",
     href: "https://claude.ai",
-    fits: "Testi lunghi, analisi di documenti e riscritture accurate.",
+    fits: "Prototipi, specifiche, progetti, interfacce e ragionamenti lunghi.",
   },
   {
     id: "perplexity",
