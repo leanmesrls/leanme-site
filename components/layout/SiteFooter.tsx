@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import type { ReactNode } from "react";
+import { FooterNav } from "@/components/layout/FooterNav";
 import { SocialIcon, socialBrandClass } from "@/components/ui/SocialIcon";
 import {
   getContattiData,
@@ -8,44 +8,21 @@ import {
   getPercorsiData,
   getSiteConfig,
 } from "@/lib/content";
-import { isExternalHref } from "@/lib/nav-href";
 import { buildHeaderNavigation } from "@/lib/navigation";
 import { ASSETS } from "@/lib/assets";
-
-function FooterNavLink({
-  href,
-  children,
-  className,
-}: {
-  href: string;
-  children: ReactNode;
-  className: string;
-}) {
-  if (isExternalHref(href)) {
-    return (
-      <a
-        href={href}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={className}
-      >
-        {children}
-      </a>
-    );
-  }
-
-  return (
-    <Link href={href} className={className}>
-      {children}
-    </Link>
-  );
-}
+import type { NavItem } from "@/types/content";
 
 export function SiteFooter() {
   const site = getSiteConfig();
   const homepage = getHomepageData();
   const { percorsi } = getPercorsiData();
-  const navigation = buildHeaderNavigation(homepage.headerNavigation, percorsi);
+  const navigation: NavItem[] = [
+    ...buildHeaderNavigation(homepage.headerNavigation, percorsi),
+    {
+      label: homepage.headerCta.label,
+      href: homepage.headerCta.href,
+    },
+  ];
   const contatti = getContattiData();
 
   return (
@@ -90,32 +67,7 @@ export function SiteFooter() {
             <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.14em] text-white/45">
               Navigazione
             </p>
-            <ul className="space-y-2">
-              {navigation.map((item) => (
-                <li key={item.href}>
-                  <FooterNavLink
-                    href={item.href}
-                    className="text-sm font-semibold text-leanme-fuchsia transition hover:text-white"
-                  >
-                    {item.label}
-                  </FooterNavLink>
-                  {item.children?.length ? (
-                    <ul className="mt-1 space-y-1 border-l border-white/10 pl-3">
-                      {item.children.map((child) => (
-                        <li key={child.href}>
-                          <FooterNavLink
-                            href={child.href}
-                            className="text-sm text-white/55 transition hover:text-white"
-                          >
-                            {child.label}
-                          </FooterNavLink>
-                        </li>
-                      ))}
-                    </ul>
-                  ) : null}
-                </li>
-              ))}
-            </ul>
+            <FooterNav items={navigation} />
           </div>
 
           <div>

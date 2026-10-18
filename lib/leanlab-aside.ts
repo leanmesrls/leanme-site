@@ -1,5 +1,4 @@
 import {
-  getAcademyData,
   getLeanLabArticle,
   getListedLeanLabArticles,
   getPublishedAcademyResources,
@@ -31,9 +30,18 @@ export interface LeanLabArticleAsideModel {
   relatedFooter?: LeanLabAsideAction;
 }
 
-function action(cta: LeanLabArticleCta | undefined): LeanLabAsideAction[] {
-  if (!cta?.href || !cta.label) return [];
-  return [{ href: cta.href, label: cta.label }];
+function isInterestCta(cta: LeanLabArticleCta | undefined): boolean {
+  return /ti interessa questo argomento/i.test(cta?.label ?? "");
+}
+
+function pushAction(
+  actions: LeanLabAsideAction[],
+  href: string | undefined,
+  label: string | undefined
+) {
+  if (!href || !label) return;
+  if (actions.some((item) => item.href === href && item.label === label)) return;
+  actions.push({ href, label });
 }
 
 const categoryKickers: Record<string, string> = {
@@ -73,46 +81,66 @@ function sameCategoryArticles(article: LeanLabArticle): LeanLabAsideRelated[] {
     .map((item) => articleCard(item));
 }
 
-function linkedAcademy(article: LeanLabArticle): LeanLabAsideRelated[] {
-  const explicit = new Set(article.relatedAcademySlugs ?? []);
+function resourceCategory(resource: AcademyResource): string | undefined {
+  if (resource.articleHref) {
+    const slug = resource.articleHref.split("/").filter(Boolean).pop();
+    const linked = slug ? getLeanLabArticle(slug) : undefined;
+    if (linked?.category) return linked.category;
+  }
+
+  const tag = resource.tag?.toLowerCase() ?? "";
+  return Object.entries(categoryKickers).find(([, label]) =>
+    tag.includes(label.toLowerCase())
+  )?.[0];
+}
+
+function articleActions(article: LeanLabArticle): LeanLabAsideAction[] {
+  const actions: LeanLabAsideAction[] = [];
+
+  pushAction(actions, article.videoCta?.href, article.videoCta?.label);
+
+  if (article.cta?.href === "/prompt-builder") {
+    pushAction(actions, "/prompt-builder", "Prompt Builder · versione beta");
+  } else if (!isInterestCta(article.cta)) {
+    pushAction(actions, article.cta?.href, article.cta?.label);
+  }
+
+  if (article.bodyTemplate === "newsletter-ricerca-episodio-01") {
+    pushAction(
+      actions,
+      "/prenota-consulenza",
+      "Ripensiamo insieme il tuo nuovo sito internet!"
+    );
+  }
+
+  return actions;
+}
+
+function sameCategoryVideos(article: LeanLabArticle): LeanLabAsideRelated[] {
   const articlePath = `/leanlab/articolo/${article.slug}`;
+  const listedHrefs = new Set(
+    sameCategoryArticles(article).map((item) => item.href)
+  );
 
   return getPublishedAcademyResources()
+    .filter((resource) => resourceCategory(resource) === article.category)
+    .filter((resource) => resource.articleHref !== articlePath)
+    .filter((resource) => resource.href !== article.videoCta?.href)
     .filter(
-      (resource) =>
-        explicit.has(resource.slug) || resource.articleHref === articlePath
+      (resource) => !resource.articleHref || !listedHrefs.has(resource.articleHref)
     )
-    .map((resource) => {
-      const card = academyCard(resource);
-      if (
-        article.cta?.href === "/prompt-builder" &&
-        resource.articleHref === articlePath
-      ) {
-        card.action = {
-          href: "/prompt-builder",
-          label: "Prompt Builder · versione beta",
-        };
-      }
-      return card;
-    });
+    .map((resource) => academyCard(resource));
 }
 
 export function buildLeanLabArticleAside(
   article: LeanLabArticle
 ): LeanLabArticleAsideModel | null {
-  const actions = [...action(article.cta), ...action(article.videoCta)];
-
-  if (article.bodyTemplate === "newsletter-ricerca-episodio-01") {
-    actions.push({
-      href: "/prenota-consulenza",
-      label: "Ripensiamo insieme il tuo nuovo sito internet!",
-    });
-  }
-
-  const seen = new Set<string>();
-  const related = [...linkedAcademy(article), ...sameCategoryArticles(article)].filter(
+  const actions = articleActions(article);
+  const currentHref = `/leanlab/articolo/${article.slug}`;
+  const seen = new Set<string>([currentHref]);
+  const related = [...sameCategoryArticles(article), ...sameCategoryVideos(article)].filter(
     (item) => {
-      if (seen.has(item.href)) return false;
+      if (item.href === currentHref || seen.has(item.href)) return false;
       seen.add(item.href);
       return true;
     }
