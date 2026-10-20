@@ -15,6 +15,7 @@ import {
   getAllLeanLabArticleSlugs,
   getLeanLabArticle,
   getLeanLabCategory,
+  isLeanLabArticleListed,
 } from "@/lib/content";
 import { buildLeanLabArticleAside } from "@/lib/leanlab-aside";
 import { categoryBadgeClass } from "@/lib/leanlab-category";
@@ -22,6 +23,9 @@ import { createPageMetadata } from "@/lib/metadata";
 import { formatDate } from "@/lib/utils";
 import { articleSchema, breadcrumbSchema, faqPageSchema } from "@/lib/structured-data";
 import { JsonLd } from "@/components/seo/JsonLd";
+
+/** Dopo publishAt la pagina esce dal noindex senza un nuovo deploy. */
+export const revalidate = 60;
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -53,7 +57,7 @@ export async function generateMetadata({ params }: PageProps) {
     description,
     path: `/leanlab/articolo/${slug}`,
     image: article.image.src,
-    noIndex: article.listed === false,
+    noIndex: !isLeanLabArticleListed(article),
   });
 }
 

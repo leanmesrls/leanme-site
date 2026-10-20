@@ -19,6 +19,9 @@ import { createPageMetadata } from "@/lib/metadata";
 import { breadcrumbSchema } from "@/lib/structured-data";
 import { JsonLd } from "@/components/seo/JsonLd";
 
+/** Stessa finestra della homepage, così la categoria Progetti si aggiorna da sola. */
+export const revalidate = 60;
+
 export const metadata = createPageMetadata({
   title: "Dal LeanLab",
   description:

@@ -112,7 +112,14 @@ export function getLeanLabArticles(): LeanLabArticle[] {
   return leanLabArticles as LeanLabArticle[];
 }
 
-export function isLeanLabArticleListed(article: LeanLabArticle): boolean {
+export function isLeanLabArticleListed(
+  article: LeanLabArticle,
+  now = Date.now()
+): boolean {
+  if (article.publishAt) {
+    const publishAt = Date.parse(article.publishAt);
+    if (Number.isFinite(publishAt) && now < publishAt) return false;
+  }
   return article.listed !== false;
 }
 

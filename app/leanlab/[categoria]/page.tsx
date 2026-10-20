@@ -16,6 +16,9 @@ import { createPageMetadata } from "@/lib/metadata";
 import { breadcrumbSchema } from "@/lib/structured-data";
 import { JsonLd } from "@/components/seo/JsonLd";
 
+/** Entro un minuto da una publishAt l'articolo entra nella categoria. */
+export const revalidate = 60;
+
 interface PageProps {
   params: Promise<{ categoria: string }>;
 }

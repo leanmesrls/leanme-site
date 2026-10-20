@@ -190,6 +190,11 @@ export interface LeanLabArticle {
   hideDefaultImage?: boolean;
   /** Se false, l'URL diretto funziona ma l'articolo non compare in liste, sitemap e catalogo. */
   listed?: boolean;
+  /**
+   * Istante ISO, con fuso, da cui l'articolo entra in liste, sitemap e indice.
+   * Prima di quell'ora la pagina resta raggiungibile dall'URL diretto.
+   */
+  publishAt?: string;
   /** CTA opzionale (es. quiz newsletter) — articolo + anteprime LeanLab. */
   cta?: LeanLabArticleCta;
   /** Link al video sbloccato (campagne newsletter chiuse). */

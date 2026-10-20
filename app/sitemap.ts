@@ -1,4 +1,7 @@
 import type { MetadataRoute } from "next";
+
+/** Dopo publishAt lo slug entra in sitemap senza un nuovo deploy. */
+export const revalidate = 60;
 import { SITE_URL } from "@/lib/metadata";
 import {
   getAllAcademyResourceSlugs,

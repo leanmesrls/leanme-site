@@ -20,6 +20,9 @@ import {
 import { createPageMetadata, SITE_URL } from "@/lib/metadata";
 import { homepageSchema } from "@/lib/structured-data";
 
+/** Liste LeanLab: entro un minuto da una publishAt la card entra in homepage. */
+export const revalidate = 60;
+
 const homepageDescription =
   "LeanMe Srls progetta Aziende Ibride attraverso Intelligenza Artificiale, automazione e trasformazione digitale. L'intelligenza giusta per far crescere la tua azienda. Staff ibrido Human + AI Agents. Powered by Human Intelligence. Amplified by AI.";
 

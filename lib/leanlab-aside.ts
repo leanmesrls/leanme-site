@@ -2,6 +2,7 @@ import {
   getLeanLabArticle,
   getListedLeanLabArticles,
   getPublishedAcademyResources,
+  isLeanLabArticleListed,
 } from "@/lib/content";
 import type {
   AcademyResource,
@@ -174,7 +175,9 @@ export function buildAcademyResourceAside(
   const related: LeanLabAsideRelated[] = [];
   const seen = new Set<string>(hidden);
   const fromArticle =
-    article && article.listed !== false ? buildLeanLabArticleAside(article)?.related ?? [] : [];
+    article && isLeanLabArticleListed(article)
+      ? buildLeanLabArticleAside(article)?.related ?? []
+      : [];
   for (const item of fromArticle) {
     if (seen.has(item.href)) continue;
     seen.add(item.href);

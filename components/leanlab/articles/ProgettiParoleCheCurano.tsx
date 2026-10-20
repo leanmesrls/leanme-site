@@ -446,58 +446,6 @@ function PhotoStory() {
   );
 }
 
-function VideoSlot() {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <section id="video" className="scroll-mt-28" aria-labelledby="video-title">
-      <Kicker>Video</Kicker>
-      <h2
-        id="video-title"
-        className="mt-2 max-w-3xl text-3xl font-extrabold tracking-tight text-white md:text-4xl"
-      >
-        Le parole che curano. Il racconto continua.
-      </h2>
-      <p className="mt-3 max-w-3xl text-sm leading-relaxed text-white/70 md:text-base">
-        Un video per rivivere i momenti più significativi della giornata, attraverso
-        immagini, testimonianze e riflessioni dei protagonisti.
-      </p>
-      <button
-        type="button"
-        className="relative mt-6 block aspect-video w-full overflow-hidden rounded-2xl border border-white/10 text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leanme-fuchsia"
-        aria-expanded={open}
-        onClick={() => setOpen((value) => !value)}
-      >
-        <span
-          aria-hidden
-          className="absolute inset-0 bg-[radial-gradient(circle_at_50%_40%,#3a1848_0%,#07040c_68%)]"
-        />
-        <span className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
-          <span className="flex h-16 w-16 items-center justify-center rounded-full bg-leanme-fuchsia text-white shadow-[0_0_32px_rgba(230,0,126,0.45)]">
-            <svg viewBox="0 0 24 24" className="ml-1 h-7 w-7" aria-hidden fill="currentColor">
-              <path d="M8 5.5v13l11-6.5-11-6.5Z" />
-            </svg>
-            <span className="sr-only">{open ? "Nascondi il messaggio" : "Play"}</span>
-          </span>
-          {open ? (
-            <span className="mt-4 max-w-md text-sm font-semibold leading-relaxed text-white">
-              Il video emozionale è in montaggio. Quando sarà pronto, lo incorporeremo
-              in questa anteprima.
-            </span>
-          ) : (
-            <span className="mt-4 text-xs font-bold uppercase tracking-[0.14em] text-white/70">
-              Anteprima 16:9
-            </span>
-          )}
-        </span>
-      </button>
-      <p className="mt-3 text-sm text-white/60">
-        Riprese e interviste in 4K · Montaggio · Post-produzione
-      </p>
-    </section>
-  );
-}
-
 export function ProgettiParoleCheCurano() {
   return (
     <article className="space-y-16 md:space-y-20">
@@ -697,7 +645,6 @@ export function ProgettiParoleCheCurano() {
       </section>
 
       <PhotoStory />
-      <VideoSlot />
 
       <figure>
         <img
