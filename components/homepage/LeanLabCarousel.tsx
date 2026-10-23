@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
@@ -82,6 +82,133 @@ function ArticleCard({ article }: { article: LeanLabArticle }) {
 function sortByDateDesc(items: LeanLabArticle[]) {
   return [...items].sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+  );
+}
+
+function closestSlideIndex(scroller: HTMLDivElement) {
+  const left = scroller.scrollLeft;
+  let best = 0;
+  let bestDistance = Number.POSITIVE_INFINITY;
+
+  Array.from(scroller.children).forEach((child, index) => {
+    const distance = Math.abs((child as HTMLElement).offsetLeft - left);
+    if (distance < bestDistance) {
+      bestDistance = distance;
+      best = index;
+    }
+  });
+
+  return best;
+}
+
+/** Telefono: una slide per articolo, scorrimento laterale nativo. I pallini desktop restano pagine da 4. */
+function MobileArticleCarousel({
+  articles,
+  reducedMotion,
+}: {
+  articles: LeanLabArticle[];
+  reducedMotion: boolean;
+}) {
+  const scrollerRef = useRef<HTMLDivElement>(null);
+  const pendingIndex = useRef<number | null>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [trackHeight, setTrackHeight] = useState<number | undefined>(undefined);
+
+  useEffect(() => {
+    const slide = scrollerRef.current?.children[activeIndex] as HTMLElement | undefined;
+    if (!slide) return;
+    const update = () => setTrackHeight(slide.offsetHeight);
+    update();
+    const observer = new ResizeObserver(update);
+    observer.observe(slide);
+    return () => observer.disconnect();
+  }, [activeIndex, articles]);
+
+  function syncIndex() {
+    const scroller = scrollerRef.current;
+    if (!scroller || articles.length === 0) return;
+    const index = closestSlideIndex(scroller);
+    if (pendingIndex.current !== null) {
+      if (index === pendingIndex.current) pendingIndex.current = null;
+      return;
+    }
+    setActiveIndex(index);
+  }
+
+  function goTo(index: number) {
+    const scroller = scrollerRef.current;
+    const slide = scroller?.children[index] as HTMLElement | undefined;
+    if (!scroller || !slide) return;
+    setActiveIndex(index);
+    const target = slide.offsetLeft;
+    if (Math.abs(scroller.scrollLeft - target) < 2) {
+      pendingIndex.current = null;
+      return;
+    }
+    pendingIndex.current = index;
+    scroller.scrollTo({
+      left: target,
+      behavior: reducedMotion ? "auto" : "smooth",
+    });
+  }
+
+  if (articles.length === 0) {
+    return (
+      <p className="text-sm text-white/45">
+        Nessun articolo in questa categoria al momento.
+      </p>
+    );
+  }
+
+  return (
+    <div>
+      <div
+        ref={scrollerRef}
+        onScroll={syncIndex}
+        onPointerDown={() => {
+          pendingIndex.current = null;
+        }}
+        onScrollEnd={syncIndex}
+        className="flex w-full min-w-0 max-w-full snap-x snap-mandatory items-start overflow-x-auto overflow-y-hidden overscroll-x-contain [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        style={trackHeight ? { height: trackHeight } : undefined}
+        aria-label="Articoli LeanLab"
+      >
+        {articles.map((article) => (
+          <div
+            key={article.slug}
+            className="w-full min-w-0 shrink-0 grow-0 basis-full snap-start"
+            role="group"
+            aria-roledescription="slide"
+            aria-label={article.title}
+          >
+            <ArticleCard article={article} />
+          </div>
+        ))}
+      </div>
+
+      {articles.length > 1 ? (
+        <div
+          className="mt-6 flex flex-wrap items-center justify-center gap-2"
+          aria-label="Scorri gli articoli"
+        >
+          {articles.map((article, index) => (
+            <button
+              key={article.slug}
+              type="button"
+              aria-current={activeIndex === index ? "true" : undefined}
+              aria-label={`Articolo ${index + 1} di ${articles.length}`}
+              onClick={() => goTo(index)}
+              className={cn(
+                "h-2.5 w-2.5 rounded-full transition-all duration-300",
+                activeIndex === index
+                  ? "scale-125 bg-leanme-fuchsia"
+                  : "bg-white/20 hover:bg-white/40"
+              )}
+            />
+          ))}
+        </div>
+      ) : null}
+    </div>
   );
 }
 
@@ -238,26 +365,15 @@ export function LeanLabCarousel({
             </motion.div>
           </AnimatePresence>
 
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={`${activeTab}-${page}-mobile`}
-              initial={reducedMotion ? false : { opacity: 0, x: 16 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={reducedMotion ? undefined : { opacity: 0, x: -16 }}
-              transition={{ duration: 0.3 }}
-              className="md:hidden"
-            >
-              {visible[0] ? (
-                <ArticleCard article={visible[0]} />
-              ) : (
-                <p className="text-sm text-white/45">
-                  Nessun articolo in questa categoria al momento.
-                </p>
-              )}
-            </motion.div>
-          </AnimatePresence>
+          <div className="md:hidden">
+            <MobileArticleCarousel
+              key={activeTab}
+              articles={filtered}
+              reducedMotion={reducedMotion}
+            />
+          </div>
 
-          <div className="mt-6 flex items-center justify-center gap-2">
+          <div className="mt-6 hidden items-center justify-center gap-2 md:flex">
             {Array.from({ length: totalPages }).map((_, index) => (
               <button
                 key={index}
