@@ -80,7 +80,6 @@
     "tags": ["Progetti"],
     "bodyTemplate": "progetti-parole-che-curano",
     "hideDefaultImage": true,
-    "publishAt": "2026-10-25T20:00:00+01:00",
     "cta": {
       "href": "/prenota-consulenza",
       "label": "Parliamo del tuo evento"

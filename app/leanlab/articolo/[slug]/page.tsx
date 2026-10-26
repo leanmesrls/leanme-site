@@ -24,9 +24,6 @@ import { formatDate } from "@/lib/utils";
 import { articleSchema, breadcrumbSchema, faqPageSchema } from "@/lib/structured-data";
 import { JsonLd } from "@/components/seo/JsonLd";
 
-/** Dopo publishAt la pagina esce dal noindex senza un nuovo deploy. */
-export const revalidate = 60;
-
 interface PageProps {
   params: Promise<{ slug: string }>;
 }
