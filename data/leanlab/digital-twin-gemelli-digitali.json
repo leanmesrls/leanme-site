@@ -275,6 +275,22 @@
   ],
   "domains": [
     {
+      "id": "eventi",
+      "kicker": "EVENTI",
+      "heading": "Organizzare un congresso prima che inizi",
+      "image": "/assets/leanlab/digital-twin/eventi.jpg",
+      "alt": "Foyer di un congresso con scie luminose che indicano i flussi di accesso verso le sale.",
+      "paragraphs": [
+        "Pensiamo a un congresso con centinaia o migliaia di partecipanti, più sale, percorsi di accesso e attività contemporanee.",
+        "La distribuzione delle persone influenza l'esperienza dei partecipanti, la sicurezza e il funzionamento dell'intero evento.",
+        "Esempio pratico: gli organizzatori vogliono valutare dove posizionare i punti di registrazione e come distribuire gli accessi alle sale.",
+        "Un modello digitale del luogo, integrato con dati e simulazioni dei flussi, può aiutare a confrontare differenti configurazioni.",
+        "È possibile valutare dove potrebbero formarsi congestioni e quali percorsi potrebbero risultare più efficienti.",
+        "Naturalmente, una semplice planimetria 3D o una simulazione isolata non costituiscono automaticamente un Digital Twin: occorre un collegamento strutturato con il sistema reale e con i dati rilevanti.",
+        "Il vantaggio: progettare l'esperienza dell'evento con maggiore consapevolezza, riducendo le criticità organizzative prevedibili."
+      ]
+    },
+    {
       "id": "sanita",
       "kicker": "SANITÀ",
       "heading": "Un ospedale che può simulare la propria organizzazione",
@@ -337,22 +353,6 @@
       ]
     },
     {
-      "id": "eventi",
-      "kicker": "EVENTI",
-      "heading": "Organizzare un congresso prima che inizi",
-      "image": "/assets/leanlab/digital-twin/eventi.jpg",
-      "alt": "Foyer di un congresso con scie luminose che indicano i flussi di accesso verso le sale.",
-      "paragraphs": [
-        "Pensiamo a un congresso con centinaia o migliaia di partecipanti, più sale, percorsi di accesso e attività contemporanee.",
-        "La distribuzione delle persone influenza l'esperienza dei partecipanti, la sicurezza e il funzionamento dell'intero evento.",
-        "Esempio pratico: gli organizzatori vogliono valutare dove posizionare i punti di registrazione e come distribuire gli accessi alle sale.",
-        "Un modello digitale del luogo, integrato con dati e simulazioni dei flussi, può aiutare a confrontare differenti configurazioni.",
-        "È possibile valutare dove potrebbero formarsi congestioni e quali percorsi potrebbero risultare più efficienti.",
-        "Naturalmente, una semplice planimetria 3D o una simulazione isolata non costituiscono automaticamente un Digital Twin: occorre un collegamento strutturato con il sistema reale e con i dati rilevanti.",
-        "Il vantaggio: progettare l'esperienza dell'evento con maggiore consapevolezza, riducendo le criticità organizzative prevedibili."
-      ]
-    },
-    {
       "id": "formazione",
       "kicker": "FORMAZIONE",
       "heading": "Imparare sperimentando situazioni realistiche",
@@ -368,13 +368,6 @@
       ]
     }
   ],
-  "video": {
-    "id": "te-lo-spiego-io-il-video",
-    "heading": "TE LO SPIEGO IO — IL VIDEO",
-    "title": "Digital Twin: e se potessimo provare il futuro prima di viverlo?",
-    "text": "In questa puntata di TE LO SPIEGO IO scopriamo cosa sono i gemelli digitali, come funzionano e perché possono cambiare il modo in cui organizziamo ospedali, fabbriche, città ed eventi.",
-    "placeholder": "Spazio per video — in arrivo"
-  },
   "signoff": [
     "LeanMe | Open Innovation Hub",
     "Powered by Human Intelligence. Amplified by AI."

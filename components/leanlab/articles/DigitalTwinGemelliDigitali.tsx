@@ -23,41 +23,112 @@ interface ArticleBody {
   intro: string[];
   sections: Array<{ id: string; title: string; blocks: ArticleBlock[] }>;
   domains: DomainSection[];
-  video: {
-    id: string;
-    heading: string;
-    title: string;
-    text: string;
-    placeholder: string;
-  };
   signoff: string[];
 }
 
 const articleBody = articleBodyJson as ArticleBody;
 
 const prose =
-  "text-base leading-relaxed text-white/80 md:text-[1.0625rem] md:leading-8";
+  "text-base leading-relaxed text-white/85 md:text-[1.0625rem] md:leading-8";
 
-function RichParagraph({ text }: { text: string }) {
-  const markers = ["Esempio pratico:", "Il vantaggio:", "In parole semplici:"];
+const sectionShell: Record<string, string> = {
+  "cos-e-un-digital-twin":
+    "border-[#3ec6ff]/40 bg-[#04141c] shadow-[inset_0_1px_0_rgba(62,198,255,0.25)]",
+  "come-funziona-un-gemello-digitale":
+    "border-leanme-fuchsia/45 bg-[#160810] shadow-[inset_0_1px_0_rgba(230,0,126,0.28)]",
+  "dove-vengono-utilizzati":
+    "border-white/15 bg-[#121216]",
+  "digital-twin-e-intelligenza-artificiale":
+    "border-[#c4b5fd]/35 bg-[#120c18]",
+  "possiamo-davvero-prevedere-il-futuro":
+    "border-[#8adfff]/25 bg-[#0c1214]",
+  "non-solo-grandi-aziende":
+    "border-leanme-fuchsia/30 bg-gradient-to-br from-[#160810] to-[#07141a]",
+  "sperimentare-prima-di-intervenire":
+    "border-[#3ec6ff]/30 bg-gradient-to-br from-[#07141a] via-[#100812] to-[#160810]",
+};
+
+const domainTone = [
+  {
+    card: "border-leanme-fuchsia/55 bg-[#14060e]",
+    kicker: "text-[#ff8ac4]",
+    advantage: "border-leanme-fuchsia bg-[#1c0812]",
+    example: "bg-leanme-fuchsia/15 text-[#ffd0e6]",
+  },
+  {
+    card: "border-[#3ec6ff]/40 bg-[#04141c]",
+    kicker: "text-[#8adfff]",
+    advantage: "border-[#3ec6ff] bg-[#041018]",
+    example: "bg-[#3ec6ff]/15 text-[#d7f6ff]",
+  },
+  {
+    card: "border-[#c4b5fd]/35 bg-[#120c18]",
+    kicker: "text-[#d4c4ff]",
+    advantage: "border-[#c4b5fd] bg-[#140c1c]",
+    example: "bg-[#c4b5fd]/15 text-[#efe8ff]",
+  },
+] as const;
+
+const punches = new Set(["No.", "Non necessariamente.", "Ma piuttosto:"]);
+
+function RichParagraph({
+  text,
+  tone = domainTone[1],
+}: {
+  text: string;
+  tone?: (typeof domainTone)[number];
+}) {
+  if (punches.has(text)) {
+    return <p className="text-2xl font-semibold leading-tight text-white md:text-3xl">{text}</p>;
+  }
+
+  if (text.startsWith("«")) {
+    return (
+      <blockquote className="rounded-r-2xl border-l-4 border-leanme-fuchsia bg-black/35 px-4 py-3 md:px-5">
+        <p className="text-lg font-medium leading-snug text-white md:text-xl">{text}</p>
+      </blockquote>
+    );
+  }
+
+  if (text.startsWith("Perché il futuro non possiamo conoscerlo")) {
+    return (
+      <p className="text-lg font-medium leading-snug text-white md:text-xl">{text}</p>
+    );
+  }
+
+  const markers = ["Esempio pratico:", "Il vantaggio:", "In parole semplici:"] as const;
   const marker = markers.find((item) => text.startsWith(item));
-
   if (!marker) {
     return <p className={prose}>{text}</p>;
   }
 
   const rest = text.slice(marker.length);
-  const isAdvantage = marker === "Il vantaggio:";
+
+  if (marker === "Il vantaggio:") {
+    return (
+      <p className={`${prose} rounded-r-xl border-l-2 ${tone.advantage} px-4 py-3 text-white`}>
+        <strong className="font-semibold">{marker}</strong>
+        {rest}
+      </p>
+    );
+  }
+
+  if (marker === "Esempio pratico:") {
+    return (
+      <p className={prose}>
+        <strong
+          className={`mb-2 inline-block rounded-full px-2.5 py-1 text-[11px] font-bold uppercase tracking-[0.12em] ${tone.example}`}
+        >
+          {marker}
+        </strong>
+        <span className="block">{rest.replace(/^\s*/, "")}</span>
+      </p>
+    );
+  }
 
   return (
-    <p
-      className={
-        isAdvantage
-          ? `${prose} rounded-r-xl border-l-2 border-[#3ec6ff] bg-[#041018] px-4 py-3 text-white/90`
-          : prose
-      }
-    >
-      <strong className="font-semibold text-white">{marker}</strong>
+    <p className={`${prose} rounded-2xl border border-[#3ec6ff]/30 bg-black/30 px-4 py-3`}>
+      <strong className="font-semibold text-[#8adfff]">{marker}</strong>
       {rest}
     </p>
   );
@@ -65,45 +136,70 @@ function RichParagraph({ text }: { text: string }) {
 
 function DomainSections() {
   return (
-    <div className="mt-8 space-y-8">
-      {articleBody.domains.map((domain) => (
-        <section
-          key={domain.id}
-          aria-labelledby={domain.id}
-          className="overflow-hidden rounded-2xl border border-white/10 bg-[#090909]"
-        >
-            <div className="relative aspect-video">
-              <Image
-                src={domain.image}
-                alt={domain.alt}
-                fill
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 720px"
-              />
-            </div>
-            <div className="p-5 md:p-7 lg:p-8">
-              <h3 id={domain.id} className="scroll-mt-28">
-                <span className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#8adfff]">
-                  {domain.kicker}
-                </span>
-                <span className="sr-only"> — </span>
-                <span className="mt-2 block text-xl font-semibold leading-snug text-white md:text-2xl">
-                  {domain.heading}
-                </span>
-              </h3>
-              <div className="mt-5 space-y-4">
-                {domain.paragraphs.map((paragraph) => (
-                  <RichParagraph key={paragraph} text={paragraph} />
-                ))}
+    <div className="mt-6">
+      <nav aria-label="Sei esempi concreti" className="flex flex-wrap gap-2">
+        {articleBody.domains.map((domain, index) => {
+          const tone = domainTone[index % domainTone.length];
+          return (
+            <a
+              key={domain.id}
+              href={`#${domain.id}`}
+              className={`rounded-full border px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.12em] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leanme-fuchsia ${tone.card} ${tone.kicker}`}
+            >
+              {domain.kicker}
+            </a>
+          );
+        })}
+      </nav>
+      <div className="mt-6 space-y-6">
+        {articleBody.domains.map((domain, index) => {
+          const tone = domainTone[index % domainTone.length];
+          return (
+            <section
+              key={domain.id}
+              aria-labelledby={domain.id}
+              className={`overflow-hidden rounded-2xl border ${tone.card}`}
+            >
+              <div className="relative aspect-video">
+                <Image
+                  src={domain.image}
+                  alt={domain.alt}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 720px"
+                />
               </div>
-            </div>
-        </section>
-      ))}
+              <div className="p-5 md:p-7">
+                <h3 id={domain.id} className="scroll-mt-28">
+                  <span className={`text-[11px] font-bold uppercase tracking-[0.16em] ${tone.kicker}`}>
+                    {domain.kicker}
+                  </span>
+                  <span className="sr-only"> — </span>
+                  <span className="mt-2 block text-xl font-semibold leading-snug text-white md:text-2xl">
+                    {domain.heading}
+                  </span>
+                </h3>
+                <div className="mt-5 space-y-4">
+                  {domain.paragraphs.map((paragraph) => (
+                    <RichParagraph key={paragraph} text={paragraph} tone={tone} />
+                  ))}
+                </div>
+              </div>
+            </section>
+          );
+        })}
+      </div>
     </div>
   );
 }
 
-function Blocks({ blocks }: { blocks: ArticleBlock[] }) {
+function Blocks({
+  blocks,
+  listTone,
+}: {
+  blocks: ArticleBlock[];
+  listTone: "cyan" | "fuchsia";
+}) {
   return (
     <div className="mt-5 space-y-4">
       {blocks.map((block, index) => {
@@ -116,7 +212,7 @@ function Blocks({ blocks }: { blocks: ArticleBlock[] }) {
             <h3
               key={block.id}
               id={block.id}
-              className="scroll-mt-28 pt-4 text-xl font-semibold leading-snug text-white md:text-2xl"
+              className="scroll-mt-28 rounded-2xl border border-white/15 bg-black/45 px-4 py-4 text-xl font-semibold leading-snug text-white md:px-5 md:text-2xl"
             >
               {block.text}
             </h3>
@@ -124,19 +220,21 @@ function Blocks({ blocks }: { blocks: ArticleBlock[] }) {
         }
 
         if (block.type === "ol") {
+          const chip =
+            listTone === "fuchsia"
+              ? "border-leanme-fuchsia/40 bg-black/35"
+              : "border-[#3ec6ff]/35 bg-black/30";
+          const numeral = listTone === "fuchsia" ? "text-[#ff8ac4]" : "text-[#8adfff]";
           return (
-            <ol
-              key={`ol-${index}`}
-              className="grid list-none gap-3 sm:grid-cols-2"
-            >
+            <ol key={`ol-${index}`} className="grid list-none gap-3 sm:grid-cols-2">
               {block.items.map((item, itemIndex) => (
                 <li
                   key={item}
-                  className="rounded-xl border border-[#3ec6ff]/30 bg-[#041018] px-4 py-4 text-sm leading-relaxed text-white/85 md:text-base"
+                  className={`rounded-xl border px-4 py-4 text-sm leading-relaxed text-white/90 md:text-base ${chip}`}
                 >
                   <span
                     aria-hidden="true"
-                    className="mb-2 block text-[11px] font-bold uppercase tracking-[0.14em] text-[#8adfff]"
+                    className={`mb-2 block text-[11px] font-bold uppercase tracking-[0.14em] ${numeral}`}
                   >
                     {itemIndex + 1}
                   </span>
@@ -155,7 +253,7 @@ function Blocks({ blocks }: { blocks: ArticleBlock[] }) {
 
 /**
  * Articolo editoriale «Digital Twin: e se potessimo provare il futuro prima di viverlo?».
- * Il video di Te lo spiego io non ha ancora un URL: lo spazio resta vuoto, senza link.
+ * Nessun video: la puntata non è prevista.
  */
 export function DigitalTwinGemelliDigitali() {
   const tags = getLeanLabArticle("digital-twin-gemelli-digitali")?.tags ?? [];
@@ -166,69 +264,59 @@ export function DigitalTwinGemelliDigitali() {
         {articleBody.series}
       </p>
       <div className="mt-6 space-y-4">
-        {articleBody.intro.map((paragraph) => (
-          <p key={paragraph} className={prose}>
-            {paragraph}
-          </p>
+        {articleBody.intro.map((paragraph, index) =>
+          index === 0 ? (
+            <p key={paragraph} className="text-xl font-medium leading-snug text-white md:text-2xl">
+              {paragraph}
+            </p>
+          ) : (
+            <p key={paragraph} className={prose}>
+              {paragraph}
+            </p>
+          )
+        )}
+      </div>
+
+      <div className="mt-10 space-y-6 md:mt-12 md:space-y-8">
+        {articleBody.sections.map((section) => (
+          <section
+            key={section.id}
+            aria-labelledby={section.id}
+            className={`scroll-mt-28 rounded-3xl border p-5 md:p-8 ${sectionShell[section.id] ?? "border-white/10 bg-[#111]"}`}
+          >
+            <h2
+              id={section.id}
+              className="text-2xl font-semibold leading-tight text-white md:text-3xl"
+            >
+              {section.title}
+            </h2>
+            <Blocks
+              blocks={section.blocks}
+              listTone={section.id === "come-funziona-un-gemello-digitale" ? "fuchsia" : "cyan"}
+            />
+          </section>
         ))}
       </div>
 
-      {articleBody.sections.map((section) => (
-        <section key={section.id} aria-labelledby={section.id} className="mt-12 md:mt-16">
-          <h2
-            id={section.id}
-            className="scroll-mt-28 text-2xl font-semibold leading-tight text-white md:text-3xl"
-          >
-            {section.title}
-          </h2>
-          <Blocks blocks={section.blocks} />
-        </section>
-      ))}
-
-      <section
-        aria-labelledby={articleBody.video.id}
-        className="mt-12 rounded-2xl border border-[#3ec6ff]/35 bg-[#041018] p-5 md:mt-16 md:p-8"
-      >
-        <h2
-          id={articleBody.video.id}
-          className="scroll-mt-28 text-xl font-semibold uppercase tracking-[0.08em] text-[#8adfff] md:text-2xl"
-        >
-          {articleBody.video.heading}
-        </h2>
-        <p className="mt-4 text-xl font-semibold leading-snug text-white md:text-2xl">
-          {articleBody.video.title}
-        </p>
-        <p className={`mt-4 ${prose}`}>{articleBody.video.text}</p>
-        <div className="relative mt-6 aspect-video overflow-hidden rounded-xl border border-dashed border-[#3ec6ff]/50 bg-black">
-          <div
-            aria-hidden="true"
-            className="absolute inset-0 bg-[radial-gradient(circle_at_28%_40%,rgba(62,198,255,0.18),transparent_42%),radial-gradient(circle_at_74%_62%,rgba(230,0,126,0.16),transparent_40%)]"
-          />
-          <p className="relative flex h-full items-center justify-center px-6 text-center text-sm font-semibold uppercase tracking-[0.14em] text-white/80">
-            {articleBody.video.placeholder}
-          </p>
-        </div>
-      </section>
-
-      <footer className="mt-12 border-t border-white/10 pt-8">
+      <footer className="mt-10 rounded-2xl border border-white/10 bg-[#0c0c0c] px-5 py-6 md:px-7">
         {articleBody.signoff.map((line, index) => (
           <p
             key={line}
             className={
               index === 0
                 ? "text-sm font-semibold text-white"
-                : "mt-1 text-sm text-white/65"
+                : "mt-1 text-sm text-white/70"
             }
           >
             {line}
           </p>
         ))}
         {tags.length > 0 ? (
-          <ul aria-label="Tag" className="mt-6 flex flex-wrap gap-2">
+          <ul aria-label="Tag" className="mt-5 flex flex-wrap gap-2">
             {tags.map((tag) => (
               <li
                 key={tag}
-                className="rounded-full border border-white/15 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.08em] text-white/70"
+                className="rounded-full border border-white/15 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.08em] text-white/75"
               >
                 {tag}
               </li>
