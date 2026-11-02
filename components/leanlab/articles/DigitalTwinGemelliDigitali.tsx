@@ -260,6 +260,16 @@ export function DigitalTwinGemelliDigitali() {
 
   return (
     <article className="max-w-4xl">
+      <figure className="relative mb-8 aspect-[21/9] overflow-hidden rounded-xl border border-white/10">
+        <Image
+          src="/assets/leanlab/digital-twin/hero.jpg"
+          alt="Gemello digitale luminoso sospeso sopra una città di notte, tra ospedale, industria e un grande edificio vetrato."
+          fill
+          priority
+          className="object-cover object-[center_35%]"
+          sizes="(max-width: 1024px) 100vw, 720px"
+        />
+      </figure>
       <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#8adfff]">
         {articleBody.series}
       </p>

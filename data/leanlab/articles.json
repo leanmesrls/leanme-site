@@ -10,10 +10,11 @@
     "date": "2026-11-02",
     "readTime": "10 min",
     "image": {
-      "src": "/assets/leanlab/digital-twin/hero.jpg",
-      "alt": "Gemello digitale luminoso sospeso sopra una città di notte, tra ospedale, industria e un grande edificio vetrato.",
+      "src": "/assets/leanlab/newsletter-digital-twin-gemelli-digitali.png",
+      "alt": "Newsletter Ricerca e Innovazione, Te lo spiego io con Lean.Agent.Galileo: Digital Twin, e se potessimo provare il futuro prima di viverlo?",
       "replaceHint": ""
     },
+    "hideDefaultImage": true,
     "author": "LeanMe",
     "tags": [
       "Digital Twin",
