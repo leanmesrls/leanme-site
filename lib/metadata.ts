@@ -13,12 +13,14 @@ export function createPageMetadata({
   path = "",
   image = "/images/placeholders/og-default.svg",
   noIndex = false,
+  keywords,
 }: {
   title: string;
   description: string;
   path?: string;
   image?: string;
   noIndex?: boolean;
+  keywords?: string[];
 }): Metadata {
   const url = `${SITE_URL}${path}`;
   const fullTitle = title.includes("LeanMe")
@@ -57,7 +59,7 @@ export function createPageMetadata({
     robots: noIndex
       ? { index: false, follow: false }
       : { index: true, follow: true },
-    keywords: site.seo.keywords,
+    keywords: keywords?.length ? keywords : site.seo.keywords,
   };
 }
 

@@ -23,5 +23,9 @@ export function leanLabPreviewCtas(article: LeanLabArticle): {
     return { cta: { href: articleHref, label: "Leggi l'articolo" } };
   }
 
+  if (article.slug === "digital-twin-gemelli-digitali") {
+    return { cta: { href: articleHref, label: READ_LABEL } };
+  }
+
   return { cta: article.cta, videoCta: article.videoCta };
 }

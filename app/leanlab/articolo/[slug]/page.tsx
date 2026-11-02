@@ -45,9 +45,10 @@ export async function generateMetadata({ params }: PageProps) {
     });
   }
 
-  const description = Array.isArray(article.excerpt)
+  const excerpt = Array.isArray(article.excerpt)
     ? article.excerpt.join(" ")
     : article.excerpt;
+  const description = article.metaDescription ?? excerpt;
 
   return createPageMetadata({
     title: article.title,
@@ -55,6 +56,7 @@ export async function generateMetadata({ params }: PageProps) {
     path: `/leanlab/articolo/${slug}`,
     image: article.image.src,
     noIndex: !isLeanLabArticleListed(article),
+    keywords: article.metaDescription ? article.tags : undefined,
   });
 }
 
@@ -68,9 +70,10 @@ export default async function LeanLabArticlePage({ params }: PageProps) {
 
   const category = getLeanLabCategory(article.category);
   const path = `/leanlab/articolo/${slug}`;
-  const description = Array.isArray(article.excerpt)
+  const excerpt = Array.isArray(article.excerpt)
     ? article.excerpt.join(" ")
     : article.excerpt;
+  const description = article.metaDescription ?? excerpt;
   const breadcrumbItems = [
     { name: "Home", path: "/" },
     { name: "Dal LeanLab", path: "/leanlab" },
