@@ -12,6 +12,7 @@ import { NewsletterEpisodio05 } from "./articles/NewsletterEpisodio05";
 import { NewsletterEpisodio06 } from "./articles/NewsletterEpisodio06";
 import { NewsletterRicercaEpisodio01 } from "./articles/NewsletterRicercaEpisodio01";
 import { NewsletterRicercaEpisodio02 } from "./articles/NewsletterRicercaEpisodio02";
+import { DigitalTwinGemelliDigitali } from "./articles/DigitalTwinGemelliDigitali";
 import { ProgettiParoleCheCurano } from "./articles/ProgettiParoleCheCurano";
 import { ProgettiSanLazzaro } from "./articles/ProgettiSanLazzaro";
 
@@ -49,6 +50,8 @@ export function LeanLabArticleBody({
       return <ProgettiSanLazzaro />;
     case "progetti-parole-che-curano":
       return <ProgettiParoleCheCurano />;
+    case "digital-twin-gemelli-digitali":
+      return <DigitalTwinGemelliDigitali />;
     default:
       return null;
   }

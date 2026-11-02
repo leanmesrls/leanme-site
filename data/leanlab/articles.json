@@ -1,5 +1,63 @@
 [
   {
+    "slug": "digital-twin-gemelli-digitali",
+    "category": "ricerca-e-innovazione",
+    "title": "Digital Twin: e se potessimo provare il futuro prima di viverlo?",
+    "excerpt": [
+      "Gemelli digitali: cosa sono, come funzionano e perché stanno trasformando il modo in cui progettiamo, organizziamo e prendiamo decisioni."
+    ],
+    "metaDescription": "Cosa sono i Digital Twin? Scopri come funzionano i gemelli digitali e le loro applicazioni in sanità, industria, smart city, edifici, eventi e formazione.",
+    "date": "2026-11-02",
+    "readTime": "10 min",
+    "image": {
+      "src": "/assets/leanlab/digital-twin/hero.jpg",
+      "alt": "Gemello digitale luminoso sospeso sopra una città di notte, tra ospedale, industria e un grande edificio vetrato.",
+      "replaceHint": ""
+    },
+    "author": "LeanMe",
+    "tags": [
+      "Digital Twin",
+      "Gemelli Digitali",
+      "Innovazione",
+      "Tecnologie Emergenti",
+      "Smart City",
+      "Sanità Digitale"
+    ],
+    "bodyTemplate": "digital-twin-gemelli-digitali",
+    "faq": [
+      {
+        "question": "Cos'è un Digital Twin?",
+        "answer": "Un Digital Twin è una rappresentazione digitale di un oggetto, un sistema o un processo reale, progettata per rispecchiarne determinati comportamenti e caratteristiche. In parole semplici, è una copia digitale intelligente di qualcosa di reale."
+      },
+      {
+        "question": "Un Digital Twin è semplicemente un modello 3D?",
+        "answer": "No. Un modello tridimensionale rappresenta soprattutto l'aspetto di un oggetto. Un Digital Twin collega una rappresentazione digitale al sistema reale, utilizzando dati e modelli per monitorarlo, analizzarlo e, quando previsto, simularne l'evoluzione."
+      },
+      {
+        "question": "Come funziona un gemello digitale?",
+        "answer": "Si basa generalmente su quattro componenti: il sistema reale, i dati, il modello digitale, l'analisi e la simulazione. Il risultato è un ambiente digitale che può supportare monitoraggio, progettazione, manutenzione e ottimizzazione."
+      },
+      {
+        "question": "Digital Twin e intelligenza artificiale sono la stessa cosa?",
+        "answer": "No. Sono due tecnologie differenti, anche se possono lavorare insieme. L'intelligenza artificiale non è un requisito indispensabile per realizzare ogni Digital Twin."
+      },
+      {
+        "question": "Un Digital Twin può prevedere il futuro?",
+        "answer": "No. Non è una macchina capace di conoscere il futuro. È uno strumento che può aiutare a valutare cosa potrebbe accadere in determinate condizioni. Simulare il futuro non significa conoscerlo con certezza."
+      },
+      {
+        "question": "I Digital Twin sono una tecnologia soltanto per le grandi aziende?",
+        "answer": "Non necessariamente. Si può iniziare da un singolo macchinario, da un impianto, da una porzione di edificio o da un processo ben definito."
+      }
+    ],
+    "inPocheParole": [
+      "Digital Twin: e se potessimo provare il futuro prima di viverlo? è un articolo di Ricerca & Innovazione, nella serie Te lo spiego io: spiega cosa sono i gemelli digitali e come funzionano.",
+      "Un Digital Twin non è una sfera di cristallo né soltanto un modello 3D. Collega una rappresentazione digitale a un sistema reale per monitorarlo e confrontare scenari prima di intervenire.",
+      "Lo stesso principio vale in sanità, industria, smart city, edifici ed energia, eventi e formazione: dati e modelli per ridurre l'incertezza, senza confondere una simulazione con una previsione certa.",
+      "LeanMe, Open Innovation Hub, parte dalla domanda giusta: quale problema si comprende meglio con una rappresentazione collegata alla realtà. L'esperienza umana resta al centro. L'intelligenza artificiale, quando serve, amplifica l'analisi. Powered by Human Intelligence. Amplified by AI."
+    ]
+  },
+  {
     "slug": "come-scrivere-prompt-migliori",
     "category": "ricerca-e-innovazione",
     "title": "L'AI non ti capisce? Forse devi cambiare domanda.",

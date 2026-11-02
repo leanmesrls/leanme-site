@@ -164,7 +164,8 @@ export type LeanLabArticleBodyTemplate =
   | "newsletter-ricerca-episodio-01"
   | "newsletter-ricerca-episodio-02"
   | "progetti-san-lazzaro"
-  | "progetti-parole-che-curano";
+  | "progetti-parole-che-curano"
+  | "digital-twin-gemelli-digitali";
 
 export interface LeanLabArticleCta {
   /** URL azione (quiz, form, risorsa esterna). */
@@ -179,6 +180,8 @@ export interface LeanLabArticle {
   title: string;
   /** Testo card/SEO; array = più paragrafi nel box riepilogo. */
   excerpt: string | string[];
+  /** Meta description dedicata, quando il box riepilogo non è il testo SEO. */
+  metaDescription?: string;
   date: string;
   readTime: string;
   image: ImageAsset;
