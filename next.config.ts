@@ -93,6 +93,18 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  async rewrites() {
+    return [
+      {
+        source: "/leonardo-live",
+        destination: "https://lean-agent-leonardo-live.vercel.app/leonardo-live",
+      },
+      {
+        source: "/leonardo-live/:path*",
+        destination: "https://lean-agent-leonardo-live.vercel.app/leonardo-live/:path*",
+      },
+    ];
+  },
   async headers() {
     return [
       {
