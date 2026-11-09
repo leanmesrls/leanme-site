@@ -39,7 +39,7 @@ export default function ContattiPage() {
             legalAddress: data.legalAddress,
             operationalAddress: data.operationalAddress,
             social: data.social,
-            mapUrl: `https://maps.google.com/maps?q=${encodeURIComponent("Via Porrettana 148/2, 40135 Bologna, Italia")}`,
+            mapUrl: `https://maps.google.com/maps?q=${encodeURIComponent("Via Porrettana 148/2/C, 40135 Bologna, Italia")}`,
           }),
         ]}
       />
@@ -103,6 +103,19 @@ export default function ContattiPage() {
                     {data.email.value}
                   </a>
                 </div>
+                {data.eventEmail ? (
+                  <div className="sm:col-span-2">
+                    <h3 className="text-xs font-semibold uppercase tracking-[0.12em] text-leanme-fuchsia">
+                      {data.eventEmail.label}
+                    </h3>
+                    <a
+                      href={data.eventEmail.href}
+                      className="mt-1 block text-lg font-medium text-white transition hover:text-leanme-fuchsia"
+                    >
+                      {data.eventEmail.value}
+                    </a>
+                  </div>
+                ) : null}
               </div>
 
               {data.openingHours && data.openingHours.lines.length > 0 && (

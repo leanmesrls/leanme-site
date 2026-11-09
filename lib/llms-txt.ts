@@ -58,8 +58,9 @@ ${link(base, "/staff-ibrido/lean-agent/teresa", "Teresa", "Lean.Agent per assist
 ## Contatti
 
 - [Email LeanMe](mailto:info@leanme.it): info@leanme.it
+- [Email event management](mailto:eventi@leanme.it): eventi@leanme.it
 - [LinkedIn LeanMe](https://linkedin.com/company/leanme): Profilo ufficiale
-${link(base, "/contatti", "Pagina contatti", "Sede operativa Via Porrettana 148/2, Bologna")}
+${link(base, "/contatti", "Pagina contatti", "Sede operativa Via Porrettana 148/2/C, Bologna")}
 `;
 }
 

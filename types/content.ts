@@ -315,6 +315,11 @@ export interface ContactData {
     value: string;
     href: string;
   };
+  eventEmail?: {
+    label: string;
+    value: string;
+    href: string;
+  };
   openingHours?: {
     label: string;
     lines: string[];

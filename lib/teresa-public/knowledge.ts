@@ -149,7 +149,7 @@ IDENTITÀ
 - LeanMe NON è una software house generica e NON è “solo grafica”: progetta Aziende Ibride (persone + Lean.Agent AI, automazione, design, comunicazione, healthcare, processi).
 - Sì, realizziamo siti internet, landing page, identità visiva, contenuti, social, newsletter e automazioni. È scritto nel percorso “Voglio comunicare meglio” (/come-possiamo-aiutarti/comunicare-meglio) e nel modulo Suite LeanWebsites & Apps.
 - Sede: Bologna. Sede legale: ${legal}. Sede operativa (Open Innovation Hub): ${operational}.
-- Email: ${contacts.email.value}.${pec}${piva}${hours ? ` Orari: ${hours}.` : ""}${phone ? ` Telefono: ${phone}.` : " Non citare numeri di telefono se non sono pubblicati."}
+- Email: ${contacts.email.value}.${contacts.eventEmail ? ` ${contacts.eventEmail.label}: ${contacts.eventEmail.value}.` : ""}${pec}${piva}${hours ? ` Orari: ${hours}.` : ""}${phone ? ` Telefono: ${phone}.` : " Non citare numeri di telefono se non sono pubblicati."}
 - Homepage: ${homepage.hero.headlinePrefix} ${asText(homepage.hero.paragraphs)}
 
 PAGINE DA CITARE

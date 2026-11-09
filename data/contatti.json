@@ -21,7 +21,7 @@
     "label": "Sede operativa",
     "lines": [
       "LeanMe Open Innovation Hub",
-      "Via Porrettana 148/2",
+      "Via Porrettana 148/2/C",
       "40135 Bologna (BO)"
     ]
   },
@@ -34,6 +34,11 @@
     "label": "Email",
     "value": "info@leanme.it",
     "href": "mailto:info@leanme.it"
+  },
+  "eventEmail": {
+    "label": "Email event management",
+    "value": "eventi@leanme.it",
+    "href": "mailto:eventi@leanme.it"
   },
   "openingHours": {
     "label": "Orari",
@@ -75,7 +80,7 @@
     }
   ],
   "map": {
-    "embedUrl": "https://maps.google.com/maps?q=Via+Porrettana+148%2F2,+40135+Bologna,+Italia&output=embed",
+    "embedUrl": "https://maps.google.com/maps?q=Via+Porrettana+148%2F2%2FC,+40135+Bologna,+Italia&output=embed",
     "label": "Mappa — Sede operativa LeanMe"
   },
   "foundation": {
