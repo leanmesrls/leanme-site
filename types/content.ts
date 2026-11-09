@@ -70,6 +70,28 @@ export interface PercorsoVignette {
   displayScale?: number;
 }
 
+export interface PercorsoServiceContact {
+  title: string;
+  text: string;
+  email: string;
+  buttonLabel: string;
+}
+
+export interface PercorsoServiceArea {
+  label: string;
+  title: string;
+  subtitle: string;
+  paragraphs?: string[];
+  contact?: PercorsoServiceContact;
+}
+
+/** Due aree di servizio sulla stessa pagina percorso, con pari gerarchia. */
+export interface PercorsoServiceAreas {
+  bridge: string;
+  management: PercorsoServiceArea;
+  technology: PercorsoServiceArea;
+}
+
 export interface Percorso {
   slug: string;
   title: string;
@@ -78,6 +100,7 @@ export interface Percorso {
   icon: string;
   image: ImageAsset;
   services?: string[];
+  serviceAreas?: PercorsoServiceAreas;
   vignettes?: PercorsoVignette[];
   vignetteArrowBetween?: boolean;
   leanLabTag?: string;

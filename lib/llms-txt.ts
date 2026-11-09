@@ -37,7 +37,7 @@ ${link(base, "/dicono-di-noi", "Dicono di noi", "Testimonianze clienti e partner
 ${link(base, "/come-possiamo-aiutarti/innovare-la-mia-azienda", "Innovare la mia azienda", "Trasformazione digitale, automazione, IA applicata")}
 ${link(base, "/come-possiamo-aiutarti/partner-struttura-sanitaria", "Partner struttura sanitaria", "Digitalizzazione sanitaria, FSE 2.0, gestionali")}
 ${link(base, "/come-possiamo-aiutarti/partner-societa-scientifica", "Partner societa scientifica", "Gestione soci, congressi, abstract, ECM")}
-${link(base, "/come-possiamo-aiutarti/partner-eventi", "Partner eventi", "Piattaforme evento, streaming, app, gamification")}
+${link(base, "/come-possiamo-aiutarti/partner-eventi", "Partner eventi", "Organizzazione eventi e tecnologia: gestione operativa, piattaforme, streaming, app")}
 ${link(base, "/come-possiamo-aiutarti/comunicare-meglio", "Comunicare meglio", "Brand, web, content strategy, marketing automation")}
 
 ## Profili team

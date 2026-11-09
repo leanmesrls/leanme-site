@@ -11,6 +11,10 @@ import { VisibleBreadcrumb } from "@/components/layout/VisibleBreadcrumb";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { PercorsoConsultationCta } from "@/components/percorsi/PercorsoConsultationCta";
 import { PercorsoLeanLabSection } from "@/components/percorsi/PercorsoLeanLabSection";
+import {
+  PartnerEventiManagementSection,
+  PartnerEventiTechnologyHeading,
+} from "@/components/percorsi/PartnerEventiServiceAreas";
 import { PercorsoVignettes } from "@/components/percorsi/PercorsoVignettes";
 import { FaqSection } from "@/components/seo/FaqSection";
 import { InPocheParoleBox } from "@/components/seo/InPocheParoleBox";
@@ -97,6 +101,11 @@ export default async function PercorsoPage({ params }: PageProps) {
         id="percorso-heading"
         title={percorso.title}
         subtitle={percorso.shortDescription}
+        subtitleClassName={
+          percorso.serviceAreas
+            ? "block max-w-[40rem] text-base font-semibold tracking-[0.04em] text-leanme-fuchsia md:max-w-[46rem] md:text-lg"
+            : undefined
+        }
       />
       <PageSection className="pt-8 pb-0 md:pt-10 md:pb-0">
         <FadeIn>
@@ -107,21 +116,43 @@ export default async function PercorsoPage({ params }: PageProps) {
             ← Come possiamo aiutarti
           </Link>
           <PageHighlightBlock paragraphs={percorso.description} />
+          {percorso.serviceAreas ? (
+            <p className="mt-8 text-sm font-semibold uppercase tracking-[0.18em] text-leanme-fuchsia md:mt-10">
+              {percorso.serviceAreas.bridge}
+            </p>
+          ) : null}
         </FadeIn>
       </PageSection>
 
-      <PageSection className={`${PAGE_CONTENT_AFTER_INTRO_CLASS} pb-0 md:pb-0`}>
-        <PercorsoConsultationCta
-          href={consultationCta.href}
-          label={consultationCta.label}
-        />
-      </PageSection>
+      {percorso.serviceAreas ? (
+        <PartnerEventiManagementSection area={percorso.serviceAreas.management} />
+      ) : (
+        <PageSection className={`${PAGE_CONTENT_AFTER_INTRO_CLASS} pb-0 md:pb-0`}>
+          <PercorsoConsultationCta
+            href={consultationCta.href}
+            label={consultationCta.label}
+          />
+        </PageSection>
+      )}
+
+      {percorso.serviceAreas ? (
+        <PartnerEventiTechnologyHeading area={percorso.serviceAreas.technology} />
+      ) : null}
 
       {vignettes.length > 0 ? (
         <PercorsoVignettes
           vignettes={vignettes}
           showArrowBetweenColumns={percorso.vignetteArrowBetween}
         />
+      ) : null}
+
+      {percorso.serviceAreas ? (
+        <PageSection className="pt-10 pb-0 md:pt-14 md:pb-0">
+          <PercorsoConsultationCta
+            href={consultationCta.href}
+            label={consultationCta.label}
+          />
+        </PageSection>
       ) : null}
 
       {showLegacyLayout ? (

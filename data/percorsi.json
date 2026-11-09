@@ -491,11 +491,38 @@
       "slug": "partner-eventi",
       "icon": "events",
       "title": "Voglio un partner per i miei eventi",
-      "shortDescription": "Eventi che diventano esperienze memorabili: dal primo click all'effetto wow per i partecipanti, e il massimo supporto alla segreteria organizzativa.",
+      "shortDescription": "Eventi che diventano esperienze memorabili: dall'organizzazione alla tecnologia, un unico partner per ogni fase del tuo evento.",
       "description": [
         "Un grande evento non si misura solo da ciò che accade sul palco, ma da tutto ciò che succede prima, durante e dopo.",
-        "Noi progettiamo tutto ciò che permette ai partecipanti di viverla al meglio: iscrizioni, app, intelligenza artificiale, automazioni, streaming, olografia, gamification e tecnologie immersive che trasformano un semplice congresso in un'esperienza memorabile."
+        "LeanMe affianca aziende e professionisti nell'organizzazione e nella gestione degli eventi, integrando competenze organizzative, soluzioni digitali e tecnologie innovative.",
+        "Dalla pianificazione alla gestione dei partecipanti, dalle piattaforme digitali all'intelligenza artificiale, trasformiamo la complessità organizzativa in esperienze semplici, efficienti e memorabili."
       ],
+      "serviceAreas": {
+        "bridge": "Due competenze. Un unico partner.",
+        "management": {
+          "label": "01 / I nostri servizi",
+          "title": "Event Management & Organization",
+          "subtitle": "Dall'idea alla realizzazione.",
+          "paragraphs": [
+            "Non solo tecnologia. LeanMe affianca aziende e partner nella progettazione, nel coordinamento e nella gestione operativa di eventi aziendali, scientifici e del settore farmaceutico.",
+            "Dalla pianificazione alla segreteria organizzativa, dalla gestione dei partecipanti al coordinamento delle attività, offriamo un riferimento dedicato per seguire ogni fase dell'evento."
+          ],
+          "contact": {
+            "title": "Hai un evento da organizzare?",
+            "text": "Il nostro team è a disposizione per valutare il tuo progetto.",
+            "email": "eventi@leanme.it",
+            "buttonLabel": "Contatta il team eventi"
+          }
+        },
+        "technology": {
+          "label": "02 / I nostri servizi",
+          "title": "Event Technology & Innovation",
+          "subtitle": "Soluzioni tecnologiche, digitali e innovative per gli eventi.",
+          "paragraphs": [
+            "Dalle iscrizioni all'accreditamento, ECM, dallo streaming alla regia, app e gamification, assistenza con intelligenza artificiale."
+          ]
+        }
+      },
       "leanLabTag": "Servizi per gli eventi",
       "vignetteArrowBetween": true,
       "vignettes": [
@@ -666,6 +693,9 @@
         "replaceHint": ""
       },
       "services": [
+        "Organizzazione e gestione operativa",
+        "Progettazione e coordinamento",
+        "Segreteria organizzativa e partecipanti",
         "Progettazione eventi",
         "Registrazione e streaming",
         "App e piattaforme evento",
@@ -675,7 +705,7 @@
       "faq": [
         {
           "question": "LeanMe segue solo la parte tecnologica o anche l'organizzazione dell'evento?",
-          "answer": "Copriamo l'intero ecosistema digitale dell'evento: iscrizioni, accreditamento, app partecipanti, streaming, regia, automazioni e assistenza. Collaboriamo con il comitato organizzatore per alleggerire la segreteria e migliorare l'esperienza prima, durante e dopo l'evento."
+          "answer": "Entrambe. Organizziamo e gestiamo operativamente eventi aziendali, scientifici e del settore farmaceutico: pianificazione, segreteria, partecipanti e coordinamento. In parallelo progettiamo l'ecosistema digitale — iscrizioni, accreditamento, app, streaming, regia, automazioni e assistenza — così organizzazione e tecnologia restano nello stesso partner."
         },
         {
           "question": "Potete gestire eventi ibridi con partecipanti in presenza e online?",
@@ -691,10 +721,10 @@
         }
       ],
       "inPocheParole": [
-        "Supportiamo organizzatori di congressi, convention ed eventi formativi che vogliono offrire un'esperienza completa ai partecipanti.",
-        "Il problema è spesso sottostimare tutto ciò che accade oltre il palco: iscrizioni complesse, ECM articolato, partecipanti poco coinvolti, segreteria sovraccarica.",
-        "Progettiamo piattaforme evento, app, streaming, automazioni, gamification e assistenza AI — tecnologia su misura, senza sprechi.",
-        "LeanMe trasforma eventi in ecosistemi digitali: ogni fase è pensata per semplificare l'organizzazione e lasciare il segno ai partecipanti."
+        "LeanMe è il partner per eventi aziendali, scientifici e del settore farmaceutico: organizzazione operativa e tecnologia, nello stesso team.",
+        "Un evento si giudica da ciò che accade prima, durante e dopo il palco. Quando organizzazione e strumenti digitali restano separati, la complessità ricade su segreteria e partecipanti.",
+        "Affianchiamo progettazione e gestione operativa — pianificazione, segreteria, partecipanti, coordinamento — e progettiamo piattaforme, app, streaming, automazioni e intelligenza artificiale su misura.",
+        "Due competenze, un unico partner: LeanMe tiene insieme persone e tecnologia, così l'evento resta semplice da gestire e memorabile da vivere."
       ]
     },
     {
