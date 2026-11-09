@@ -57,6 +57,16 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/eventi",
+        destination: "/come-possiamo-aiutarti/partner-eventi",
+        permanent: true,
+      },
+      {
+        source: "/eventi/:path*",
+        destination: "/come-possiamo-aiutarti/partner-eventi",
+        permanent: true,
+      },
+      {
         source: "/servizi_it_bologna",
         destination: "/come-possiamo-aiutarti",
         permanent: true,

@@ -132,6 +132,7 @@ export function SiteFooter() {
                 </p>
               )}
               <a href={contatti.email.href} className="block transition hover:text-white">
+                <span className="text-white/45">{contatti.email.label}: </span>
                 {contatti.email.value}
               </a>
               {contatti.eventEmail ? (
@@ -144,6 +145,7 @@ export function SiteFooter() {
                 </a>
               ) : null}
               <a href={contatti.phone.href} className="block transition hover:text-white">
+                <span className="text-white/45">{contatti.phone.label}: </span>
                 {contatti.phone.value}
               </a>
               {contatti.openingHours?.lines?.length ? (
