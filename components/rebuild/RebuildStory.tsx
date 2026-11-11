@@ -44,6 +44,7 @@ export function RebuildStory({ story }: { story: RebuildStoryData }) {
             unoptimized
           />
         </Link>
+        <VisitCounter />
 
         <div className="pr-9 md:pr-12">
           <Opening story={story} reduce={Boolean(reduce)} />
@@ -107,7 +108,7 @@ function ScrollRail() {
 
   return (
     <p
-      className={`${reduce ? "" : styles.rail} pointer-events-none fixed bottom-32 right-0 top-20 z-30 flex w-9 items-center justify-center md:w-12`}
+      className={`${reduce ? "" : styles.rail} pointer-events-none fixed bottom-32 right-0 top-28 z-30 flex w-9 items-center justify-center md:top-24 md:w-12`}
       aria-hidden="true"
     >
       <span className="flex flex-col items-center gap-3 text-white">
@@ -185,7 +186,6 @@ function Opening({
           {story.opening.subtitle}
         </p>
       </div>
-      <VisitCounter />
       <a
         href="#capitolo-prima"
         className={`${styles.hint} mt-12 inline-flex flex-col items-center gap-2 text-base font-semibold tracking-[0.28em] text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white md:text-lg`}

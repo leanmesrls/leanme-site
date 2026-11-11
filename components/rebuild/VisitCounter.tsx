@@ -21,8 +21,8 @@ export function VisitCounter() {
   }, []);
 
   return (
-    <p className="mt-8 text-sm font-semibold tracking-[0.12em] text-white">
-      <span className="tabular-nums">{total}</span> persone sono entrate
+    <p className="fixed right-3 top-3 z-30 w-36 bg-[#050505]/85 px-2 py-1 text-right text-[11px] font-semibold leading-snug text-white md:w-auto md:text-xs">
+      <span className="tabular-nums">{total}</span> persone hanno visitato questa pagina
     </p>
   );
 }
