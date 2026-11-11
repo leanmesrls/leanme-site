@@ -184,6 +184,7 @@ export type LeanLabArticleBodyTemplate =
   | "newsletter-episodio-04"
   | "newsletter-episodio-05"
   | "newsletter-episodio-06"
+  | "newsletter-episodio-07"
   | "newsletter-ricerca-episodio-01"
   | "newsletter-ricerca-episodio-02"
   | "progetti-san-lazzaro"

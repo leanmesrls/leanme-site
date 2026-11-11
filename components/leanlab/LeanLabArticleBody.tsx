@@ -10,6 +10,7 @@ import { NewsletterEpisodio03 } from "./articles/NewsletterEpisodio03";
 import { NewsletterEpisodio04 } from "./articles/NewsletterEpisodio04";
 import { NewsletterEpisodio05 } from "./articles/NewsletterEpisodio05";
 import { NewsletterEpisodio06 } from "./articles/NewsletterEpisodio06";
+import { NewsletterEpisodio07 } from "./articles/NewsletterEpisodio07";
 import { NewsletterRicercaEpisodio01 } from "./articles/NewsletterRicercaEpisodio01";
 import { NewsletterRicercaEpisodio02 } from "./articles/NewsletterRicercaEpisodio02";
 import { DigitalTwinGemelliDigitali } from "./articles/DigitalTwinGemelliDigitali";
@@ -42,6 +43,8 @@ export function LeanLabArticleBody({
       return <NewsletterEpisodio05 cta={cta} />;
     case "newsletter-episodio-06":
       return <NewsletterEpisodio06 cta={cta} />;
+    case "newsletter-episodio-07":
+      return <NewsletterEpisodio07 cta={cta} />;
     case "newsletter-ricerca-episodio-01":
       return <NewsletterRicercaEpisodio01 videoCta={videoCta} />;
     case "newsletter-ricerca-episodio-02":

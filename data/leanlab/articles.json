@@ -1,5 +1,46 @@
 [
   {
+    "slug": "leanme-rebuild-episodio-07",
+    "category": "vita-in-leanme",
+    "title": "LeanMe // Rebuild // Episodio 07",
+    "excerpt": [
+      "Le idee hanno trovato casa. E voi l'avete riempita di vita.",
+      "Domenica 8 novembre la nuova sede ha aperto le porte. Questa newsletter ripercorre la trasformazione: i lavori, il nuovo spazio e la festa."
+    ],
+    "metaDescription": "LeanMe Rebuild Episodio 07: le idee hanno trovato casa. Ripercorri la trasformazione della nuova sede, dal prima al dopo, fino alla festa dell'8 novembre 2026.",
+    "date": "2026-11-11",
+    "readTime": "2 min",
+    "image": {
+      "src": "/assets/leanlab/newsletter-episodio-07.jpg",
+      "alt": "Newsletter LeanMe Rebuild Episodio 07 — Le idee hanno trovato casa. Prima e dopo la nuova sede.",
+      "replaceHint": ""
+    },
+    "author": "Luana, Alessandro e il team LeanMe",
+    "tags": ["Newsletter"],
+    "bodyTemplate": "newsletter-episodio-07",
+    "hideDefaultImage": true,
+    "cta": {
+      "href": "/rebuild-100",
+      "label": "Clicca e ripercorri la storia"
+    },
+    "faq": [
+      {
+        "question": "Cosa racconta l'episodio 07?",
+        "answer": "Chiude LeanMe Rebuild al 100%: le idee hanno trovato casa e la newsletter mostra il prima e il dopo della nuova sede, fino alla festa di domenica 8 novembre 2026."
+      },
+      {
+        "question": "Dove porta il pulsante?",
+        "answer": "Apre REBUILD 100%, la pagina che ripercorre la trasformazione con fotografie e video: i lavori, il nuovo spazio e le persone."
+      }
+    ],
+    "inPocheParole": [
+      "Episodio 07 chiude la campagna LeanMe Rebuild: le idee hanno trovato casa e la newsletter invita a ripercorrere la storia.",
+      "Domenica 8 novembre 2026 la sede di Via Porrettana 148/2/C a Bologna ha aperto le porte. Il prima e il dopo stanno nella stessa grafica.",
+      "Il pulsante «Clicca e ripercorri la storia» apre la pagina REBUILD 100%, con i lavori, il nuovo spazio e la festa.",
+      "LeanMe è un'Azienda Ibrida: lo spazio, le persone e l'intelligenza artificiale convivono. Le idee hanno trovato casa, e le persone l'hanno riempita di vita."
+    ]
+  },
+  {
     "slug": "digital-twin-gemelli-digitali",
     "category": "ricerca-e-innovazione",
     "title": "Digital Twin: e se potessimo provare il futuro prima di viverlo?",
