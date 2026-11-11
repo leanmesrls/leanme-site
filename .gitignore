@@ -40,6 +40,7 @@ yarn-error.log*
 .teresa-data/
 .prompt-builder-data/
 .leanlab-data/
+.rebuild-data/
 
 # vercel
 .vercel

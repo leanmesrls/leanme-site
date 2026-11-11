@@ -13,6 +13,7 @@ import {
   type RebuildStory as RebuildStoryData,
 } from "@/lib/rebuild";
 import { BeforeAfter, Lightbox, StoryStill, StoryVideo } from "@/components/rebuild/StoryMedia";
+import { VisitCounter } from "@/components/rebuild/VisitCounter";
 import styles from "@/components/rebuild/story.module.css";
 
 export function RebuildStory({ story }: { story: RebuildStoryData }) {
@@ -184,6 +185,7 @@ function Opening({
           {story.opening.subtitle}
         </p>
       </div>
+      <VisitCounter />
       <a
         href="#capitolo-prima"
         className={`${styles.hint} mt-12 inline-flex flex-col items-center gap-2 text-base font-semibold tracking-[0.28em] text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white md:text-lg`}
