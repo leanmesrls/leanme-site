@@ -557,6 +557,11 @@ export interface LegalDocumentSubsection {
   paragraphs: string[];
 }
 
+export interface LegalDocumentLink {
+  label: string;
+  href: string;
+}
+
 export interface LegalDocumentSection {
   id: string;
   title: string;
@@ -566,6 +571,7 @@ export interface LegalDocumentSection {
   lines?: string[];
   items?: string[];
   email?: string;
+  links?: LegalDocumentLink[];
   embedPlaceholder?: string;
 }
 
@@ -575,6 +581,7 @@ export interface LegalDocumentData {
     subtitle?: string;
     lastUpdated: string;
   };
+  notice?: string;
   sections: LegalDocumentSection[];
 }
 

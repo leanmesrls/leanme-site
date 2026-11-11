@@ -1,8 +1,47 @@
 import Link from "next/link";
-import type { LegalDocumentData } from "@/types/content";
+import type { LegalDocumentData, LegalDocumentLink } from "@/types/content";
 
 interface LegalDocumentProps {
   data: LegalDocumentData;
+}
+
+function RichText({ text }: { text: string }) {
+  const parts = text.split(/([A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,})/gi);
+
+  return (
+    <>
+      {parts.map((part, index) =>
+        part.includes("@") ? (
+          <a
+            key={`${part}-${index}`}
+            href={`mailto:${part}`}
+            className="text-leanme-fuchsia transition hover:text-white"
+          >
+            {part}
+          </a>
+        ) : (
+          <span key={`${index}-${part.slice(0, 16)}`}>{part}</span>
+        ),
+      )}
+    </>
+  );
+}
+
+function DocumentLinks({ links }: { links: LegalDocumentLink[] }) {
+  return (
+    <ul className="space-y-2 text-base leading-relaxed">
+      {links.map((link) => (
+        <li key={link.href}>
+          <Link
+            href={link.href}
+            className="text-leanme-fuchsia transition hover:text-white"
+          >
+            {link.label}
+          </Link>
+        </li>
+      ))}
+    </ul>
+  );
 }
 
 export function LegalDocument({ data }: LegalDocumentProps) {
@@ -11,6 +50,14 @@ export function LegalDocument({ data }: LegalDocumentProps) {
       <p className="text-sm text-white/50">
         Ultimo aggiornamento: {data.hero.lastUpdated}
       </p>
+      {data.notice ? (
+        <p
+          role="note"
+          className="mt-6 rounded-lg border border-white/15 bg-white/[0.03] px-4 py-3 text-sm leading-relaxed text-white/70"
+        >
+          {data.notice}
+        </p>
+      ) : null}
 
       <div className="mt-10 space-y-10">
         {data.sections.map((section) => (
@@ -27,7 +74,7 @@ export function LegalDocument({ data }: LegalDocumentProps) {
                   key={paragraph.slice(0, 48)}
                   className="text-base leading-relaxed text-white/80"
                 >
-                  {paragraph}
+                  <RichText text={paragraph} />
                 </p>
               ))}
               {section.lines && (
@@ -73,7 +120,7 @@ export function LegalDocument({ data }: LegalDocumentProps) {
                   key={paragraph.slice(0, 48)}
                   className="text-base leading-relaxed text-white/80"
                 >
-                  {paragraph}
+                  <RichText text={paragraph} />
                 </p>
               ))}
               {section.subsections?.map((subsection) => (
@@ -86,7 +133,7 @@ export function LegalDocument({ data }: LegalDocumentProps) {
                       key={paragraph.slice(0, 48)}
                       className="text-base leading-relaxed text-white/80"
                     >
-                      {paragraph}
+                      <RichText text={paragraph} />
                     </p>
                   ))}
                 </div>
@@ -99,6 +146,9 @@ export function LegalDocument({ data }: LegalDocumentProps) {
                   {section.embedPlaceholder}
                 </div>
               )}
+              {section.links && section.links.length > 0 ? (
+                <DocumentLinks links={section.links} />
+              ) : null}
               {section.email && (
                 <p className="text-base leading-relaxed text-white/80">
                   <a

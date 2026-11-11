@@ -13,6 +13,7 @@ import diconoDiNoiData from "@/data/dicono-di-noi.json";
 import newsletterData from "@/data/newsletter.json";
 import prenotaConsulenzaData from "@/data/prenota-consulenza.json";
 import privacyData from "@/data/privacy.json";
+import privacyEventiData from "@/data/privacy-eventi.json";
 import privacyNewsletterData from "@/data/privacy-newsletter.json";
 import cookieData from "@/data/cookie.json";
 import accessibilityData from "@/data/accessibility.json";
@@ -173,6 +174,10 @@ export function getPrenotaConsulenzaData(): PrenotaConsulenzaData {
 
 export function getPrivacyData(): LegalDocumentData {
   return privacyData as LegalDocumentData;
+}
+
+export function getPrivacyEventiData(): LegalDocumentData {
+  return privacyEventiData as LegalDocumentData;
 }
 
 export function getTerminiIaData(): LegalDocumentData {

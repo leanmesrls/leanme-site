@@ -1,0 +1,97 @@
+{
+  "hero": {
+    "title": "Informativa sul trattamento dei dati personali",
+    "subtitle": "Organizzazione eventi — ai sensi degli artt. 13 e, ove applicabile, 14 del Regolamento (UE) 2016/679 (GDPR)",
+    "lastUpdated": "11 novembre 2026"
+  },
+  "notice": "Versione di lavoro – 11 novembre 2026. Da completare e verificare prima della pubblicazione.",
+  "sections": [
+    {
+      "id": "titolare",
+      "title": "1. Titolare del trattamento",
+      "paragraphs": [
+        "LeanMe S.r.l.s. (di seguito \"LeanMe\" o \"Titolare\"), con sede legale in Via Porrettana 150, 40135 Bologna (BO), P. IVA 03887091209, contattabile all'indirizzo info@leanme.it, tratta i dati personali nell'ambito dell'organizzazione e gestione di eventi aziendali, scientifici, formativi non ECM e di altre iniziative. L'eventuale designazione di un Responsabile della protezione dei dati (DPO), se prevista, sarà comunicata qui con i relativi recapiti."
+      ]
+    },
+    {
+      "id": "interessati",
+      "title": "2. Persone interessate e categorie di dati",
+      "paragraphs": [
+        "L'informativa si rivolge, secondo il caso, a partecipanti, docenti, relatori, moderatori, collaboratori, referenti di aziende e fornitori. Possono essere trattati: dati identificativi e di contatto; qualifica professionale, ente di appartenenza, curriculum e biografia; dati fiscali, amministrativi e bancari necessari per incarichi e pagamenti; dati relativi a iscrizione, presenza, trasferte, pernottamenti e preferenze logistiche; eventuali dichiarazioni di conflitto di interessi richieste dall'evento; dati tecnici necessari all'accesso alle piattaforme digitali.",
+        "Solo se effettivamente necessari, possono essere raccolte informazioni su allergie, esigenze alimentari o accessibilità che rivelino dati relativi alla salute o convinzioni religiose: sono dati appartenenti a categorie particolari ai sensi dell'art. 9 GDPR e saranno gestiti separatamente e con accessi limitati.",
+        "Fotografie, registrazioni audio e video possono essere effettuate durante gli eventi: per le finalità di pubblicazione e promozione si rinvia all'informativa specifica e, ove necessario, alla relativa autorizzazione."
+      ]
+    },
+    {
+      "id": "finalita",
+      "title": "3. Finalità e basi giuridiche",
+      "paragraphs": [
+        "a) Gestione di richieste, iscrizioni, incarichi a docenti e relatori, comunicazioni operative, logistica, accessi, attestazioni non ECM e svolgimento dell'evento: art. 6, par. 1, lett. b) GDPR, quando il trattamento è necessario a un contratto con l'interessato o a misure precontrattuali richieste; negli altri casi, art. 6, par. 1, lett. f), per il legittimo interesse organizzativo del Titolare, previa valutazione di bilanciamento.",
+        "b) Fatturazione, contabilità e adempimenti normativi: art. 6, par. 1, lett. c) GDPR.",
+        "c) Gestione di contestazioni, tutela dei diritti e sicurezza organizzativa: art. 6, par. 1, lett. f) GDPR; ove applicabile, art. 9, par. 2, lett. f) per dati particolari necessari a far valere un diritto.",
+        "d) Trattamento di esigenze particolari di salute o religione comunicate volontariamente per servizi personalizzati: ove non sussista altra idonea condizione dell'art. 9, consenso esplicito ex art. 9, par. 2, lett. a) GDPR, separato e revocabile.",
+        "Le comunicazioni promozionali e newsletter non rientrano automaticamente nelle finalità sopra indicate e sono disciplinate da un'informativa e, quando richiesto, da un consenso distinti."
+      ]
+    },
+    {
+      "id": "conferimento",
+      "title": "4. Conferimento dei dati",
+      "paragraphs": [
+        "I dati necessari per iscrizione, gestione dell'incarico, accesso e adempimenti obbligatori devono essere forniti per poter erogare il relativo servizio o formalizzare il rapporto. I dati facoltativi, incluse esigenze particolari e preferenze non indispensabili, possono non essere comunicati: ciò può limitare soltanto l'erogazione del servizio personalizzato richiesto, non comporta automaticamente l'esclusione dall'evento. L'eventuale consenso al trattamento di dati particolari è facoltativo e revocabile."
+      ]
+    },
+    {
+      "id": "modalita",
+      "title": "5. Modalità di trattamento e sicurezza",
+      "paragraphs": [
+        "I dati sono trattati con strumenti cartacei e digitali da persone autorizzate e da fornitori incaricati, con misure tecniche e organizzative proporzionate ai rischi. Non sono previste decisioni basate unicamente su trattamenti automatizzati che producano effetti giuridici o analogamente significativi, salvo diversa informativa specifica."
+      ]
+    },
+    {
+      "id": "destinatari",
+      "title": "6. Destinatari e ruoli dei partner",
+      "paragraphs": [
+        "Nei limiti necessari, i dati possono essere comunicati a personale e collaboratori autorizzati, sedi congressuali, strutture ricettive, fornitori di servizi logistici, informatici e di registrazione, consulenti fiscali e legali, banche, soggetti pubblici legittimati e, se necessario, committenti o partner dell'evento.",
+        "La collaborazione con IEC Congressi e con altri partner non determina automaticamente un ruolo privacy prestabilito: per ogni iniziativa saranno definiti in base alle attività effettive eventuali titolarità autonome, contitolarità (art. 26 GDPR) o nomine a responsabile (art. 28 GDPR). I dati non saranno comunicati agli sponsor per finalità di marketing autonomo senza adeguata base giuridica e informazione specifica."
+      ]
+    },
+    {
+      "id": "trasferimenti",
+      "title": "7. Trasferimenti extra SEE",
+      "paragraphs": [
+        "Qualora l'uso di fornitori cloud o altri servizi comporti trasferimenti di dati verso Paesi esterni allo Spazio economico europeo, LeanMe verificherà la presenza di una decisione di adeguatezza o di altre garanzie applicabili ai sensi degli artt. 44 e seguenti GDPR (ad esempio clausole contrattuali standard e misure supplementari ove necessarie). Informazioni sulle garanzie possono essere richieste al Titolare."
+      ]
+    },
+    {
+      "id": "conservazione",
+      "title": "8. Periodi di conservazione",
+      "paragraphs": [
+        "I dati organizzativi saranno conservati per il tempo necessario alla gestione e chiusura dell'evento e successivamente per il periodo richiesto da obblighi normativi o necessario alla tutela di diritti, secondo criteri documentati. La documentazione contabile e fiscale sarà conservata nei termini di legge applicabili, ordinariamente fino a 10 anni. I dati relativi a esigenze particolari saranno eliminati o anonimizzati appena cessata la necessità organizzativa, salvo obblighi o esigenze legittime documentate. Prima della pubblicazione, LeanMe deve definire tempi specifici per le diverse categorie di dati e sistemi utilizzati."
+      ]
+    },
+    {
+      "id": "diritti",
+      "title": "9. Diritti degli interessati",
+      "paragraphs": [
+        "Nei casi e nei limiti previsti dagli artt. 15–22 GDPR, l'interessato può chiedere accesso, rettifica, cancellazione, limitazione, portabilità, opporsi al trattamento e, ove applicabile, non essere sottoposto a decisioni unicamente automatizzate. Può revocare in qualsiasi momento il consenso senza pregiudicare la liceità del trattamento precedente. Le richieste possono essere inviate a info@leanme.it. È inoltre possibile proporre reclamo al Garante per la protezione dei dati personali."
+      ]
+    },
+    {
+      "id": "aggiornamenti",
+      "title": "10. Aggiornamenti e informative collegate",
+      "paragraphs": [
+        "Per fotografie, video, streaming, registrazioni di interventi e utilizzo promozionale di immagini o voci si applicano informative e, ove richiesto, liberatorie specifiche. Per newsletter e marketing si applica l'informativa dedicata. Eventuali trattamenti ulteriori o peculiari di un singolo evento saranno illustrati prima della raccolta dei dati."
+      ],
+      "links": [
+        {
+          "label": "Informativa privacy generale",
+          "href": "/privacy"
+        },
+        {
+          "label": "Informativa newsletter",
+          "href": "/privacy-newsletter"
+        }
+      ]
+    }
+  ]
+}

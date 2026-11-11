@@ -101,6 +101,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const legalRoutes = [
     "/privacy",
+    "/privacy/organizzazione-eventi",
     "/privacy-newsletter",
     "/cookie",
     "/termini-ia",
