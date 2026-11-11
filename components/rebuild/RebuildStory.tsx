@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { ASSETS } from "@/lib/assets";
@@ -28,7 +29,7 @@ export function RebuildStory({ story }: { story: RebuildStoryData }) {
     <>
       <ScrollRail />
       <article id="rebuild-top" className="overflow-x-clip bg-[#050505] text-white">
-        <a
+        <Link
           href="/"
           className="fixed left-4 top-4 z-30 block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
         >
@@ -41,7 +42,7 @@ export function RebuildStory({ story }: { story: RebuildStoryData }) {
             priority
             unoptimized
           />
-        </a>
+        </Link>
 
         <div className="pr-9 md:pr-12">
           <Opening story={story} reduce={Boolean(reduce)} />
