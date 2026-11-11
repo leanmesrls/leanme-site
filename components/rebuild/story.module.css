@@ -1,0 +1,70 @@
+.bar {
+  height: 3px;
+  width: min(72vw, 26rem);
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.bar > span {
+  display: block;
+  height: 100%;
+  background: #e6007e;
+  transition: width 0.55s ease;
+}
+
+.hint,
+.rail {
+  animation: rebuild-nudge 1.8s ease-in-out infinite;
+}
+
+.drift {
+  animation: rebuild-drift 22s ease-out forwards;
+  transform-origin: center center;
+}
+
+@keyframes rebuild-nudge {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(6px);
+  }
+}
+
+@keyframes rebuild-drift {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.05);
+  }
+}
+
+.playCall {
+  animation: rebuild-pulse 1.8s ease-out infinite;
+}
+
+@keyframes rebuild-pulse {
+  0% {
+    box-shadow: 0 16px 50px rgba(230, 0, 126, 0.45);
+  }
+  70% {
+    box-shadow: 0 16px 50px rgba(230, 0, 126, 0.45), 0 0 0 14px rgba(230, 0, 126, 0);
+  }
+  100% {
+    box-shadow: 0 16px 50px rgba(230, 0, 126, 0.45), 0 0 0 0 rgba(230, 0, 126, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hint,
+  .rail,
+  .drift,
+  .playCall {
+    animation: none;
+  }
+
+  .bar > span {
+    transition: none;
+  }
+}

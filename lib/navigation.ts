@@ -32,6 +32,10 @@ export function buildHeaderNavigation(
             href: "/staff-ibrido",
           },
           {
+            label: "Inaugurazione sede",
+            href: "/rebuild-100",
+          },
+          {
             label: "Dicono di noi",
             href: "/dicono-di-noi",
           },

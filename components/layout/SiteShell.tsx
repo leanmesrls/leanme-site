@@ -8,7 +8,8 @@ function isKioskPath(pathname: string | null): boolean {
     pathname === "/vcards" ||
     pathname.startsWith("/vcards/") ||
     pathname === "/segreteria" ||
-    pathname.startsWith("/segreteria/")
+    pathname.startsWith("/segreteria/") ||
+    pathname === "/rebuild-100"
   );
 }
 

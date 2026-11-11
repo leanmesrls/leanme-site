@@ -1,0 +1,234 @@
+{
+  "_note": "Racconto REBUILD 100%. Per aggiungere un contenuto: metti il file in public/rebuild (prima, lavori, dopo, festa, audio) e aggiungi un oggetto qui, con width e height reali. hidden: true lo esclude senza cancellarlo. La colonna sonora è provvisoria: il nome del file non certifica la licenza, da verificare prima della pubblicazione definitiva. Il confronto interattivo usa la stessa facciata (insegna in montaggio / facciata finita). Gli interni prima e dopo non hanno la stessa inquadratura, quindi non sono uno slider.",
+  "audio": {
+    "src": "/rebuild/audio/rebuild-story.mp3",
+    "playLabel": "PLAY THE STORY",
+    "subtitle": "The sound of REBUILD 100%"
+  },
+  "opening": {
+    "title": "REBUILD",
+    "steps": [0, 17, 34, 51, 68, 90, 100],
+    "line": "LE IDEE HANNO TROVATO CASA.",
+    "subtitle": "Una trasformazione fatta di spazi, idee e soprattutto persone.",
+    "scroll": "SCROLL TO EXPLORE"
+  },
+  "before": {
+    "index": "01 — Before",
+    "title": "Ogni storia ha un prima.",
+    "text": "Prima di diventare il nostro nuovo laboratorio, questo spazio era soltanto una possibilità.",
+    "images": [
+      {
+        "id": "volume",
+        "src": "/rebuild/prima/volume.webp",
+        "alt": "Il locale prima della trasformazione: pavimento a mosaico, serranda, materiali accatastati e una lavatrice ancora in mezzo alla stanza.",
+        "width": 2000,
+        "height": 1126
+      },
+      {
+        "id": "vuoto",
+        "src": "/rebuild/prima/vuoto.webp",
+        "alt": "Una stanza ancora vuota, con una scaffalatura metallica e la luce del soffitto, prima dei lavori.",
+        "width": 1800,
+        "height": 1013
+      }
+    ]
+  },
+  "making": {
+    "index": "02 — The making of",
+    "title": "Poi abbiamo cominciato a immaginare. E a costruire.",
+    "ideas": "IDEAS.",
+    "media": [
+      {
+        "id": "macerie",
+        "src": "/rebuild/lavori/macerie.webp",
+        "alt": "Una porta smontata e assi di legno sul pavimento a mosaico, con le macerie visibili oltre la soglia.",
+        "width": 2000,
+        "height": 3552,
+        "word": "CHAOS.",
+        "place": "full"
+      },
+      {
+        "id": "corridoio",
+        "src": "/rebuild/lavori/corridoio.webp",
+        "alt": "Un passaggio del locale pieno di macerie, durante la demolizione.",
+        "width": 1800,
+        "height": 3197
+      },
+      {
+        "id": "scala",
+        "src": "/rebuild/lavori/scala.webp",
+        "alt": "Una scala appoggiata a un muro aperto, tra calcinacci e materiali del cantiere.",
+        "width": 1800,
+        "height": 3197
+      },
+      {
+        "id": "mattoni",
+        "src": "/rebuild/lavori/mattoni.webp",
+        "alt": "Una stanza in demolizione, con i mattoni a vista.",
+        "width": 1800,
+        "height": 3197
+      },
+      {
+        "id": "persona",
+        "src": "/rebuild/lavori/persona.webp",
+        "alt": "Una persona del cantiere in pausa, seduta su un sanitario rimasto nel locale, con i guanti da lavoro e le macerie intorno.",
+        "width": 1800,
+        "height": 1013,
+        "word": "WORK."
+      },
+      {
+        "id": "demolizione",
+        "type": "video",
+        "src": "/rebuild/lavori/demolizione.mp4",
+        "poster": "/rebuild/lavori/demolizione-poster.webp",
+        "alt": "Video del locale durante la demolizione: macerie e una porta smontata sul pavimento a mosaico.",
+        "width": 720,
+        "height": 1280
+      },
+      {
+        "id": "doghe",
+        "src": "/rebuild/lavori/doghe.webp",
+        "alt": "Due persone su una scala applicano l'insegna LeanMe sulla parete a doghe di legno.",
+        "width": 1800,
+        "height": 3197,
+        "word": "PROGRESS."
+      }
+    ]
+  },
+  "reveal": {
+    "index": "03 — The reveal",
+    "title": "E poi, finalmente...",
+    "compareLabel": "Trascina la linea. La stessa facciata, mentre l'insegna sale e quando la sede è pronta.",
+    "before": {
+      "id": "insegna",
+      "src": "/rebuild/lavori/insegna.webp",
+      "alt": "Due persone su scale a pioli montano l'insegna LeanMe Open Innovation Hub sulla facciata.",
+      "width": 2000,
+      "height": 1126
+    },
+    "after": {
+      "id": "facciata",
+      "src": "/rebuild/dopo/facciata.webp",
+      "alt": "La facciata finita del LeanMe Open Innovation Hub, con l'insegna, la vetrina e la porta del laboratorio.",
+      "width": 2000,
+      "height": 1126
+    },
+    "welcome": "WELCOME TO OUR NEW HOME.",
+    "welcomeSub": "LeanMe — Open Innovation Hub",
+    "images": [
+      {
+        "id": "sala",
+        "src": "/rebuild/dopo/sala.webp",
+        "alt": "La sala del nuovo laboratorio: insegna al neon LeanMe, parete a doghe, tavoli, piante e postazioni.",
+        "width": 2000,
+        "height": 1126
+      },
+      {
+        "id": "bagno",
+        "src": "/rebuild/dopo/bagno.webp",
+        "alt": "Il bagno nuovo: rivestimento in legno, sanitari neri e lavabo in pietra.",
+        "width": 1600,
+        "height": 2842
+      },
+      {
+        "id": "cucina",
+        "src": "/rebuild/dopo/cucina.webp",
+        "alt": "La cucina nuova, con il piano scuro, il miscelatore nero e i pensili in legno.",
+        "width": 1800,
+        "height": 3197
+      }
+    ],
+    "video": {
+      "id": "welcome",
+      "type": "video",
+      "src": "/rebuild/dopo/welcome.mp4",
+      "poster": "/rebuild/dopo/welcome-poster.webp",
+      "alt": "Video notturno dell'ingresso: la porta aperta sul laboratorio, con la scrivania, le mensole e l'insegna Open Innovation Hub.",
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "people": {
+    "lead": "AND THEN...",
+    "title": "THE PEOPLE ARRIVED.",
+    "media": [
+      {
+        "id": "cerchio",
+        "src": "/rebuild/festa/cerchio.webp",
+        "alt": "Ospiti in conversazione sul marciapiede davanti alla sede, il giorno dell'inaugurazione, con un'orchidea sul tavolo.",
+        "width": 1800,
+        "height": 3197
+      },
+      {
+        "id": "arrivo",
+        "src": "/rebuild/festa/arrivo.webp",
+        "alt": "Persone riunite fuori dalla sede, il giorno dell'inaugurazione.",
+        "width": 1800,
+        "height": 3197
+      },
+      {
+        "id": "inaugurazione",
+        "type": "video",
+        "src": "/rebuild/festa/inaugurazione.mp4",
+        "poster": "/rebuild/festa/inaugurazione-poster.webp",
+        "alt": "Video degli ospiti all'inaugurazione: prima fuori dalla sede, poi dentro il laboratorio sotto l'insegna al neon.",
+        "width": 720,
+        "height": 1280
+      },
+      {
+        "id": "conversazione",
+        "src": "/rebuild/festa/conversazione.webp",
+        "alt": "Un gruppo di persone parla davanti all'ingresso della sede, accanto ai fiori dell'inaugurazione.",
+        "width": 1800,
+        "height": 3197
+      },
+      {
+        "id": "scrivania",
+        "src": "/rebuild/festa/scrivania.webp",
+        "alt": "Una persona seduta alla scrivania del laboratorio durante l'inaugurazione.",
+        "width": 1600,
+        "height": 2842
+      },
+      {
+        "id": "tavola",
+        "src": "/rebuild/festa/tavola.webp",
+        "alt": "Il tavolo dell'inaugurazione, con piante e qualcosa da offrire a chi è passato.",
+        "width": 1800,
+        "height": 3197
+      },
+      {
+        "id": "confetti",
+        "src": "/rebuild/festa/confetti.webp",
+        "alt": "Una ciotola di confetti rosa con il marchio LeanMe, preparati per l'inaugurazione.",
+        "width": 1400,
+        "height": 2487
+      }
+    ]
+  },
+  "thanks": {
+    "kicker": "REBUILD 100%",
+    "title": "1000% PEOPLE.",
+    "image": {
+      "id": "insieme",
+      "src": "/rebuild/festa/insieme.webp",
+      "alt": "Persone riunite nella nuova sede, davanti all'insegna al neon LeanMe Open Innovation Hub.",
+      "width": 2000,
+      "height": 3552
+    },
+    "paragraphs": [
+      "Domenica 8 novembre abbiamo aperto le porte della nostra nuova sede.",
+      "Abbiamo condiviso uno spazio che racconta quello che siamo oggi e quello che vogliamo costruire domani.",
+      "Grazie a chi è passato a trovarci, a chi ha condiviso con noi questo momento e a tutte le persone che fanno parte del nostro percorso.",
+      "Le idee hanno trovato casa.",
+      "E voi l'avete riempita di vita."
+    ],
+    "sign": "Luana, Alessandro e il team LeanMe.",
+    "card": {
+      "id": "biglietto",
+      "src": "/rebuild/festa/biglietto.webp",
+      "alt": "Il biglietto dell'inaugurazione, con il prompt, la risposta LeanMe e le firme di chi ha lasciato un augurio.",
+      "width": 1600,
+      "height": 2842
+    }
+  }
+}
