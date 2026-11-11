@@ -50,6 +50,10 @@
         "href": "/privacy",
         "children": [
           {
+            "label": "Trattamento dei dati",
+            "href": "/privacy"
+          },
+          {
             "label": "Organizzazione eventi",
             "href": "/privacy/organizzazione-eventi"
           },

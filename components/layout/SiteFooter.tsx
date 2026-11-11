@@ -172,27 +172,41 @@ export function SiteFooter() {
             </div>
             <nav aria-label="Informative e note legali">
               <ul className="flex flex-wrap items-start gap-x-4 gap-y-3 text-xs text-white/40">
-                {site.footer.legalLinks.map((link) => (
-                  <li key={link.href}>
-                    <Link href={link.href} className="hover:text-white/70">
-                      {link.label}
-                    </Link>
-                    {link.children?.length ? (
-                      <ul className="mt-1.5 space-y-1 border-l border-white/15 pl-2.5">
-                        {link.children.map((child) => (
-                          <li key={child.href}>
-                            <Link
-                              href={child.href}
-                              className="hover:text-white/70"
-                            >
-                              {child.label}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    ) : null}
-                  </li>
-                ))}
+                {site.footer.legalLinks.map((link) => {
+                  const groupId = `footer-legal-${link.href.replace(/[^a-z0-9]+/gi, "-")}`;
+                  const hasChildren = Boolean(link.children?.length);
+
+                  return (
+                    <li key={link.href}>
+                      {hasChildren ? (
+                        <p id={groupId} className="text-white/55">
+                          {link.label}
+                        </p>
+                      ) : (
+                        <Link href={link.href} className="hover:text-white/70">
+                          {link.label}
+                        </Link>
+                      )}
+                      {hasChildren ? (
+                        <ul
+                          aria-labelledby={groupId}
+                          className="mt-1.5 space-y-1 border-l border-white/15 pl-2.5"
+                        >
+                          {link.children?.map((child) => (
+                            <li key={child.href}>
+                              <Link
+                                href={child.href}
+                                className="hover:text-white/70"
+                              >
+                                {child.label}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      ) : null}
+                    </li>
+                  );
+                })}
                 <li>
                   <Link href="/credits" className="hover:text-white/70">
                     {homepage.footer.credits}
