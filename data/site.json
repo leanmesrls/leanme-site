@@ -52,12 +52,18 @@
           {
             "label": "Organizzazione eventi",
             "href": "/privacy/organizzazione-eventi"
+          },
+          {
+            "label": "Informativa Newsletter",
+            "href": "/privacy-newsletter"
+          },
+          {
+            "label": "Termini IA",
+            "href": "/termini-ia"
           }
         ]
       },
-      { "label": "Informativa Newsletter", "href": "/privacy-newsletter" },
       { "label": "Cookie Policy", "href": "/cookie" },
-      { "label": "Termini IA", "href": "/termini-ia" },
       { "label": "Accessibilità (EAA)", "href": "/accessibilita" }
     ]
   },
