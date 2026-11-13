@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" role="img" aria-label="AI Act Te lo spiego io">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#041018"/>
+      <stop offset="45%" stop-color="#0a0610"/>
+      <stop offset="100%" stop-color="#160810"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#3ec6ff"/>
+      <stop offset="100%" stop-color="#E6007E"/>
+    </linearGradient>
+    <radialGradient id="glowCyan" cx="22%" cy="30%" r="45%">
+      <stop offset="0%" stop-color="#3ec6ff" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="#3ec6ff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowFuchsia" cx="78%" cy="70%" r="42%">
+      <stop offset="0%" stop-color="#E6007E" stop-opacity="0.26"/>
+      <stop offset="100%" stop-color="#E6007E" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#bg)"/>
+  <rect width="1920" height="1080" fill="url(#glowCyan)"/>
+  <rect width="1920" height="1080" fill="url(#glowFuchsia)"/>
+  <g opacity="0.35" stroke="#ffffff" stroke-width="1" fill="none">
+    <path d="M120 180 H600 M180 140 V420"/>
+    <circle cx="180" cy="180" r="8"/>
+    <path d="M1320 760 H1800 M1740 700 V980"/>
+    <circle cx="1740" cy="760" r="8"/>
+  </g>
+  <rect x="140" y="210" width="220" height="8" rx="4" fill="url(#accent)"/>
+  <text x="140" y="290" fill="#8adfff" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" letter-spacing="6">RICERCA &amp; INNOVAZIONE</text>
+  <text x="140" y="340" fill="#ff8ac4" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" letter-spacing="5">TE LO SPIEGO IO</text>
+  <text x="140" y="520" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="92" font-weight="700">AI Act</text>
+  <text x="140" y="620" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="40" font-weight="500" opacity="0.92">Regole chiare. AI piu sicura,</text>
+  <text x="140" y="680" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="40" font-weight="500" opacity="0.92">trasparente e responsabile.</text>
+  <rect x="140" y="780" width="160" height="4" rx="2" fill="#E6007E"/>
+  <text x="140" y="840" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="26" opacity="0.7">con Luana.AI · LeanMe</text>
+</svg>

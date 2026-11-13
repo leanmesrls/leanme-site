@@ -1,0 +1,280 @@
+{
+  "series": "RICERCA & INNOVAZIONE | TE LO SPIEGO IO",
+  "introTitle": "Usi l'AI al lavoro? Allora questo argomento ti riguarda",
+  "intro": [
+    "Scrivere un'email con ChatGPT. Preparare una presentazione. Analizzare documenti. Usare un chatbot per rispondere ai clienti.",
+    "Se almeno una di queste cose ti suona familiare, stai già usando l'intelligenza artificiale nel lavoro quotidiano. E no: non tutti questi utilizzi comportano gli stessi obblighi.",
+    "L'AI Act — il regolamento europeo sull'intelligenza artificiale — non nasce per fermare l'innovazione. Nasce per rendere più chiaro quando un sistema va usato con più attenzione, più trasparenza e più responsabilità.",
+    "In questo articolo ti spiego cos'è, a chi si applica e cosa cambia concretamente per aziende e professionisti. Senza panico. Senza burocratese."
+  ],
+  "sections": [
+    {
+      "id": "cos-e-l-ai-act",
+      "title": "1. Cos'è l'AI Act?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "L'AI Act è il Regolamento (UE) 2024/1689: la legge europea che introduce regole armonizzate per lo sviluppo, l'immissione sul mercato e l'uso di sistemi di intelligenza artificiale nell'Unione."
+        },
+        {
+          "type": "p",
+          "text": "In sintesi, punta a quattro obiettivi:"
+        },
+        {
+          "type": "ul",
+          "items": [
+            "promuovere un'AI affidabile;",
+            "proteggere sicurezza e diritti fondamentali;",
+            "definire regole proporzionate ai rischi;",
+            "favorire un'innovazione responsabile."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Non è un elenco di divieti a prescindere. È un modo per dire: non tutta l'AI è uguale, e non tutte le situazioni chiedono lo stesso livello di garanzia."
+        },
+        {
+          "type": "remember",
+          "title": "Da ricordare",
+          "text": "Più un sistema AI può incidere sulla vita delle persone, maggiori possono essere le garanzie richieste."
+        }
+      ]
+    },
+    {
+      "id": "non-tutte-le-ai-sono-uguali",
+      "title": "2. Non tutte le AI sono uguali",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Il cuore dell'AI Act è l'approccio basato sul rischio. Non si parte dal nome dello strumento. Si parte dalla finalità e dalle caratteristiche del sistema."
+        },
+        {
+          "type": "p",
+          "text": "Lo stesso modello può stare in fasce diverse a seconda di come lo usi. Un assistente che migliora un testo non è un sistema che classifica candidature. Un chatbot di customer care non è automaticamente uno strumento ad alto rischio solo perché «parla»."
+        },
+        {
+          "type": "risks"
+        },
+        {
+          "type": "p",
+          "text": "Il livello di rischio dipende da cosa fa il sistema, su chi produce effetti e con quale autonomia. Non basta dire «usiamo ChatGPT» per capire quali regole contano."
+        }
+      ]
+    },
+    {
+      "id": "cosa-cambia-nel-lavoro-quotidiano",
+      "title": "3. Cosa cambia nel lavoro quotidiano?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Qui entriamo nel concreto. Non per spaventarti, ma per aiutarti a fare le domande giuste."
+        },
+        {
+          "type": "work-examples"
+        },
+        {
+          "type": "p",
+          "text": "Attenzione: nessuno di questi ambiti rende «automaticamente» ad alto rischio ogni applicazione di AI. Contano finalità, contesto, autonomia del sistema e conseguenze sulle persone."
+        }
+      ]
+    },
+    {
+      "id": "ai-literacy",
+      "title": "4. AI Literacy: perché è importante saper utilizzare l'AI",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Una parte dell'AI Act riguarda l'alfabetizzazione all'intelligenza artificiale, spesso chiamata AI Literacy. In particolare, l'articolo 4 chiede a fornitori e organizzazioni che utilizzano professionalmente sistemi AI di adottare misure adeguate affinché le persone coinvolte abbiano un livello sufficiente di competenza."
+        },
+        {
+          "type": "p",
+          "text": "Cosa significa, in pratica?"
+        },
+        {
+          "type": "ul",
+          "items": [
+            "Non esiste un unico corso obbligatorio valido per tutti.",
+            "Non è previsto un «patentino» universale.",
+            "Le misure devono essere adeguate al contesto, al ruolo e agli strumenti davvero usati.",
+            "La formazione deve riguardare opportunità, rischi e limiti degli strumenti — non solo i trucchi del prompt."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Questa disposizione sulle misure di alfabetizzazione è tra quelle già applicabili dal 2 febbraio 2025, secondo la timeline ufficiale della Commissione europea."
+        },
+        {
+          "type": "remember",
+          "title": "Saper usare l'AI non significa soltanto saper scrivere un prompt",
+          "text": "Significa anche comprendere quando utilizzarla, quali dati condividere, come verificare i risultati e quando è necessario intervenire."
+        }
+      ]
+    },
+    {
+      "id": "chi-e-responsabile",
+      "title": "5. Chi è responsabile dei risultati?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Usare l'AI non trasferisce magicamente la responsabilità allo strumento. Restano centrali supervisione umana, verifica delle informazioni, protezione dei dati e scelte organizzative."
+        },
+        {
+          "type": "h3",
+          "id": "supervisione-e-verifica",
+          "text": "Supervisione umana e verifica"
+        },
+        {
+          "type": "p",
+          "text": "Un output può sembrare sicuro e essere sbagliato. Le «allucinazioni» non sono un dettaglio tecnico: sono un rischio operativo. Controllare fonti, numeri, citazioni e decisioni prima di usarle è una buona pratica. In alcuni contesti ad alto rischio, la supervisione umana diventa anche un requisito progettuale."
+        },
+        {
+          "type": "h3",
+          "id": "dati-e-organizzazione",
+          "text": "Dati e responsabilità organizzative"
+        },
+        {
+          "type": "p",
+          "text": "Cosa inseriamo nei prompt? Chi può usare quali strumenti? Come gestiamo i contenuti sintetici? Queste domande appartengono all'organizzazione, non solo al singolo professionista."
+        },
+        {
+          "type": "p",
+          "text": "Importante: le buone pratiche generali non coincidono sempre con obblighi giuridici specifici. Gli obblighi dipendono dal sistema, dal ruolo dell'organizzazione (fornitore, importer, deployer) e dalla fascia di rischio. Qui aiutano metodo e, quando serve, supporto legale specializzato."
+        }
+      ]
+    },
+    {
+      "id": "da-dove-cominciare",
+      "title": "6. Da dove può cominciare un'azienda?",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "Non tutte le aziende hanno gli stessi obblighi. Ma quasi tutte possono iniziare con un percorso semplice e proporzionato:"
+        },
+        {
+          "type": "ol",
+          "items": [
+            "Individuare gli strumenti AI già utilizzati — ufficiali e «ombra».",
+            "Comprendere per quali attività vengono impiegati.",
+            "Valutare i dati e i rischi coinvolti.",
+            "Definire regole interne di utilizzo.",
+            "Formare adeguatamente le persone.",
+            "Prevedere controlli e verifiche proporzionati."
+          ]
+        },
+        {
+          "type": "p",
+          "text": "Non serve trasformare l'azienda in un ufficio legale. Serve sapere cosa state facendo, con quali effetti e con quale livello di consapevolezza."
+        }
+      ]
+    },
+    {
+      "id": "conclusione",
+      "title": "Conclusione",
+      "blocks": [
+        {
+          "type": "p",
+          "text": "L'AI Act non riguarda soltanto chi sviluppa intelligenza artificiale. Riguarda anche il modo in cui scegliamo di utilizzarla."
+        },
+        {
+          "type": "p",
+          "text": "L'innovazione non consiste soltanto nell'adottare nuovi strumenti. Consiste nel comprenderli e utilizzarli responsabilmente — con trasparenza, supervisione umana e un po' di metodo."
+        },
+        {
+          "type": "p",
+          "text": "Powered by Human Intelligence. Amplified by AI."
+        }
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "id": "rischio-minimo",
+      "kicker": "Rischio minimo o basso",
+      "heading": "Usi quotidiani a basso impatto",
+      "text": "Esempio: AI per migliorare un testo o suggerire idee creative. In molti casi restano libertà d'uso e buone pratiche, senza obblighi pesanti tipici delle fasce superiori."
+    },
+    {
+      "id": "trasparenza",
+      "kicker": "Obblighi di trasparenza",
+      "heading": "Far capire che c'è l'AI",
+      "text": "Esempio: determinati chatbot e contenuti sintetici. Qui può entrare l'obbligo di informare le persone quando interagiscono con un sistema AI o quando un contenuto è generato artificialmente."
+    },
+    {
+      "id": "alto-rischio",
+      "kicker": "Alto rischio",
+      "heading": "Impatto su diritti, salute, lavoro",
+      "text": "Esempio: determinati sistemi AI per la selezione del personale o applicazioni sanitarie. Non tutti i tool HR o sanitari lo sono automaticamente: contano finalità e caratteristiche. Quando lo sono, gli obblighi diventano più rigorosi."
+    },
+    {
+      "id": "vietato",
+      "kicker": "Pratiche vietate",
+      "heading": "Usi incompatibili con i diritti",
+      "text": "Esempio: determinate forme di manipolazione dannosa e social scoring. Sono linee rosse: pratiche considerate inaccettabili dal regolamento."
+    }
+  ],
+  "workExamples": [
+    {
+      "id": "comunicazione-marketing",
+      "kicker": "Comunicazione e marketing",
+      "heading": "Newsletter, testi e immagini generate",
+      "situation": "Un'azienda utilizza l'AI per scrivere una newsletter o generare immagini.",
+      "relevance": "Possono entrare in gioco qualità del contenuto, uso dei dati e, in certi casi, obblighi di trasparenza sui contenuti sintetici.",
+      "evaluate": "Valutare: finalità, materiali usati come input, revisione umana prima della pubblicazione e modalità di dichiarazione quando serve."
+    },
+    {
+      "id": "risorse-umane",
+      "kicker": "Risorse umane",
+      "heading": "Analisi e classificazione delle candidature",
+      "situation": "Un'azienda utilizza un sistema AI per analizzare e classificare candidature.",
+      "relevance": "Determinati sistemi di selezione del personale possono rientrare tra gli usi ad alto rischio, perché possono influenzare l'accesso al lavoro.",
+      "evaluate": "Valutare: autonomia del sistema, criteri usati, rischio di discriminazione, supervisione umana e documentazione. Non ogni supporto AI in HR è automaticamente alto rischio."
+    },
+    {
+      "id": "sanita",
+      "kicker": "Sanità",
+      "heading": "Supporto all'analisi di immagini diagnostiche",
+      "situation": "Un centro medico utilizza un sistema AI a supporto dell'analisi di immagini diagnostiche.",
+      "relevance": "Determinati sistemi possono essere soggetti a requisiti rigorosi, anche in relazione a prodotti regolamentati e a finalità cliniche.",
+      "evaluate": "Valutare: ruolo del professionista, finalità dichiarata del sistema, affidabilità, tracciabilità e il fatto che il controllo clinico resta decisivo."
+    },
+    {
+      "id": "customer-care",
+      "kicker": "Customer care",
+      "heading": "Chatbot che rispondono ai clienti",
+      "situation": "Un'azienda utilizza un chatbot AI per rispondere ai clienti.",
+      "relevance": "Può essere rilevante il principio di trasparenza nell'interazione con sistemi AI e la corretta gestione delle informazioni scambiate.",
+      "evaluate": "Valutare: se le persone sanno di interagire con un'AI, quali dati raccoglie, quando passa a un umano e come si verificano le risposte."
+    },
+    {
+      "id": "automazioni-aziendali",
+      "kicker": "Automazioni aziendali",
+      "heading": "Documenti e attività gestite con AI",
+      "situation": "Un sistema AI contribuisce alla gestione automatizzata di documenti e attività.",
+      "relevance": "Contano finalità, dati trattati, affidabilità e conseguenze delle operazioni automatizzate.",
+      "evaluate": "Valutare: cosa decide davvero il sistema, chi lo supervisiona, quali errori sono accettabili e come si correggono."
+    }
+  ],
+  "sources": [
+    {
+      "label": "Regolamento (UE) 2024/1689 — EUR-Lex",
+      "href": "https://eur-lex.europa.eu/eli/reg/2024/1689/oj"
+    },
+    {
+      "label": "Commissione europea — AI Act",
+      "href": "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai"
+    },
+    {
+      "label": "AI Act Service Desk — timeline di applicazione",
+      "href": "https://ai-act-service-desk.ec.europa.eu/en/ai-act/eu-ai-act-implementation-timeline"
+    },
+    {
+      "label": "EUR-Lex — sintesi: regole per un'AI affidabile",
+      "href": "https://eur-lex.europa.eu/EN/legal-content/summary/rules-for-trustworthy-artificial-intelligence-in-the-eu.html"
+    }
+  ],
+  "timelineNote": "Secondo la timeline ufficiale aggiornata (anche a seguito del Digital Omnibus on AI): alfabetizzazione e divieti principali dal 2 febbraio 2025; regole sui modelli GPAI dal 2 agosto 2025; obblighi di trasparenza e avvio dell'enforcement su regole già applicabili dal 2 agosto 2026; obblighi per molti sistemi ad alto rischio (Allegato III) dal 2 dicembre 2027; sistemi ad alto rischio in prodotti regolamentati (Allegato I) dal 2 agosto 2028. Verificare sempre le fonti istituzionali per decisioni operative.",
+  "signoff": [
+    "Luana.AI",
+    "Te lo spiego io · LeanMe Open Innovation Hub"
+  ]
+}

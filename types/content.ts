@@ -189,7 +189,8 @@ export type LeanLabArticleBodyTemplate =
   | "newsletter-ricerca-episodio-02"
   | "progetti-san-lazzaro"
   | "progetti-parole-che-curano"
-  | "digital-twin-gemelli-digitali";
+  | "digital-twin-gemelli-digitali"
+  | "ai-act-regole-intelligenza-artificiale";
 
 export interface LeanLabArticleCta {
   /** URL azione (quiz, form, risorsa esterna). */
