@@ -26,6 +26,11 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/lean-academy/ricerca-e-innovazione-episodio-03",
+        destination: "/lean-academy/ai-act-regole-intelligenza-artificiale",
+        permanent: true,
+      },
+      {
         source: "/segreteria",
         destination: "/vcards",
         permanent: true,

@@ -11,7 +11,7 @@
     "description": "Accessibile a tutti. Video introduttivi, guide, articoli, tutorial, webinar gratuiti e risorse scaricabili.",
     "resources": [
       {
-        "slug": "ricerca-e-innovazione-episodio-03",
+        "slug": "ai-act-regole-intelligenza-artificiale",
         "title": "TE LO SPIEGO IO | AI Act: le nuove regole per un'AI più sicura, trasparente e responsabile",
         "type": "Video",
         "tag": "Ricerca & Innovazione",
@@ -22,7 +22,7 @@
           "alt": "Te lo spiego io con Luana.AI: AI Act spiegato semplice.",
           "replaceHint": "REPLACE: poster dal video definitivo di Luana.AI quando disponibile"
         },
-        "href": "/lean-academy/ricerca-e-innovazione-episodio-03",
+        "href": "/lean-academy/ai-act-regole-intelligenza-artificiale",
         "articleHref": "/leanlab/articolo/ai-act-regole-intelligenza-artificiale",
         "faq": [
           {

@@ -55,7 +55,7 @@ interface ArticleBody {
 
 const articleBody = articleBodyJson as ArticleBody;
 
-const ACADEMY_HREF = "/lean-academy/ricerca-e-innovazione-episodio-03";
+const ACADEMY_HREF = "/lean-academy/ai-act-regole-intelligenza-artificiale";
 const COVER = "/assets/leanlab/ai-act-cover.png";
 
 const prose =
