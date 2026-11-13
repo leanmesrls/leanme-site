@@ -22,6 +22,10 @@
           "alt": "Luana.AI nella sede LeanMe Open Innovation Hub: anteprima video AI Act.",
           "replaceHint": ""
         },
+        "video": {
+          "src": "/assets/leanlab/ai-act-regole-intelligenza-artificiale.mp4",
+          "poster": "/assets/leanlab/ai-act-cover.jpg"
+        },
         "href": "/lean-academy/ai-act-regole-intelligenza-artificiale",
         "articleHref": "/leanlab/articolo/ai-act-regole-intelligenza-artificiale",
         "faq": [
