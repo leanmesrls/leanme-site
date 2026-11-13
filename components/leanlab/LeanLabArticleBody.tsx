@@ -13,6 +13,7 @@ import { NewsletterEpisodio06 } from "./articles/NewsletterEpisodio06";
 import { NewsletterEpisodio07 } from "./articles/NewsletterEpisodio07";
 import { NewsletterRicercaEpisodio01 } from "./articles/NewsletterRicercaEpisodio01";
 import { NewsletterRicercaEpisodio02 } from "./articles/NewsletterRicercaEpisodio02";
+import { AiActRegoleIntelligenzaArtificiale } from "./articles/AiActRegoleIntelligenzaArtificiale";
 import { DigitalTwinGemelliDigitali } from "./articles/DigitalTwinGemelliDigitali";
 import { ProgettiParoleCheCurano } from "./articles/ProgettiParoleCheCurano";
 import { ProgettiSanLazzaro } from "./articles/ProgettiSanLazzaro";
@@ -55,6 +56,8 @@ export function LeanLabArticleBody({
       return <ProgettiParoleCheCurano />;
     case "digital-twin-gemelli-digitali":
       return <DigitalTwinGemelliDigitali />;
+    case "ai-act-regole-intelligenza-artificiale":
+      return <AiActRegoleIntelligenzaArtificiale videoCta={videoCta} />;
     default:
       return null;
   }

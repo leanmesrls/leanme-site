@@ -1,5 +1,69 @@
 [
   {
+    "slug": "ai-act-regole-intelligenza-artificiale",
+    "category": "ricerca-e-innovazione",
+    "title": "AI Act: le nuove regole per un'AI più sicura, trasparente e responsabile",
+    "excerpt": [
+      "Cos'è l'AI Act, a chi si applica e cosa cambia concretamente per aziende e professionisti che utilizzano l'intelligenza artificiale.",
+      "Te lo spiego io, con Luana.AI: esempi quotidiani, rischio proporzionato, AI Literacy e buone pratiche per usare l'AI con consapevolezza."
+    ],
+    "metaDescription": "Scopri cos'è l'AI Act, quali regole introduce e cosa cambia per aziende e professionisti. Esempi pratici, rischi e AI Literacy spiegati semplice.",
+    "date": "2026-11-13",
+    "readTime": "12 min",
+    "image": {
+      "src": "/assets/leanlab/ai-act-cover.png",
+      "alt": "Te lo spiego io con Luana.AI: AI Act, le nuove regole per un'AI più sicura, trasparente e responsabile.",
+      "replaceHint": ""
+    },
+    "author": "Luana.AI",
+    "tags": [
+      "AI Act",
+      "Regolamento UE",
+      "AI Literacy",
+      "Compliance",
+      "Innovazione Responsabile",
+      "Te lo spiego io"
+    ],
+    "bodyTemplate": "ai-act-regole-intelligenza-artificiale",
+    "hideDefaultImage": true,
+    "relatedAcademySlugs": [
+      "ricerca-e-innovazione-episodio-01",
+      "ricerca-e-innovazione-episodio-02"
+    ],
+    "videoCta": {
+      "href": "/lean-academy/ricerca-e-innovazione-episodio-03",
+      "label": "Guarda il video gratuito su LeanAcademy"
+    },
+    "faq": [
+      {
+        "question": "Cos'è l'AI Act?",
+        "answer": "È il Regolamento (UE) 2024/1689: la legge europea che introduce regole armonizzate per lo sviluppo, l'immissione sul mercato e l'uso di sistemi di intelligenza artificiale nell'Unione."
+      },
+      {
+        "question": "Tutti gli usi di AI hanno gli stessi obblighi?",
+        "answer": "No. L'AI Act usa un approccio basato sul rischio. Contano finalità e caratteristiche del sistema, non solo il nome dello strumento."
+      },
+      {
+        "question": "Cos'è l'AI Literacy?",
+        "answer": "È l'alfabetizzazione all'intelligenza artificiale. L'articolo 4 chiede misure adeguate affinché le persone coinvolte comprendano opportunità, rischi e limiti degli strumenti usati professionalmente."
+      },
+      {
+        "question": "Esiste un patentino obbligatorio per usare l'AI?",
+        "answer": "No. Non esiste un corso unico obbligatorio valido per tutti né un patentino universale. Le misure devono essere adeguate al contesto."
+      },
+      {
+        "question": "Dove posso approfondire le fonti ufficiali?",
+        "answer": "Su EUR-Lex (Regolamento UE 2024/1689), sulle pagine della Commissione europea dedicate all'AI Act e sull'AI Act Service Desk, con la timeline di applicazione aggiornata."
+      }
+    ],
+    "inPocheParole": [
+      "AI Act: le nuove regole per un'AI più sicura, trasparente e responsabile è un articolo di Ricerca & Innovazione nella rubrica Te lo spiego io, con Luana.AI.",
+      "Il regolamento europeo classifica i sistemi di IA in base al rischio: non tutti gli usi quotidiani comportano gli stessi obblighi.",
+      "Nel lavoro contano trasparenza, supervisione umana, AI Literacy e una mappa chiara degli strumenti già in uso.",
+      "LeanMe, Azienda Ibrida, legge l'AI Act come spinta a innovare con consapevolezza: Human Intelligence al centro, AI come amplificatore."
+    ]
+  },
+  {
     "slug": "leanme-rebuild-episodio-07",
     "category": "vita-in-leanme",
     "title": "LeanMe // Rebuild // Episodio 07",

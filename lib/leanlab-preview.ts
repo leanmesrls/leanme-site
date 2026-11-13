@@ -27,5 +27,14 @@ export function leanLabPreviewCtas(article: LeanLabArticle): {
     return { cta: { href: articleHref, label: READ_LABEL } };
   }
 
+  if (article.slug === "ai-act-regole-intelligenza-artificiale") {
+    return {
+      cta: { href: articleHref, label: READ_LABEL },
+      videoCta: article.videoCta
+        ? { href: article.videoCta.href, label: WATCH_LABEL }
+        : undefined,
+    };
+  }
+
   return { cta: article.cta, videoCta: article.videoCta };
 }

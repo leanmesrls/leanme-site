@@ -11,6 +11,40 @@
     "description": "Accessibile a tutti. Video introduttivi, guide, articoli, tutorial, webinar gratuiti e risorse scaricabili.",
     "resources": [
       {
+        "slug": "ricerca-e-innovazione-episodio-03",
+        "title": "TE LO SPIEGO IO | AI Act: le nuove regole per un'AI più sicura, trasparente e responsabile",
+        "type": "Video",
+        "tag": "Ricerca & Innovazione",
+        "description": "Luana.AI spiega in modo semplice cos'è l'AI Act, perché è importante, a chi si applica e quali conseguenze può avere nell'utilizzo quotidiano dell'intelligenza artificiale.",
+        "published": true,
+        "image": {
+          "src": "/assets/leanlab/ai-act-cover.png",
+          "alt": "Te lo spiego io con Luana.AI: AI Act spiegato semplice.",
+          "replaceHint": "REPLACE: poster dal video definitivo di Luana.AI quando disponibile"
+        },
+        "href": "/lean-academy/ricerca-e-innovazione-episodio-03",
+        "articleHref": "/leanlab/articolo/ai-act-regole-intelligenza-artificiale",
+        "faq": [
+          {
+            "question": "Cos'è l'AI Act?",
+            "answer": "È il Regolamento (UE) 2024/1689 sull'intelligenza artificiale: regole europee proporzionate al rischio per promuovere un'AI affidabile."
+          },
+          {
+            "question": "Perché riguarda anche chi non sviluppa AI?",
+            "answer": "Perché regola anche il modo in cui le organizzazioni utilizzano i sistemi di intelligenza artificiale nel lavoro quotidiano."
+          },
+          {
+            "question": "Cos'è l'AI Literacy?",
+            "answer": "È l'alfabetizzazione all'AI: misure adeguate affinché le persone coinvolte comprendano opportunità, rischi e limiti degli strumenti."
+          }
+        ],
+        "inPocheParole": [
+          "Te lo spiego io, con Luana.AI: l'AI Act in parole semplici.",
+          "Non tutte le AI sono uguali: il regolamento ragiona per livelli di rischio.",
+          "Conoscere le regole aiuta a usare l'intelligenza artificiale con più consapevolezza, non a fermare l'innovazione."
+        ]
+      },
+      {
         "slug": "ricerca-e-innovazione-episodio-02",
         "title": "Te lo spiego io. Come scrivere prompt migliori",
         "type": "Video",
