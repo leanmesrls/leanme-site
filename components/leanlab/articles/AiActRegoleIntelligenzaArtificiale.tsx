@@ -57,6 +57,7 @@ interface ArticleBody {
 const articleBody = articleBodyJson as ArticleBody;
 
 const ACADEMY_HREF = "/lean-academy/ai-act-regole-intelligenza-artificiale";
+/** Poster / hero video HQ estratto dal master 4K. */
 const COVER = "/assets/leanlab/ai-act-cover.jpg";
 
 const prose =
@@ -487,7 +488,7 @@ function VideoPreview({ videoCta }: { videoCta?: LeanLabArticleCta }) {
             src={COVER}
             alt="Luana.AI nella sede LeanMe Open Innovation Hub: anteprima del video sull'AI Act."
             fill
-            className="object-cover object-[center_20%] transition duration-500 group-hover:scale-[1.02]"
+            className="object-cover object-[center_25%] transition duration-500 group-hover:scale-[1.02]"
             sizes="(max-width: 1024px) 100vw, 720px"
             priority
           />
@@ -574,7 +575,7 @@ export function AiActRegoleIntelligenzaArtificiale({
           alt="Luana.AI nella sede LeanMe Open Innovation Hub: cover dell'articolo sull'AI Act."
           fill
           priority
-          className="object-cover object-[center_22%]"
+          className="object-cover object-[center_25%]"
           sizes="(max-width: 1024px) 100vw, 720px"
         />
       </figure>
