@@ -1,2 +1,0 @@
-public/assets/leanlab/*.mp4 filter=lfs diff=lfs merge=lfs -text
-public/assets/leanlab/**/*.mp4 filter=lfs diff=lfs merge=lfs -text
