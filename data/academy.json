@@ -18,9 +18,9 @@
         "description": "Luana.AI spiega in modo semplice cos'è l'AI Act, perché è importante, a chi si applica e quali conseguenze può avere nell'utilizzo quotidiano dell'intelligenza artificiale.",
         "published": true,
         "image": {
-          "src": "/assets/leanlab/ai-act-cover.png",
-          "alt": "Te lo spiego io con Luana.AI: AI Act spiegato semplice.",
-          "replaceHint": "REPLACE: poster dal video definitivo di Luana.AI quando disponibile"
+          "src": "/assets/leanlab/ai-act-cover.jpg",
+          "alt": "Luana.AI nella sede LeanMe Open Innovation Hub: anteprima video AI Act.",
+          "replaceHint": ""
         },
         "href": "/lean-academy/ai-act-regole-intelligenza-artificiale",
         "articleHref": "/leanlab/articolo/ai-act-regole-intelligenza-artificiale",

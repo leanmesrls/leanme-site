@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { ReactNode } from "react";
 
 import articleBodyJson from "@/data/leanlab/ai-act-regole-intelligenza-artificiale.json";
 import { categoryBadgeClass } from "@/lib/leanlab-category";
@@ -56,10 +57,165 @@ interface ArticleBody {
 const articleBody = articleBodyJson as ArticleBody;
 
 const ACADEMY_HREF = "/lean-academy/ai-act-regole-intelligenza-artificiale";
-const COVER = "/assets/leanlab/ai-act-cover.png";
+const COVER = "/assets/leanlab/ai-act-cover.jpg";
 
 const prose =
   "text-base leading-relaxed text-white/85 md:text-[1.0625rem] md:leading-8";
+
+type TopicIconName =
+  | "spark"
+  | "eye"
+  | "shield"
+  | "ban"
+  | "megaphone"
+  | "people"
+  | "heart"
+  | "headset"
+  | "gears"
+  | "bookmark"
+  | "book"
+  | "academy";
+
+const topicIcons: Record<TopicIconName, ReactNode> = {
+  spark: (
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M12 3v3m0 12v3M3 12h3m12 0h3M6.3 6.3l2.1 2.1m7.2 7.2 2.1 2.1M17.7 6.3l-2.1 2.1M8.4 15.6 6.3 17.7"
+    />
+  ),
+  eye: (
+    <>
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M2.5 12s3.5-6.5 9.5-6.5S21.5 12 21.5 12s-3.5 6.5-9.5 6.5S2.5 12 2.5 12z"
+      />
+      <circle cx="12" cy="12" r="2.5" />
+    </>
+  ),
+  shield: (
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M12 3.5 19 6.5v5c0 4.5-2.9 7.8-7 9.5-4.1-1.7-7-5-7-9.5v-5l7-3z"
+    />
+  ),
+  ban: (
+    <>
+      <circle cx="12" cy="12" r="8.5" />
+      <path strokeLinecap="round" d="M7 7l10 10" />
+    </>
+  ),
+  megaphone: (
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M4 11v2a2 2 0 002 2h1l3 4h2l-1.2-4H14a6 6 0 006-6V9a6 6 0 00-6-6H9L6 7H6a2 2 0 00-2 2z"
+    />
+  ),
+  people: (
+    <>
+      <circle cx="9" cy="8" r="2.5" />
+      <circle cx="16" cy="9" r="2" />
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M4.5 18c.6-2.4 2.4-3.5 4.5-3.5s3.9 1.1 4.5 3.5M13.5 18c.3-1.4 1.2-2.4 2.5-2.8"
+      />
+    </>
+  ),
+  heart: (
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M12 19s-6.5-4.1-8.3-7.2C2.2 9.5 3.4 6.5 6.3 6c1.5-.3 3 .4 3.7 1.6C10.7 6.4 12.2 5.7 13.7 6c2.9.5 4.1 3.5 2.6 5.8C14.5 14.9 12 19 12 19z"
+    />
+  ),
+  headset: (
+    <>
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M4.5 13V11a7.5 7.5 0 0115 0v2"
+      />
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M4.5 13.5v2A1.5 1.5 0 006 17h1.2M19.5 13.5v2a1.5 1.5 0 01-1.5 1.5h-.8"
+      />
+      <path strokeLinecap="round" d="M14.5 19.5H13a2 2 0 01-2-2v-.5" />
+    </>
+  ),
+  gears: (
+    <>
+      <circle cx="9" cy="12" r="2.5" />
+      <circle cx="16" cy="9" r="2" />
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M9 4.5v2M9 17.5v2M3.5 12h2M12.5 12h2M5.2 6.7l1.4 1.4M11.4 13.9l1.4 1.4M5.2 17.3l1.4-1.4M11.4 10.1l1.4-1.4M16 4.5v1.5M16 12.5v2M12.5 9h1.5M18 9h1.5"
+      />
+    </>
+  ),
+  bookmark: (
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M7 4.5h10a1 1 0 011 1v14l-6-3.5-6 3.5v-14a1 1 0 011-1z"
+    />
+  ),
+  book: (
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M5 5.5A2.5 2.5 0 017.5 3H19v15.5H7.5A2.5 2.5 0 005 21V5.5zM5 18.5h12"
+    />
+  ),
+  academy: (
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M3 10.5 12 5l9 5.5-9 5.5-9-5.5zM6.5 12.5v4.2c0 .8 2.4 2.8 5.5 2.8s5.5-2 5.5-2.8v-4.2"
+    />
+  ),
+};
+
+function TopicIcon({
+  name,
+  className,
+}: {
+  name: TopicIconName;
+  className?: string;
+}) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      className={className ?? "h-5 w-5"}
+      aria-hidden="true"
+    >
+      {topicIcons[name]}
+    </svg>
+  );
+}
+
+const workIcons: Record<string, TopicIconName> = {
+  "comunicazione-marketing": "megaphone",
+  "risorse-umane": "people",
+  sanita: "heart",
+  "customer-care": "headset",
+  "automazioni-aziendali": "gears",
+};
+
+const riskIcons: Record<string, TopicIconName> = {
+  "rischio-minimo": "spark",
+  trasparenza: "eye",
+  "alto-rischio": "shield",
+  vietato: "ban",
+};
 
 const sectionShell: Record<string, string> = {
   "cos-e-l-ai-act":
@@ -115,7 +271,10 @@ const workTone = [
 function RememberBox({ title, text }: { title: string; text: string }) {
   return (
     <aside className="rounded-2xl border border-leanme-fuchsia/45 bg-black/40 px-5 py-5 md:px-6">
-      <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#ff8ac4]">
+      <p className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.14em] text-[#ff8ac4]">
+        <span className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-leanme-fuchsia/40 bg-leanme-fuchsia/10">
+          <TopicIcon name="bookmark" className="h-4 w-4" />
+        </span>
         {title}
       </p>
       <p className="mt-3 text-lg font-medium leading-snug text-white md:text-xl">
@@ -130,19 +289,29 @@ function RiskCards() {
     <div className="mt-6 grid gap-4 md:grid-cols-2">
       {articleBody.risks.map((risk, index) => {
         const tone = riskTone[index % riskTone.length];
+        const icon = riskIcons[risk.id] ?? "spark";
         return (
           <article
             key={risk.id}
             className={`rounded-2xl border p-5 md:p-6 ${tone.card}`}
           >
-            <p
-              className={`text-[11px] font-bold uppercase tracking-[0.14em] ${tone.kicker}`}
-            >
-              {risk.kicker}
-            </p>
-            <h3 className="mt-3 text-xl font-semibold leading-snug text-white">
-              {risk.heading}
-            </h3>
+            <div className="flex items-start gap-3">
+              <span
+                className={`inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border bg-black/30 ${tone.card} ${tone.kicker}`}
+              >
+                <TopicIcon name={icon} className="h-5 w-5" />
+              </span>
+              <div>
+                <p
+                  className={`text-[11px] font-bold uppercase tracking-[0.14em] ${tone.kicker}`}
+                >
+                  {risk.kicker}
+                </p>
+                <h3 className="mt-2 text-xl font-semibold leading-snug text-white">
+                  {risk.heading}
+                </h3>
+              </div>
+            </div>
             <p className={`mt-4 ${prose}`}>{risk.text}</p>
           </article>
         );
@@ -156,20 +325,30 @@ function WorkExampleCards() {
     <div className="mt-6 space-y-5">
       {articleBody.workExamples.map((example, index) => {
         const tone = workTone[index % workTone.length];
+        const icon = workIcons[example.id] ?? "gears";
         return (
           <article
             key={example.id}
             id={example.id}
             className={`scroll-mt-28 rounded-2xl border p-5 md:p-7 ${tone.card}`}
           >
-            <p
-              className={`text-[11px] font-bold uppercase tracking-[0.14em] ${tone.kicker}`}
-            >
-              {example.kicker}
-            </p>
-            <h3 className="mt-3 text-xl font-semibold leading-snug text-white md:text-2xl">
-              {example.heading}
-            </h3>
+            <div className="flex items-start gap-3 md:gap-4">
+              <span
+                className={`inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border bg-black/30 ${tone.card} ${tone.kicker}`}
+              >
+                <TopicIcon name={icon} className="h-6 w-6" />
+              </span>
+              <div>
+                <p
+                  className={`text-[11px] font-bold uppercase tracking-[0.14em] ${tone.kicker}`}
+                >
+                  {example.kicker}
+                </p>
+                <h3 className="mt-2 text-xl font-semibold leading-snug text-white md:text-2xl">
+                  {example.heading}
+                </h3>
+              </div>
+            </div>
             <div className="mt-5 space-y-4">
               <p className={prose}>
                 <strong
@@ -306,9 +485,9 @@ function VideoPreview({ videoCta }: { videoCta?: LeanLabArticleCta }) {
         <div className="relative aspect-video">
           <Image
             src={COVER}
-            alt="Anteprima video Te lo spiego io con Luana.AI: AI Act spiegato semplice."
+            alt="Luana.AI nella sede LeanMe Open Innovation Hub: anteprima del video sull'AI Act."
             fill
-            className="object-cover transition duration-500 group-hover:scale-[1.02]"
+            className="object-cover object-[center_20%] transition duration-500 group-hover:scale-[1.02]"
             sizes="(max-width: 1024px) 100vw, 720px"
             priority
           />
@@ -354,7 +533,10 @@ function VideoPreview({ videoCta }: { videoCta?: LeanLabArticleCta }) {
 function AcademyBanner() {
   return (
     <aside className="mt-10 rounded-2xl border border-white/12 bg-[#0f0f12] px-5 py-6 md:px-7 md:py-7">
-      <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#8adfff]">
+      <p className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.14em] text-[#8adfff]">
+        <span className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-[#3ec6ff]/35 bg-[#04141c]">
+          <TopicIcon name="academy" className="h-4 w-4" />
+        </span>
         Presto nuovi corsi su LeanAcademy
       </p>
       <p className={`mt-3 ${prose}`}>
@@ -389,10 +571,10 @@ export function AiActRegoleIntelligenzaArtificiale({
       <figure className="relative mb-8 aspect-[21/9] overflow-hidden rounded-xl border border-white/10">
         <Image
           src={COVER}
-          alt="Cover Te lo spiego io: AI Act, regole per un'AI più sicura, trasparente e responsabile."
+          alt="Luana.AI nella sede LeanMe Open Innovation Hub: cover dell'articolo sull'AI Act."
           fill
           priority
-          className="object-cover object-center"
+          className="object-cover object-[center_22%]"
           sizes="(max-width: 1024px) 100vw, 720px"
         />
       </figure>
