@@ -569,17 +569,6 @@ export function AiActRegoleIntelligenzaArtificiale({
 
   return (
     <article className="max-w-4xl">
-      <figure className="relative mb-8 aspect-[21/9] overflow-hidden rounded-xl border border-white/10">
-        <Image
-          src={COVER}
-          alt="Luana.AI nella sede LeanMe Open Innovation Hub: cover dell'articolo sull'AI Act."
-          fill
-          priority
-          className="object-cover object-[center_25%]"
-          sizes="(max-width: 1024px) 100vw, 720px"
-        />
-      </figure>
-
       <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#8adfff]">
         {articleBody.series}
       </p>
@@ -602,8 +591,6 @@ export function AiActRegoleIntelligenzaArtificiale({
           )
         )}
       </div>
-
-      <VideoPreview videoCta={videoCta} />
 
       <div className="mt-10 space-y-6 md:mt-12 md:space-y-8">
         {articleBody.sections.map((section) => (
@@ -656,6 +643,8 @@ export function AiActRegoleIntelligenzaArtificiale({
           ))}
         </ul>
       </section>
+
+      <VideoPreview videoCta={videoCta} />
 
       <AcademyBanner />
 
