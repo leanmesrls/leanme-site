@@ -1,5 +1,89 @@
 [
   {
+    "slug": "dentro-unazienda-ibrida",
+    "category": "vita-in-leanme",
+    "title": "Dentro un'azienda ibrida: il breve racconto, ora su Amazon",
+    "excerpt": [
+      "LeanMe ha pubblicato Dentro un'azienda ibrida. È un racconto breve: una testimonianza reale, non un manuale sull'intelligenza artificiale.",
+      "Racconta dall'interno come stiamo sperimentando un modo di lavorare insieme, persone e agenti AI. È disponibile su Amazon."
+    ],
+    "metaDescription": "Dentro un'azienda ibrida è il breve racconto di LeanMe: persone e agenti AI che lavorano insieme. Ora disponibile su Amazon.",
+    "date": "2026-11-23",
+    "readTime": "3 min",
+    "image": {
+      "src": "/assets/leanlab/dentro-unazienda-ibrida.jpg",
+      "alt": "Dentro un'azienda ibrida. Un racconto breve, una testimonianza reale. Pubblicato da Amazon, ora disponibile per l'acquisto.",
+      "replaceHint": "",
+      "width": 2706,
+      "height": 1604
+    },
+    "secondaryImage": {
+      "src": "/assets/leanlab/dentro-unazienda-ibrida-copertina.png",
+      "alt": "Copertina di Dentro un'azienda ibrida. Human + AI: il nuovo modo di lavorare insieme. Un'esperienza raccontata da LeanMe.",
+      "replaceHint": "",
+      "width": 1024,
+      "height": 1536
+    },
+    "author": "LeanMe",
+    "tags": [
+      "Azienda Ibrida",
+      "Libro"
+    ],
+    "hideDefaultImage": true,
+    "cta": {
+      "href": "https://www.amazon.it/Dentro-unazienda-ibrida-lavorare-insieme/dp/B0HPG7XQQZ",
+      "label": "Un breve racconto della nostra azienda, ora disponibile su Amazon"
+    },
+    "blocks": [
+      {
+        "id": "il-racconto",
+        "heading": "Un racconto breve",
+        "paragraphs": [
+          "Non è un manuale sull'intelligenza artificiale. È una lettura agile e personale.",
+          "Racconta dall'interno come LeanMe sta sperimentando un nuovo modo di lavorare insieme: persone e agenti AI, nuove competenze e nuove possibilità."
+        ]
+      },
+      {
+        "id": "cosa-attraversa",
+        "heading": "Cosa attraversa il racconto",
+        "paragraphs": [
+          "In copertina ci sono cinque parole: persone, agenti AI, processi, idee, risultati. Sono i fili del racconto, non un indice di capitoli da studiare.",
+          "Il sottotitolo resta quello del lavoro di ogni giorno: Human + AI, il nuovo modo di lavorare insieme. Sotto, la firma: un'esperienza raccontata da LeanMe."
+        ]
+      }
+    ],
+    "relatedLinks": [
+      {
+        "href": "/chi-siamo",
+        "label": "Cos'è un'azienda ibrida"
+      },
+      {
+        "href": "/staff-ibrido",
+        "label": "Lo Staff Ibrido"
+      }
+    ],
+    "faq": [
+      {
+        "question": "Dentro un'azienda ibrida è un manuale?",
+        "answer": "No. È un racconto breve e una testimonianza reale: una lettura agile e personale, scritta dall'interno di LeanMe."
+      },
+      {
+        "question": "Di cosa parla?",
+        "answer": "Di persone e agenti AI che lavorano insieme. In copertina il racconto passa da persone, agenti AI, processi, idee e risultati."
+      },
+      {
+        "question": "Dove si legge?",
+        "answer": "È pubblicato da Amazon ed è disponibile per l'acquisto."
+      }
+    ],
+    "inPocheParole": [
+      "Questa pagina presenta Dentro un'azienda ibrida, il breve racconto pubblicato da LeanMe.",
+      "Non è un manuale sull'intelligenza artificiale. È una testimonianza reale, scritta dall'interno.",
+      "Il racconto segue persone e agenti AI che provano un modo nuovo di lavorare insieme, con nuove competenze e nuove possibilità.",
+      "Per LeanMe l'Azienda Ibrida è questo incontro. Il libro è ora disponibile su Amazon."
+    ]
+  },
+  {
     "slug": "intervista-radio-2026",
     "category": "vita-in-leanme",
     "title": "Intervista radio 2026: l'Azienda Ibrida",

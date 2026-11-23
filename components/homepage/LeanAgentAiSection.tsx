@@ -57,14 +57,26 @@ export function LeanAgentAiSection({ data }: LeanAgentAiSectionProps) {
               <p key={paragraph.slice(0, 48)}>{paragraph}</p>
             ))}
           </div>
-          <div className="mt-8 text-center">
+          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap">
             <Link
               href={data.footerLink.href}
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-leanme-fuchsia px-6 py-3 text-[11px] font-semibold uppercase tracking-[0.08em] text-white transition hover:bg-leanme-fuchsia-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leanme-fuchsia md:text-xs"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-leanme-fuchsia px-6 py-3 text-center text-[11px] font-semibold uppercase tracking-[0.08em] text-white transition hover:bg-leanme-fuchsia-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leanme-fuchsia md:text-xs"
             >
               {data.footerLink.label}
               <ArrowIcon />
             </Link>
+            {data.bookCta ? (
+              <a
+                href={data.bookCta.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex max-w-sm items-center justify-center gap-2 rounded-full border border-leanme-fuchsia px-5 py-3 text-center text-[11px] font-semibold uppercase leading-snug tracking-[0.06em] text-white transition hover:bg-leanme-fuchsia focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leanme-fuchsia md:text-xs"
+              >
+                {data.bookCta.label}
+                <ArrowIcon />
+                <span className="sr-only"> Si apre in una nuova scheda.</span>
+              </a>
+            ) : null}
           </div>
         </RevealOnScroll>
 
