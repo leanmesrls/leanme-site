@@ -60,6 +60,21 @@ export function ChiSiamoComicPage({
           </Link>
         </RevealOnScroll>
 
+        {actions.book ? (
+          <RevealOnScroll className="mb-8 md:mb-10">
+            <a
+              href={actions.book.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex max-w-xl items-center justify-center gap-2 rounded-full bg-leanme-fuchsia px-6 py-3 text-center text-xs font-semibold uppercase leading-snug tracking-[0.06em] text-white transition hover:bg-leanme-fuchsia-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leanme-fuchsia"
+            >
+              {actions.book.label}
+              <ArrowIcon />
+              <span className="sr-only"> Si apre in una nuova scheda.</span>
+            </a>
+          </RevealOnScroll>
+        ) : null}
+
         <RevealOnScroll className="mb-5 md:mb-6">
           <h2 className="text-2xl font-bold tracking-[0.03em] text-white md:text-3xl lg:text-[2rem]">
             {comicIntro.title}

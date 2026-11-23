@@ -19,6 +19,10 @@
     "connect": {
       "label": "Connect",
       "href": "/contatti"
+    },
+    "book": {
+      "label": "Un breve racconto della nostra azienda, ora disponibile su Amazon",
+      "href": "https://www.amazon.it/Dentro-unazienda-ibrida-lavorare-insieme/dp/B0HPG7XQQZ"
     }
   },
   "comicIntro": {

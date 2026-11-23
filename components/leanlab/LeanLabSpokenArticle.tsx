@@ -39,14 +39,42 @@ export function LeanLabSpokenArticle({ article }: LeanLabSpokenArticleProps) {
     <div className="space-y-10">
       {article.hideDefaultImage ? (
         <figure className="overflow-hidden">
+          {article.cta?.href.startsWith("http") ? (
+            <a href={article.cta.href} target="_blank" rel="noopener noreferrer">
+              <Image
+                src={article.image.src}
+                alt={article.image.alt}
+                width={article.image.width ?? 1600}
+                height={article.image.height ?? 900}
+                priority
+                className="h-auto w-full rounded-xl"
+                sizes="(max-width: 1024px) 100vw, 960px"
+              />
+              <span className="sr-only"> Si apre in una nuova scheda.</span>
+            </a>
+          ) : (
+            <Image
+              src={article.image.src}
+              alt={article.image.alt}
+              width={article.image.width ?? 1600}
+              height={article.image.height ?? 900}
+              priority
+              className="h-auto w-full rounded-xl"
+              sizes="(max-width: 1024px) 100vw, 960px"
+            />
+          )}
+        </figure>
+      ) : null}
+
+      {article.secondaryImage ? (
+        <figure className="max-w-3xl">
           <Image
-            src={article.image.src}
-            alt={article.image.alt}
-            width={article.image.width ?? 1600}
-            height={article.image.height ?? 900}
-            priority
-            className="h-auto w-full rounded-xl"
-            sizes="(max-width: 1024px) 100vw, 960px"
+            src={article.secondaryImage.src}
+            alt={article.secondaryImage.alt}
+            width={article.secondaryImage.width ?? 1024}
+            height={article.secondaryImage.height ?? 1536}
+            className="h-auto w-full max-w-[17rem] rounded-xl"
+            sizes="272px"
           />
         </figure>
       ) : null}
@@ -74,6 +102,22 @@ export function LeanLabSpokenArticle({ article }: LeanLabSpokenArticleProps) {
           ) : null}
         </section>
       ))}
+
+      {article.cta ? (
+        <p className="max-w-3xl">
+          <a
+            href={article.cta.href}
+            target={article.cta.href.startsWith("http") ? "_blank" : undefined}
+            rel={article.cta.href.startsWith("http") ? "noopener noreferrer" : undefined}
+            className="inline-flex max-w-xl items-center justify-center gap-2 rounded-full bg-leanme-fuchsia px-6 py-3 text-center text-sm font-semibold leading-snug text-white transition hover:bg-leanme-fuchsia-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leanme-fuchsia"
+          >
+            {article.cta.label}
+            {article.cta.href.startsWith("http") ? (
+              <span className="sr-only"> Si apre in una nuova scheda.</span>
+            ) : null}
+          </a>
+        </p>
+      ) : null}
 
       {article.relatedLinks?.length ? (
         <section aria-labelledby="approfondisci" className="max-w-3xl space-y-3">

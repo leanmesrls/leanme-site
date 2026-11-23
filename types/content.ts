@@ -236,6 +236,8 @@ export interface LeanLabArticle {
   image: ImageAsset;
   /** Anteprima quadrata delle card, quando la grafica di pagina è un banner largo. */
   cardImage?: ImageAsset;
+  /** Seconda grafica nel corpo, per esempio la copertina di un libro. */
+  secondaryImage?: ImageAsset;
   author: string;
   tags?: string[];
   /** Template corpo articolo (es. newsletter con layout dedicato). */
@@ -513,6 +515,8 @@ export interface ChiSiamoData {
   actions: {
     staff: { label: string; href: string };
     connect: { label: string; href: string };
+    /** Prima dei fumetti: il breve racconto su Amazon. */
+    book?: { label: string; href: string };
   };
   comicIntro: {
     title: string;

@@ -48,12 +48,16 @@ export interface HomepageData {
     paragraphs: string[];
     primaryCta: HomeCta;
     secondaryCta: HomeCta;
+    /** Breve racconto su Amazon, accanto a «cosa vuol dire azienda ibrida». */
+    bookCta?: HomeCta;
     background: string;
   };
   leanAgentAi: {
     title: string;
     intro: string[];
     footerLink: HomeCta;
+    /** Stesso racconto su Amazon, accanto a «scopri il nostro staff ibrido». */
+    bookCta?: HomeCta;
     agents: HomeAgent[];
   };
   services: {
