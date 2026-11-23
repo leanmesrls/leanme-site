@@ -199,6 +199,28 @@ export interface LeanLabArticleCta {
   label: string;
 }
 
+export interface LeanLabArticleAudio {
+  /** File audio servito dal sito, es. la registrazione di una puntata. */
+  src: string;
+  /** Didascalia del player, letta anche come alternativa se l'audio non parte. */
+  label: string;
+}
+
+export interface LeanLabArticleBlock {
+  id: string;
+  heading: string;
+  paragraphs: string[];
+  /** Clip dell'episodio, se il blocco è una puntata. */
+  audio?: LeanLabArticleAudio;
+  /** Link alla pagina dell'episodio, sotto il testo. */
+  link?: LeanLabArticleLink;
+}
+
+export interface LeanLabArticleLink {
+  href: string;
+  label: string;
+}
+
 export interface LeanLabArticle {
   slug: string;
   category: string;
@@ -229,6 +251,12 @@ export interface LeanLabArticle {
   videoCta?: LeanLabArticleCta;
   /** Puntate Lean Academy da mostrare tra i contenuti attinenti. */
   relatedAcademySlugs?: string[];
+  /** Registrazione audio della pagina (intervista, puntata). */
+  audio?: LeanLabArticleAudio;
+  /** Corpo editoriale in blocchi, quando non c'è un template dedicato. */
+  blocks?: LeanLabArticleBlock[];
+  /** Approfondimenti interni o esterni, dopo il corpo. */
+  relatedLinks?: LeanLabArticleLink[];
   /** Riassunto GEO in fondo alla pagina articolo. */
   inPocheParole?: string[];
   /** Domande frequenti, dopo la grafica e prima di In poche parole. */
@@ -268,10 +296,19 @@ export interface AcademyResource {
   /** Visibile nell'area pubblica. Le risorse senza flag restano in catalogo, non online. */
   published?: boolean;
   tag?: string;
+  /** Serie pubblica, es. l'intervista radio in più episodi. */
+  series?: string;
   video?: {
     src: string;
     poster: string;
   };
+  /** Registrazione audio, per le puntate podcast. */
+  audio?: {
+    src: string;
+    label: string;
+  };
+  /** Testo della puntata, alternativa alla registrazione. */
+  paragraphs?: string[];
   /** Articolo LeanLab collegato, se la puntata nasce da una newsletter. */
   articleHref?: string;
   /** Riassunto in fondo alla pagina. */
@@ -287,6 +324,11 @@ export interface AcademyData {
   publicArea: {
     title: string;
     description: string;
+    series?: {
+      id: string;
+      title: string;
+      description: string;
+    }[];
     resources: AcademyResource[];
   };
   reservedArea: {

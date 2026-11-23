@@ -1,5 +1,132 @@
 [
   {
+    "slug": "intervista-radio-2026",
+    "category": "vita-in-leanme",
+    "title": "Intervista radio 2026: l'Azienda Ibrida",
+    "excerpt": [
+      "Luana Martuzzi è ospite di Story Time, su Evoluzione Radio. L'anno scorso il tema era l'innovazione digitale e sociale. Quest'anno è l'Azienda Ibrida.",
+      "La puntata è in Lean Academy, in tre episodi: l'evoluzione, lo Staff Ibrido, come accompagniamo le aziende."
+    ],
+    "metaDescription": "Intervista radio 2026 con Luana Martuzzi: l'evoluzione di LeanMe, che cosa significa Staff Ibrido e come accompagniamo le aziende.",
+    "date": "2026-11-23",
+    "readTime": "9 min",
+    "image": {
+      "src": "/assets/official/luana.png",
+      "alt": "Dr. Luana Martuzzi, founder di LeanMe, ospite di Story Time.",
+      "replaceHint": ""
+    },
+    "author": "Luana Martuzzi",
+    "tags": [
+      "Intervista radio 2026",
+      "Staff Ibrido"
+    ],
+    "hideDefaultImage": true,
+    "blocks": [
+      {
+        "id": "la-serie",
+        "heading": "Tre episodi",
+        "paragraphs": [
+        "La registrazione viene da Story Time, il format di Evoluzione Radio, dagli studi di Milano. L'abbiamo divisa sulle tre domande della puntata, così si può ascoltare un pezzo alla volta.",
+        "Ogni clip è anche un episodio di Lean Academy. Il testo sotto il player è la stessa conversazione, scritta."
+        ]
+      },
+      {
+        "id": "evoluzione",
+        "heading": "01 · L'evoluzione",
+        "audio": {
+          "src": "/assets/academy/intervista-radio-2026-01-evoluzione.mp3",
+          "label": "Episodio 01, l'evoluzione. Circa 4 minuti."
+        },
+        "paragraphs": [
+          "L'anno scorso la conversazione era su innovazione digitale e sociale. Quest'anno LeanMe si presenta come staff ibrido: powered by human intelligence, amplified by AI. In questi mesi l'intelligenza artificiale è entrata nel modo di pensare il lavoro e nello staff. Non è più solo uno strumento. È nell'organigramma.",
+          "Non esiste una sola AI. C'è quella passiva, che incontriamo già in una ricerca, in un consiglio di Netflix, in un feed. C'è la chat, a cui si chiede una risposta o un'immagine. C'è l'agente, che agisce con l'autonomia che gli si dà: un contesto, delle istruzioni, degli strumenti. C'è la rete di agenti, che lavora con le persone e anche tra agenti. La superintelligenza, di cui si parla molto, resta teorica.",
+          "Questo passaggio ha chiesto una sosta. Nuova grafica, nuovo sito, nuova sede. LeanMe si presenta come Open Innovation Hub.",
+          "Luana arriva da biologia e da un master in organizzazione di eventi. Il socio è ingegnere informatico. Il lavoro è nato sugli eventi in ambito medico e sanitario. Da quasi quindici anni accompagna le aziende come innovation specialist, oggi insieme ai collaboratori umani e agentici."
+        ],
+        "link": {
+          "href": "/lean-academy/intervista-radio-2026-evoluzione",
+          "label": "Apri l'episodio in Lean Academy"
+        }
+      },
+      {
+        "id": "staff-ibrido",
+        "heading": "02 · Lo Staff Ibrido",
+        "audio": {
+          "src": "/assets/academy/intervista-radio-2026-02-staff-ibrido.mp3",
+          "label": "Episodio 02, lo Staff Ibrido. Circa 2 minuti."
+        },
+        "paragraphs": [
+          "Staff ibrido non vuol dire smart working, qualcuno da remoto e qualcuno in ufficio. Vuol dire un gruppo di collaboratori umani e agentici.",
+          "Non è uno strumento da comprare e non è un software da imparare. Agli agenti sono stati dati ruoli e attività. Servivano dei nomi, per poter dire anche tra persone chi fa che cosa: questa cosa la faccio fare a Olivetti. I nomi vengono da grandi menti. Ogni agente ha un ruolo, un nome e un volto.",
+          "Il volto non è l'agente. L'avatar di un video è la rappresentazione di un lavoro che, a tutti gli effetti, agisce. Ogni giorno le persone parlano con questi collaboratori, e i collaboratori parlano tra loro."
+        ],
+        "link": {
+          "href": "/lean-academy/intervista-radio-2026-staff-ibrido",
+          "label": "Apri l'episodio in Lean Academy"
+        }
+      },
+      {
+        "id": "aziende",
+        "heading": "03 · Come accompagniamo le aziende",
+        "audio": {
+          "src": "/assets/academy/intervista-radio-2026-03-accompagnare.mp3",
+          "label": "Episodio 03, come accompagniamo le aziende. Circa 3 minuti."
+        },
+        "paragraphs": [
+          "Si parte dalla formazione. La parola AI non ha lo stesso significato per tutti, e uno strumento nuovo non basta a chiarirla. Poi l'uso segue il bisogno dell'azienda. A volte il passo utile è il contrario di una richiesta: lasciare che sia l'AI a fare le domande, per capire di che cosa si ha davvero bisogno.",
+          "L'AI non va usata per forza da un esperto di AI. Va usata da chi è esperto della materia. Chiunque può chiedere un'immagine e ottenere un risultato gradevole. Un fotografo, che sa parlare di inquadratura, luce ed esposizione, dallo stesso strumento ottiene un altro livello.",
+          "È il senso di amplified by AI. Dietro c'è la mente umana. La comunicazione umana è la chiave che apre la porta dell'AI. La professionalità non si sostituisce: si amplifica. Dare all'AI un compito e considerarlo chiuso, o voler diventare tuttologi, non funziona."
+        ],
+        "link": {
+          "href": "/lean-academy/intervista-radio-2026-accompagnare-le-aziende",
+          "label": "Apri l'episodio in Lean Academy"
+        }
+      }
+    ],
+    "relatedLinks": [
+      {
+        "href": "/lean-academy#intervista-radio-2026",
+        "label": "La serie in Lean Academy"
+      },
+      {
+        "href": "/staff-ibrido",
+        "label": "Lo Staff Ibrido"
+      },
+      {
+        "href": "/chi-siamo/luana",
+        "label": "Dr. Luana Martuzzi"
+      },
+      {
+        "href": "https://www.story-time.it/",
+        "label": "Story Time"
+      }
+    ],
+    "faq": [
+      {
+        "question": "Di che cosa parla l'intervista radio 2026?",
+        "answer": "Dell'evoluzione di LeanMe. L'anno scorso il tema era l'innovazione digitale e sociale. Quest'anno è l'Azienda Ibrida: persone e agenti nello stesso staff."
+      },
+      {
+        "question": "Perché sono tre episodi?",
+        "answer": "Perché in puntata ci sono tre domande: come siamo arrivati qui, che cosa significa Staff Ibrido, come accompagniamo le aziende. Ogni clip è una risposta."
+      },
+      {
+        "question": "Staff ibrido è lo smart working?",
+        "answer": "No. È un team di collaboratori umani e agenti AI, con ruoli, nomi e attività. L'avatar è solo il volto."
+      },
+      {
+        "question": "Come accompagnate un'azienda?",
+        "answer": "Dalla formazione, poi con un uso legato al bisogno e fatto da chi conosce la materia. La professionalità si amplifica, non si sostituisce."
+      }
+    ],
+    "inPocheParole": [
+      "Intervista radio 2026 è la puntata di Story Time con Luana Martuzzi, pubblicata in tre episodi su Lean Academy e raccontata su LeanLab.",
+      "L'anno scorso si parlava di innovazione digitale e sociale. Quest'anno l'AI è nello staff: LeanMe si presenta come Azienda Ibrida.",
+      "Staff Ibrido non è smart working. Sono persone e agenti con un ruolo. Le aziende si accompagnano partendo dalla formazione e dalla competenza di chi conosce la materia.",
+      "La differenza resta il claim di LeanMe, powered by human intelligence, amplified by AI: la professionalità si amplifica, non si sostituisce."
+    ]
+  },
+  {
     "slug": "ai-act-regole-intelligenza-artificiale",
     "category": "ricerca-e-innovazione",
     "title": "AI Act: le nuove regole per un'AI più sicura, trasparente e responsabile",
@@ -80,7 +207,9 @@
       "replaceHint": ""
     },
     "author": "Luana, Alessandro e il team LeanMe",
-    "tags": ["Newsletter"],
+    "tags": [
+      "Newsletter"
+    ],
     "bodyTemplate": "newsletter-episodio-07",
     "hideDefaultImage": true,
     "cta": {
@@ -180,10 +309,14 @@
       "replaceHint": ""
     },
     "author": "Lean.Agent.Angela",
-    "tags": ["Newsletter"],
+    "tags": [
+      "Newsletter"
+    ],
     "bodyTemplate": "newsletter-ricerca-episodio-02",
     "hideDefaultImage": true,
-    "relatedAcademySlugs": ["ricerca-e-innovazione-episodio-01"],
+    "relatedAcademySlugs": [
+      "ricerca-e-innovazione-episodio-01"
+    ],
     "cta": {
       "href": "/prompt-builder",
       "label": "Ti interessa questo argomento?"
@@ -241,7 +374,9 @@
       "replaceHint": ""
     },
     "author": "LeanMe",
-    "tags": ["Progetti"],
+    "tags": [
+      "Progetti"
+    ],
     "bodyTemplate": "progetti-parole-che-curano",
     "hideDefaultImage": true,
     "cta": {
@@ -289,10 +424,14 @@
       "replaceHint": ""
     },
     "author": "LeanMe",
-    "tags": ["Progetti"],
+    "tags": [
+      "Progetti"
+    ],
     "bodyTemplate": "progetti-san-lazzaro",
     "hideDefaultImage": true,
-    "relatedAcademySlugs": ["ricerca-e-innovazione-episodio-01"],
+    "relatedAcademySlugs": [
+      "ricerca-e-innovazione-episodio-01"
+    ],
     "cta": {
       "href": "/prenota-consulenza",
       "label": "Ripensa il tuo sito. Contattaci"
@@ -335,7 +474,9 @@
       "replaceHint": ""
     },
     "author": "LeanMe.Agent.Olivetti",
-    "tags": ["Newsletter"],
+    "tags": [
+      "Newsletter"
+    ],
     "bodyTemplate": "newsletter-ricerca-episodio-01",
     "hideDefaultImage": true,
     "videoCta": {
@@ -391,7 +532,9 @@
       "replaceHint": ""
     },
     "author": "Luana, Alessandro e tutto il team di LeanMe",
-    "tags": ["Newsletter"],
+    "tags": [
+      "Newsletter"
+    ],
     "bodyTemplate": "newsletter-episodio-06",
     "hideDefaultImage": true,
     "cta": {
@@ -416,7 +559,7 @@
       "Episodio 06 chiude LeanMe Rebuild al 100%: le idee hanno trovato casa e la sede apre per il LeanMe Open Lab & Brunch.",
       "L'appuntamento è domenica 8 novembre 2026, dalle 11:00 alle 13:00, in Via Porrettana 148/2 a Bologna. Si passa quando si vuole.",
       "La partecipazione si conferma dal link dell'articolo: nome, cognome, email e, se servono, gli accompagnatori.",
-      "Un anno fa LeanMe era in radio su innovazione sociale, digitale e tecnologica. Quest'anno torna on air: di cosa parlerà, presto si scopre."
+      "Un anno fa LeanMe era in radio su innovazione sociale, digitale e tecnologica. Il ritorno on air è l'intervista radio 2026: tre episodi su evoluzione, Staff Ibrido e accompagnamento delle aziende."
     ]
   },
   {
@@ -435,7 +578,9 @@
       "replaceHint": ""
     },
     "author": "Luana, Alessandro, LeanMe.Agent.Vespucci, LeanMe.Agent.Marconi, LeanMe.Agent.Olivetti",
-    "tags": ["Newsletter"],
+    "tags": [
+      "Newsletter"
+    ],
     "bodyTemplate": "newsletter-episodio-05",
     "hideDefaultImage": true,
     "cta": {
@@ -475,7 +620,9 @@
       "replaceHint": ""
     },
     "author": "Luana, Alessandro, LeanMe.Agent.Vespucci, LeanMe.Agent.Marconi, LeanMe.Agent.Olivetti",
-    "tags": ["Newsletter"],
+    "tags": [
+      "Newsletter"
+    ],
     "bodyTemplate": "newsletter-episodio-04",
     "hideDefaultImage": true,
     "cta": {
@@ -519,7 +666,9 @@
       "replaceHint": ""
     },
     "author": "Luana, Alessandro, LeanMe.Agent.Vespucci, LeanMe.Agent.Marconi, LeanMe.Agent.Olivetti",
-    "tags": ["Newsletter"],
+    "tags": [
+      "Newsletter"
+    ],
     "bodyTemplate": "newsletter-episodio-03",
     "hideDefaultImage": true,
     "cta": {
@@ -563,7 +712,9 @@
       "replaceHint": ""
     },
     "author": "Luana, Alessandro, LeanMe.Agent.Vespucci, LeanMe.Agent.Marconi, LeanMe.Agent.Olivetti",
-    "tags": ["Newsletter"],
+    "tags": [
+      "Newsletter"
+    ],
     "bodyTemplate": "newsletter-episodio-02",
     "hideDefaultImage": true,
     "cta": {
@@ -607,7 +758,9 @@
       "replaceHint": ""
     },
     "author": "Luana, Alessandro, LeanMe.Agent.Vespucci, LeanMe.Agent.Marconi, LeanMe.Agent.Olivetti",
-    "tags": ["Newsletter"],
+    "tags": [
+      "Newsletter"
+    ],
     "bodyTemplate": "newsletter-episodio-01",
     "hideDefaultImage": true,
     "cta": {
@@ -651,7 +804,9 @@
       "replaceHint": ""
     },
     "author": "Luana, Alessandro, LeanMe.Agent.Vespucci, LeanMe.Agent.Marconi, LeanMe.Agent.Olivetti",
-    "tags": ["Newsletter"],
+    "tags": [
+      "Newsletter"
+    ],
     "bodyTemplate": "newsletter-episodio-00",
     "hideDefaultImage": true,
     "faq": [

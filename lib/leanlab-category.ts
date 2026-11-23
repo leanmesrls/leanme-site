@@ -32,6 +32,8 @@ export function categoryBadgeFromLabel(label: string | undefined): string {
   const value = label?.toLowerCase() ?? "";
   if (value.includes("progett")) return categoryBadgeClass("progetti-conclusi");
   if (value.includes("ricerca")) return categoryBadgeClass("ricerca-e-innovazione");
-  if (value.includes("vita")) return categoryBadgeClass("vita-in-leanme");
+  if (value.includes("vita") || value.includes("intervista") || value.includes("radio")) {
+    return categoryBadgeClass("vita-in-leanme");
+  }
   return categoryBadgeClass(undefined);
 }

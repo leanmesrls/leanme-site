@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AcademyVideoPlayer } from "@/components/academy/AcademyVideoPlayer";
+import { AudioPlayer } from "@/components/media/AudioPlayer";
 import { PageHero } from "@/components/layout/PageHero";
 import { PageHighlightBlock } from "@/components/layout/PageHighlightBlock";
 import { PageSection } from "@/components/layout/PageSection";
@@ -107,6 +108,23 @@ export default async function AcademyResourcePage({ params }: PageProps) {
                   poster={resource.video.poster}
                   label={resource.title}
                 />
+              </div>
+            ) : null}
+            {resource.audio ? (
+              <div className="mt-10 max-w-3xl">
+                <AudioPlayer src={resource.audio.src} label={resource.audio.label} />
+              </div>
+            ) : null}
+            {resource.paragraphs?.length ? (
+              <div className="mt-8 max-w-3xl space-y-4">
+                {resource.paragraphs.map((paragraph) => (
+                  <p
+                    key={paragraph.slice(0, 64)}
+                    className="text-base leading-relaxed text-white/85 md:text-[1.0625rem] md:leading-8"
+                  >
+                    {paragraph}
+                  </p>
+                ))}
               </div>
             ) : null}
             {resource.faq?.length ? (

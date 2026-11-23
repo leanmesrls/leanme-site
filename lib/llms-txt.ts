@@ -25,6 +25,8 @@ ${link(base, "/come-possiamo-aiutarti", "Come possiamo aiutarti", "Hub percorsi 
 ${link(base, "/chi-siamo", "Chi siamo", "Visione LeanMe, Azienda Ibrida, team founder")}
 ${link(base, "/staff-ibrido", "Lo Staff Ibrido", "Persone, Lean.Agent AI e network di specialisti")}
 ${link(base, "/leanlab", "Dal LeanLab", "Blog e approfondimenti su innovazione")}
+${link(base, "/leanlab/articolo/intervista-radio-2026", "Intervista radio 2026", "Luana Martuzzi a Story Time: evoluzione, Staff Ibrido e accompagnamento delle aziende")}
+${link(base, "/lean-academy#intervista-radio-2026", "Intervista radio 2026 in Lean Academy", "Tre episodi audio: evoluzione, Staff Ibrido, come accompagniamo le aziende")}
 ${link(base, "/lean-academy", "Lean Academy", "Area pubblica con le puntate Ricerca e Innovazione; area riservata in arrivo")}
 ${link(base, "/lean-academy/ricerca-e-innovazione-episodio-02", "Te lo spiego io. Come scrivere prompt migliori", "Video Lean Academy sui prompt, con Lean.Agent.Angela")}
 ${link(base, "/lean-academy/ricerca-e-innovazione-episodio-01", "Te lo spiego io. SEO, AEO e GEO", "Video Lean Academy su SEO, AEO e GEO, con Lean.Agent.Olivetti")}

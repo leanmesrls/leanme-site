@@ -141,7 +141,14 @@ export function articleSchema(article: {
   datePublished: string;
   author: string;
   image: string;
+  audio?: string;
 }) {
+  const audioUrl = article.audio
+    ? article.audio.startsWith("http")
+      ? article.audio
+      : `${SITE_URL}${article.audio}`
+    : undefined;
+
   return {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -167,6 +174,16 @@ export function articleSchema(article: {
       "@type": "WebPage",
       "@id": `${SITE_URL}${article.path}`,
     },
+    ...(audioUrl
+      ? {
+          associatedMedia: {
+            "@type": "AudioObject",
+            contentUrl: audioUrl,
+            encodingFormat: "audio/mpeg",
+            name: article.title,
+          },
+        }
+      : {}),
   };
 }
 

@@ -7,6 +7,7 @@ import { PageSection } from "@/components/layout/PageSection";
 import { VisibleBreadcrumb } from "@/components/layout/VisibleBreadcrumb";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { LeanLabArticleBody } from "@/components/leanlab/LeanLabArticleBody";
+import { LeanLabSpokenArticle } from "@/components/leanlab/LeanLabSpokenArticle";
 import { ArticleInterestStars } from "@/components/leanlab/ArticleInterestStars";
 import { LeanLabArticleAside } from "@/components/leanlab/LeanLabRelatedAside";
 import { FaqSection } from "@/components/seo/FaqSection";
@@ -95,6 +96,7 @@ export default async function LeanLabArticlePage({ params }: PageProps) {
           datePublished: article.date,
           author: article.author,
           image: article.image.src,
+          audio: article.audio?.src,
         }),
         ...(article.faq?.length ? [faqPageSchema(article.faq, path)] : []),
       ]}
@@ -148,6 +150,8 @@ export default async function LeanLabArticlePage({ params }: PageProps) {
                   cta={article.cta}
                   videoCta={article.videoCta}
                 />
+              ) : article.blocks?.length ? (
+                <LeanLabSpokenArticle article={article} />
               ) : (
                 <p className="leading-relaxed text-white/65">
                   Contenuto completo dell&apos;articolo LeanLab in arrivo. Ogni

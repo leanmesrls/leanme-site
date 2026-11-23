@@ -75,6 +75,13 @@ function academyCard(resource: AcademyResource): LeanLabAsideRelated {
   };
 }
 
+function linkedAcademyEpisodes(article: LeanLabArticle): LeanLabAsideRelated[] {
+  const path = `/leanlab/articolo/${article.slug}`;
+  return getPublishedAcademyResources()
+    .filter((resource) => resource.articleHref === path)
+    .map((resource) => academyCard(resource));
+}
+
 function sameCategoryArticles(article: LeanLabArticle): LeanLabAsideRelated[] {
   return getListedLeanLabArticles()
     .filter((item) => item.slug !== article.slug && item.category === article.category)
@@ -139,7 +146,11 @@ export function buildLeanLabArticleAside(
   const actions = articleActions(article);
   const currentHref = `/leanlab/articolo/${article.slug}`;
   const seen = new Set<string>([currentHref]);
-  const related = [...sameCategoryArticles(article), ...sameCategoryVideos(article)].filter(
+  const related = [
+    ...linkedAcademyEpisodes(article),
+    ...sameCategoryArticles(article),
+    ...sameCategoryVideos(article),
+  ].filter(
     (item) => {
       if (item.href === currentHref || seen.has(item.href)) return false;
       seen.add(item.href);
@@ -182,6 +193,15 @@ export function buildAcademyResourceAside(
     if (seen.has(item.href)) continue;
     seen.add(item.href);
     related.push(item);
+  }
+
+  if (resource.series) {
+    for (const other of getPublishedAcademyResources()) {
+      if (other.series !== resource.series || other.slug === resource.slug) continue;
+      if (seen.has(other.href)) continue;
+      seen.add(other.href);
+      related.push(academyCard(other));
+    }
   }
 
   if (!article) {
