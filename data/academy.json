@@ -330,13 +330,14 @@
       {
         "id": "intervista-radio-2026",
         "title": "Intervista radio 2026",
+        "categoryLabel": "Vita in LeanMe",
         "description": "Tre episodi dalla puntata di Story Time su Evoluzione Radio. Luana Martuzzi racconta l'evoluzione di LeanMe, che cosa significa Staff Ibrido e come accompagniamo le aziende.",
         "image": {
-          "src": "/assets/academy/intervista-radio-2026-cover.jpg",
+          "src": "/assets/academy/intervista-radio-2026-card.jpg",
           "alt": "Story Time: ascolta la nostra intervista radio. Mini podcast in 3 puntate.",
           "replaceHint": "",
-          "width": 2712,
-          "height": 1118
+          "width": 2400,
+          "height": 1800
         }
       }
     ]

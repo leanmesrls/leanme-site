@@ -32,7 +32,10 @@ const categoryLabels: Record<string, string> = {
 };
 
 function ArticleCard({ article }: { article: LeanLabArticle }) {
-  const imageSrc = article.image?.src ?? ASSETS.decorative.bannerAmbient;
+  const visual = article.cardImage ?? article.image;
+  const imageSrc = visual?.src ?? ASSETS.decorative.bannerAmbient;
+  const contain =
+    !article.cardImage && visual?.fit === "contain" && visual.width && visual.height;
   const articleHref = `/leanlab/articolo/${article.slug}`;
 
   return (
@@ -47,20 +50,14 @@ function ArticleCard({ article }: { article: LeanLabArticle }) {
       >
         <div
           className="relative aspect-[4/3] overflow-hidden bg-black"
-          style={
-            article.image?.fit === "contain" && article.image.width && article.image.height
-              ? { aspectRatio: `${article.image.width} / ${article.image.height}` }
-              : undefined
-          }
+          style={contain ? { aspectRatio: `${visual.width} / ${visual.height}` } : undefined}
         >
           <div className="leanlab-article-card-media absolute inset-0">
             <Image
               src={imageSrc}
-              alt={article.title}
+              alt={visual?.alt ?? article.title}
               fill
-              className={
-                article.image?.fit === "contain" ? "object-contain" : "object-cover object-top"
-              }
+              className={contain ? "object-contain" : "object-cover object-top"}
               sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 25vw"
             />
           </div>

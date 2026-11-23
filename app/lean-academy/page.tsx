@@ -54,22 +54,24 @@ function SeriesCard({
       aria-labelledby={`${series.id}-heading`}
       className="overflow-hidden rounded-lg border border-white/[0.08] bg-leanme-card"
     >
-      <h3 id={`${series.id}-heading`} className="sr-only">
-        {series.title}
-      </h3>
       {series.image ? (
-        <div className="relative aspect-[4/3] bg-black">
+        <div className="relative aspect-[4/3] overflow-hidden bg-black">
           <Image
             src={series.image.src}
             alt={series.image.alt}
             fill
-            className="object-contain"
+            className="object-cover"
             sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 25vw"
           />
         </div>
       ) : null}
       <div className="space-y-2 p-4">
-        <span className={categoryBadgeFromLabel(series.title)}>{series.title}</span>
+        <span className={categoryBadgeFromLabel(series.categoryLabel ?? series.title)}>
+          {series.categoryLabel ?? series.title}
+        </span>
+        <h3 id={`${series.id}-heading`} className="text-sm font-semibold leading-snug text-white">
+          {series.title}
+        </h3>
         <ol className="space-y-1">
           {episodes.map((resource) => (
             <li key={resource.slug}>

@@ -234,6 +234,8 @@ export interface LeanLabArticle {
   date: string;
   readTime: string;
   image: ImageAsset;
+  /** Anteprima quadrata delle card, quando la grafica di pagina è un banner largo. */
+  cardImage?: ImageAsset;
   author: string;
   tags?: string[];
   /** Template corpo articolo (es. newsletter con layout dedicato). */
@@ -333,6 +335,8 @@ export interface AcademyData {
       title: string;
       description: string;
       image?: ImageAsset;
+      /** Etichetta del tag, se è diversa dal titolo della serie. */
+      categoryLabel?: string;
     }[];
     resources: AcademyResource[];
   };

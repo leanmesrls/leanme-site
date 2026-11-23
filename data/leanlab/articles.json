@@ -18,6 +18,13 @@
       "height": 1118,
       "fit": "contain"
     },
+    "cardImage": {
+      "src": "/assets/academy/intervista-radio-2026-card.jpg",
+      "alt": "Story Time: ascolta la nostra intervista radio. Mini podcast in 3 puntate.",
+      "replaceHint": "",
+      "width": 2400,
+      "height": 1800
+    },
     "author": "Luana Martuzzi",
     "tags": [
       "Intervista radio 2026",

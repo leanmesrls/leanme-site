@@ -21,9 +21,11 @@ const categoryLabels: Record<string, string> = {
 };
 
 export function ArticleCard({ article }: ArticleCardProps) {
-  const imageSrc = article.image.src.startsWith("/assets/")
-    ? article.image.src
+  const visual = article.cardImage ?? article.image;
+  const imageSrc = visual.src.startsWith("/assets/")
+    ? visual.src
     : ASSETS.decorative.bannerAmbient;
+  const contain = !article.cardImage && visual.fit === "contain" && visual.width && visual.height;
   const articleHref = `/leanlab/articolo/${article.slug}`;
 
   return (
@@ -38,18 +40,14 @@ export function ArticleCard({ article }: ArticleCardProps) {
       >
         <div
           className="relative aspect-[4/3] overflow-hidden rounded-t-xl bg-black"
-          style={
-            article.image.fit === "contain" && article.image.width && article.image.height
-              ? { aspectRatio: `${article.image.width} / ${article.image.height}` }
-              : undefined
-          }
+          style={contain ? { aspectRatio: `${visual.width} / ${visual.height}` } : undefined}
         >
           <Image
             src={imageSrc}
-            alt={article.image.alt}
+            alt={visual.alt}
             fill
             className={
-              article.image.fit === "contain"
+              contain
                 ? "object-contain opacity-80 transition group-hover:opacity-100"
                 : "object-cover object-top opacity-80 transition group-hover:opacity-100"
             }
