@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { PAGE_CONTENT_AFTER_INTRO_CLASS, PAGE_INTRO_SECTION_CLASS } from "@/components/layout/HighlightCard";
-import type { AcademyResource } from "@/types/content";
+import type { AcademyData, AcademyResource } from "@/types/content";
 import { PageHero } from "@/components/layout/PageHero";
 import { PageHighlightBlock } from "@/components/layout/PageHighlightBlock";
 import { PageSection } from "@/components/layout/PageSection";
@@ -38,6 +38,55 @@ function KeyIcon() {
       <path d="M16 7l2 2" />
       <path d="M18 5l2 2" />
     </svg>
+  );
+}
+
+function SeriesCard({
+  series,
+  episodes,
+}: {
+  series: NonNullable<AcademyData["publicArea"]["series"]>[number];
+  episodes: AcademyResource[];
+}) {
+  return (
+    <article
+      id={series.id}
+      aria-labelledby={`${series.id}-heading`}
+      className="overflow-hidden rounded-lg border border-white/[0.08] bg-leanme-card"
+    >
+      <h3 id={`${series.id}-heading`} className="sr-only">
+        {series.title}
+      </h3>
+      {series.image ? (
+        <div className="relative aspect-[4/3] bg-black">
+          <Image
+            src={series.image.src}
+            alt={series.image.alt}
+            fill
+            className="object-contain"
+            sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 25vw"
+          />
+        </div>
+      ) : null}
+      <div className="space-y-2 p-4">
+        <span className={categoryBadgeFromLabel(series.title)}>{series.title}</span>
+        <ol className="space-y-1">
+          {episodes.map((resource) => (
+            <li key={resource.slug}>
+              <Link
+                href={resource.href}
+                className="group flex items-center gap-2 rounded-md py-1.5 text-sm font-semibold leading-snug text-white transition hover:text-leanme-fuchsia focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leanme-fuchsia"
+              >
+                <svg aria-hidden="true" viewBox="0 0 24 24" className="h-3.5 w-3.5 shrink-0 fill-leanme-fuchsia">
+                  <path d="M8 5.5v13l11-6.5-11-6.5Z" />
+                </svg>
+                <span>{resource.episodeTitle ?? resource.title}</span>
+              </Link>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </article>
   );
 }
 
@@ -112,69 +161,17 @@ export default function LeanAcademyPage() {
           </p>
         </RevealOnScroll>
 
-        {(data.publicArea.series ?? []).map((series) => {
-          const episodes = published.filter((resource) => resource.series === series.id);
-          if (episodes.length === 0) return null;
-
-          return (
-            <section
-              key={series.id}
-              id={series.id}
-              aria-labelledby={`${series.id}-heading`}
-              className="mt-10 overflow-hidden rounded-2xl border border-leanme-fuchsia/45 bg-[#111111]"
-            >
-              <h3 id={`${series.id}-heading`} className="sr-only">
-                {series.title}
-              </h3>
-              {series.image ? (
-                <Image
-                  src={series.image.src}
-                  alt={series.image.alt}
-                  width={series.image.width ?? 2712}
-                  height={series.image.height ?? 1118}
-                  priority
-                  className="h-auto w-full"
-                  sizes="(max-width: 768px) 100vw, 1100px"
-                />
-              ) : (
-                <div className="px-5 pt-5 md:px-6">
-                  <p className="text-sm font-bold uppercase tracking-[0.14em] text-leanme-fuchsia">
-                    {series.title}
-                  </p>
-                  <p className="mt-3 text-sm leading-relaxed text-white/70 md:text-base">
-                    {series.description}
-                  </p>
-                </div>
-              )}
-              <ol className="divide-y divide-white/10 border-t border-white/10">
-                {episodes.map((resource) => (
-                  <li key={resource.slug}>
-                    <Link
-                      href={resource.href}
-                      className="group flex items-center gap-4 px-5 py-4 transition hover:bg-white/[0.04] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-leanme-fuchsia md:px-6 md:py-5"
-                    >
-                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-leanme-fuchsia text-white">
-                        <svg aria-hidden="true" viewBox="0 0 24 24" className="ml-0.5 h-4 w-4" fill="currentColor">
-                          <path d="M8 5.5v13l11-6.5-11-6.5Z" />
-                        </svg>
-                      </span>
-                      <span className="min-w-0 flex-1">
-                        <span className="block text-sm font-semibold text-white group-hover:text-leanme-fuchsia md:text-base">
-                          {resource.episodeTitle ?? resource.title}
-                        </span>
-                        <span className="mt-1 block text-sm leading-relaxed text-white/60">
-                          {resource.description}
-                        </span>
-                      </span>
-                    </Link>
-                  </li>
-                ))}
-              </ol>
-            </section>
-          );
-        })}
-
         <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-4 lg:gap-5">
+          {(data.publicArea.series ?? []).map((series) => {
+            const episodes = published.filter((resource) => resource.series === series.id);
+            if (episodes.length === 0) return null;
+
+            return (
+              <RevealOnScroll key={series.id}>
+                <SeriesCard series={series} episodes={episodes} />
+              </RevealOnScroll>
+            );
+          })}
           {published
             .filter((resource) => !resource.series)
             .map((resource) => (
