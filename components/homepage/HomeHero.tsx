@@ -114,31 +114,29 @@ export function HomeHero({ data }: HomeHeroProps) {
           </motion.div>
           </div>
 
-          <motion.div variants={item} className="mt-6 flex w-full max-w-3xl flex-col items-start gap-3">
-            <div className="flex w-full flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:items-center">
-              <Link
-                href={data.primaryCta.href}
-                className="animate-cta-glow inline-flex w-full items-center justify-center gap-2 rounded-full bg-leanme-fuchsia px-4 py-3 text-center text-[11px] font-semibold uppercase tracking-[0.08em] text-white transition hover:bg-leanme-fuchsia-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leanme-fuchsia sm:w-auto sm:px-6 md:text-xs"
+          <motion.div variants={item} className="mt-6 flex w-full max-w-[20rem] flex-col items-stretch gap-3">
+            <Link
+              href={data.primaryCta.href}
+              className="animate-cta-glow inline-flex w-full items-center justify-center gap-2 rounded-full bg-leanme-fuchsia px-4 py-3 text-center text-[11px] font-semibold uppercase tracking-[0.08em] text-white transition hover:bg-leanme-fuchsia-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leanme-fuchsia md:text-xs"
+            >
+              {data.primaryCta.label}
+              <ArrowIcon />
+            </Link>
+            {data.bookCta ? (
+              <a
+                href={data.bookCta.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-leanme-fuchsia px-4 py-3 text-center text-[11px] font-semibold uppercase leading-snug tracking-[0.06em] text-white transition hover:bg-leanme-fuchsia-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leanme-fuchsia md:text-xs"
               >
-                {data.primaryCta.label}
+                {data.bookCta.label}
                 <ArrowIcon />
-              </Link>
-              {data.bookCta ? (
-                <a
-                  href={data.bookCta.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-leanme-fuchsia px-4 py-3 text-center text-[11px] font-semibold uppercase leading-snug tracking-[0.06em] text-white transition hover:bg-leanme-fuchsia-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leanme-fuchsia sm:w-auto sm:max-w-[20rem] sm:px-5 md:text-xs"
-                >
-                  {data.bookCta.label}
-                  <ArrowIcon />
-                  <span className="sr-only"> Si apre in una nuova scheda.</span>
-                </a>
-              ) : null}
-            </div>
+                <span className="sr-only"> Si apre in una nuova scheda.</span>
+              </a>
+            ) : null}
             <Link
               href={data.secondaryCta.href}
-              className="inline-flex w-full items-center justify-center rounded-full border border-white/70 bg-black/25 px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.08em] text-white transition hover:border-white hover:bg-black/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:w-auto sm:px-6 md:text-xs"
+              className="inline-flex w-full items-center justify-center rounded-full border border-white/70 bg-black/25 px-4 py-3 text-center text-[11px] font-semibold uppercase tracking-[0.08em] text-white transition hover:border-white hover:bg-black/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white md:text-xs"
             >
               {data.secondaryCta.label}
             </Link>
