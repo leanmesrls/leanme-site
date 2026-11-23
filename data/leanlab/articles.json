@@ -11,9 +11,12 @@
     "date": "2026-11-23",
     "readTime": "9 min",
     "image": {
-      "src": "/assets/official/luana.png",
-      "alt": "Dr. Luana Martuzzi, founder di LeanMe, ospite di Story Time.",
-      "replaceHint": ""
+      "src": "/assets/academy/intervista-radio-2026-cover.jpg",
+      "alt": "Story Time: ascolta la nostra intervista radio. Mini podcast in 3 puntate.",
+      "replaceHint": "",
+      "width": 2712,
+      "height": 1118,
+      "fit": "contain"
     },
     "author": "Luana Martuzzi",
     "tags": [
@@ -26,8 +29,8 @@
         "id": "la-serie",
         "heading": "Tre episodi",
         "paragraphs": [
-        "La registrazione viene da Story Time, il format di Evoluzione Radio, dagli studi di Milano. L'abbiamo divisa sulle tre domande della puntata, così si può ascoltare un pezzo alla volta.",
-        "Ogni clip è anche un episodio di Lean Academy. Il testo sotto il player è la stessa conversazione, scritta."
+          "La registrazione viene da Story Time, il format di Evoluzione Radio, dagli studi di Milano. L'abbiamo divisa sulle tre domande della puntata, così si può ascoltare un pezzo alla volta.",
+          "Ogni clip è anche un episodio di Lean Academy. Il testo sotto il player è la stessa conversazione, scritta."
         ]
       },
       {

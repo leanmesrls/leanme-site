@@ -65,9 +65,9 @@ function articleCard(article: LeanLabArticle): LeanLabAsideRelated {
 function academyCard(resource: AcademyResource): LeanLabAsideRelated {
   return {
     href: resource.href,
-    title: resource.title,
-    imageSrc: resource.image.src,
-    imageAlt: resource.image.alt,
+    title: resource.episodeTitle ?? resource.title,
+    imageSrc: resource.series ? undefined : resource.image.src,
+    imageAlt: resource.series ? undefined : resource.image.alt,
     kicker: resource.tag ?? "Lean Academy",
     category: resource.tag?.toLowerCase().includes("ricerca")
       ? "ricerca-e-innovazione"

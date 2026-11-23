@@ -19,9 +19,11 @@
         "description": "Dall'innovazione digitale e sociale all'Azienda Ibrida. Luana Martuzzi racconta perché LeanMe si è fermata e ha ricostruito grafica, sito e sede.",
         "published": true,
         "image": {
-          "src": "/assets/official/luana.png",
-          "alt": "Dr. Luana Martuzzi, founder di LeanMe, ospite di Story Time.",
-          "replaceHint": ""
+          "src": "/assets/academy/intervista-radio-2026-cover.jpg",
+          "alt": "Story Time: ascolta la nostra intervista radio. Mini podcast in 3 puntate.",
+          "replaceHint": "",
+          "width": 2712,
+          "height": 1118
         },
         "audio": {
           "src": "/assets/academy/intervista-radio-2026-01-evoluzione.mp3",
@@ -54,7 +56,8 @@
           "L'AI non è rimasta uno strumento a lato: è entrata nel modo di lavorare e nell'organigramma.",
           "Luana distingue AI passiva, chat, agenti e rete di agenti. La superintelligenza resta un discorso teorico.",
           "La risposta di LeanMe è stata una sosta, poi nuova grafica, nuovo sito e nuova sede: un Open Innovation Hub, powered by human intelligence, amplified by AI."
-        ]
+        ],
+        "episodeTitle": "01 · L'evoluzione"
       },
       {
         "slug": "intervista-radio-2026-staff-ibrido",
@@ -65,9 +68,11 @@
         "description": "Staff ibrido non è lo smart working. È un team di persone e agenti, con ruolo, nome e volto. L'avatar non è l'agente.",
         "published": true,
         "image": {
-          "src": "/assets/official/luana.png",
-          "alt": "Dr. Luana Martuzzi, founder di LeanMe, ospite di Story Time.",
-          "replaceHint": ""
+          "src": "/assets/academy/intervista-radio-2026-cover.jpg",
+          "alt": "Story Time: ascolta la nostra intervista radio. Mini podcast in 3 puntate.",
+          "replaceHint": "",
+          "width": 2712,
+          "height": 1118
         },
         "audio": {
           "src": "/assets/academy/intervista-radio-2026-02-staff-ibrido.mp3",
@@ -99,7 +104,8 @@
           "Non è una formula di smart working e non è un software in più: persone e agenti hanno ruoli e attività.",
           "I nomi, come Olivetti, servono al team per capirsi. L'avatar è il volto, non l'agente.",
           "È il modo in cui un'Azienda Ibrida lavora ogni giorno: le persone parlano con gli agenti, e gli agenti tra loro."
-        ]
+        ],
+        "episodeTitle": "02 · Lo Staff Ibrido"
       },
       {
         "slug": "intervista-radio-2026-accompagnare-le-aziende",
@@ -110,9 +116,11 @@
         "description": "Si parte dalla formazione. Poi l'AI la usa chi conosce la materia, non per forza un esperto di AI. La professionalità si amplifica.",
         "published": true,
         "image": {
-          "src": "/assets/official/luana.png",
-          "alt": "Dr. Luana Martuzzi, founder di LeanMe, ospite di Story Time.",
-          "replaceHint": ""
+          "src": "/assets/academy/intervista-radio-2026-cover.jpg",
+          "alt": "Story Time: ascolta la nostra intervista radio. Mini podcast in 3 puntate.",
+          "replaceHint": "",
+          "width": 2712,
+          "height": 1118
         },
         "audio": {
           "src": "/assets/academy/intervista-radio-2026-03-accompagnare.mp3",
@@ -144,7 +152,8 @@
           "Si parte dalla formazione: senza un significato condiviso di AI, lo strumento resta ambiguo.",
           "L'uso sta in mano a chi conosce la materia. La competenza umana cambia il risultato, come nel caso del fotografo.",
           "Amplified by AI è il punto: l'Azienda Ibrida amplifica la professionalità, non la sostituisce e non la riduce a un tuttologo."
-        ]
+        ],
+        "episodeTitle": "03 · Come accompagniamo le aziende"
       },
       {
         "slug": "ai-act-regole-intelligenza-artificiale",
@@ -321,7 +330,14 @@
       {
         "id": "intervista-radio-2026",
         "title": "Intervista radio 2026",
-        "description": "Tre episodi dalla puntata di Story Time su Evoluzione Radio. Luana Martuzzi racconta l'evoluzione di LeanMe, che cosa significa Staff Ibrido e come accompagniamo le aziende."
+        "description": "Tre episodi dalla puntata di Story Time su Evoluzione Radio. Luana Martuzzi racconta l'evoluzione di LeanMe, che cosa significa Staff Ibrido e come accompagniamo le aziende.",
+        "image": {
+          "src": "/assets/academy/intervista-radio-2026-cover.jpg",
+          "alt": "Story Time: ascolta la nostra intervista radio. Mini podcast in 3 puntate.",
+          "replaceHint": "",
+          "width": 2712,
+          "height": 1118
+        }
       }
     ]
   },

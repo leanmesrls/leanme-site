@@ -117,23 +117,59 @@ export default function LeanAcademyPage() {
           if (episodes.length === 0) return null;
 
           return (
-            <section key={series.id} id={series.id} aria-labelledby={`${series.id}-heading`} className="mt-10">
-              <h3
-                id={`${series.id}-heading`}
-                className="text-sm font-bold uppercase tracking-[0.14em] text-leanme-fuchsia"
-              >
+            <section
+              key={series.id}
+              id={series.id}
+              aria-labelledby={`${series.id}-heading`}
+              className="mt-10 overflow-hidden rounded-2xl border border-leanme-fuchsia/45 bg-[#111111]"
+            >
+              <h3 id={`${series.id}-heading`} className="sr-only">
                 {series.title}
               </h3>
-              <p className="mt-3 max-w-3xl text-sm leading-relaxed text-white/70 md:text-base">
-                {series.description}
-              </p>
-              <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3 lg:gap-5">
+              {series.image ? (
+                <Image
+                  src={series.image.src}
+                  alt={series.image.alt}
+                  width={series.image.width ?? 2712}
+                  height={series.image.height ?? 1118}
+                  priority
+                  className="h-auto w-full"
+                  sizes="(max-width: 768px) 100vw, 1100px"
+                />
+              ) : (
+                <div className="px-5 pt-5 md:px-6">
+                  <p className="text-sm font-bold uppercase tracking-[0.14em] text-leanme-fuchsia">
+                    {series.title}
+                  </p>
+                  <p className="mt-3 text-sm leading-relaxed text-white/70 md:text-base">
+                    {series.description}
+                  </p>
+                </div>
+              )}
+              <ol className="divide-y divide-white/10 border-t border-white/10">
                 {episodes.map((resource) => (
-                  <RevealOnScroll key={resource.slug}>
-                    <ResourceCard resource={resource} />
-                  </RevealOnScroll>
+                  <li key={resource.slug}>
+                    <Link
+                      href={resource.href}
+                      className="group flex items-center gap-4 px-5 py-4 transition hover:bg-white/[0.04] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-leanme-fuchsia md:px-6 md:py-5"
+                    >
+                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-leanme-fuchsia text-white">
+                        <svg aria-hidden="true" viewBox="0 0 24 24" className="ml-0.5 h-4 w-4" fill="currentColor">
+                          <path d="M8 5.5v13l11-6.5-11-6.5Z" />
+                        </svg>
+                      </span>
+                      <span className="min-w-0 flex-1">
+                        <span className="block text-sm font-semibold text-white group-hover:text-leanme-fuchsia md:text-base">
+                          {resource.episodeTitle ?? resource.title}
+                        </span>
+                        <span className="mt-1 block text-sm leading-relaxed text-white/60">
+                          {resource.description}
+                        </span>
+                      </span>
+                    </Link>
+                  </li>
                 ))}
-              </div>
+              </ol>
             </section>
           );
         })}

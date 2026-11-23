@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AcademyVideoPlayer } from "@/components/academy/AcademyVideoPlayer";
@@ -110,8 +111,21 @@ export default async function AcademyResourcePage({ params }: PageProps) {
                 />
               </div>
             ) : null}
-            {resource.audio ? (
+            {resource.audio && resource.image ? (
               <div className="mt-10 max-w-3xl">
+                <Image
+                  src={resource.image.src}
+                  alt={resource.image.alt}
+                  width={resource.image.width ?? 2712}
+                  height={resource.image.height ?? 1118}
+                  priority
+                  className="h-auto w-full rounded-xl"
+                  sizes="(max-width: 768px) 100vw, 768px"
+                />
+              </div>
+            ) : null}
+            {resource.audio ? (
+              <div className="mt-6 max-w-3xl">
                 <AudioPlayer src={resource.audio.src} label={resource.audio.label} />
               </div>
             ) : null}

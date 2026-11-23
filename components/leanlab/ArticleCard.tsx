@@ -36,12 +36,23 @@ export function ArticleCard({ article }: ArticleCardProps) {
         href={articleHref}
         className="group block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-leanme-fuchsia"
       >
-        <div className="relative aspect-[4/3] overflow-hidden rounded-t-xl">
+        <div
+          className="relative aspect-[4/3] overflow-hidden rounded-t-xl bg-black"
+          style={
+            article.image.fit === "contain" && article.image.width && article.image.height
+              ? { aspectRatio: `${article.image.width} / ${article.image.height}` }
+              : undefined
+          }
+        >
           <Image
             src={imageSrc}
             alt={article.image.alt}
             fill
-            className="object-cover object-top opacity-80 transition group-hover:opacity-100"
+            className={
+              article.image.fit === "contain"
+                ? "object-contain opacity-80 transition group-hover:opacity-100"
+                : "object-cover object-top opacity-80 transition group-hover:opacity-100"
+            }
             sizes="(max-width: 1280px) 33vw, 320px"
           />
           <div className="pointer-events-none absolute inset-0 z-[1] bg-transparent transition-colors duration-300 group-hover:bg-leanme-fuchsia/20" />

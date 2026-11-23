@@ -48,6 +48,8 @@ export interface ImageAsset {
   replaceHint: string;
   width?: number;
   height?: number;
+  /** contain mostra tutta la grafica nella card. cover è il ritaglio delle altre anteprime. */
+  fit?: "cover" | "contain";
 }
 
 export interface SectionBase {
@@ -298,6 +300,8 @@ export interface AcademyResource {
   tag?: string;
   /** Serie pubblica, es. l'intervista radio in più episodi. */
   series?: string;
+  /** Titolo dentro il box della serie, senza ripetere il nome della serie. */
+  episodeTitle?: string;
   video?: {
     src: string;
     poster: string;
@@ -328,6 +332,7 @@ export interface AcademyData {
       id: string;
       title: string;
       description: string;
+      image?: ImageAsset;
     }[];
     resources: AcademyResource[];
   };

@@ -39,23 +39,22 @@ export function LeanLabSpokenArticle({ article }: LeanLabSpokenArticleProps) {
     <div className="space-y-10">
       {article.hideDefaultImage ? (
         <figure className="overflow-hidden">
-          <div className="relative aspect-[3/4] w-full max-w-[280px] overflow-hidden rounded-xl border border-white/10 bg-[#111111]">
-            <Image
-              src={article.image.src}
-              alt={article.image.alt}
-              fill
-              priority
-              className="object-cover object-top"
-              sizes="280px"
-            />
-          </div>
+          <Image
+            src={article.image.src}
+            alt={article.image.alt}
+            width={article.image.width ?? 1600}
+            height={article.image.height ?? 900}
+            priority
+            className="h-auto w-full rounded-xl"
+            sizes="(max-width: 1024px) 100vw, 960px"
+          />
         </figure>
       ) : null}
 
       {article.audio ? <AudioPlayer src={article.audio.src} label={article.audio.label} /> : null}
 
       {article.blocks?.map((block) => (
-        <section key={block.id} aria-labelledby={block.id} className="space-y-4">
+        <section key={block.id} aria-labelledby={block.id} className="max-w-3xl space-y-4">
           <h2
             id={block.id}
             className="text-xs font-bold uppercase tracking-[0.14em] text-leanme-fuchsia"
@@ -77,7 +76,7 @@ export function LeanLabSpokenArticle({ article }: LeanLabSpokenArticleProps) {
       ))}
 
       {article.relatedLinks?.length ? (
-        <section aria-labelledby="approfondisci" className="space-y-3">
+        <section aria-labelledby="approfondisci" className="max-w-3xl space-y-3">
           <h2
             id="approfondisci"
             className="text-xs font-bold uppercase tracking-[0.14em] text-leanme-fuchsia"
